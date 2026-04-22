@@ -1,4 +1,4 @@
-import { Wine, Instagram, Mail, MapPin } from "lucide-react";
+import { Wine, Mail, MapPin, AtSign } from "lucide-react";
 
 export function Footer() {
   return (
