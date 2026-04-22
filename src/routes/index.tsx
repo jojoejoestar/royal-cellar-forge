@@ -37,19 +37,19 @@ function Index() {
       <Navigation />
       <main>
         <Hero />
-        {/* Hero → Philosophy (background → scarlet) */}
-        <SectionDivider from="background" to="scarlet-deep" />
+        {/* Hero → Philosophy (background → scarlet top) */}
+        <SectionDivider from="background" to="scarlet" />
         <Philosophy />
-        {/* Philosophy → Catalog (scarlet → background) */}
+        {/* Philosophy → Catalog (scarlet bottom → background) */}
         <SectionDivider from="scarlet-deep" to="background" />
         <Catalog />
         {/* Catalog → Sommelier (same tone, ornament only) */}
         <SectionDivider from="background" to="background" />
         <Sommelier />
-        {/* Sommelier → Faq (background → scarlet) */}
-        <SectionDivider from="background" to="scarlet-deep" />
+        {/* Sommelier → Faq (background → scarlet top) */}
+        <SectionDivider from="background" to="scarlet" />
         <Faq />
-        {/* Faq → Confraria (scarlet → background) */}
+        {/* Faq → Confraria (scarlet bottom → background) */}
         <SectionDivider from="scarlet-deep" to="background" />
         <Confraria />
       </main>
