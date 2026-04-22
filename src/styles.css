@@ -188,6 +188,12 @@
     background-size: auto, auto, 120px 120px;
   }
 
+  /* Grape vine floral pattern — clusters of grapes with leaves and tendrils */
+  .pattern-grapes {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='0.11'%3E%3C!-- Grape cluster top-left --%3E%3Cg transform='translate(40 40)'%3E%3Cpath d='M0 0 C 8 6, 14 14, 12 26' stroke-width='0.5'/%3E%3Ccircle cx='6' cy='14' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='14' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='10' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='4' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='16' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='8' cy='30' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='30' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='11' cy='38' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3C!-- Leaf --%3E%3Cpath d='M-4 -2 C -16 -6, -22 4, -18 14 C -14 20, -6 18, -2 10 C 0 4, -2 0, -4 -2 Z'/%3E%3Cpath d='M-12 4 L -6 8 M -10 -2 L -8 6 M -14 8 L -8 10' stroke-width='0.4'/%3E%3C!-- Tendril --%3E%3Cpath d='M18 -2 C 26 -4, 30 2, 28 8 C 26 12, 32 14, 34 10' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Grape cluster bottom-right --%3E%3Cg transform='translate(180 160)'%3E%3Cpath d='M0 0 C 8 6, 14 14, 12 26' stroke-width='0.5'/%3E%3Ccircle cx='6' cy='14' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='14' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='10' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='4' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='16' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='8' cy='30' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='30' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='11' cy='38' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Cpath d='M22 -2 C 34 -6, 40 4, 36 14 C 32 20, 24 18, 20 10 C 18 4, 20 0, 22 -2 Z'/%3E%3Cpath d='M28 4 L 32 8 M 30 -2 L 28 6 M 26 8 L 32 10' stroke-width='0.4'/%3E%3Cpath d='M-8 -2 C -16 -4, -20 2, -18 8 C -16 12, -22 14, -24 10' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Single leaf center --%3E%3Cg transform='translate(140 100) rotate(35)'%3E%3Cpath d='M0 0 C -10 -4, -18 4, -14 14 C -10 20, -2 18, 2 10 C 4 4, 2 0, 0 0 Z'/%3E%3Cpath d='M-8 4 L -4 8 M -6 -2 L -4 6 M -10 8 L -4 10' stroke-width='0.4'/%3E%3Cpath d='M2 -2 C 8 -8, 16 -6, 18 0' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Tendril swirl --%3E%3Cpath d='M80 220 C 90 215, 95 225, 90 232 C 86 238, 96 242, 100 236' stroke-width='0.5'/%3E%3Cpath d='M220 50 C 230 45, 235 55, 230 62 C 226 68, 236 72, 240 66' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
+    background-size: 280px 280px;
+  }
+
   .spotlight-gold {
     background: var(--gradient-spotlight);
   }
@@ -196,6 +202,26 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, oklch(0.78 0.13 85 / 0.6), transparent);
   }
+
+  /* Section ornament — gold filigree divider used between sections */
+  .section-ornament {
+    position: relative;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, oklch(0.78 0.13 85 / 0.45) 30%, oklch(0.78 0.13 85 / 0.45) 70%, transparent);
+  }
+  .section-ornament::before,
+  .section-ornament::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 5px;
+    height: 5px;
+    border: 1px solid oklch(0.78 0.13 85 / 0.7);
+    background: var(--background);
+    transform: translateY(-50%) rotate(45deg);
+  }
+  .section-ornament::before { left: calc(50% - 80px); }
+  .section-ornament::after { right: calc(50% - 80px); }
 
   .btn-gold-glow {
     position: relative;
