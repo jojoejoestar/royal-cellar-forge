@@ -95,7 +95,8 @@ export function Catalog() {
       ref={sectionRef}
       className="relative overflow-hidden bg-background py-32 md:py-44"
     >
-      <div className="absolute inset-0 pattern-damask opacity-30" />
+      <div className="absolute inset-0 pattern-damask opacity-25" />
+      <div className="absolute inset-0 pattern-grapes opacity-25" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="text-center">

@@ -37,6 +37,7 @@ export function Sommelier() {
       ref={ref}
       className="relative overflow-hidden bg-background py-32 md:py-44"
     >
+      <div className="absolute inset-0 pattern-grapes opacity-25" />
       <div className="absolute right-0 top-1/4 h-[600px] w-[600px] spotlight-gold" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
