@@ -46,7 +46,7 @@ export function Footer() {
                 <span>concierge@caveroyale.com</span>
               </li>
               <li className="flex items-start gap-2">
-                <Instagram className="mt-0.5 h-4 w-4 text-gold/70" />
+                <AtSign className="mt-0.5 h-4 w-4 text-gold/70" />
                 <span>@caveroyale</span>
               </li>
             </ul>
