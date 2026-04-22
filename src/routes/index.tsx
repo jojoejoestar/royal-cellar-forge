@@ -7,6 +7,7 @@ import { Sommelier } from "@/components/site/Sommelier";
 import { Faq } from "@/components/site/Faq";
 import { Confraria } from "@/components/site/Confraria";
 import { Footer } from "@/components/site/Footer";
+import { SectionDivider } from "@/components/site/SectionDivider";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -36,10 +37,20 @@ function Index() {
       <Navigation />
       <main>
         <Hero />
+        {/* Hero → Philosophy (background → scarlet top) */}
+        <SectionDivider from="background" to="scarlet" />
         <Philosophy />
+        {/* Philosophy → Catalog (scarlet bottom → background) */}
+        <SectionDivider from="scarlet-deep" to="background" />
         <Catalog />
+        {/* Catalog → Sommelier (same tone, ornament only) */}
+        <SectionDivider from="background" to="background" />
         <Sommelier />
+        {/* Sommelier → Faq (background → scarlet top) */}
+        <SectionDivider from="background" to="scarlet" />
         <Faq />
+        {/* Faq → Confraria (scarlet bottom → background) */}
+        <SectionDivider from="scarlet-deep" to="background" />
         <Confraria />
       </main>
       <Footer />

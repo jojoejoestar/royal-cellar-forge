@@ -55,7 +55,8 @@ export function Philosophy() {
       ref={ref}
       className="relative overflow-hidden bg-gradient-scarlet py-32 md:py-44"
     >
-      <div className="absolute inset-0 pattern-damask opacity-50" />
+      <div className="absolute inset-0 pattern-damask opacity-40" />
+      <div className="absolute inset-0 pattern-grapes opacity-30" />
       <div className="absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 spotlight-gold" />
 
       <div className="relative mx-auto max-w-6xl px-6 lg:px-10 text-center">
