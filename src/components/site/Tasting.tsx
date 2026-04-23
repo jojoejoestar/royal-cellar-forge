@@ -144,7 +144,7 @@ export function Tasting() {
           </figure>
 
           {/* Side — swirl */}
-          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5 lg:row-span-1">
+          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
               src={swirl}
               alt="Macro do vinho sendo agitado em taça de cristal"
@@ -166,7 +166,7 @@ export function Tasting() {
           </figure>
 
           {/* Side — nose */}
-          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5 lg:row-span-1">
+          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
               src={nose}
               alt="Sommelier inspirando o aroma do vinho à luz de vela"
