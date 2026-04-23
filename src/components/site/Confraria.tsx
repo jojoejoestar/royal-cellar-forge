@@ -29,7 +29,7 @@ export function Confraria() {
     <section
       id="confraria"
       ref={ref}
-      className="relative overflow-hidden bg-background py-32 md:py-44"
+      className="relative overflow-hidden bg-background py-20 md:py-28"
     >
       <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 spotlight-gold" />
       <div className="absolute inset-0 pattern-damask opacity-20" />

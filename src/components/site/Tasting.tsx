@@ -88,7 +88,7 @@ export function Tasting() {
     <section
       id="degustacao"
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-scarlet py-32 md:py-44"
+      className="relative overflow-hidden bg-gradient-scarlet py-20 md:py-28"
     >
       <div className="absolute inset-0 pattern-damask opacity-20" />
       <div className="absolute inset-0 pattern-grapes opacity-25" />
@@ -115,7 +115,7 @@ export function Tasting() {
         {/* Mosaic */}
         <div className="tast-mosaic mt-20 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
           {/* Hero image — pour */}
-          <figure className="tast-hero relative col-span-12 row-span-2 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7">
+          <figure className="tast-hero relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />
             <div className="relative">
               <img
@@ -144,7 +144,7 @@ export function Tasting() {
           </figure>
 
           {/* Side — swirl */}
-          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5 lg:row-span-1">
+          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
               src={swirl}
               alt="Macro do vinho sendo agitado em taça de cristal"
@@ -166,7 +166,7 @@ export function Tasting() {
           </figure>
 
           {/* Side — nose */}
-          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5 lg:row-span-1">
+          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
               src={nose}
               alt="Sommelier inspirando o aroma do vinho à luz de vela"

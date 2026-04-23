@@ -26,10 +26,12 @@ export function Footer() {
               Navegação
             </p>
             <ul className="mt-4 space-y-2 text-sm text-champagne/70">
-              <li><a href="#acervo" className="hover:text-gold">Acervo</a></li>
-              <li><a href="#terroir" className="hover:text-gold">Terroir</a></li>
-              <li><a href="#sommelier" className="hover:text-gold">O Sommelier</a></li>
-              <li><a href="#confraria" className="hover:text-gold">Confraria</a></li>
+              <li><a href="#acervo" className="hover:text-gold transition-colors">Acervo</a></li>
+              <li><a href="#galeria" className="hover:text-gold transition-colors">Galeria de Rótulos</a></li>
+              <li><a href="#heritage" className="hover:text-gold transition-colors">Heritage</a></li>
+              <li><a href="#degustacao" className="hover:text-gold transition-colors">Ritual de Degustação</a></li>
+              <li><a href="#sommelier" className="hover:text-gold transition-colors">O Sommelier</a></li>
+              <li><a href="#confraria" className="hover:text-gold transition-colors">Confraria</a></li>
             </ul>
           </div>
 
