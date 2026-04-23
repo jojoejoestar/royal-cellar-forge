@@ -5,6 +5,7 @@ import { Menu, X, Wine } from "lucide-react";
 const links = [
   { label: "Acervo", href: "#acervo" },
   { label: "Terroir", href: "#terroir" },
+  { label: "Heritage", href: "#heritage" },
   { label: "O Sommelier", href: "#sommelier" },
   { label: "Confraria", href: "#confraria" },
 ];
