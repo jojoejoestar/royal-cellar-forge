@@ -88,7 +88,7 @@ export function Tasting() {
     <section
       id="degustacao"
       ref={sectionRef}
-      className="relative overflow-hidden bg-gradient-scarlet py-32 md:py-44"
+      className="relative overflow-hidden bg-gradient-scarlet py-20 md:py-28"
     >
       <div className="absolute inset-0 pattern-damask opacity-20" />
       <div className="absolute inset-0 pattern-grapes opacity-25" />

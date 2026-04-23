@@ -67,7 +67,7 @@ export function Heritage() {
     <section
       id="heritage"
       ref={ref}
-      className="relative overflow-hidden bg-background py-32 md:py-44"
+      className="relative overflow-hidden bg-background py-20 md:py-28"
     >
       {/* Background ornaments */}
       <div className="absolute inset-0 pattern-grapes opacity-30" />
