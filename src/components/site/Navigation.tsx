@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Menu, X, Wine } from "lucide-react";
@@ -96,3 +98,4 @@ export function Navigation() {
     </motion.header>
   );
 }
+

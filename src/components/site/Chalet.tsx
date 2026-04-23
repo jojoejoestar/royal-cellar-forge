@@ -1,10 +1,12 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mountain, Flame, Key, MapPin, ArrowRight, Calendar } from "lucide-react";
-import chaletInterior from "@/assets/chalet-interior.jpg";
-import chaletExterior from "@/assets/chalet-exterior.jpg";
-import chaletTable from "@/assets/chalet-table.jpg";
+import chaletInterior from "@/assets/placeholder.svg";
+import chaletExterior from "@/assets/placeholder.svg";
+import chaletTable from "@/assets/placeholder.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -214,3 +216,5 @@ export function Chalet() {
     </section>
   );
 }
+
+

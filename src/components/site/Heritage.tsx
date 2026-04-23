@@ -1,10 +1,12 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Crown, Scroll, Grape } from "lucide-react";
-import chalice from "@/assets/heritage-chalice.jpg";
-import grapes from "@/assets/heritage-grapes.jpg";
-import cellar from "@/assets/heritage-cellar.jpg";
+import chalice from "@/assets/placeholder.svg";
+import grapes from "@/assets/placeholder.svg";
+import cellar from "@/assets/placeholder.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -253,3 +255,5 @@ export function Heritage() {
     </section>
   );
 }
+
+

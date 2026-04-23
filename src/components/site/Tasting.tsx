@@ -1,10 +1,12 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Eye, Wind, GlassWater, Sparkles } from "lucide-react";
-import pour from "@/assets/tasting-pour.jpg";
-import swirl from "@/assets/tasting-swirl.jpg";
-import nose from "@/assets/tasting-nose.jpg";
+import pour from "@/assets/placeholder.svg";
+import swirl from "@/assets/placeholder.svg";
+import nose from "@/assets/placeholder.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -239,3 +241,5 @@ export function Tasting() {
     </section>
   );
 }
+
+

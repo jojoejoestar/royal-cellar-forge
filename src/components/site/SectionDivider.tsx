@@ -1,3 +1,5 @@
+"use client";
+
 import { Grape } from "lucide-react";
 
 type Props = {
@@ -31,7 +33,7 @@ export function SectionDivider({
   return (
     <div
       aria-hidden
-      className="relative h-24 w-full overflow-hidden md:h-28"
+      className="section-divider-edge relative h-20 w-full overflow-hidden md:h-24"
       style={{
         backgroundImage: `linear-gradient(to bottom, ${fromC} 0%, ${toC} 100%)`,
       }}
@@ -95,3 +97,4 @@ export function SectionDivider({
     </div>
   );
 }
+

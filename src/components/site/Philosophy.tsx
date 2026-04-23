@@ -1,8 +1,10 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mountain, Droplets, Sun } from "lucide-react";
-import wineGlassSolo from "@/assets/wine-glass-solo.jpg";
+import wineGlassSolo from "@/assets/placeholder.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -149,3 +151,5 @@ export function Philosophy() {
     </section>
   );
 }
+
+

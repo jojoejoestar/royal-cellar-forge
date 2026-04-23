@@ -1,8 +1,10 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Award, Quote } from "lucide-react";
-import sommelierImg from "@/assets/sommelier.jpg";
+import sommelierImg from "@/assets/placeholder.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,3 +122,5 @@ export function Sommelier() {
     </section>
   );
 }
+
+

@@ -74,8 +74,18 @@
   --font-sans: 'Inter', system-ui, sans-serif;
 
   /* Gradients */
-  --gradient-royal: linear-gradient(135deg, oklch(0.14 0.10 20) 0%, oklch(0.08 0.02 25) 100%);
-  --gradient-scarlet: linear-gradient(180deg, oklch(0.22 0.12 20) 0%, oklch(0.10 0.06 22) 100%);
+  --gradient-royal: linear-gradient(
+    145deg,
+    oklch(0.165 0.105 20) 0%,
+    oklch(0.11 0.05 24) 44%,
+    oklch(0.08 0.02 25) 100%
+  );
+  --gradient-scarlet: linear-gradient(
+    180deg,
+    oklch(0.245 0.13 20) 0%,
+    oklch(0.18 0.105 20) 46%,
+    oklch(0.105 0.06 22) 100%
+  );
   --gradient-gold: linear-gradient(135deg, oklch(0.85 0.15 88) 0%, oklch(0.68 0.13 80) 50%, oklch(0.85 0.15 88) 100%);
   --gradient-spotlight: radial-gradient(ellipse at center, oklch(0.78 0.13 85 / 0.18) 0%, transparent 60%);
 
@@ -95,7 +105,7 @@
   }
 
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
   }
 
   body {
@@ -223,6 +233,13 @@
   .section-ornament::before { left: calc(50% - 80px); }
   .section-ornament::after { right: calc(50% - 80px); }
 
+  .section-divider-edge {
+    margin-top: -1px;
+    margin-bottom: -1px;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
   .btn-gold-glow {
     position: relative;
     background: var(--gradient-gold);
@@ -271,5 +288,116 @@
   }
   .animate-pulse-gold {
     animation: pulse-gold 3s ease-in-out infinite;
+  }
+
+  .forge-cursor-spotlight {
+    background: radial-gradient(
+      circle at center,
+      oklch(0.78 0.13 85 / 0.25) 0%,
+      oklch(0.78 0.13 85 / 0.14) 28%,
+      transparent 70%
+    );
+    will-change: transform;
+  }
+
+  .forge-noise {
+    background-image: radial-gradient(oklch(0.6 0 0 / 0.08) 0.6px, transparent 0);
+    background-size: 3px 3px;
+    mix-blend-mode: soft-light;
+    opacity: 0.22;
+  }
+
+  .forge-vignette {
+    background: radial-gradient(
+      ellipse at center,
+      transparent 32%,
+      oklch(0.06 0.01 40 / 0.55) 100%
+    );
+  }
+
+  .forge-particles {
+    opacity: 0.68;
+  }
+
+  .grape-cursor-aura {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 112px;
+    height: 112px;
+    border-radius: 999px;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(circle, #ffd7004f 0%, #f9a60224 38%, transparent 74%);
+    filter: blur(10px);
+    opacity: 0;
+    transition: opacity 180ms ease;
+    will-change: left, top;
+  }
+
+  .grape-cursor-dot {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 22px;
+    height: 26px;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 140ms ease;
+    will-change: left, top;
+  }
+
+  .grape-cursor-dot span {
+    position: absolute;
+    border-radius: 999px;
+    background: linear-gradient(180deg, #fffacd 0%, #ffec8b 40%, #d4af37 100%);
+    box-shadow: 0 0 12px #ffd70080;
+  }
+
+  .grape-cursor-dot span:nth-child(1) { left: 7px; top: 0; width: 8px; height: 8px; }
+  .grape-cursor-dot span:nth-child(2) { left: 2px; top: 8px; width: 8px; height: 8px; }
+  .grape-cursor-dot span:nth-child(3) { left: 12px; top: 8px; width: 8px; height: 8px; }
+  .grape-cursor-dot span:nth-child(4) { left: 7px; top: 16px; width: 8px; height: 8px; }
+}
+
+@media (min-width: 1025px) and (pointer: fine) {
+  html.joestar-custom-cursor,
+  html.joestar-custom-cursor body,
+  html.joestar-custom-cursor a,
+  html.joestar-custom-cursor button,
+  html.joestar-custom-cursor [role="button"] {
+    cursor: none !important;
+  }
+
+  html.joestar-custom-cursor input,
+  html.joestar-custom-cursor textarea,
+  html.joestar-custom-cursor select,
+  html.joestar-custom-cursor [contenteditable="true"] {
+    cursor: text !important;
+  }
+
+  .forge-noise {
+    opacity: 0.22;
+  }
+
+  .forge-vignette {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 1024px), (pointer: coarse) {
+  .forge-cursor-spotlight {
+    display: none;
+  }
+
+  .forge-noise {
+    opacity: 0.12;
+  }
+
+  .forge-vignette {
+    opacity: 0.82;
+  }
+
+  .forge-particles {
+    opacity: 0.4;
   }
 }

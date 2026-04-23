@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,14 +11,14 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import bordeaux from "@/assets/wine-bordeaux.jpg";
-import brunello from "@/assets/wine-brunello.jpg";
-import burgundy from "@/assets/wine-burgundy.jpg";
-import champagneImg from "@/assets/wine-champagne.jpg";
-import loire from "@/assets/wine-loire.jpg";
-import rioja from "@/assets/wine-rioja.jpg";
-import douro from "@/assets/wine-douro.jpg";
-import napa from "@/assets/wine-napa.jpg";
+import bordeaux from "@/assets/placeholder.svg";
+import brunello from "@/assets/placeholder.svg";
+import burgundy from "@/assets/placeholder.svg";
+import champagneImg from "@/assets/placeholder.svg";
+import loire from "@/assets/placeholder.svg";
+import rioja from "@/assets/placeholder.svg";
+import douro from "@/assets/placeholder.svg";
+import napa from "@/assets/placeholder.svg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -492,3 +494,5 @@ export function Gallery() {
     </section>
   );
 }
+
+
