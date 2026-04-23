@@ -44,15 +44,15 @@ export function Footer() {
             <ul className="mt-4 space-y-3 text-sm text-champagne/70">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 text-gold/70" />
-                <span>Jardins · São Paulo · Brasil</span>
+                <span>Pinto Bandeira · Serra Gaúcha · Brasil</span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="mt-0.5 h-4 w-4 text-gold/70" />
-                <span>concierge@caveroyale.com</span>
+                <span>concierge@vinhodealtitude.com.br</span>
               </li>
               <li className="flex items-start gap-2">
                 <AtSign className="mt-0.5 h-4 w-4 text-gold/70" />
-                <span>@caveroyale</span>
+                <span>@serradaaltitude</span>
               </li>
             </ul>
           </div>
