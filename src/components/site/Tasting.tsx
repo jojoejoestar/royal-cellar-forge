@@ -113,9 +113,9 @@ export function Tasting() {
         </div>
 
         {/* Mosaic */}
-        <div className="tast-mosaic mt-20 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
+        <div className="tast-mosaic mt-20 grid gap-6 lg:grid-cols-12">
           {/* Hero image — pour */}
-          <figure className="tast-hero relative col-span-12 row-span-2 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7">
+          <figure className="tast-hero relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />
             <div className="relative">
               <img
