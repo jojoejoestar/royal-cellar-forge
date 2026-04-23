@@ -2,7 +2,7 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Search, Wine, Award, Calendar, MapPin } from "lucide-react";
+import { ChevronLeft, ChevronRight, Search, Wine, Award, Calendar, MapPin, Star } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -332,6 +332,15 @@ export function Gallery() {
                     <span className="absolute right-4 top-4 rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[10px] font-semibold tracking-widest text-gold backdrop-blur-md">
                       {w.score}
                     </span>
+                    <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-gold/40 bg-onyx/80 px-3 py-1.5 backdrop-blur-md">
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <Star
+                          key={idx}
+                          className="h-3 w-3 fill-gold text-gold"
+                          aria-hidden="true"
+                        />
+                      ))}
+                    </div>
                   </div>
                   <div className="relative border-t border-gold/15 p-5">
                     <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
@@ -343,6 +352,11 @@ export function Gallery() {
                     <p className="mt-1 text-[11px] uppercase tracking-widest text-champagne/60">
                       {w.appellation}
                     </p>
+                    <div className="mt-3 flex items-center gap-1" aria-label="Classificação cinco estrelas">
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <Star key={idx} className="h-3.5 w-3.5 fill-gold text-gold" aria-hidden="true" />
+                      ))}
+                    </div>
                     <span className="mt-4 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-gold transition-all group-hover:gap-3">
                       Ver Ficha Completa →
                     </span>
@@ -406,6 +420,11 @@ export function Gallery() {
                     </span>
                     <span className="inline-flex items-center gap-1 text-[10px] tracking-widest text-gold">
                       <Award className="h-3 w-3" /> {selected.score}
+                    </span>
+                    <span className="inline-flex items-center gap-0.5" aria-label="Classificação cinco estrelas">
+                      {Array.from({ length: 5 }).map((_, idx) => (
+                        <Star key={idx} className="h-3.5 w-3.5 fill-gold text-gold" aria-hidden="true" />
+                      ))}
                     </span>
                   </div>
 
