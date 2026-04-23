@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroImg from "@/assets/placeholder.svg";
+import heroImg from "@/assets/hero-cellar.jpg";
 
 const particles = Array.from({ length: 28 });
 
@@ -15,7 +15,7 @@ export function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src={heroImg}
+          src={heroImg.src}
           alt="Adega real iluminada com luz dourada"
           className="h-full w-full object-cover object-center"
           width={1920}
@@ -59,7 +59,9 @@ export function Hero() {
           <h1 className="font-serif text-5xl leading-[1.05] text-champagne sm:text-6xl md:text-7xl lg:text-[5.5rem]">
             O Tempo Engarrafado.
             <br />
-            <span className="italic text-gradient-gold">A Realeza</span>{" "}
+            <span className="optical-word optical-word-realeza italic text-gradient-gold">
+              A Realeza
+            </span>{" "}
             <span className="text-champagne">em Cada Taça.</span>
           </h1>
 

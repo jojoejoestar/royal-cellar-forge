@@ -35,15 +35,20 @@ export function SectionDivider({
       aria-hidden
       className="section-divider-edge relative h-20 w-full overflow-hidden md:h-24"
       style={{
+        ["--divider-from" as string]: fromC,
+        ["--divider-to" as string]: toC,
         backgroundImage: `linear-gradient(to bottom, ${fromC} 0%, ${toC} 100%)`,
       }}
     >
+      <div className="section-divider-blend-top absolute inset-x-0 top-0 h-7" />
+      <div className="section-divider-blend-bottom absolute inset-x-0 bottom-0 h-7" />
+
       {/* Subtle grape vine pattern bridging the two tones */}
-      <div className="absolute inset-0 pattern-grapes opacity-50" />
+      <div className="absolute inset-0 pattern-grapes opacity-28" />
 
       {/* Soft gold spotlight to catch the eye */}
       <div
-        className="absolute left-1/2 top-1/2 h-44 w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-60 blur-2xl"
+        className="absolute left-1/2 top-1/2 h-44 w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-38 blur-2xl"
         style={{
           background:
             "radial-gradient(ellipse at center, oklch(0.78 0.13 85 / 0.32) 0%, transparent 70%)",

@@ -4,9 +4,9 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Crown, Scroll, Grape } from "lucide-react";
-import chalice from "@/assets/placeholder.svg";
-import grapes from "@/assets/placeholder.svg";
-import cellar from "@/assets/placeholder.svg";
+import chalice from "@/assets/heritage-chalice.jpg";
+import grapes from "@/assets/heritage-grapes.jpg";
+import cellar from "@/assets/heritage-cellar.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -87,7 +87,7 @@ export function Heritage() {
           <h2 className="heritage-line mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl lg:text-7xl">
             A Bebida que Selou
             <br />
-            <span className="italic text-gradient-gold">
+            <span className="optical-word optical-word-eternidades italic text-gradient-gold">
               Impérios e Eternidades.
             </span>
           </h2>
@@ -113,7 +113,7 @@ export function Heritage() {
             />
             <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <img
-                src={chalice}
+                src={chalice.src}
                 alt="Cálice real cravejado de rubis sobre mesa medieval com pergaminho selado"
                 loading="lazy"
                 width={1280}
@@ -139,7 +139,7 @@ export function Heritage() {
           <figure className="heritage-img group relative md:col-span-5">
             <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <img
-                src={grapes}
+                src={grapes.src}
                 alt="Cacho de uvas tintas com folhas douradas em pintura barroca"
                 loading="lazy"
                 width={1024}
@@ -164,7 +164,7 @@ export function Heritage() {
           <figure className="heritage-img group relative md:col-span-5">
             <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <img
-                src={cellar}
+                src={cellar.src}
                 alt="Catedral subterrânea com fileiras de barris e candelabros dourados"
                 loading="lazy"
                 width={1280}

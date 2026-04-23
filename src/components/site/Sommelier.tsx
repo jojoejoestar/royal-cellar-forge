@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Award, Quote } from "lucide-react";
-import sommelierImg from "@/assets/placeholder.svg";
+import sommelierImg from "@/assets/sommelier.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -47,7 +47,7 @@ export function Sommelier() {
         <div className="som-img relative">
           <div className="relative overflow-hidden rounded-sm border border-gold/20 shadow-velvet">
             <img
-              src={sommelierImg}
+              src={sommelierImg.src}
               alt="O Mestre Sommelier da Cave Royale"
               className="h-[640px] w-full object-cover object-center grayscale-[15%] contrast-110"
               loading="lazy"

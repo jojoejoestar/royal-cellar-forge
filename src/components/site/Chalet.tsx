@@ -4,9 +4,9 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mountain, Flame, Key, MapPin, ArrowRight, Calendar } from "lucide-react";
-import chaletInterior from "@/assets/placeholder.svg";
-import chaletExterior from "@/assets/placeholder.svg";
-import chaletTable from "@/assets/placeholder.svg";
+import chaletInterior from "@/assets/chalet-interior.jpg";
+import chaletExterior from "@/assets/chalet-exterior.jpg";
+import chaletTable from "@/assets/chalet-table.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -98,7 +98,7 @@ export function Chalet() {
           <div className="chalet-img col-span-12 lg:col-span-8">
             <div className="group relative h-[420px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[540px]">
               <img
-                src={chaletInterior}
+                src={chaletInterior.src}
                 alt="Salão íntimo do chalé com lareira e adega particular"
                 className="h-full w-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"
@@ -120,7 +120,7 @@ export function Chalet() {
           <div className="chalet-img col-span-12 lg:col-span-4 flex flex-col gap-4 md:gap-6">
             <div className="group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
               <img
-                src={chaletExterior}
+                src={chaletExterior.src}
                 alt="Fachada do chalé alpino entre vinhedos ao entardecer"
                 className="h-full w-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"
@@ -137,7 +137,7 @@ export function Chalet() {
             </div>
             <div className="group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
               <img
-                src={chaletTable}
+                src={chaletTable.src}
                 alt="Mesa íntima posta com cristais e candelabros"
                 className="h-full w-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"

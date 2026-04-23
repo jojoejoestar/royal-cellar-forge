@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mountain, Droplets, Sun } from "lucide-react";
-import wineGlassSolo from "@/assets/placeholder.svg";
+import wineGlassSolo from "@/assets/wine-glass-solo.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -85,7 +85,7 @@ export function Philosophy() {
               {/* Frame */}
               <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
                 <img
-                  src={wineGlassSolo}
+                  src={wineGlassSolo.src}
                   alt="Taça de cristal com vinho tinto profundo iluminada por luz dourada"
                   loading="lazy"
                   width={1024}
@@ -116,7 +116,9 @@ export function Philosophy() {
             <h2 className="philo-line mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl lg:text-7xl">
               Onde o Solo
               <br />
-              <span className="italic text-gradient-gold">Dita o Destino.</span>
+              <span className="optical-word optical-word-destino italic text-gradient-gold">
+                Dita o Destino.
+              </span>
             </h2>
 
             <p className="philo-line mt-10 max-w-2xl text-base font-light leading-relaxed text-champagne/75 md:text-lg">

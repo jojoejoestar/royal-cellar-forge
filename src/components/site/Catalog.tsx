@@ -5,10 +5,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Wine } from "lucide-react";
-import bordeaux from "@/assets/placeholder.svg";
-import brunello from "@/assets/placeholder.svg";
-import burgundy from "@/assets/placeholder.svg";
-import champagneImg from "@/assets/placeholder.svg";
+import bordeaux from "@/assets/wine-bordeaux.jpg";
+import brunello from "@/assets/wine-brunello.jpg";
+import burgundy from "@/assets/wine-burgundy.jpg";
+import champagneImg from "@/assets/wine-champagne.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -16,10 +16,13 @@ type Wine = {
   name: string;
   region: string;
   vintage: string;
-  image: string;
+  image: string | { src: string };
   notes: string;
   pairing: string;
 };
+
+const resolveImgSrc = (image: Wine["image"]) =>
+  typeof image === "string" ? image : image.src;
 
 const wines: Wine[] = [
   {
@@ -123,7 +126,7 @@ export function Catalog() {
             <AnimatePresence mode="wait">
               <motion.img
                 key={active}
-                src={wines[active].image}
+                src={resolveImgSrc(wines[active].image)}
                 alt={wines[active].name}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -247,7 +250,7 @@ export function Catalog() {
                   >
                     <div className="relative flex-1 overflow-hidden">
                       <img
-                        src={w.image}
+                        src={resolveImgSrc(w.image)}
                         alt={w.name}
                         className="h-full w-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
                         loading="lazy"

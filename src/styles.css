@@ -119,8 +119,90 @@
 
   h1, h2, h3, h4, h5 {
     font-family: var(--font-serif);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    text-wrap: balance;
+  }
+
+  /* Chapter-level editorial typography curation */
+  #top h1 {
+    font-weight: 700;
+    letter-spacing: 0.022em;
+    line-height: 0.98;
+    text-transform: uppercase;
+  }
+
+  #terroir h2,
+  #heritage h2,
+  #degustacao h2 {
+    font-weight: 650;
+    letter-spacing: 0.016em;
+    line-height: 1.02;
+  }
+
+  #acervo h2,
+  #galeria h2,
+  #sommelier h2,
+  #chale h2,
+  #confraria h2 {
+    font-weight: 620;
+    letter-spacing: 0.012em;
+    line-height: 1.04;
+  }
+
+  #top h3,
+  #heritage h3,
+  #degustacao h3,
+  #chale h3 {
+    font-weight: 600;
+    letter-spacing: 0.018em;
+  }
+
+  #top .text-gradient-gold,
+  #terroir .text-gradient-gold,
+  #heritage .text-gradient-gold,
+  #degustacao .text-gradient-gold,
+  #confraria .text-gradient-gold {
+    letter-spacing: 0.02em;
+  }
+
+  /* Upper labels emulate luxury magazine overlines */
+  #top [class*="tracking-[0.4em]"],
+  #top [class*="tracking-[0.5em]"],
+  #acervo [class*="tracking-[0.5em]"],
+  #galeria [class*="tracking-[0.5em]"],
+  #degustacao [class*="tracking-[0.5em]"],
+  #confraria [class*="tracking-[0.3em]"] {
     font-weight: 500;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.45em !important;
+    opacity: 0.95;
+  }
+}
+
+@media (max-width: 1024px) {
+  #top h1 {
+    letter-spacing: 0.016em;
+    line-height: 1;
+  }
+
+  #terroir h2,
+  #heritage h2,
+  #degustacao h2,
+  #acervo h2,
+  #galeria h2,
+  #sommelier h2,
+  #chale h2,
+  #confraria h2 {
+    letter-spacing: 0.01em;
+    line-height: 1.06;
+  }
+
+  .optical-word-realeza,
+  .optical-word-destino,
+  .optical-word-eternidades,
+  .optical-word-comunhao {
+    letter-spacing: 0.012em;
+    transform: none;
   }
 }
 
@@ -240,6 +322,24 @@
     backface-visibility: hidden;
   }
 
+  .section-divider-blend-top {
+    background: linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--divider-from) 96%, transparent) 0%,
+      transparent 100%
+    );
+    opacity: 0.95;
+  }
+
+  .section-divider-blend-bottom {
+    background: linear-gradient(
+      to top,
+      color-mix(in oklch, var(--divider-to) 96%, transparent) 0%,
+      transparent 100%
+    );
+    opacity: 0.95;
+  }
+
   .btn-gold-glow {
     position: relative;
     background: var(--gradient-gold);
@@ -317,6 +417,98 @@
 
   .forge-particles {
     opacity: 0.68;
+  }
+
+  .royal-floral {
+    position: absolute;
+    width: min(18vw, 220px);
+    aspect-ratio: 1 / 1;
+    z-index: 3;
+    pointer-events: none;
+    opacity: 0;
+    filter: drop-shadow(0 0 12px oklch(0.78 0.13 85 / 0.24));
+    will-change: transform, opacity;
+  }
+
+  .royal-floral-left {
+    left: clamp(6px, 1.2vw, 16px);
+    top: 14%;
+  }
+
+  .royal-floral-right {
+    right: clamp(6px, 1.2vw, 16px);
+    top: 18%;
+    transform: scaleX(-1);
+  }
+
+  .royal-floral-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .royal-floral-line {
+    fill: none;
+    stroke: oklch(0.8 0.14 85 / 0.68);
+    stroke-width: 1.55;
+    stroke-linecap: round;
+  }
+
+  .royal-floral-petals ellipse {
+    fill: oklch(0.79 0.14 85 / 0.24);
+    stroke: oklch(0.83 0.14 85 / 0.65);
+    stroke-width: 0.8;
+  }
+
+  .royal-floral-bloom circle {
+    fill: oklch(0.86 0.16 86 / 0.26);
+    stroke: oklch(0.85 0.15 88 / 0.75);
+    stroke-width: 1;
+  }
+
+  .luxury-title-interactive {
+    will-change: transform, text-shadow, letter-spacing;
+    transform-origin: 50% 50%;
+    transition: text-shadow 0.35s var(--ease-luxury);
+  }
+
+  .luxury-title-interactive.is-active {
+    text-shadow:
+      0 1px 0 oklch(0.9 0.04 90 / 0.65),
+      0 0 18px oklch(0.78 0.13 85 / 0.25),
+      0 0 46px oklch(0.78 0.13 85 / 0.18);
+  }
+
+  .luxury-highlight-interactive {
+    will-change: transform, filter;
+    transform-origin: 50% 50%;
+    transition: filter 0.35s var(--ease-luxury);
+  }
+
+  .optical-word {
+    font-kerning: normal;
+    font-feature-settings: "kern" 1, "liga" 1, "clig" 1, "dlig" 1;
+    text-rendering: optimizeLegibility;
+    display: inline-block;
+  }
+
+  .optical-word-realeza {
+    letter-spacing: 0.028em;
+    transform: translateX(0.02em);
+  }
+
+  .optical-word-destino {
+    letter-spacing: 0.021em;
+    transform: translateX(0.01em);
+  }
+
+  .optical-word-eternidades {
+    letter-spacing: 0.018em;
+    transform: translateX(0.008em);
+  }
+
+  .optical-word-comunhao {
+    letter-spacing: 0.02em;
+    transform: translateX(0.01em);
   }
 
   .grape-cursor-aura {
@@ -399,5 +591,25 @@
 
   .forge-particles {
     opacity: 0.4;
+  }
+
+  .royal-floral {
+    width: min(28vw, 150px);
+    filter: drop-shadow(0 0 8px oklch(0.78 0.13 85 / 0.2));
+  }
+
+  .section-divider-blend-top,
+  .section-divider-blend-bottom {
+    opacity: 0.9;
+  }
+
+  .royal-floral-left {
+    left: 2px;
+    top: 12%;
+  }
+
+  .royal-floral-right {
+    right: 2px;
+    top: 15%;
   }
 }

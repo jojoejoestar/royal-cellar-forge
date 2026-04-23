@@ -4,9 +4,9 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Eye, Wind, GlassWater, Sparkles } from "lucide-react";
-import pour from "@/assets/placeholder.svg";
-import swirl from "@/assets/placeholder.svg";
-import nose from "@/assets/placeholder.svg";
+import pour from "@/assets/tasting-pour.jpg";
+import swirl from "@/assets/tasting-swirl.jpg";
+import nose from "@/assets/tasting-nose.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -105,7 +105,10 @@ export function Tasting() {
           <div className="tast-head mx-auto mt-6 gold-divider w-32" />
           <h2 className="tast-head mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl">
             Quatro Atos para uma{" "}
-            <span className="italic text-gradient-gold">Comunhão Sensorial</span>.
+            <span className="optical-word optical-word-comunhao italic text-gradient-gold">
+              Comunhão Sensorial
+            </span>
+            .
           </h2>
           <p className="tast-head mx-auto mt-6 max-w-2xl text-base font-light text-champagne/75">
             A degustação de um grande vinho não é consumo. É cerimônia. Ato de
@@ -121,7 +124,7 @@ export function Tasting() {
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />
             <div className="relative">
               <img
-                src={pour}
+                src={pour.src}
                 alt="Decanter de cristal vertendo vinho em taça"
                 loading="lazy"
                 width={1280}
@@ -148,7 +151,7 @@ export function Tasting() {
           {/* Side — swirl */}
           <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
-              src={swirl}
+              src={swirl.src}
               alt="Macro do vinho sendo agitado em taça de cristal"
               loading="lazy"
               width={1280}
@@ -170,7 +173,7 @@ export function Tasting() {
           {/* Side — nose */}
           <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
-              src={nose}
+              src={nose.src}
               alt="Sommelier inspirando o aroma do vinho à luz de vela"
               loading="lazy"
               width={1280}

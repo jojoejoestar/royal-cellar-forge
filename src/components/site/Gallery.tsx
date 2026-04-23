@@ -11,14 +11,14 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import bordeaux from "@/assets/placeholder.svg";
-import brunello from "@/assets/placeholder.svg";
-import burgundy from "@/assets/placeholder.svg";
-import champagneImg from "@/assets/placeholder.svg";
-import loire from "@/assets/placeholder.svg";
-import rioja from "@/assets/placeholder.svg";
-import douro from "@/assets/placeholder.svg";
-import napa from "@/assets/placeholder.svg";
+import bordeaux from "@/assets/wine-bordeaux.jpg";
+import brunello from "@/assets/wine-brunello.jpg";
+import burgundy from "@/assets/wine-burgundy.jpg";
+import champagneImg from "@/assets/wine-champagne.jpg";
+import loire from "@/assets/wine-loire.jpg";
+import rioja from "@/assets/wine-rioja.jpg";
+import douro from "@/assets/wine-douro.jpg";
+import napa from "@/assets/wine-napa.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -36,7 +36,7 @@ type RareWine = {
   region: Region;
   appellation: string;
   vintage: string;
-  image: string;
+  image: string | { src: string };
   rarity: string;
   bottles: string;
   notes: string;
@@ -44,6 +44,9 @@ type RareWine = {
   story: string;
   score: string;
 };
+
+const resolveImgSrc = (image: RareWine["image"]) =>
+  typeof image === "string" ? image : image.src;
 
 const collection: RareWine[] = [
   {
@@ -320,7 +323,7 @@ export function Gallery() {
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative h-[360px] overflow-hidden">
                     <img
-                      src={w.image}
+                      src={resolveImgSrc(w.image)}
                       alt={`${w.name} ${w.vintage}`}
                       loading="lazy"
                       width={1024}
@@ -354,11 +357,6 @@ export function Gallery() {
                     <p className="mt-1 text-[11px] uppercase tracking-widest text-champagne/60">
                       {w.appellation}
                     </p>
-                    <div className="mt-3 flex items-center gap-1" aria-label="Classificação cinco estrelas">
-                      {Array.from({ length: 5 }).map((_, idx) => (
-                        <Star key={idx} className="h-3.5 w-3.5 fill-gold text-gold" aria-hidden="true" />
-                      ))}
-                    </div>
                     <span className="mt-4 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-gold transition-all group-hover:gap-3">
                       Ver Ficha Completa →
                     </span>
@@ -406,7 +404,7 @@ export function Gallery() {
               <div className="relative h-72 overflow-hidden bg-gradient-royal lg:h-auto">
                 <div className="absolute inset-0 spotlight-gold opacity-70" />
                 <img
-                  src={selected.image}
+                  src={resolveImgSrc(selected.image)}
                   alt={selected.name}
                   className="relative h-full w-full object-cover"
                 />
