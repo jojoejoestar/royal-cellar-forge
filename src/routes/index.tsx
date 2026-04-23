@@ -4,6 +4,8 @@ import { Hero } from "@/components/site/Hero";
 import { Philosophy } from "@/components/site/Philosophy";
 import { Heritage } from "@/components/site/Heritage";
 import { Catalog } from "@/components/site/Catalog";
+import { Gallery } from "@/components/site/Gallery";
+import { Tasting } from "@/components/site/Tasting";
 import { Sommelier } from "@/components/site/Sommelier";
 import { Faq } from "@/components/site/Faq";
 import { Confraria } from "@/components/site/Confraria";
@@ -47,8 +49,14 @@ function Index() {
         {/* Heritage → Catalog (same tone, ornament only) */}
         <SectionDivider from="background" to="background" />
         <Catalog />
-        {/* Catalog → Sommelier (same tone, ornament only) */}
+        {/* Catalog → Gallery (same tone, ornament only) */}
         <SectionDivider from="background" to="background" />
+        <Gallery />
+        {/* Gallery → Tasting (background → scarlet) */}
+        <SectionDivider from="background" to="scarlet" />
+        <Tasting />
+        {/* Tasting → Sommelier (scarlet bottom → background) */}
+        <SectionDivider from="scarlet-deep" to="background" />
         <Sommelier />
         {/* Sommelier → Faq (background → scarlet top) */}
         <SectionDivider from="background" to="scarlet" />
