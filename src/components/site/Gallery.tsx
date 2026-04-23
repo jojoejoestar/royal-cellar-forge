@@ -11,14 +11,14 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
-import bordeaux from "@/assets/wine-bordeaux.jpg";
-import brunello from "@/assets/wine-brunello.jpg";
-import burgundy from "@/assets/wine-burgundy.jpg";
-import champagneImg from "@/assets/wine-champagne.jpg";
-import loire from "@/assets/wine-loire.jpg";
-import rioja from "@/assets/wine-rioja.jpg";
-import douro from "@/assets/wine-douro.jpg";
-import napa from "@/assets/wine-napa.jpg";
+import bordeaux from "@/assets/wine-bordeaux.webp";
+import brunello from "@/assets/wine-brunello.webp";
+import burgundy from "@/assets/wine-burgundy.webp";
+import champagneImg from "@/assets/wine-champagne.webp";
+import loire from "@/assets/wine-loire.webp";
+import rioja from "@/assets/wine-rioja.webp";
+import douro from "@/assets/wine-douro.webp";
+import napa from "@/assets/wine-napa.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -492,5 +492,6 @@ export function Gallery() {
     </section>
   );
 }
+
 
 

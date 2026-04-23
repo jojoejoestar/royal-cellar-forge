@@ -4,9 +4,9 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Crown, Scroll, Grape } from "lucide-react";
-import chalice from "@/assets/heritage-chalice.jpg";
-import grapes from "@/assets/heritage-grapes.jpg";
-import cellar from "@/assets/heritage-cellar.jpg";
+import chalice from "@/assets/heritage-chalice.webp";
+import grapes from "@/assets/heritage-grapes.webp";
+import cellar from "@/assets/heritage-cellar.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -255,5 +255,6 @@ export function Heritage() {
     </section>
   );
 }
+
 
 

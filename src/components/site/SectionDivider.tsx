@@ -46,15 +46,6 @@ export function SectionDivider({
       {/* Subtle grape vine pattern bridging the two tones */}
       <div className="absolute inset-0 pattern-grapes opacity-28" />
 
-      {/* Soft gold spotlight to catch the eye */}
-      <div
-        className="absolute left-1/2 top-1/2 h-44 w-[70%] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-38 blur-2xl"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, oklch(0.78 0.13 85 / 0.32) 0%, transparent 70%)",
-        }}
-      />
-
       {ornament && (
         <div className="relative flex h-full items-center justify-center px-6">
           {/* Left filigree */}

@@ -5,10 +5,10 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, Wine } from "lucide-react";
-import bordeaux from "@/assets/wine-bordeaux.jpg";
-import brunello from "@/assets/wine-brunello.jpg";
-import burgundy from "@/assets/wine-burgundy.jpg";
-import champagneImg from "@/assets/wine-champagne.jpg";
+import bordeaux from "@/assets/wine-bordeaux.webp";
+import brunello from "@/assets/wine-brunello.webp";
+import burgundy from "@/assets/wine-burgundy.webp";
+import champagneImg from "@/assets/wine-champagne.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -277,5 +277,6 @@ export function Catalog() {
     </section>
   );
 }
+
 
 
