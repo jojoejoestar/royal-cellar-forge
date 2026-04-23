@@ -8,6 +8,7 @@ const links = [
   { label: "Heritage", href: "#heritage" },
   { label: "Degustação", href: "#degustacao" },
   { label: "O Sommelier", href: "#sommelier" },
+  { label: "O Chalé", href: "#chale" },
   { label: "Confraria", href: "#confraria" },
 ];
 

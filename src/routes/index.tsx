@@ -7,6 +7,7 @@ import { Catalog } from "@/components/site/Catalog";
 import { Gallery } from "@/components/site/Gallery";
 import { Tasting } from "@/components/site/Tasting";
 import { Sommelier } from "@/components/site/Sommelier";
+import { Chalet } from "@/components/site/Chalet";
 import { Faq } from "@/components/site/Faq";
 import { Confraria } from "@/components/site/Confraria";
 import { Footer } from "@/components/site/Footer";
@@ -58,7 +59,10 @@ function Index() {
         {/* Tasting → Sommelier (scarlet bottom → background) */}
         <SectionDivider from="scarlet-deep" to="background" />
         <Sommelier />
-        {/* Sommelier → Faq (background → scarlet top) */}
+        {/* Sommelier → Chalet (same tone, ornament only) */}
+        <SectionDivider from="background" to="background" />
+        <Chalet />
+        {/* Chalet → Faq (background → scarlet top) */}
         <SectionDivider from="background" to="scarlet" />
         <Faq />
         {/* Faq → Confraria (scarlet bottom → background) */}
