@@ -65,6 +65,8 @@ function Index() {
         <SectionDivider from="scarlet-deep" to="background" />
         <Confraria />
       </main>
+      {/* Confraria → Footer (background → scarlet seal) */}
+      <SectionDivider from="background" to="scarlet" />
       <Footer />
     </div>
   );
