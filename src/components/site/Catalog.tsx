@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
+import Image, { type StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight, Wine } from "lucide-react";
 import bordeaux from "@/assets/wine-bordeaux.webp";
 import brunello from "@/assets/wine-brunello.webp";
@@ -16,13 +17,10 @@ type Wine = {
   name: string;
   region: string;
   vintage: string;
-  image: string | { src: string };
+  image: StaticImageData;
   notes: string;
   pairing: string;
 };
-
-const resolveImgSrc = (image: Wine["image"]) =>
-  typeof image === "string" ? image : image.src;
 
 const wines: Wine[] = [
   {
@@ -124,17 +122,23 @@ export function Catalog() {
           <div className="relative h-[520px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal">
             <div className="absolute inset-0 spotlight-gold" />
             <AnimatePresence mode="wait">
-              <motion.img
+              <motion.div
                 key={active}
-                src={resolveImgSrc(wines[active].image)}
-                alt={wines[active].name}
                 initial={{ opacity: 0, scale: 1.05 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.97 }}
                 transition={{ duration: 0.7, ease: [0.25, 1, 0.5, 1] }}
-                className="absolute inset-0 h-full w-full object-contain p-8"
-                loading="lazy"
-              />
+                className="absolute inset-0"
+              >
+                <Image
+                  src={wines[active].image}
+                  alt={wines[active].name}
+                  fill
+                  className="object-contain p-8"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority={active === 0}
+                />
+              </motion.div>
             </AnimatePresence>
 
             <div className="absolute inset-x-0 bottom-0 flex items-center justify-between p-5">
@@ -249,11 +253,12 @@ export function Catalog() {
                     className="absolute inset-0 flex flex-col"
                   >
                     <div className="relative flex-1 overflow-hidden">
-                      <img
-                        src={resolveImgSrc(w.image)}
+                      <Image
+                        src={w.image}
                         alt={w.name}
-                        className="h-full w-full object-contain p-4 transition-transform duration-700 group-hover:scale-105"
-                        loading="lazy"
+                        fill
+                        className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 640px) 100vw, 25vw"
                       />
                     </div>
                     <div className="border-t border-gold/15 p-4">

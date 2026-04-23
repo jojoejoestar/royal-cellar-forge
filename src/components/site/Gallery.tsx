@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
+import Image, { type StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight, Search, Wine, Award, Calendar, MapPin, Star } from "lucide-react";
 import {
   Dialog,
@@ -36,7 +37,7 @@ type RareWine = {
   region: Region;
   appellation: string;
   vintage: string;
-  image: string | { src: string };
+  image: StaticImageData;
   rarity: string;
   bottles: string;
   notes: string;
@@ -44,9 +45,6 @@ type RareWine = {
   story: string;
   score: string;
 };
-
-const resolveImgSrc = (image: RareWine["image"]) =>
-  typeof image === "string" ? image : image.src;
 
 const collection: RareWine[] = [
   {
@@ -322,13 +320,12 @@ export function Gallery() {
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative h-[360px] overflow-hidden">
-                    <img
-                      src={resolveImgSrc(w.image)}
+                    <Image
+                      src={w.image}
                       alt={`${w.name} ${w.vintage}`}
-                      loading="lazy"
-                      width={1024}
-                      height={1280}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      sizes="(max-width: 640px) 85vw, 320px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent" />
                     <span className="absolute left-4 top-4 rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur-md">
@@ -403,10 +400,12 @@ export function Gallery() {
             <div className="grid gap-0 lg:grid-cols-2">
               <div className="relative h-72 overflow-hidden bg-gradient-royal lg:h-auto">
                 <div className="absolute inset-0 spotlight-gold opacity-70" />
-                <img
-                  src={resolveImgSrc(selected.image)}
+                <Image
+                  src={selected.image}
                   alt={selected.name}
-                  className="relative h-full w-full object-cover"
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-onyx/40" />
               </div>
