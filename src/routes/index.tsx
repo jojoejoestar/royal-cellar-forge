@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navigation } from "@/components/site/Navigation";
 import { Hero } from "@/components/site/Hero";
 import { Philosophy } from "@/components/site/Philosophy";
+import { Heritage } from "@/components/site/Heritage";
 import { Catalog } from "@/components/site/Catalog";
 import { Sommelier } from "@/components/site/Sommelier";
 import { Faq } from "@/components/site/Faq";
@@ -40,8 +41,11 @@ function Index() {
         {/* Hero → Philosophy (background → scarlet top) */}
         <SectionDivider from="background" to="scarlet" />
         <Philosophy />
-        {/* Philosophy → Catalog (scarlet bottom → background) */}
+        {/* Philosophy → Heritage (scarlet bottom → background) */}
         <SectionDivider from="scarlet-deep" to="background" />
+        <Heritage />
+        {/* Heritage → Catalog (same tone, ornament only) */}
+        <SectionDivider from="background" to="background" />
         <Catalog />
         {/* Catalog → Sommelier (same tone, ornament only) */}
         <SectionDivider from="background" to="background" />
