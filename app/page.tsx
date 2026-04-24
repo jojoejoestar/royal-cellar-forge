@@ -24,26 +24,26 @@ export default function HomePage() {
       <Navigation />
       <main>
         <Hero />
-        <SectionDivider from="background" to="scarlet" />
+        <SectionDivider from="background" to="imperial" />
         <Philosophy />
-        <SectionDivider from="scarlet-deep" to="background" />
+        <SectionDivider from="imperial" to="background" />
         <Heritage />
         <SectionDivider from="background" to="background" />
         <Catalog />
         <SectionDivider from="background" to="background" />
         <Gallery />
-        <SectionDivider from="background" to="scarlet" />
+        <SectionDivider from="background" to="imperial" />
         <Tasting />
-        <SectionDivider from="scarlet-deep" to="background" />
+        <SectionDivider from="imperial" to="background" />
         <Sommelier />
         <SectionDivider from="background" to="background" />
         <Chalet />
-        <SectionDivider from="background" to="scarlet" />
+        <SectionDivider from="background" to="imperial" />
         <Faq />
-        <SectionDivider from="scarlet-deep" to="background" />
+        <SectionDivider from="imperial" to="background" />
         <Confraria />
       </main>
-      <SectionDivider from="background" to="scarlet" />
+      <SectionDivider from="background" to="imperial" />
       <Footer />
     </div>
   );

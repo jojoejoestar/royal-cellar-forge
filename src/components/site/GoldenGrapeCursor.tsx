@@ -91,10 +91,9 @@ export function GoldenGrapeCursor() {
     <div className="pointer-events-none fixed inset-0 z-[70] hidden lg:block">
       <div ref={auraRef} className="grape-cursor-aura" />
       <div ref={cursorRef} className="grape-cursor-dot">
-        <span />
-        <span />
-        <span />
-        <span />
+        <span className="wine-cursor-emoji" role="img" aria-label="garrafa de vinho">
+          🍾
+        </span>
       </div>
     </div>
   );

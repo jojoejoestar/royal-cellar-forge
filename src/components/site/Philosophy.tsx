@@ -63,11 +63,13 @@ export function Philosophy() {
     <section
       id="terroir"
       ref={ref}
-      className="relative overflow-hidden bg-gradient-scarlet py-20 md:py-28"
+      className="relative overflow-hidden bg-gradient-imperial py-20 md:py-28"
     >
       <div className="absolute inset-0 pattern-damask opacity-40" />
-      <div className="absolute inset-0 pattern-grapes opacity-30" />
-      <div className="absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 spotlight-gold" />
+      <div className="absolute inset-0 pattern-grapes opacity-20" />
+      <div className="absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 spotlight-gold opacity-60" />
+      <div className="absolute inset-x-0 top-0 h-36 bg-gradient-to-b from-background via-background/70 to-transparent" />
+      <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-background via-background/75 to-transparent" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         {/* Two-column hero: glass + manifesto */}
