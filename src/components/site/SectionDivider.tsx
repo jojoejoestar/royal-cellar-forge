@@ -6,14 +6,14 @@ type Props = {
   /** Kept for backwards compatibility with existing call sites */
   from?: "background" | "scarlet-deep" | "scarlet" | "imperial";
   to?: "background" | "scarlet-deep" | "scarlet" | "imperial";
-  /** Show the central grape ornament between two filigree lines */
+  /** Show the central grape ornament over a continuous gold hairline */
   ornament?: boolean;
 };
 
 /**
  * Elegant transition between two sections - the signature seal between acts.
- * - Twin gold filigree lines flanking a grape glyph and rotated diamonds.
- * - Soft radial gold spotlight to draw the eye.
+ * - One continuous gold hairline behind the center glyph (no edge cut-outs).
+ * - Diamond accents and a soft radial glow on the grape seal.
  */
 export function SectionDivider({
   ornament = true,
@@ -28,16 +28,19 @@ export function SectionDivider({
     >
       {ornament && (
         <div className="relative flex h-full items-center justify-center px-6">
-          {/* Left filigree */}
+          {/* Single continuous hairline - edges stay faintly visible (no hard cut) */}
           <span
-            className="h-px flex-1 max-w-[36%]"
+            aria-hidden
+            className="pointer-events-none absolute left-6 right-6 top-1/2 h-px -translate-y-1/2 rounded-full md:left-10 md:right-10"
             style={{
               background:
-                "linear-gradient(90deg, transparent 0%, oklch(0.72 0.10 78 / 0.55) 70%, oklch(0.72 0.10 78 / 0.85) 100%)",
+                "linear-gradient(90deg, oklch(0.72 0.10 78 / 0.14) 0%, oklch(0.72 0.10 78 / 0.42) 18%, oklch(0.72 0.10 78 / 0.78) 50%, oklch(0.72 0.10 78 / 0.42) 82%, oklch(0.72 0.10 78 / 0.14) 100%)",
+              boxShadow:
+                "0 0 18px oklch(0.72 0.10 78 / 0.22), 0 0 42px oklch(0.72 0.10 78 / 0.08)",
             }}
           />
           {/* Diamond + grape glyph */}
-          <span className="mx-4 flex items-center gap-3">
+          <span className="relative z-[1] mx-4 flex items-center gap-3">
             <span
               className="block h-1.5 w-1.5 rotate-45 border border-gold/80"
               style={{ background: "transparent" }}
@@ -60,14 +63,6 @@ export function SectionDivider({
               style={{ background: "transparent" }}
             />
           </span>
-          {/* Right filigree */}
-          <span
-            className="h-px flex-1 max-w-[36%]"
-            style={{
-              background:
-                "linear-gradient(90deg, oklch(0.72 0.10 78 / 0.85) 0%, oklch(0.72 0.10 78 / 0.55) 30%, transparent 100%)",
-            }}
-          />
         </div>
       )}
     </div>

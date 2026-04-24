@@ -91,7 +91,7 @@ export function Tasting() {
     <section
       id="degustacao"
       ref={sectionRef}
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       <div className="absolute inset-0 pattern-damask opacity-20" />
       <div className="absolute inset-0 pattern-grapes opacity-16" />
@@ -120,7 +120,7 @@ export function Tasting() {
         </div>
 
         {/* Mosaic */}
-        <div className="tast-mosaic mt-20 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
+        <div className="tast-mosaic mt-12 grid gap-5 lg:mt-14 lg:grid-cols-12 lg:grid-rows-2 lg:gap-6">
           {/* Hero image - pour */}
           <figure className="tast-hero relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />
@@ -131,7 +131,7 @@ export function Tasting() {
                 loading="lazy"
                 width={1280}
                 height={1600}
-                className="aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[720px]"
+                className="aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[640px]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-onyx/95 via-onyx/30 to-transparent" />
               <figcaption className="absolute inset-x-0 bottom-0 p-8 lg:p-10">
@@ -158,7 +158,7 @@ export function Tasting() {
               loading="lazy"
               width={1280}
               height={1280}
-              className="h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[348px]"
+              className="h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[308px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 p-6">
@@ -180,7 +180,7 @@ export function Tasting() {
               loading="lazy"
               width={1280}
               height={1280}
-              className="h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[348px]"
+              className="h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[308px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 p-6">
@@ -195,8 +195,23 @@ export function Tasting() {
           </figure>
         </div>
 
+        {/* Closing manifesto - logo após o mosaico para evitar vão visual até a citação */}
+        <div className="tast-head mt-8 text-center md:mt-10">
+          <div className="mx-auto gold-divider w-40" />
+          <p className="mt-8 mx-auto max-w-3xl font-serif text-2xl italic leading-relaxed text-champagne md:mt-9 md:text-3xl">
+            “Beber um grande vinho é{" "}
+            <span className="text-gradient-gold not-italic">
+              conversar com o tempo
+            </span>{" "}
+            - uma audiência privada com séculos de paciência, sol e silêncio.”
+          </p>
+          <p className="mt-5 text-[10px] uppercase tracking-[0.4em] text-gold/80 md:mt-6">
+            Manifesto Cave Royale
+          </p>
+        </div>
+
         {/* Four steps */}
-        <div className="tast-grid mt-24 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <div className="tast-grid mt-10 grid gap-6 md:grid-cols-2 lg:mt-12 lg:grid-cols-4">
           {steps.map((s) => {
             const Icon = s.icon;
             return (
@@ -226,21 +241,6 @@ export function Tasting() {
               </article>
             );
           })}
-        </div>
-
-        {/* Closing manifesto */}
-        <div className="tast-head mt-24 text-center">
-          <div className="mx-auto gold-divider w-40" />
-          <p className="mt-10 mx-auto max-w-3xl font-serif text-2xl italic leading-relaxed text-champagne md:text-3xl">
-            “Beber um grande vinho é{" "}
-            <span className="text-gradient-gold not-italic">
-              conversar com o tempo
-            </span>{" "}
-            - uma audiência privada com séculos de paciência, sol e silêncio.”
-          </p>
-          <p className="mt-6 text-[10px] uppercase tracking-[0.4em] text-gold/80">
-            Manifesto Cave Royale
-          </p>
         </div>
       </div>
     </section>

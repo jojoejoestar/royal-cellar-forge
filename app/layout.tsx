@@ -32,7 +32,7 @@ export default function RootLayout({
       <body className={`${serif.variable} ${sans.variable} relative`}>
         <div
           aria-hidden
-          className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_50%_18%,#0A0A0A_0%,#040404_52%,#000000_100%)]"
+          className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_120%_85%_at_50%_-8%,oklch(0.26_0.12_312_/_0.42)_0%,oklch(0.14_0.07_318_/_0.92)_42%,oklch(0.06_0.03_322)_100%)]"
         />
         {children}
       </body>

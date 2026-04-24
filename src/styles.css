@@ -41,20 +41,20 @@
 :root {
   --radius: 0.5rem;
 
-  /* Imperial Velvet + Byzantine Gold Theme */
-  --background: oklch(0.09 0.035 346);
+  /* Imperial Velvet + Byzantine Gold Theme - vinho vivo (mais croma, menos cinza) */
+  --background: oklch(0.115 0.055 318);
   --foreground: oklch(0.95 0.02 72);
-  --card: oklch(0.14 0.045 344);
+  --card: oklch(0.165 0.07 316);
   --card-foreground: oklch(0.95 0.02 72);
-  --popover: oklch(0.14 0.045 344);
+  --popover: oklch(0.165 0.07 316);
   --popover-foreground: oklch(0.95 0.02 72);
   --primary: oklch(0.72 0.10 78);
-  --primary-foreground: oklch(0.11 0.03 344);
-  --secondary: oklch(0.2 0.07 340);
+  --primary-foreground: oklch(0.11 0.04 318);
+  --secondary: oklch(0.24 0.095 312);
   --secondary-foreground: oklch(0.95 0.02 72);
-  --muted: oklch(0.18 0.05 338);
+  --muted: oklch(0.22 0.075 314);
   --muted-foreground: oklch(0.76 0.03 74);
-  --accent: oklch(0.3 0.1 336);
+  --accent: oklch(0.34 0.14 310);
   --accent-foreground: oklch(0.95 0.02 72);
   --destructive: oklch(0.52 0.19 20);
   --destructive-foreground: oklch(0.95 0.02 72);
@@ -66,9 +66,9 @@
   --gold: oklch(0.72 0.10 78);
   --gold-glow: oklch(0.8 0.12 82);
   --champagne: oklch(0.92 0.03 75);
-  --scarlet: oklch(0.24 0.11 338);
-  --scarlet-deep: oklch(0.15 0.08 342);
-  --onyx: oklch(0.07 0.02 340);
+  --scarlet: oklch(0.28 0.14 312);
+  --scarlet-deep: oklch(0.18 0.11 316);
+  --onyx: oklch(0.09 0.045 318);
 
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -76,15 +76,15 @@
   /* Gradients */
   --gradient-royal: linear-gradient(
     145deg,
-    oklch(0.19 0.09 338) 0%,
-    oklch(0.13 0.05 342) 44%,
-    oklch(0.09 0.035 346) 100%
+    oklch(0.24 0.12 312) 0%,
+    oklch(0.17 0.08 316) 44%,
+    oklch(0.11 0.055 318) 100%
   );
   --gradient-scarlet: linear-gradient(
     180deg,
-    oklch(0.28 0.12 336) 0%,
-    oklch(0.2 0.09 340) 46%,
-    oklch(0.12 0.055 344) 100%
+    oklch(0.32 0.15 310) 0%,
+    oklch(0.24 0.11 314) 46%,
+    oklch(0.14 0.075 318) 100%
   );
   --gradient-gold: linear-gradient(135deg, oklch(0.8 0.12 82) 0%, oklch(0.65 0.09 76) 50%, oklch(0.8 0.12 82) 100%);
   --gradient-spotlight: radial-gradient(ellipse at center, oklch(0.72 0.10 78 / 0.18) 0%, transparent 60%);
@@ -391,11 +391,19 @@
   }
 
   @keyframes float-particle {
-    0%, 100% { transform: translateY(0) translateX(0); opacity: 0.3; }
-    50% { transform: translateY(-30px) translateX(10px); opacity: 0.8; }
+    0%,
+    100% {
+      transform: translate3d(0, 0, 0) scale(1);
+      opacity: 0.65;
+    }
+    50% {
+      transform: translate3d(14px, -36px, 0) scale(1.12);
+      opacity: 1;
+    }
   }
   .animate-float-particle {
-    animation: float-particle 6s ease-in-out infinite;
+    animation: float-particle 6.5s ease-in-out infinite;
+    will-change: transform, opacity;
   }
 
   @keyframes shimmer {
@@ -442,7 +450,27 @@
   }
 
   .forge-particles {
-    opacity: 0.68;
+    opacity: 0.92;
+  }
+
+  .forge-particle-core {
+    width: 2px;
+    height: 2px;
+    background: oklch(0.95 0.06 95);
+    box-shadow:
+      0 0 3px oklch(0.88 0.12 82 / 0.95),
+      0 0 8px oklch(0.72 0.1 78 / 0.65),
+      0 0 1px oklch(0.98 0.02 95 / 0.9);
+  }
+
+  .forge-particle-bright {
+    width: 3px;
+    height: 3px;
+    background: oklch(0.98 0.04 95);
+    box-shadow:
+      0 0 4px oklch(0.92 0.14 86 / 1),
+      0 0 12px oklch(0.78 0.12 80 / 0.85),
+      0 0 22px oklch(0.72 0.1 78 / 0.35);
   }
 
   .royal-floral {
@@ -506,24 +534,83 @@
       0 0 56px oklch(0.72 0.10 78 / 0.28);
   }
 
-  .animated-title-token {
+  .animated-title {
+    --title-underline-scale: 0;
     text-shadow:
       0 1px 0 oklch(0.92 0.04 90 / 0.35),
-      0 0 18px oklch(0.72 0.1 78 / 0.18);
+      0 0 22px oklch(0.72 0.1 78 / 0.16);
+    animation: title-royal-shimmer 7.5s ease-in-out infinite;
   }
 
-  .animated-title-sheen {
+  .animated-title::before {
+    content: "";
+    position: absolute;
+    inset: -18% -10%;
+    background: radial-gradient(
+      closest-side,
+      rgba(255, 248, 214, 0.22) 0%,
+      rgba(212, 175, 55, 0.12) 38%,
+      transparent 72%
+    );
+    transform: translateX(-18%);
+    opacity: 0.55;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: title-royal-glint 6.8s ease-in-out infinite;
+  }
+
+  .animated-title::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -0.16em;
+    height: 1px;
+    border-radius: 999px;
+    transform: scaleX(var(--title-underline-scale));
+    transform-origin: left center;
     background: linear-gradient(
       90deg,
       transparent 0%,
-      rgba(212, 175, 55, 0) 34%,
-      rgba(255, 248, 214, 0.55) 50%,
-      rgba(212, 175, 55, 0) 66%,
+      rgba(212, 175, 55, 0.35) 14%,
+      rgba(255, 248, 214, 0.95) 50%,
+      rgba(212, 175, 55, 0.35) 86%,
       transparent 100%
     );
-    animation: letter-sheen 3.6s ease-in-out infinite;
-    animation-delay: calc(var(--sheen-delay, 0) * 70ms);
-    filter: blur(0.35px);
+    box-shadow:
+      0 0 14px rgba(212, 175, 55, 0.55),
+      0 0 26px rgba(212, 175, 55, 0.28);
+    pointer-events: none;
+  }
+
+  @keyframes title-royal-shimmer {
+    0%,
+    100% {
+      text-shadow:
+        0 1px 0 oklch(0.92 0.04 90 / 0.32),
+        0 0 18px oklch(0.72 0.1 78 / 0.14);
+    }
+    50% {
+      text-shadow:
+        0 1px 0 oklch(0.95 0.05 92 / 0.55),
+        0 0 26px oklch(0.72 0.1 78 / 0.22),
+        0 0 46px oklch(0.72 0.1 78 / 0.12);
+    }
+  }
+
+  @keyframes title-royal-glint {
+    0% {
+      transform: translateX(-22%) translateY(2%);
+      opacity: 0.35;
+    }
+    50% {
+      transform: translateX(18%) translateY(-2%);
+      opacity: 0.75;
+    }
+    100% {
+      transform: translateX(-22%) translateY(2%);
+      opacity: 0.35;
+    }
   }
 
   .luxury-title-interactive:hover,
@@ -603,25 +690,21 @@
     }
   }
 
-  @keyframes letter-sheen {
-    0% {
-      transform: translateX(-140%);
-    }
-    100% {
-      transform: translateX(140%);
-    }
-  }
-
   .grape-cursor-aura {
     position: fixed;
     left: 0;
     top: 0;
-    width: 78px;
-    height: 78px;
+    width: 104px;
+    height: 104px;
     border-radius: 999px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, #b08d5730 0%, #8b6a3f14 42%, transparent 76%);
-    filter: blur(12px);
+    background: radial-gradient(
+      circle,
+      oklch(0.82 0.12 82 / 0.22) 0%,
+      oklch(0.72 0.1 78 / 0.12) 38%,
+      transparent 72%
+    );
+    filter: blur(14px);
     opacity: 0;
     transition: opacity 220ms ease;
     will-change: left, top;
@@ -631,8 +714,8 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 18px;
-    height: 18px;
+    width: 44px;
+    height: 60px;
     transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 170ms ease;
@@ -642,11 +725,10 @@
     justify-content: center;
   }
 
-  .wine-cursor-emoji {
-    font-size: 15px;
-    line-height: 1;
-    filter: drop-shadow(0 0 4px oklch(0.72 0.10 78 / 0.45));
-    opacity: 0.9;
+  .wine-cursor-svg {
+    display: block;
+    filter: drop-shadow(0 0 10px oklch(0.72 0.1 78 / 0.55))
+      drop-shadow(0 2px 14px oklch(0.05 0.02 320 / 0.75));
   }
 }
 
@@ -671,7 +753,7 @@
   }
 
   .forge-vignette {
-    opacity: 0.62;
+    opacity: 0.46;
   }
 }
 

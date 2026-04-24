@@ -364,15 +364,17 @@ export function CinematicForgeLayer() {
       <div className="forge-noise absolute inset-0" />
       <div className="forge-vignette absolute inset-0" />
       <div className="forge-particles absolute inset-0" aria-hidden>
-        {Array.from({ length: 28 }).map((_, i) => (
+        {Array.from({ length: 52 }).map((_, i) => (
           <span
             key={i}
-            className="absolute h-[3px] w-[3px] rounded-full bg-gold/60 animate-float-particle"
+            className={`absolute rounded-full animate-float-particle ${
+              i % 5 === 0 ? "forge-particle-bright" : "forge-particle-core"
+            }`}
             style={{
-              left: `${(i * 31) % 100}%`,
-              top: `${(i * 17) % 100}%`,
-              animationDuration: `${5 + (i % 5)}s`,
-              animationDelay: `${(i % 7) * 0.45}s`,
+              left: `${(i * 29.7) % 100}%`,
+              top: `${(i * 19.3) % 100}%`,
+              animationDuration: `${5.2 + (i % 8) * 0.62}s`,
+              animationDelay: `${(i % 11) * 0.31}s`,
             }}
           />
         ))}
