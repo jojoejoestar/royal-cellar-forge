@@ -18,7 +18,7 @@ const colorVar: Record<NonNullable<Props["from"]>, string> = {
 };
 
 /**
- * Elegant transition between two sections — the signature seal between acts.
+ * Elegant transition between two sections - the signature seal between acts.
  * - Smooth vertical color blend (no harsh edges).
  * - Twin gold filigree lines flanking a grape glyph and rotated diamonds.
  * - Soft radial gold spotlight to draw the eye.

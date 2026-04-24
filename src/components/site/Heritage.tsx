@@ -7,6 +7,7 @@ import { Crown, Scroll, Grape } from "lucide-react";
 import chalice from "@/assets/heritage-chalice\.jpg";
 import grapes from "@/assets/heritage-grapes\.jpg";
 import cellar from "@/assets/heritage-cellar\.jpg";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -15,13 +16,13 @@ const eras = [
     icon: Grape,
     year: "6000 a.C.",
     title: "A Origem Sagrada",
-    text: "Nas encostas do Cáucaso, os primeiros vinhedos brotam. O homem descobre que o suco da uva, quando cultivado pelo tempo, transcende a sede — torna-se ritual.",
+    text: "Nas encostas do Cáucaso, os primeiros vinhedos brotam. O homem descobre que o suco da uva, quando cultivado pelo tempo, transcende a sede - torna-se ritual.",
   },
   {
     icon: Scroll,
     year: "Antiguidade",
     title: "Néctar dos Deuses",
-    text: "Egípcios o ofertam a Osíris. Gregos o consagram a Dionísio. Romanos o levam por todo o império em ânforas seladas. O vinho deixa de ser bebida — torna-se cultura.",
+    text: "Egípcios o ofertam a Osíris. Gregos o consagram a Dionísio. Romanos o levam por todo o império em ânforas seladas. O vinho deixa de ser bebida - torna-se cultura.",
   },
   {
     icon: Crown,
@@ -84,16 +85,19 @@ export function Heritage() {
           </p>
           <div className="heritage-line mx-auto mt-6 gold-divider w-32" />
 
-          <h2 className="heritage-line mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl lg:text-7xl">
+          <AnimatedTitle
+            as="h2"
+            className="heritage-line mt-8 font-serif text-4xl leading-tight md:text-6xl lg:text-7xl"
+          >
             A Bebida que Selou
             <br />
             <span className="optical-word optical-word-eternidades italic text-gradient-gold">
               Impérios e Eternidades.
             </span>
-          </h2>
+          </AnimatedTitle>
 
           <p className="heritage-line mx-auto mt-10 max-w-3xl text-base font-light leading-relaxed text-champagne/75 md:text-lg">
-            Antes da escrita, antes das catedrais, antes das coroas — havia o
+            Antes da escrita, antes das catedrais, antes das coroas - havia o
             vinho. Companheiro de faraós, sacerdotes e imperadores, o néctar da
             videira atravessou oito mil anos como o brinde silencioso de toda
             civilização que se ousou chamar nobre. Beber vinho é assinar um
@@ -101,9 +105,9 @@ export function Heritage() {
           </p>
         </div>
 
-        {/* Mosaic of three images — the relic, the fruit, the sanctuary */}
+        {/* Mosaic of three images - the relic, the fruit, the sanctuary */}
         <div className="heritage-mosaic mt-24 grid gap-5 md:grid-cols-12 md:gap-6">
-          {/* Chalice — large left */}
+          {/* Chalice - large left */}
           <figure className="heritage-img group relative md:col-span-7 md:row-span-2">
             <div className="pointer-events-none absolute -inset-6 rounded-full opacity-60 blur-3xl"
               style={{
@@ -135,7 +139,7 @@ export function Heritage() {
             </div>
           </figure>
 
-          {/* Grapes — top right */}
+          {/* Grapes - top right */}
           <figure className="heritage-img group relative md:col-span-5">
             <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <img
@@ -160,7 +164,7 @@ export function Heritage() {
             </div>
           </figure>
 
-          {/* Cellar — bottom right */}
+          {/* Cellar - bottom right */}
           <figure className="heritage-img group relative md:col-span-5">
             <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <img
@@ -186,7 +190,7 @@ export function Heritage() {
           </figure>
         </div>
 
-        {/* Timeline — three eras */}
+        {/* Timeline - three eras */}
         <div className="heritage-timeline mt-28">
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <p className="text-xs uppercase tracking-[0.5em] text-gold">
@@ -248,7 +252,7 @@ export function Heritage() {
             <span className="text-gradient-gold not-italic">coroação.</span>”
           </blockquote>
           <p className="mt-8 text-[11px] uppercase tracking-[0.45em] text-gold/70">
-            — Manifesto Cave Royale
+            - Manifesto Cave Royale
           </p>
         </div>
       </div>

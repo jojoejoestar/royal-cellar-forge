@@ -7,6 +7,7 @@ import { Mountain, Flame, Key, MapPin, ArrowRight, Calendar } from "lucide-react
 import chaletInterior from "@/assets/chalet-interior\.jpg";
 import chaletExterior from "@/assets/chalet-exterior\.jpg";
 import chaletTable from "@/assets/chalet-table\.jpg";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,7 +20,7 @@ const experiences = [
   {
     icon: Mountain,
     title: "Vinhedo Privativo",
-    desc: "Caminhadas ao amanhecer entre as videiras que cercam o chalé — terroir vivo, intocado pelo turismo.",
+    desc: "Caminhadas ao amanhecer entre as videiras que cercam o chalé - terroir vivo, intocado pelo turismo.",
   },
   {
     icon: Key,
@@ -80,14 +81,17 @@ export function Chalet() {
             Um Convite Pessoal
           </p>
           <div className="chalet-reveal mx-auto mt-6 gold-divider w-32" />
-          <h2 className="chalet-reveal mt-8 font-serif text-4xl leading-[1.05] text-champagne md:text-6xl lg:text-7xl">
+          <AnimatedTitle
+            as="h2"
+            className="chalet-reveal mt-8 font-serif text-4xl leading-[1.05] md:text-6xl lg:text-7xl"
+          >
             O Chalé do
             <br />
             <span className="italic text-gradient-gold">Mestre Valverde.</span>
-          </h2>
+          </AnimatedTitle>
           <p className="chalet-reveal mt-8 text-lg font-light leading-relaxed text-champagne/75 md:text-xl">
             Encravado entre vinhedos seculares, o refúgio particular de
-            Henrique Valverde abre as portas — apenas algumas vezes ao ano —
+            Henrique Valverde abre as portas - apenas algumas vezes ao ano -
             para hóspedes dispostos a viver o vinho como ele é vivido por quem
             o ama profundamente. Não é um hotel. É uma casa. <span className="italic text-gold/90">A casa dele.</span>
           </p>
@@ -159,11 +163,11 @@ export function Chalet() {
           <div className="mx-auto gold-divider w-24" />
           <p className="mt-6 font-serif text-2xl italic leading-relaxed text-champagne md:text-3xl">
             "Aqui não recebo clientes. Recebo amigos do vinho. Quem cruza
-            esta porta sai com mais do que memórias — sai com um pedaço da
+            esta porta sai com mais do que memórias - sai com um pedaço da
             minha biblioteca líquida no paladar."
           </p>
           <p className="mt-6 text-xs uppercase tracking-[0.4em] text-gold">
-            — Henrique Valverde
+            - Henrique Valverde
           </p>
         </div>
 

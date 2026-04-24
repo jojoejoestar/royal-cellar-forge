@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
 import Image, { type StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight, Wine } from "lucide-react";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import bordeaux from "@/assets/wine-bordeaux\.jpg";
 import brunello from "@/assets/wine-brunello\.jpg";
 import burgundy from "@/assets/wine-burgundy\.jpg";
@@ -107,11 +108,14 @@ export function Catalog() {
             O Acervo Privado
           </p>
           <div className="cat-head mx-auto mt-6 gold-divider w-32" />
-          <h2 className="cat-head mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl">
+          <AnimatedTitle
+            as="h2"
+            className="cat-head mt-8 font-serif text-4xl leading-tight md:text-6xl"
+          >
             Um <span className="italic text-gradient-gold">Museu Vivo</span>
             <br />
             em Sua Taça.
-          </h2>
+          </AnimatedTitle>
           <p className="cat-head mx-auto mt-6 max-w-xl text-base font-light text-champagne/70">
             Passe sobre cada rótulo para revelar suas notas de degustação.
           </p>

@@ -12,6 +12,7 @@ import {
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import bordeaux from "@/assets/wine-bordeaux\.jpg";
 import brunello from "@/assets/wine-brunello\.jpg";
 import burgundy from "@/assets/wine-burgundy\.jpg";
@@ -242,11 +243,14 @@ export function Gallery() {
             Galeria de Rótulos Raros
           </p>
           <div className="gal-head mx-auto mt-6 gold-divider w-32" />
-          <h2 className="gal-head mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl">
+          <AnimatedTitle
+            as="h2"
+            className="gal-head mt-8 font-serif text-4xl leading-tight md:text-6xl"
+          >
             Tesouros <span className="italic text-gradient-gold">Selecionados</span>
             <br />
             por Terroir.
-          </h2>
+          </AnimatedTitle>
           <p className="gal-head mx-auto mt-6 max-w-2xl text-base font-light text-champagne/70">
             Filtre por região, percorra o carrossel e descubra a história
             completa de cada relíquia em nosso acervo privado.

@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { Lock, ArrowRight, Check } from "lucide-react";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,11 +43,14 @@ export function Confraria() {
           <p className="conf-el inline-flex items-center gap-2 rounded-full border border-gold/30 bg-background/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.3em] text-gold backdrop-blur">
             <Lock className="h-3 w-3" /> Acesso por Convite
           </p>
-          <h2 className="conf-el mt-8 font-serif text-4xl leading-[1.05] text-champagne md:text-6xl lg:text-7xl">
+          <AnimatedTitle
+            as="h2"
+            className="conf-el mt-8 font-serif text-4xl leading-[1.05] md:text-6xl lg:text-7xl"
+          >
             A Excelência
             <br />
             <span className="italic text-gradient-gold">Não Aceita Espera.</span>
-          </h2>
+          </AnimatedTitle>
           <p className="conf-el mt-8 text-base font-light leading-relaxed text-champagne/75 md:text-lg">
             A Confraria Cave Royale recebe apenas{" "}
             <span className="text-gold">37 novos membros por ano</span>. O

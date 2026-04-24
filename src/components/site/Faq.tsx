@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Plus, Minus } from "lucide-react";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,15 +20,15 @@ const faqs = [
   },
   {
     q: "Vocês buscam rótulos raros sob encomenda?",
-    a: "Esta é uma das vocações da nossa Confraria. Membros VIP têm acesso ao serviço de Wine Hunter — nossa rede internacional localiza safras descontinuadas, formatos magnum, jeroboam e edições limitadas. O prazo médio de localização é de 4 a 12 semanas, com preview fotográfico antes da aquisição.",
+    a: "Esta é uma das vocações da nossa Confraria. Membros VIP têm acesso ao serviço de Wine Hunter - nossa rede internacional localiza safras descontinuadas, formatos magnum, jeroboam e edições limitadas. O prazo médio de localização é de 4 a 12 semanas, com preview fotográfico antes da aquisição.",
   },
   {
     q: "Qual o investimento médio para integrar a Confraria?",
-    a: "A Confraria Cave Royale opera por convite e curadoria de perfil. Não trabalhamos com mensalidades — trabalhamos com relacionamento. O ticket médio anual de nossos membros gravita entre R$ 80 mil e R$ 600 mil, mas o valor real está no acesso prioritário a alocações limitadas que jamais chegam ao mercado público.",
+    a: "A Confraria Cave Royale opera por convite e curadoria de perfil. Não trabalhamos com mensalidades - trabalhamos com relacionamento. O ticket médio anual de nossos membros gravita entre R$ 80 mil e R$ 600 mil, mas o valor real está no acesso prioritário a alocações limitadas que jamais chegam ao mercado público.",
   },
   {
     q: "Oferecem consultoria para montagem de adega particular?",
-    a: "Absolutamente. Nosso serviço Cellar Architecture acompanha desde o projeto técnico (climatização, iluminação UV-free, sistemas anti-vibração) até a curadoria estratégica de portfólio com horizonte de 5, 10 e 25 anos — pensando guarda, valorização e legado familiar.",
+    a: "Absolutamente. Nosso serviço Cellar Architecture acompanha desde o projeto técnico (climatização, iluminação UV-free, sistemas anti-vibração) até a curadoria estratégica de portfólio com horizonte de 5, 10 e 25 anos - pensando guarda, valorização e legado familiar.",
   },
 ];
 
@@ -66,11 +67,14 @@ export function Faq() {
             Dúvidas Aristocráticas
           </p>
           <div className="mx-auto mt-6 gold-divider w-32" />
-          <h2 className="mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl">
+          <AnimatedTitle
+            as="h2"
+            className="mt-8 font-serif text-4xl leading-tight md:text-6xl"
+          >
             Respostas <span className="italic text-gradient-gold">à Altura</span>
             <br />
             do Seu Padrão.
-          </h2>
+          </AnimatedTitle>
         </div>
 
         <div className="faq-list mt-16 space-y-4">

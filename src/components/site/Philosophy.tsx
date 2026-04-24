@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mountain, Droplets, Sun } from "lucide-react";
 import wineGlassSolo from "@/assets/wine-glass-solo\.jpg";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -74,7 +75,7 @@ export function Philosophy() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         {/* Two-column hero: glass + manifesto */}
         <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-20">
-          {/* Glass image — left */}
+          {/* Glass image - left */}
           <div className="philo-glass relative lg:col-span-5">
             <div className="relative mx-auto max-w-md">
               {/* Outer gold halo */}
@@ -108,23 +109,26 @@ export function Philosophy() {
             </div>
           </div>
 
-          {/* Manifesto — right */}
+          {/* Manifesto - right */}
           <div className="lg:col-span-7">
             <p className="philo-line text-xs uppercase tracking-[0.5em] text-gold">
               A Filosofia
             </p>
             <div className="philo-line mt-6 gold-divider w-32" />
 
-            <h2 className="philo-line mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl lg:text-7xl">
+            <AnimatedTitle
+              as="h2"
+              className="philo-line mt-8 font-serif text-4xl leading-tight md:text-6xl lg:text-7xl"
+            >
               Onde o Solo
               <br />
               <span className="optical-word optical-word-destino italic text-gradient-gold">
                 Dita o Destino.
               </span>
-            </h2>
+            </AnimatedTitle>
 
             <p className="philo-line mt-10 max-w-2xl text-base font-light leading-relaxed text-champagne/75 md:text-lg">
-              Não vendemos vinhos. Custodiamos cápsulas líquidas do tempo —
+              Não vendemos vinhos. Custodiamos cápsulas líquidas do tempo -
               meticulosamente eleitas dos vinhedos mais nobres da Borgonha,
               Toscana e do Vale do Douro. Cada rótulo da Cave Royale carrega o
               silêncio de gerações, a paciência das pedras e a ousadia de

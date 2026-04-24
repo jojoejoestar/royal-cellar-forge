@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-cellar\.jpg";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 const particles = Array.from({ length: 28 });
 
@@ -56,14 +57,17 @@ export function Hero() {
             </span>
           </div>
 
-          <h1 className="font-serif text-5xl leading-[1.05] text-champagne sm:text-6xl md:text-7xl lg:text-[5.5rem]">
+          <AnimatedTitle
+            as="h1"
+            className="font-serif text-5xl leading-[1.05] sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+          >
             O Tempo Engarrafado.
             <br />
             <span className="optical-word optical-word-realeza italic text-gradient-gold">
               A Realeza
             </span>{" "}
             <span className="text-champagne">em Cada Taça.</span>
-          </h1>
+          </AnimatedTitle>
 
           <motion.p
             initial={{ opacity: 0, y: 20 }}

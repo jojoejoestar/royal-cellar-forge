@@ -7,6 +7,7 @@ import { Eye, Wind, GlassWater, Sparkles } from "lucide-react";
 import pour from "@/assets/tasting-pour\.jpg";
 import swirl from "@/assets/tasting-swirl\.jpg";
 import nose from "@/assets/tasting-nose\.jpg";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -103,13 +104,16 @@ export function Tasting() {
             Ritual de Degustação
           </p>
           <div className="tast-head mx-auto mt-6 gold-divider w-32" />
-          <h2 className="tast-head mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl">
+          <AnimatedTitle
+            as="h2"
+            className="tast-head mt-8 font-serif text-4xl leading-tight md:text-6xl"
+          >
             Quatro Atos para uma{" "}
             <span className="optical-word optical-word-comunhao italic text-gradient-gold">
               Comunhão Sensorial
             </span>
             .
-          </h2>
+          </AnimatedTitle>
           <p className="tast-head mx-auto mt-6 max-w-2xl text-base font-light text-champagne/75">
             A degustação de um grande vinho não é consumo. É cerimônia. Ato de
             silêncio, presença e gratidão diante de uma cápsula líquida do
@@ -119,7 +123,7 @@ export function Tasting() {
 
         {/* Mosaic */}
         <div className="tast-mosaic mt-20 grid gap-6 lg:grid-cols-12 lg:grid-rows-2">
-          {/* Hero image — pour */}
+          {/* Hero image - pour */}
           <figure className="tast-hero relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />
             <div className="relative">
@@ -148,7 +152,7 @@ export function Tasting() {
             </div>
           </figure>
 
-          {/* Side — swirl */}
+          {/* Side - swirl */}
           <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
               src={swirl.src}
@@ -170,7 +174,7 @@ export function Tasting() {
             <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20" />
           </figure>
 
-          {/* Side — nose */}
+          {/* Side - nose */}
           <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
               src={nose.src}
@@ -234,7 +238,7 @@ export function Tasting() {
             <span className="text-gradient-gold not-italic">
               conversar com o tempo
             </span>{" "}
-            — uma audiência privada com séculos de paciência, sol e silêncio.”
+            - uma audiência privada com séculos de paciência, sol e silêncio.”
           </p>
           <p className="mt-6 text-[10px] uppercase tracking-[0.4em] text-gold/80">
             Manifesto Cave Royale

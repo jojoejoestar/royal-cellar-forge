@@ -195,7 +195,7 @@ export function CinematicForgeLayer() {
           heading.dataset.opulentSplit = "true";
         };
 
-        const headingTargets = gsap.utils.toArray<HTMLElement>("h1, h2, h3");
+        const headingTargets = gsap.utils.toArray<HTMLElement>("h3");
         const highlightTargets = gsap.utils.toArray<HTMLElement>(
           ".text-gradient-gold, .gold-divider, .section-ornament",
         );

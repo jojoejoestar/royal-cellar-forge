@@ -32,12 +32,12 @@ export function Footer() {
               Navegação
             </p>
             <ul className="mt-4 space-y-2 text-sm text-champagne/70">
-              <li><a href="#acervo" className="hover:text-gold transition-colors">Acervo</a></li>
-              <li><a href="#galeria" className="hover:text-gold transition-colors">Galeria de Rótulos</a></li>
-              <li><a href="#heritage" className="hover:text-gold transition-colors">Heritage</a></li>
-              <li><a href="#degustacao" className="hover:text-gold transition-colors">Ritual de Degustação</a></li>
-              <li><a href="#sommelier" className="hover:text-gold transition-colors">O Sommelier</a></li>
-              <li><a href="#confraria" className="hover:text-gold transition-colors">Confraria</a></li>
+              <li><a href="#acervo" className="magnetic-underline hover:text-gold transition-colors">Acervo</a></li>
+              <li><a href="#galeria" className="magnetic-underline hover:text-gold transition-colors">Galeria de Rótulos</a></li>
+              <li><a href="#heritage" className="magnetic-underline hover:text-gold transition-colors">Heritage</a></li>
+              <li><a href="#degustacao" className="magnetic-underline hover:text-gold transition-colors">Ritual de Degustação</a></li>
+              <li><a href="#sommelier" className="magnetic-underline hover:text-gold transition-colors">O Sommelier</a></li>
+              <li><a href="#confraria" className="magnetic-underline hover:text-gold transition-colors">Confraria</a></li>
             </ul>
           </div>
 
@@ -72,7 +72,7 @@ export function Footer() {
             href="https://agentejoestar.online"
             target="_blank"
             rel="noopener noreferrer"
-            className="group inline-flex items-center gap-2 text-xs font-light tracking-[0.25em] text-champagne/70 transition-colors hover:text-gold"
+            className="magnetic-underline group inline-flex items-center gap-2 text-xs font-light tracking-[0.25em] text-champagne/70 transition-colors hover:text-gold"
           >
             <span className="h-px w-6 bg-gold/40 transition-all group-hover:w-10 group-hover:bg-gold" />
             Design Original{" "}

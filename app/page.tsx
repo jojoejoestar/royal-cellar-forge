@@ -18,14 +18,6 @@ import { GoldenGrapeCursor } from "@/components/site/GoldenGrapeCursor";
 export default function HomePage() {
   return (
     <div className="relative min-h-screen text-foreground">
-      <div
-        aria-hidden
-        className="pointer-events-none fixed inset-0 -z-20 bg-[radial-gradient(140%_90%_at_50%_-15%,rgba(145,38,58,0.48)_0%,rgba(48,17,28,0.7)_38%,rgba(10,8,10,0.96)_100%)]"
-      />
-      <div
-        aria-hidden
-        className="ambient-spotlight pointer-events-none fixed inset-0 -z-10"
-      />
       <SmoothDesktopScroll />
       <GoldenGrapeCursor />
       <CinematicForgeLayer />

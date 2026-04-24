@@ -52,7 +52,7 @@ export function Navigation() {
             <a
               key={l.href}
               href={l.href}
-              className="relative text-sm font-light tracking-widest text-champagne/80 uppercase transition-colors hover:text-gold after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-gold after:transition-all hover:after:w-full"
+              className="magnetic-underline relative text-sm font-light tracking-widest text-champagne/80 uppercase transition-colors hover:text-gold"
             >
               {l.label}
             </a>
@@ -86,7 +86,7 @@ export function Navigation() {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
-              className="text-sm uppercase tracking-widest text-champagne/80 hover:text-gold"
+              className="magnetic-underline text-sm uppercase tracking-widest text-champagne/80 hover:text-gold"
             >
               {l.label}
             </a>

@@ -5,6 +5,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Award, Quote } from "lucide-react";
 import sommelierImg from "@/assets/sommelier\.jpg";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -73,18 +74,21 @@ export function Sommelier() {
             O Sommelier
           </p>
           <div className="som-text mt-6 gold-divider w-32" />
-          <h2 className="som-text mt-8 font-serif text-4xl leading-tight text-champagne md:text-6xl">
+          <AnimatedTitle
+            as="h2"
+            className="som-text mt-8 font-serif text-4xl leading-tight md:text-6xl"
+          >
             A Curadoria
             <br />
             <span className="italic text-gradient-gold">do Mestre.</span>
-          </h2>
+          </AnimatedTitle>
 
           <div className="som-text mt-10 flex items-start gap-4">
             <Quote className="mt-1 h-8 w-8 shrink-0 text-gold/60" />
             <p className="text-lg font-light italic leading-relaxed text-champagne/85">
               "Eu não escolho vinhos. Eu descubro heranças. Cada rótulo que
               entra nesta adega passou por uma conversa silenciosa entre o
-              vigneron, a terra e o tempo — e meu papel é apenas reconhecer
+              vigneron, a terra e o tempo - e meu papel é apenas reconhecer
               quando essa conversa atingiu a perfeição."
             </p>
           </div>

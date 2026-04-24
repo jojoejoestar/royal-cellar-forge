@@ -29,7 +29,13 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${serif.variable} ${sans.variable}`}>{children}</body>
+      <body className={`${serif.variable} ${sans.variable} relative`}>
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(circle_at_50%_18%,#0A0A0A_0%,#040404_52%,#000000_100%)]"
+        />
+        {children}
+      </body>
     </html>
   );
 }
