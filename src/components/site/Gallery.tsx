@@ -231,7 +231,7 @@ export function Gallery() {
     <section
       id="galeria"
       ref={sectionRef}
-      className="relative overflow-hidden bg-background py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-20 md:py-28"
     >
       <div className="absolute inset-0 pattern-grapes opacity-25" />
       <div className="absolute inset-0 pattern-damask opacity-20" />

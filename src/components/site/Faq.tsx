@@ -53,7 +53,7 @@ export function Faq() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-gradient-imperial py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-20 md:py-28"
     >
       <div className="absolute inset-0 pattern-damask opacity-35" />
       <div className="absolute inset-0 pattern-grapes opacity-20" />

@@ -63,7 +63,7 @@ export function Philosophy() {
     <section
       id="terroir"
       ref={ref}
-      className="relative overflow-hidden bg-gradient-imperial py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-20 md:py-28"
     >
       <div className="absolute inset-0 pattern-damask opacity-40" />
       <div className="absolute inset-0 pattern-grapes opacity-20" />

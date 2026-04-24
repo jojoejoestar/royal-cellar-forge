@@ -66,7 +66,7 @@ export function Chalet() {
     <section
       id="chale"
       ref={ref}
-      className="relative overflow-hidden bg-background py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-20 md:py-28"
     >
       {/* Floral grape backdrop + gold spotlight */}
       <div className="absolute inset-0 pattern-grapes opacity-25" />

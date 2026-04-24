@@ -10,7 +10,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen w-full overflow-hidden bg-background"
+      className="relative min-h-screen w-full overflow-hidden bg-transparent"
     >
       {/* Background image */}
       <div className="absolute inset-0">

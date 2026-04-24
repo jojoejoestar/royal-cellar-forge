@@ -37,7 +37,7 @@ export function Sommelier() {
     <section
       id="sommelier"
       ref={ref}
-      className="relative overflow-hidden bg-background py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-20 md:py-28"
     >
       <div className="absolute inset-0 pattern-grapes opacity-25" />
       <div className="absolute right-0 top-1/4 h-[600px] w-[600px] spotlight-gold" />

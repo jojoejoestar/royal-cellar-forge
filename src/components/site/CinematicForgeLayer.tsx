@@ -156,9 +156,51 @@ export function CinematicForgeLayer() {
           yoyo: true,
         });
 
+        const splitHeadingWords = (heading: HTMLElement) => {
+          if (heading.dataset.opulentSplit === "true") return;
+          const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
+          const textNodes: Text[] = [];
+          let node = walker.nextNode();
+          while (node) {
+            const textNode = node as Text;
+            if (
+              textNode.parentElement &&
+              textNode.parentElement.closest(".opulent-word") === null &&
+              textNode.textContent &&
+              textNode.textContent.trim().length > 0
+            ) {
+              textNodes.push(textNode);
+            }
+            node = walker.nextNode();
+          }
+
+          textNodes.forEach((textNode) => {
+            const text = textNode.textContent ?? "";
+            const frag = document.createDocumentFragment();
+            const tokens = text.split(/(\s+)/);
+            tokens.forEach((token) => {
+              if (!token) return;
+              if (/^\s+$/.test(token)) {
+                frag.appendChild(document.createTextNode(token));
+                return;
+              }
+              const span = document.createElement("span");
+              span.className = "opulent-word";
+              span.textContent = token;
+              frag.appendChild(span);
+            });
+            textNode.parentNode?.replaceChild(frag, textNode);
+          });
+
+          heading.dataset.opulentSplit = "true";
+        };
+
         const headingTargets = gsap.utils.toArray<HTMLElement>("h1, h2, h3");
         const highlightTargets = gsap.utils.toArray<HTMLElement>(
           ".text-gradient-gold, .gold-divider, .section-ornament",
+        );
+        const actionableTargets = gsap.utils.toArray<HTMLElement>(
+          "a, button, [role='button'], input[type='submit']",
         );
         const mediaTargets = gsap.utils.toArray<HTMLElement>(
           ".philo-glass, .heritage-img, .cat-card, .tast-hero, .tast-side, .som-img, .chalet-img, .gal-card",
@@ -171,7 +213,47 @@ export function CinematicForgeLayer() {
         }> = [];
 
         headingTargets.forEach((node) => {
+          node.classList.add("opulent-heading");
+          splitHeadingWords(node);
           node.classList.add("luxury-title-interactive");
+          gsap.set(node, { "--title-underline-scale": 0 });
+
+          const wordTargets = node.querySelectorAll<HTMLElement>(".opulent-word");
+          if (wordTargets.length > 0) {
+            gsap.fromTo(
+              wordTargets,
+              {
+                yPercent: 104,
+                opacity: 0,
+                clipPath: "inset(0 0 120% 0)",
+              },
+              {
+                yPercent: 0,
+                opacity: 1,
+                clipPath: "inset(0 0 0% 0)",
+                duration: 1.1,
+                stagger: 0.055,
+                ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+                scrollTrigger: {
+                  trigger: node,
+                  start: "top 86%",
+                  once: true,
+                },
+              },
+            );
+          }
+
+          gsap.to(node, {
+            "--title-underline-scale": 1,
+            duration: 1.05,
+            ease: "cubic-bezier(0.22, 1, 0.36, 1)",
+            scrollTrigger: {
+              trigger: node,
+              start: "top 86%",
+              once: true,
+            },
+          });
+
           const toX = gsap.quickTo(node, "x", { duration: 0.42, ease: "power3.out" });
           const toY = gsap.quickTo(node, "y", { duration: 0.42, ease: "power3.out" });
           const toRotateY = gsap.quickTo(node, "rotateY", {
@@ -224,6 +306,13 @@ export function CinematicForgeLayer() {
           node.addEventListener("mouseleave", leave);
           node.addEventListener("mousemove", move);
           interactionHandlers.push({ node, enter, leave, move });
+        });
+
+        actionableTargets.forEach((node) => {
+          node.classList.add("luxury-action");
+          if (node.matches("a")) {
+            node.classList.add("luxury-link");
+          }
         });
 
         highlightTargets.forEach((node) => {

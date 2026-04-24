@@ -5,7 +5,7 @@ import { Mail, MapPin, AtSign } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gradient-imperial pt-20 pb-10">
+    <footer className="relative overflow-hidden bg-transparent pt-20 pb-10">
       <div className="absolute inset-0 pattern-damask opacity-25" />
       <div className="absolute inset-0 pattern-grapes opacity-25" />
 
