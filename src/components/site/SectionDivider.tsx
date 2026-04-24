@@ -42,16 +42,8 @@ export function SectionDivider({
       }}
     >
       {/* Cinematic blend veil without creating a hard color band */}
-      <div className="section-divider-blend-top absolute inset-x-0 top-0 h-[62%]" />
-      <div className="section-divider-blend-bottom absolute inset-x-0 bottom-0 h-[62%]" />
-      <div
-        className="pointer-events-none absolute inset-x-0 top-1/2 h-12 -translate-y-1/2"
-        style={{
-          background:
-            "radial-gradient(ellipse at center, color-mix(in oklch, var(--divider-from) 35%, var(--divider-to) 35%) 0%, transparent 72%)",
-          opacity: 0.35,
-        }}
-      />
+      <div className="section-divider-blend-top absolute inset-x-0 top-0 h-[42%]" />
+      <div className="section-divider-blend-bottom absolute inset-x-0 bottom-0 h-[42%]" />
 
       {ornament && (
         <div className="relative flex h-full items-center justify-center px-6">

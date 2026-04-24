@@ -316,7 +316,7 @@ export function Gallery() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: i * 0.04 }}
                   onClick={() => setSelected(w)}
-                  className="group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:-translate-y-2 hover:border-gold/55 sm:w-[320px]"
+                  className="gal-card group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:-translate-y-2 hover:border-gold/55 sm:w-[320px]"
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative h-[360px] overflow-hidden">

@@ -17,17 +17,7 @@ export function CinematicForgeLayer() {
       const mm = gsap.matchMedia();
       let removePointerMove: (() => void) | undefined;
       let removeTitleInteractions: (() => void) | undefined;
-
-      const sectionConfigs = [
-        { id: "#terroir", selectors: ".philo-line", lag: 0.12 },
-        { id: "#heritage", selectors: ".heritage-line", lag: 0.11 },
-        { id: "#acervo", selectors: ".cat-head", lag: 0.1 },
-        { id: "#galeria", selectors: ".gal-head", lag: 0.08 },
-        { id: "#degustacao", selectors: ".tast-head", lag: 0.1 },
-        { id: "#sommelier", selectors: ".som-text", lag: 0.09 },
-        { id: "#chale", selectors: ".chalet-reveal", lag: 0.1 },
-        { id: "#confraria", selectors: ".conf-el", lag: 0.09 },
-      ];
+      let removeMediaInteractions: (() => void) | undefined;
 
       const floralNodes: HTMLElement[] = [];
 
@@ -124,45 +114,6 @@ export function CinematicForgeLayer() {
 
       mm.add("(min-width: 1025px) and (pointer: fine)", () => {
         const revealTargets = gsap.utils.toArray<HTMLElement>("section");
-        revealTargets.forEach((section) => {
-          // Hero is already in view on first paint; "top 84%" never fires when scrolling
-          // down from the page top, so the section would stay at opacity: 0 forever.
-          if (section.id === "top") return;
-          gsap.fromTo(
-            section,
-            { opacity: 0, yPercent: 4.5 },
-            {
-              opacity: 1,
-              yPercent: 0,
-              duration: 1.15,
-              ease: "power3.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 84%",
-                once: true,
-              },
-            },
-          );
-        });
-
-        sectionConfigs.forEach((cfg) => {
-          const targets = cfg.selectors
-            .split(",")
-            .map((sel) => `${cfg.id} ${sel.trim()}`)
-            .join(", ");
-          gsap.from(targets, {
-            y: 26,
-            opacity: 0,
-            duration: 1.05,
-            ease: "power3.out",
-            stagger: cfg.lag,
-            scrollTrigger: {
-              trigger: cfg.id,
-              start: "top 72%",
-            },
-          });
-        });
-
         revealTargets.forEach((section, index) => {
           if (section.id === "top") return;
           if (getComputedStyle(section).position === "static") {
@@ -208,6 +159,9 @@ export function CinematicForgeLayer() {
         const headingTargets = gsap.utils.toArray<HTMLElement>("h1, h2, h3");
         const highlightTargets = gsap.utils.toArray<HTMLElement>(
           ".text-gradient-gold, .gold-divider, .section-ornament",
+        );
+        const mediaTargets = gsap.utils.toArray<HTMLElement>(
+          ".philo-glass, .heritage-img, .cat-card, .tast-hero, .tast-side, .som-img, .chalet-img, .gal-card",
         );
         const interactionHandlers: Array<{
           node: HTMLElement;
@@ -303,6 +257,82 @@ export function CinematicForgeLayer() {
           });
         });
 
+        const mediaInteractionHandlers: Array<{
+          node: HTMLElement;
+          enter: () => void;
+          leave: () => void;
+          move: (event: MouseEvent) => void;
+        }> = [];
+
+        mediaTargets.forEach((node) => {
+          node.classList.add("luxury-media-interactive");
+          gsap.set(node, {
+            transformPerspective: 900,
+            transformStyle: "preserve-3d",
+            willChange: "transform, filter, box-shadow",
+          });
+
+          const toX = gsap.quickTo(node, "x", { duration: 0.34, ease: "power2.out" });
+          const toY = gsap.quickTo(node, "y", { duration: 0.34, ease: "power2.out" });
+          const toRotateY = gsap.quickTo(node, "rotateY", { duration: 0.38, ease: "power2.out" });
+          const toRotateX = gsap.quickTo(node, "rotateX", { duration: 0.38, ease: "power2.out" });
+          const toScale = gsap.quickTo(node, "scale", { duration: 0.36, ease: "power2.out" });
+
+          const enter = () => {
+            toScale(1.012);
+            gsap.to(node, {
+              filter: "brightness(1.07) saturate(1.08)",
+              boxShadow: "0 18px 36px oklch(0.05 0 0 / 0.3)",
+              duration: 0.32,
+              ease: "power2.out",
+              overwrite: true,
+            });
+          };
+
+          const leave = () => {
+            toX(0);
+            toY(0);
+            toRotateX(0);
+            toRotateY(0);
+            toScale(1);
+            gsap.to(node, {
+              filter: "brightness(1) saturate(1)",
+              boxShadow: "none",
+              duration: 0.36,
+              ease: "power2.out",
+              overwrite: true,
+            });
+          };
+
+          const move = (event: MouseEvent) => {
+            const bounds = node.getBoundingClientRect();
+            const relX = (event.clientX - bounds.left) / bounds.width - 0.5;
+            const relY = (event.clientY - bounds.top) / bounds.height - 0.5;
+            toX(relX * 7);
+            toY(relY * 5);
+            toRotateY(relX * 4.5);
+            toRotateX(relY * -4);
+          };
+
+          node.addEventListener("mouseenter", enter);
+          node.addEventListener("mouseleave", leave);
+          node.addEventListener("mousemove", move);
+          mediaInteractionHandlers.push({ node, enter, leave, move });
+        });
+
+        removeMediaInteractions = () => {
+          mediaInteractionHandlers.forEach(({ node, enter, leave, move }) => {
+            node.removeEventListener("mouseenter", enter);
+            node.removeEventListener("mouseleave", leave);
+            node.removeEventListener("mousemove", move);
+            node.classList.remove("luxury-media-interactive");
+            gsap.set(node, {
+              clearProps:
+                "x,y,rotateX,rotateY,scale,filter,boxShadow,transformPerspective,transformStyle,willChange",
+            });
+          });
+        };
+
         removeTitleInteractions = () => {
           interactionHandlers.forEach(({ node, enter, leave, move }) => {
             node.removeEventListener("mouseenter", enter);
@@ -334,6 +364,8 @@ export function CinematicForgeLayer() {
         return () => {
           removePointerMove?.();
           removePointerMove = undefined;
+          removeMediaInteractions?.();
+          removeMediaInteractions = undefined;
           removeTitleInteractions?.();
           removeTitleInteractions = undefined;
         };
@@ -341,24 +373,6 @@ export function CinematicForgeLayer() {
 
       mm.add("(max-width: 1024px), (pointer: coarse)", () => {
         const revealTargets = gsap.utils.toArray<HTMLElement>("section");
-        revealTargets.forEach((section) => {
-          if (section.id === "top") return;
-          gsap.fromTo(
-            section,
-            { opacity: 0, y: 22 },
-            {
-              opacity: 1,
-              y: 0,
-              duration: 0.72,
-              ease: "power2.out",
-              scrollTrigger: {
-                trigger: section,
-                start: "top 88%",
-                once: true,
-              },
-            },
-          );
-        });
 
         gsap.to(".btn-gold-glow, .btn-outline-gold", {
           boxShadow:
@@ -382,6 +396,7 @@ export function CinematicForgeLayer() {
 
       return () => {
         removePointerMove?.();
+        removeMediaInteractions?.();
         removeTitleInteractions?.();
         floralNodes.forEach((node) => node.remove());
         mm.revert();

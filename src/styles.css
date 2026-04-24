@@ -333,19 +333,19 @@
   .section-divider-blend-top {
     background: linear-gradient(
       to bottom,
-      color-mix(in oklch, var(--divider-from) 96%, transparent) 0%,
+      color-mix(in oklch, var(--divider-from) 82%, transparent) 0%,
       transparent 100%
     );
-    opacity: 0.62;
+    opacity: 0.48;
   }
 
   .section-divider-blend-bottom {
     background: linear-gradient(
       to top,
-      color-mix(in oklch, var(--divider-to) 96%, transparent) 0%,
+      color-mix(in oklch, var(--divider-to) 82%, transparent) 0%,
       transparent 100%
     );
-    opacity: 0.62;
+    opacity: 0.48;
   }
 
   .btn-gold-glow {
@@ -632,7 +632,7 @@
 
   .section-divider-blend-top,
   .section-divider-blend-bottom {
-    opacity: 0.52;
+    opacity: 0.42;
   }
 
   .royal-floral-left {
