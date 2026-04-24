@@ -336,7 +336,7 @@
       color-mix(in oklch, var(--divider-from) 96%, transparent) 0%,
       transparent 100%
     );
-    opacity: 0.95;
+    opacity: 0.62;
   }
 
   .section-divider-blend-bottom {
@@ -345,7 +345,7 @@
       color-mix(in oklch, var(--divider-to) 96%, transparent) 0%,
       transparent 100%
     );
-    opacity: 0.95;
+    opacity: 0.62;
   }
 
   .btn-gold-glow {
@@ -632,7 +632,7 @@
 
   .section-divider-blend-top,
   .section-divider-blend-bottom {
-    opacity: 0.9;
+    opacity: 0.52;
   }
 
   .royal-floral-left {

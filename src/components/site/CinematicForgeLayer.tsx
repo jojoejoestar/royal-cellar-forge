@@ -19,13 +19,13 @@ export function CinematicForgeLayer() {
       let removeTitleInteractions: (() => void) | undefined;
 
       const sectionConfigs = [
-        { id: "#terroir", selectors: ".philo-line, .philo-pillar", lag: 0.12 },
-        { id: "#heritage", selectors: ".heritage-line, .heritage-era", lag: 0.11 },
-        { id: "#acervo", selectors: ".cat-head, .cat-card", lag: 0.1 },
+        { id: "#terroir", selectors: ".philo-line", lag: 0.12 },
+        { id: "#heritage", selectors: ".heritage-line", lag: 0.11 },
+        { id: "#acervo", selectors: ".cat-head", lag: 0.1 },
         { id: "#galeria", selectors: ".gal-head", lag: 0.08 },
-        { id: "#degustacao", selectors: ".tast-head, .tast-step", lag: 0.1 },
+        { id: "#degustacao", selectors: ".tast-head", lag: 0.1 },
         { id: "#sommelier", selectors: ".som-text", lag: 0.09 },
-        { id: "#chale", selectors: ".chalet-reveal, .chalet-card", lag: 0.1 },
+        { id: "#chale", selectors: ".chalet-reveal", lag: 0.1 },
         { id: "#confraria", selectors: ".conf-el", lag: 0.09 },
       ];
 
