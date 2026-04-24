@@ -37,15 +37,9 @@ export function SectionDivider({
       style={{
         ["--divider-from" as string]: fromC,
         ["--divider-to" as string]: toC,
-        backgroundImage: `linear-gradient(to bottom, ${fromC} 0%, ${toC} 100%)`,
+        backgroundColor: "transparent",
       }}
     >
-      <div className="section-divider-blend-top absolute inset-x-0 top-0 h-7" />
-      <div className="section-divider-blend-bottom absolute inset-x-0 bottom-0 h-7" />
-
-      {/* Subtle grape vine pattern bridging the two tones */}
-      <div className="absolute inset-0 pattern-grapes opacity-28" />
-
       {ornament && (
         <div className="relative flex h-full items-center justify-center px-6">
           {/* Left filigree */}
@@ -53,7 +47,7 @@ export function SectionDivider({
             className="h-px flex-1 max-w-[36%]"
             style={{
               background:
-                "linear-gradient(90deg, transparent 0%, oklch(0.78 0.13 85 / 0.55) 70%, oklch(0.78 0.13 85 / 0.85) 100%)",
+                "linear-gradient(90deg, transparent 0%, oklch(0.72 0.10 78 / 0.55) 70%, oklch(0.72 0.10 78 / 0.85) 100%)",
             }}
           />
           {/* Diamond + grape glyph */}
@@ -67,11 +61,11 @@ export function SectionDivider({
                 className="absolute inset-0 rounded-full opacity-70 blur-md"
                 style={{
                   background:
-                    "radial-gradient(circle, oklch(0.78 0.13 85 / 0.55) 0%, transparent 70%)",
+                    "radial-gradient(circle, oklch(0.72 0.10 78 / 0.55) 0%, transparent 70%)",
                 }}
               />
               <Grape
-                className="relative h-5 w-5 text-gold drop-shadow-[0_0_6px_oklch(0.78_0.13_85_/_0.7)]"
+                className="relative h-5 w-5 text-gold drop-shadow-[0_0_6px_oklch(0.72_0.10_78_/_0.7)]"
                 strokeWidth={1.3}
               />
             </span>
@@ -85,7 +79,7 @@ export function SectionDivider({
             className="h-px flex-1 max-w-[36%]"
             style={{
               background:
-                "linear-gradient(90deg, oklch(0.78 0.13 85 / 0.85) 0%, oklch(0.78 0.13 85 / 0.55) 30%, transparent 100%)",
+                "linear-gradient(90deg, oklch(0.72 0.10 78 / 0.85) 0%, oklch(0.72 0.10 78 / 0.55) 30%, transparent 100%)",
             }}
           />
         </div>

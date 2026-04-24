@@ -12,14 +12,7 @@ dist
 dist-ssr
 .output
 .next
-.vinxi
-.tanstack/**
-.nitro
 *.local
-
-# Wrangler / Cloudflare
-.wrangler/
-.dev.vars
 
 # Editor directories and files
 .vscode/*

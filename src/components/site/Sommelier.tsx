@@ -4,7 +4,7 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Award, Quote } from "lucide-react";
-import sommelierImg from "@/assets/sommelier.webp";
+import sommelierImg from "@/assets/sommelier\.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 

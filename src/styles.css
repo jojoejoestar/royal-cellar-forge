@@ -41,34 +41,34 @@
 :root {
   --radius: 0.5rem;
 
-  /* Royal Scarlet Theme */
-  --background: oklch(0.08 0.02 25);          /* deep onyx */
-  --foreground: oklch(0.97 0.015 85);         /* ice white / champagne */
-  --card: oklch(0.12 0.04 20);
-  --card-foreground: oklch(0.97 0.015 85);
-  --popover: oklch(0.12 0.04 20);
-  --popover-foreground: oklch(0.97 0.015 85);
-  --primary: oklch(0.78 0.13 85);             /* royal gold #D4AF37 */
-  --primary-foreground: oklch(0.12 0.04 20);
-  --secondary: oklch(0.22 0.09 20);
-  --secondary-foreground: oklch(0.97 0.015 85);
-  --muted: oklch(0.18 0.05 20);
-  --muted-foreground: oklch(0.72 0.04 80);
-  --accent: oklch(0.35 0.16 20);
-  --accent-foreground: oklch(0.97 0.015 85);
-  --destructive: oklch(0.55 0.22 25);
-  --destructive-foreground: oklch(0.97 0.015 85);
-  --border: oklch(0.78 0.13 85 / 18%);
-  --input: oklch(0.78 0.13 85 / 12%);
-  --ring: oklch(0.78 0.13 85 / 50%);
+  /* Imperial Velvet + Byzantine Gold Theme */
+  --background: oklch(0.09 0.035 346);
+  --foreground: oklch(0.95 0.02 72);
+  --card: oklch(0.14 0.045 344);
+  --card-foreground: oklch(0.95 0.02 72);
+  --popover: oklch(0.14 0.045 344);
+  --popover-foreground: oklch(0.95 0.02 72);
+  --primary: oklch(0.72 0.10 78);
+  --primary-foreground: oklch(0.11 0.03 344);
+  --secondary: oklch(0.2 0.07 340);
+  --secondary-foreground: oklch(0.95 0.02 72);
+  --muted: oklch(0.18 0.05 338);
+  --muted-foreground: oklch(0.76 0.03 74);
+  --accent: oklch(0.3 0.1 336);
+  --accent-foreground: oklch(0.95 0.02 72);
+  --destructive: oklch(0.52 0.19 20);
+  --destructive-foreground: oklch(0.95 0.02 72);
+  --border: oklch(0.72 0.10 78 / 18%);
+  --input: oklch(0.72 0.10 78 / 12%);
+  --ring: oklch(0.72 0.10 78 / 50%);
 
   /* Custom luxury tokens */
-  --gold: oklch(0.78 0.13 85);
-  --gold-glow: oklch(0.85 0.15 88);
-  --champagne: oklch(0.92 0.04 85);
-  --scarlet: oklch(0.22 0.12 20);
-  --scarlet-deep: oklch(0.14 0.10 20);
-  --onyx: oklch(0.06 0.015 25);
+  --gold: oklch(0.72 0.10 78);
+  --gold-glow: oklch(0.8 0.12 82);
+  --champagne: oklch(0.92 0.03 75);
+  --scarlet: oklch(0.24 0.11 338);
+  --scarlet-deep: oklch(0.15 0.08 342);
+  --onyx: oklch(0.07 0.02 340);
 
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
   --font-sans: 'Inter', system-ui, sans-serif;
@@ -76,24 +76,24 @@
   /* Gradients */
   --gradient-royal: linear-gradient(
     145deg,
-    oklch(0.165 0.105 20) 0%,
-    oklch(0.11 0.05 24) 44%,
-    oklch(0.08 0.02 25) 100%
+    oklch(0.19 0.09 338) 0%,
+    oklch(0.13 0.05 342) 44%,
+    oklch(0.09 0.035 346) 100%
   );
   --gradient-scarlet: linear-gradient(
     180deg,
-    oklch(0.245 0.13 20) 0%,
-    oklch(0.18 0.105 20) 46%,
-    oklch(0.105 0.06 22) 100%
+    oklch(0.28 0.12 336) 0%,
+    oklch(0.2 0.09 340) 46%,
+    oklch(0.12 0.055 344) 100%
   );
-  --gradient-gold: linear-gradient(135deg, oklch(0.85 0.15 88) 0%, oklch(0.68 0.13 80) 50%, oklch(0.85 0.15 88) 100%);
-  --gradient-spotlight: radial-gradient(ellipse at center, oklch(0.78 0.13 85 / 0.18) 0%, transparent 60%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.8 0.12 82) 0%, oklch(0.65 0.09 76) 50%, oklch(0.8 0.12 82) 100%);
+  --gradient-spotlight: radial-gradient(ellipse at center, oklch(0.72 0.10 78 / 0.18) 0%, transparent 60%);
 
   /* Shadows */
-  --shadow-gold: 0 0 40px oklch(0.78 0.13 85 / 0.35), 0 0 80px oklch(0.78 0.13 85 / 0.15);
-  --shadow-gold-soft: 0 8px 30px oklch(0.78 0.13 85 / 0.25);
+  --shadow-gold: 0 0 40px oklch(0.72 0.10 78 / 0.35), 0 0 80px oklch(0.72 0.10 78 / 0.15);
+  --shadow-gold-soft: 0 8px 30px oklch(0.72 0.10 78 / 0.25);
   --shadow-velvet: 0 25px 60px -15px oklch(0.05 0 0 / 0.8);
-  --shadow-card: 0 20px 50px -10px oklch(0.05 0 0 / 0.7), 0 0 0 1px oklch(0.78 0.13 85 / 0.1);
+  --shadow-card: 0 20px 50px -10px oklch(0.05 0 0 / 0.7), 0 0 0 1px oklch(0.72 0.10 78 / 0.1);
 
   /* Transitions */
   --ease-luxury: cubic-bezier(0.25, 1, 0.5, 1);
@@ -258,31 +258,31 @@
   }
 
   .glass-dark {
-    background: oklch(0.08 0.02 25 / 0.55);
+    background: oklch(0.09 0.035 346 / 0.55);
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
-    border: 1px solid oklch(0.78 0.13 85 / 0.12);
+    border: 1px solid oklch(0.72 0.10 78 / 0.12);
   }
 
   .glass-scarlet {
-    background: oklch(0.14 0.10 20 / 0.65);
+    background: oklch(0.15 0.08 342 / 0.65);
     backdrop-filter: blur(20px) saturate(150%);
     -webkit-backdrop-filter: blur(20px) saturate(150%);
-    border-bottom: 1px solid oklch(0.78 0.13 85 / 0.18);
+    border-bottom: 1px solid oklch(0.72 0.10 78 / 0.18);
   }
 
   /* Damask floral pattern overlay */
   .pattern-damask {
     background-image:
-      radial-gradient(circle at 25% 25%, oklch(0.78 0.13 85 / 0.04) 0%, transparent 35%),
-      radial-gradient(circle at 75% 75%, oklch(0.78 0.13 85 / 0.04) 0%, transparent 35%),
-      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='0.6' opacity='0.08'%3E%3Cpath d='M60 10 C 70 25, 70 35, 60 45 C 50 35, 50 25, 60 10 Z'/%3E%3Cpath d='M60 110 C 70 95, 70 85, 60 75 C 50 85, 50 95, 60 110 Z'/%3E%3Cpath d='M10 60 C 25 70, 35 70, 45 60 C 35 50, 25 50, 10 60 Z'/%3E%3Cpath d='M110 60 C 95 70, 85 70, 75 60 C 85 50, 95 50, 110 60 Z'/%3E%3Ccircle cx='60' cy='60' r='3'/%3E%3Cpath d='M60 45 L60 75 M45 60 L75 60' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E");
+      radial-gradient(circle at 25% 25%, oklch(0.72 0.10 78 / 0.04) 0%, transparent 35%),
+      radial-gradient(circle at 75% 75%, oklch(0.72 0.10 78 / 0.04) 0%, transparent 35%),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23B08D57' stroke-width='0.6' opacity='0.08'%3E%3Cpath d='M60 10 C 70 25, 70 35, 60 45 C 50 35, 50 25, 60 10 Z'/%3E%3Cpath d='M60 110 C 70 95, 70 85, 60 75 C 50 85, 50 95, 60 110 Z'/%3E%3Cpath d='M10 60 C 25 70, 35 70, 45 60 C 35 50, 25 50, 10 60 Z'/%3E%3Cpath d='M110 60 C 95 70, 85 70, 75 60 C 85 50, 95 50, 110 60 Z'/%3E%3Ccircle cx='60' cy='60' r='3'/%3E%3Cpath d='M60 45 L60 75 M45 60 L75 60' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E");
     background-size: auto, auto, 120px 120px;
   }
 
   /* Grape vine floral pattern — clusters of grapes with leaves and tendrils */
   .pattern-grapes {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cg fill='none' stroke='%23D4AF37' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='0.11'%3E%3C!-- Grape cluster top-left --%3E%3Cg transform='translate(40 40)'%3E%3Cpath d='M0 0 C 8 6, 14 14, 12 26' stroke-width='0.5'/%3E%3Ccircle cx='6' cy='14' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='14' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='10' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='4' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='16' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='8' cy='30' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='30' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='11' cy='38' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3C!-- Leaf --%3E%3Cpath d='M-4 -2 C -16 -6, -22 4, -18 14 C -14 20, -6 18, -2 10 C 0 4, -2 0, -4 -2 Z'/%3E%3Cpath d='M-12 4 L -6 8 M -10 -2 L -8 6 M -14 8 L -8 10' stroke-width='0.4'/%3E%3C!-- Tendril --%3E%3Cpath d='M18 -2 C 26 -4, 30 2, 28 8 C 26 12, 32 14, 34 10' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Grape cluster bottom-right --%3E%3Cg transform='translate(180 160)'%3E%3Cpath d='M0 0 C 8 6, 14 14, 12 26' stroke-width='0.5'/%3E%3Ccircle cx='6' cy='14' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='14' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='10' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='4' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='16' cy='22' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='8' cy='30' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='30' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Ccircle cx='11' cy='38' r='4.5' fill='%23D4AF37' fill-opacity='0.06'/%3E%3Cpath d='M22 -2 C 34 -6, 40 4, 36 14 C 32 20, 24 18, 20 10 C 18 4, 20 0, 22 -2 Z'/%3E%3Cpath d='M28 4 L 32 8 M 30 -2 L 28 6 M 26 8 L 32 10' stroke-width='0.4'/%3E%3Cpath d='M-8 -2 C -16 -4, -20 2, -18 8 C -16 12, -22 14, -24 10' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Single leaf center --%3E%3Cg transform='translate(140 100) rotate(35)'%3E%3Cpath d='M0 0 C -10 -4, -18 4, -14 14 C -10 20, -2 18, 2 10 C 4 4, 2 0, 0 0 Z'/%3E%3Cpath d='M-8 4 L -4 8 M -6 -2 L -4 6 M -10 8 L -4 10' stroke-width='0.4'/%3E%3Cpath d='M2 -2 C 8 -8, 16 -6, 18 0' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Tendril swirl --%3E%3Cpath d='M80 220 C 90 215, 95 225, 90 232 C 86 238, 96 242, 100 236' stroke-width='0.5'/%3E%3Cpath d='M220 50 C 230 45, 235 55, 230 62 C 226 68, 236 72, 240 66' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='280' viewBox='0 0 280 280'%3E%3Cg fill='none' stroke='%23B08D57' stroke-width='0.7' stroke-linecap='round' stroke-linejoin='round' opacity='0.11'%3E%3C!-- Grape cluster top-left --%3E%3Cg transform='translate(40 40)'%3E%3Cpath d='M0 0 C 8 6, 14 14, 12 26' stroke-width='0.5'/%3E%3Ccircle cx='6' cy='14' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='14' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='10' cy='22' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='4' cy='22' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='16' cy='22' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='8' cy='30' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='30' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='11' cy='38' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3C!-- Leaf --%3E%3Cpath d='M-4 -2 C -16 -6, -22 4, -18 14 C -14 20, -6 18, -2 10 C 0 4, -2 0, -4 -2 Z'/%3E%3Cpath d='M-12 4 L -6 8 M -10 -2 L -8 6 M -14 8 L -8 10' stroke-width='0.4'/%3E%3C!-- Tendril --%3E%3Cpath d='M18 -2 C 26 -4, 30 2, 28 8 C 26 12, 32 14, 34 10' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Grape cluster bottom-right --%3E%3Cg transform='translate(180 160)'%3E%3Cpath d='M0 0 C 8 6, 14 14, 12 26' stroke-width='0.5'/%3E%3Ccircle cx='6' cy='14' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='14' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='10' cy='22' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='4' cy='22' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='16' cy='22' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='8' cy='30' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='14' cy='30' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Ccircle cx='11' cy='38' r='4.5' fill='%23B08D57' fill-opacity='0.06'/%3E%3Cpath d='M22 -2 C 34 -6, 40 4, 36 14 C 32 20, 24 18, 20 10 C 18 4, 20 0, 22 -2 Z'/%3E%3Cpath d='M28 4 L 32 8 M 30 -2 L 28 6 M 26 8 L 32 10' stroke-width='0.4'/%3E%3Cpath d='M-8 -2 C -16 -4, -20 2, -18 8 C -16 12, -22 14, -24 10' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Single leaf center --%3E%3Cg transform='translate(140 100) rotate(35)'%3E%3Cpath d='M0 0 C -10 -4, -18 4, -14 14 C -10 20, -2 18, 2 10 C 4 4, 2 0, 0 0 Z'/%3E%3Cpath d='M-8 4 L -4 8 M -6 -2 L -4 6 M -10 8 L -4 10' stroke-width='0.4'/%3E%3Cpath d='M2 -2 C 8 -8, 16 -6, 18 0' stroke-width='0.5'/%3E%3C/g%3E%3C!-- Tendril swirl --%3E%3Cpath d='M80 220 C 90 215, 95 225, 90 232 C 86 238, 96 242, 100 236' stroke-width='0.5'/%3E%3Cpath d='M220 50 C 230 45, 235 55, 230 62 C 226 68, 236 72, 240 66' stroke-width='0.5'/%3E%3C/g%3E%3C/svg%3E");
     background-size: 280px 280px;
   }
 
@@ -292,14 +292,14 @@
 
   .gold-divider {
     height: 1px;
-    background: linear-gradient(90deg, transparent, oklch(0.78 0.13 85 / 0.6), transparent);
+    background: linear-gradient(90deg, transparent, oklch(0.72 0.10 78 / 0.6), transparent);
   }
 
   /* Section ornament — gold filigree divider used between sections */
   .section-ornament {
     position: relative;
     height: 1px;
-    background: linear-gradient(90deg, transparent, oklch(0.78 0.13 85 / 0.45) 30%, oklch(0.78 0.13 85 / 0.45) 70%, transparent);
+    background: linear-gradient(90deg, transparent, oklch(0.72 0.10 78 / 0.45) 30%, oklch(0.72 0.10 78 / 0.45) 70%, transparent);
   }
   .section-ornament::before,
   .section-ornament::after {
@@ -308,7 +308,7 @@
     top: 50%;
     width: 5px;
     height: 5px;
-    border: 1px solid oklch(0.78 0.13 85 / 0.7);
+    border: 1px solid oklch(0.72 0.10 78 / 0.7);
     background: var(--background);
     transform: translateY(-50%) rotate(45deg);
   }
@@ -344,24 +344,24 @@
     position: relative;
     background: var(--gradient-gold);
     color: var(--onyx);
-    box-shadow: 0 0 0 1px oklch(0.85 0.15 88 / 0.5), 0 8px 24px oklch(0.78 0.13 85 / 0.35);
+    box-shadow: 0 0 0 1px oklch(0.8 0.12 82 / 0.5), 0 8px 24px oklch(0.72 0.10 78 / 0.35);
     transition: all 0.4s var(--ease-luxury);
   }
   .btn-gold-glow:hover {
-    box-shadow: 0 0 0 1px oklch(0.85 0.15 88 / 0.8), 0 12px 40px oklch(0.78 0.13 85 / 0.55), 0 0 60px oklch(0.78 0.13 85 / 0.4);
+    box-shadow: 0 0 0 1px oklch(0.8 0.12 82 / 0.8), 0 12px 40px oklch(0.72 0.10 78 / 0.55), 0 0 60px oklch(0.72 0.10 78 / 0.4);
     transform: translateY(-2px);
   }
 
   .btn-outline-gold {
-    border: 1px solid oklch(0.78 0.13 85 / 0.5);
+    border: 1px solid oklch(0.72 0.10 78 / 0.5);
     color: var(--gold);
-    background: oklch(0.78 0.13 85 / 0.04);
+    background: oklch(0.72 0.10 78 / 0.04);
     transition: all 0.35s var(--ease-luxury);
   }
   .btn-outline-gold:hover {
-    background: oklch(0.78 0.13 85 / 0.12);
+    background: oklch(0.72 0.10 78 / 0.12);
     border-color: var(--gold);
-    box-shadow: 0 0 24px oklch(0.78 0.13 85 / 0.3);
+    box-shadow: 0 0 24px oklch(0.72 0.10 78 / 0.3);
   }
 
   @keyframes float-particle {
@@ -377,14 +377,14 @@
     100% { background-position: 200% center; }
   }
   .animate-shimmer {
-    background: linear-gradient(90deg, transparent, oklch(0.78 0.13 85 / 0.2), transparent);
+    background: linear-gradient(90deg, transparent, oklch(0.72 0.10 78 / 0.2), transparent);
     background-size: 200% 100%;
     animation: shimmer 3s linear infinite;
   }
 
   @keyframes pulse-gold {
-    0%, 100% { box-shadow: 0 0 20px oklch(0.78 0.13 85 / 0.3); }
-    50% { box-shadow: 0 0 40px oklch(0.78 0.13 85 / 0.6); }
+    0%, 100% { box-shadow: 0 0 20px oklch(0.72 0.10 78 / 0.3); }
+    50% { box-shadow: 0 0 40px oklch(0.72 0.10 78 / 0.6); }
   }
   .animate-pulse-gold {
     animation: pulse-gold 3s ease-in-out infinite;
@@ -393,8 +393,8 @@
   .forge-cursor-spotlight {
     background: radial-gradient(
       circle at center,
-      oklch(0.78 0.13 85 / 0.25) 0%,
-      oklch(0.78 0.13 85 / 0.14) 28%,
+      oklch(0.72 0.10 78 / 0.25) 0%,
+      oklch(0.72 0.10 78 / 0.14) 28%,
       transparent 70%
     );
     will-change: transform;
@@ -426,7 +426,7 @@
     z-index: 3;
     pointer-events: none;
     opacity: 0;
-    filter: drop-shadow(0 0 12px oklch(0.78 0.13 85 / 0.24));
+    filter: drop-shadow(0 0 12px oklch(0.72 0.10 78 / 0.24));
     will-change: transform, opacity;
   }
 
@@ -448,20 +448,20 @@
 
   .royal-floral-line {
     fill: none;
-    stroke: oklch(0.8 0.14 85 / 0.68);
+    stroke: oklch(0.75 0.11 80 / 0.68);
     stroke-width: 1.55;
     stroke-linecap: round;
   }
 
   .royal-floral-petals ellipse {
-    fill: oklch(0.79 0.14 85 / 0.24);
-    stroke: oklch(0.83 0.14 85 / 0.65);
+    fill: oklch(0.73 0.11 79 / 0.24);
+    stroke: oklch(0.79 0.12 81 / 0.65);
     stroke-width: 0.8;
   }
 
   .royal-floral-bloom circle {
-    fill: oklch(0.86 0.16 86 / 0.26);
-    stroke: oklch(0.85 0.15 88 / 0.75);
+    fill: oklch(0.82 0.13 83 / 0.26);
+    stroke: oklch(0.8 0.12 82 / 0.75);
     stroke-width: 1;
   }
 
@@ -474,8 +474,8 @@
   .luxury-title-interactive.is-active {
     text-shadow:
       0 1px 0 oklch(0.9 0.04 90 / 0.65),
-      0 0 24px oklch(0.78 0.13 85 / 0.42),
-      0 0 56px oklch(0.78 0.13 85 / 0.28);
+      0 0 24px oklch(0.72 0.10 78 / 0.42),
+      0 0 56px oklch(0.72 0.10 78 / 0.28);
   }
 
   .luxury-highlight-interactive {
@@ -492,7 +492,7 @@
 
   .luxury-title-interactive.is-active .text-gradient-gold {
     animation: title-gold-sheen 1.35s cubic-bezier(0.25, 1, 0.5, 1);
-    filter: brightness(1.22) drop-shadow(0 0 12px oklch(0.82 0.14 86 / 0.65));
+    filter: brightness(1.22) drop-shadow(0 0 12px oklch(0.79 0.12 81 / 0.65));
   }
 
   .optical-word {
@@ -545,7 +545,7 @@
     height: 112px;
     border-radius: 999px;
     transform: translate(-50%, -50%);
-    background: radial-gradient(circle, #ffd7004f 0%, #f9a60224 38%, transparent 74%);
+    background: radial-gradient(circle, #b08d574f 0%, #8b6a3f24 38%, transparent 74%);
     filter: blur(10px);
     opacity: 0;
     transition: opacity 180ms ease;
@@ -567,8 +567,8 @@
   .grape-cursor-dot span {
     position: absolute;
     border-radius: 999px;
-    background: linear-gradient(180deg, #fffacd 0%, #ffec8b 40%, #d4af37 100%);
-    box-shadow: 0 0 12px #ffd70080;
+    background: linear-gradient(180deg, #f3e3c4 0%, #d2b37a 40%, #b08d57 100%);
+    box-shadow: 0 0 12px #b08d5780;
   }
 
   .grape-cursor-dot span:nth-child(1) { left: 7px; top: 0; width: 8px; height: 8px; }
@@ -621,7 +621,7 @@
 
   .royal-floral {
     width: min(28vw, 150px);
-    filter: drop-shadow(0 0 8px oklch(0.78 0.13 85 / 0.2));
+    filter: drop-shadow(0 0 8px oklch(0.72 0.10 78 / 0.2));
   }
 
   .section-divider-blend-top,

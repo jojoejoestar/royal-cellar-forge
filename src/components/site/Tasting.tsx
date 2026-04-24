@@ -4,9 +4,9 @@ import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Eye, Wind, GlassWater, Sparkles } from "lucide-react";
-import pour from "@/assets/tasting-pour.webp";
-import swirl from "@/assets/tasting-swirl.webp";
-import nose from "@/assets/tasting-nose.webp";
+import pour from "@/assets/tasting-pour\.jpg";
+import swirl from "@/assets/tasting-swirl\.jpg";
+import nose from "@/assets/tasting-nose\.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroImg from "@/assets/hero-cellar.webp";
+import heroImg from "@/assets/hero-cellar\.jpg";
 
 const particles = Array.from({ length: 28 });
 

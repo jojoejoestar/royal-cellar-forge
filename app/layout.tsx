@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   title: "Cave Royale · Adega de Vinhos Finos · Curadoria Privada",
   description:
     "Curadoria exclusiva de rótulos raros e safras históricas. Para paladares que exigem a excelência absoluta e o verdadeiro sabor do terroir.",
+  icons: {
+    icon: "/brand/cave-royale-official-logo.png",
+    shortcut: "/brand/cave-royale-official-logo.png",
+    apple: "/brand/cave-royale-official-logo.png",
+  },
 };
 
 export default function RootLayout({

@@ -2,7 +2,8 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Menu, X, Wine } from "lucide-react";
+import Image from "next/image";
+import { Menu, X } from "lucide-react";
 
 const links = [
   { label: "Acervo", href: "#acervo" },
@@ -35,11 +36,15 @@ export function Navigation() {
       }`}
     >
       <div className="mx-auto flex max-w-7xl items-center justify-between px-6 lg:px-10">
-        <a href="#top" className="flex items-center gap-2 group">
-          <Wine className="h-5 w-5 text-gold transition-transform group-hover:rotate-12" />
-          <span className="font-serif text-xl tracking-[0.25em] text-gold">
-            CAVE&nbsp;ROYALE
-          </span>
+        <a href="#top" className="group flex items-center">
+          <Image
+            src="/brand/cave-royale-official-logo.png"
+            alt="Cave Royale"
+            width={220}
+            height={74}
+            className="h-10 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
+            priority
+          />
         </a>
 
         <nav className="hidden items-center gap-10 md:flex">

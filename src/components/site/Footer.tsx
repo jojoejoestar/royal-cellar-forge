@@ -1,6 +1,7 @@
 "use client";
 
-import { Wine, Mail, MapPin, AtSign } from "lucide-react";
+import Image from "next/image";
+import { Mail, MapPin, AtSign } from "lucide-react";
 
 export function Footer() {
   return (
@@ -11,11 +12,14 @@ export function Footer() {
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="grid gap-12 md:grid-cols-4">
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2">
-              <Wine className="h-5 w-5 text-gold" />
-              <span className="font-serif text-xl tracking-[0.25em] text-gold">
-                CAVE&nbsp;ROYALE
-              </span>
+            <div className="flex items-center">
+              <Image
+                src="/brand/cave-royale-official-logo.png"
+                alt="Cave Royale"
+                width={280}
+                height={96}
+                className="h-14 w-auto"
+              />
             </div>
             <p className="mt-5 max-w-md text-sm font-light leading-relaxed text-champagne/65">
               Curadoria privada de vinhos finos para paladares que reconhecem o

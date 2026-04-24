@@ -19,7 +19,6 @@ export function CinematicForgeLayer() {
       let removeTitleInteractions: (() => void) | undefined;
 
       const sectionConfigs = [
-        { id: "#top", selectors: ".philo-line, .cat-head", lag: 0.05 },
         { id: "#terroir", selectors: ".philo-line, .philo-pillar", lag: 0.12 },
         { id: "#heritage", selectors: ".heritage-line, .heritage-era", lag: 0.11 },
         { id: "#acervo", selectors: ".cat-head, .cat-card", lag: 0.1 },
@@ -126,6 +125,9 @@ export function CinematicForgeLayer() {
       mm.add("(min-width: 1025px) and (pointer: fine)", () => {
         const revealTargets = gsap.utils.toArray<HTMLElement>("section");
         revealTargets.forEach((section) => {
+          // Hero is already in view on first paint; "top 84%" never fires when scrolling
+          // down from the page top, so the section would stay at opacity: 0 forever.
+          if (section.id === "top") return;
           gsap.fromTo(
             section,
             { opacity: 0, yPercent: 4.5 },
@@ -144,7 +146,11 @@ export function CinematicForgeLayer() {
         });
 
         sectionConfigs.forEach((cfg) => {
-          gsap.from(`${cfg.id} ${cfg.selectors}`, {
+          const targets = cfg.selectors
+            .split(",")
+            .map((sel) => `${cfg.id} ${sel.trim()}`)
+            .join(", ");
+          gsap.from(targets, {
             y: 26,
             opacity: 0,
             duration: 1.05,
@@ -192,7 +198,7 @@ export function CinematicForgeLayer() {
 
         gsap.to(".btn-gold-glow, .btn-outline-gold", {
           boxShadow:
-            "0 0 0 1px oklch(0.85 0.15 88 / 0.85), 0 0 42px oklch(0.78 0.13 85 / 0.45)",
+            "0 0 0 1px oklch(0.8 0.12 82 / 0.85), 0 0 42px oklch(0.72 0.10 78 / 0.45)",
           duration: 2.6,
           ease: "sine.inOut",
           repeat: reducedMotion ? 0 : -1,
@@ -336,6 +342,7 @@ export function CinematicForgeLayer() {
       mm.add("(max-width: 1024px), (pointer: coarse)", () => {
         const revealTargets = gsap.utils.toArray<HTMLElement>("section");
         revealTargets.forEach((section) => {
+          if (section.id === "top") return;
           gsap.fromTo(
             section,
             { opacity: 0, y: 22 },
@@ -355,7 +362,7 @@ export function CinematicForgeLayer() {
 
         gsap.to(".btn-gold-glow, .btn-outline-gold", {
           boxShadow:
-            "0 0 0 1px oklch(0.85 0.15 88 / 0.65), 0 0 30px oklch(0.78 0.13 85 / 0.3)",
+            "0 0 0 1px oklch(0.8 0.12 82 / 0.65), 0 0 30px oklch(0.72 0.10 78 / 0.3)",
           duration: 3.1,
           ease: "sine.inOut",
           repeat: reducedMotion ? 0 : -1,
