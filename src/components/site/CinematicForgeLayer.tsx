@@ -16,7 +16,7 @@ export function CinematicForgeLayer() {
       const spotlight = rootRef.current?.querySelector<HTMLElement>(".forge-cursor-spotlight");
       const mm = gsap.matchMedia();
       let removePointerMove: (() => void) | undefined;
-      let removeTitleInteractions: (() => void) | undefined;
+      let removeLuxuryInteractions: (() => void) | undefined;
       let removeMediaInteractions: (() => void) | undefined;
 
       const floralNodes: HTMLElement[] = [];
@@ -156,46 +156,6 @@ export function CinematicForgeLayer() {
           yoyo: true,
         });
 
-        const splitHeadingWords = (heading: HTMLElement) => {
-          if (heading.dataset.opulentSplit === "true") return;
-          const walker = document.createTreeWalker(heading, NodeFilter.SHOW_TEXT);
-          const textNodes: Text[] = [];
-          let node = walker.nextNode();
-          while (node) {
-            const textNode = node as Text;
-            if (
-              textNode.parentElement &&
-              textNode.parentElement.closest(".opulent-word") === null &&
-              textNode.textContent &&
-              textNode.textContent.trim().length > 0
-            ) {
-              textNodes.push(textNode);
-            }
-            node = walker.nextNode();
-          }
-
-          textNodes.forEach((textNode) => {
-            const text = textNode.textContent ?? "";
-            const frag = document.createDocumentFragment();
-            const tokens = text.split(/(\s+)/);
-            tokens.forEach((token) => {
-              if (!token) return;
-              if (/^\s+$/.test(token)) {
-                frag.appendChild(document.createTextNode(token));
-                return;
-              }
-              const span = document.createElement("span");
-              span.className = "opulent-word";
-              span.textContent = token;
-              frag.appendChild(span);
-            });
-            textNode.parentNode?.replaceChild(frag, textNode);
-          });
-
-          heading.dataset.opulentSplit = "true";
-        };
-
-        const headingTargets = gsap.utils.toArray<HTMLElement>("h3");
         const highlightTargets = gsap.utils.toArray<HTMLElement>(
           ".text-gradient-gold, .gold-divider, .section-ornament",
         );
@@ -205,108 +165,12 @@ export function CinematicForgeLayer() {
         const mediaTargets = gsap.utils.toArray<HTMLElement>(
           ".philo-glass, .heritage-img, .cat-card, .tast-hero, .tast-side, .som-img, .chalet-img, .gal-card",
         );
-        const interactionHandlers: Array<{
+        const luxuryInteractionHandlers: Array<{
           node: HTMLElement;
           enter: () => void;
           leave: () => void;
           move: (event: MouseEvent) => void;
         }> = [];
-
-        headingTargets.forEach((node) => {
-          node.classList.add("opulent-heading");
-          splitHeadingWords(node);
-          node.classList.add("luxury-title-interactive");
-          gsap.set(node, { "--title-underline-scale": 0 });
-
-          const wordTargets = node.querySelectorAll<HTMLElement>(".opulent-word");
-          if (wordTargets.length > 0) {
-            gsap.fromTo(
-              wordTargets,
-              {
-                yPercent: 104,
-                opacity: 0,
-                clipPath: "inset(0 0 120% 0)",
-              },
-              {
-                yPercent: 0,
-                opacity: 1,
-                clipPath: "inset(0 0 0% 0)",
-                duration: 1.1,
-                stagger: 0.055,
-                ease: "cubic-bezier(0.22, 1, 0.36, 1)",
-                scrollTrigger: {
-                  trigger: node,
-                  start: "top 86%",
-                  once: true,
-                },
-              },
-            );
-          }
-
-          gsap.to(node, {
-            "--title-underline-scale": 1,
-            duration: 1.05,
-            ease: "cubic-bezier(0.22, 1, 0.36, 1)",
-            scrollTrigger: {
-              trigger: node,
-              start: "top 86%",
-              once: true,
-            },
-          });
-
-          const toX = gsap.quickTo(node, "x", { duration: 0.42, ease: "power3.out" });
-          const toY = gsap.quickTo(node, "y", { duration: 0.42, ease: "power3.out" });
-          const toRotateY = gsap.quickTo(node, "rotateY", {
-            duration: 0.48,
-            ease: "power3.out",
-          });
-          const toRotateX = gsap.quickTo(node, "rotateX", {
-            duration: 0.48,
-            ease: "power3.out",
-          });
-          const toScale = gsap.quickTo(node, "scale", { duration: 0.44, ease: "power3.out" });
-
-          const enter = () => {
-            node.classList.add("is-active");
-            toScale(1.012);
-            gsap.to(node, {
-              letterSpacing: "0.02em",
-              duration: 0.38,
-              ease: "power2.out",
-              overwrite: true,
-            });
-          };
-
-          const leave = () => {
-            node.classList.remove("is-active");
-            toX(0);
-            toY(0);
-            toRotateX(0);
-            toRotateY(0);
-            toScale(1);
-            gsap.to(node, {
-              letterSpacing: "0.01em",
-              duration: 0.42,
-              ease: "power2.out",
-              overwrite: true,
-            });
-          };
-
-          const move = (event: MouseEvent) => {
-            const bounds = node.getBoundingClientRect();
-            const relX = (event.clientX - bounds.left) / bounds.width - 0.5;
-            const relY = (event.clientY - bounds.top) / bounds.height - 0.5;
-            toX(relX * 9);
-            toY(relY * 6);
-            toRotateY(relX * 6);
-            toRotateX(relY * -5);
-          };
-
-          node.addEventListener("mouseenter", enter);
-          node.addEventListener("mouseleave", leave);
-          node.addEventListener("mousemove", move);
-          interactionHandlers.push({ node, enter, leave, move });
-        });
 
         actionableTargets.forEach((node) => {
           node.classList.add("luxury-action");
@@ -338,7 +202,7 @@ export function CinematicForgeLayer() {
           };
           node.addEventListener("mouseenter", enter);
           node.addEventListener("mouseleave", leave);
-          interactionHandlers.push({
+          luxuryInteractionHandlers.push({
             node,
             enter,
             leave,
@@ -422,12 +286,12 @@ export function CinematicForgeLayer() {
           });
         };
 
-        removeTitleInteractions = () => {
-          interactionHandlers.forEach(({ node, enter, leave, move }) => {
+        removeLuxuryInteractions = () => {
+          luxuryInteractionHandlers.forEach(({ node, enter, leave, move }) => {
             node.removeEventListener("mouseenter", enter);
             node.removeEventListener("mouseleave", leave);
             node.removeEventListener("mousemove", move);
-            node.classList.remove("luxury-title-interactive", "luxury-highlight-interactive", "is-active");
+            node.classList.remove("luxury-highlight-interactive");
             gsap.set(node, {
               clearProps:
                 "x,y,rotateX,rotateY,scale,letterSpacing,filter,transform,perspective,transformStyle",
@@ -455,8 +319,8 @@ export function CinematicForgeLayer() {
           removePointerMove = undefined;
           removeMediaInteractions?.();
           removeMediaInteractions = undefined;
-          removeTitleInteractions?.();
-          removeTitleInteractions = undefined;
+          removeLuxuryInteractions?.();
+          removeLuxuryInteractions = undefined;
         };
       });
 
@@ -486,7 +350,7 @@ export function CinematicForgeLayer() {
       return () => {
         removePointerMove?.();
         removeMediaInteractions?.();
-        removeTitleInteractions?.();
+        removeLuxuryInteractions?.();
         floralNodes.forEach((node) => node.remove());
         mm.revert();
       };

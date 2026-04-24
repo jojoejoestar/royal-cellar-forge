@@ -58,8 +58,6 @@ export function Faq() {
     >
       <div className="absolute inset-0 pattern-damask opacity-35" />
       <div className="absolute inset-0 pattern-grapes opacity-20" />
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-background via-background/70 to-transparent" />
-      <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-background via-background/70 to-transparent" />
 
       <div className="relative mx-auto max-w-4xl px-6 lg:px-10">
         <div className="text-center">

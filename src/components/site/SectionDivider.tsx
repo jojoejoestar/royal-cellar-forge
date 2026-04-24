@@ -3,48 +3,29 @@
 import { Grape } from "lucide-react";
 
 type Props = {
-  /** Gradient direction: blends 'from' color into 'to' color vertically */
+  /** Kept for backwards compatibility with existing call sites */
   from?: "background" | "scarlet-deep" | "scarlet" | "imperial";
   to?: "background" | "scarlet-deep" | "scarlet" | "imperial";
   /** Show the central grape ornament between two filigree lines */
   ornament?: boolean;
 };
 
-const colorVar: Record<NonNullable<Props["from"]>, string> = {
-  background: "var(--background)",
-  "scarlet-deep": "var(--scarlet-deep)",
-  scarlet: "var(--scarlet)",
-  imperial: "color-mix(in oklch, var(--scarlet) 56%, var(--background) 44%)",
-};
-
 /**
  * Elegant transition between two sections - the signature seal between acts.
- * - Smooth vertical color blend (no harsh edges).
  * - Twin gold filigree lines flanking a grape glyph and rotated diamonds.
  * - Soft radial gold spotlight to draw the eye.
  */
 export function SectionDivider({
-  from = "background",
-  to = "background",
   ornament = true,
 }: Props) {
-  const fromC = colorVar[from];
-  const toC = colorVar[to];
-
   return (
     <div
       aria-hidden
       className="section-divider-edge relative h-24 w-full overflow-hidden md:h-28"
       style={{
-        ["--divider-from" as string]: fromC,
-        ["--divider-to" as string]: toC,
         backgroundColor: "transparent",
       }}
     >
-      {/* Cinematic blend veil without creating a hard color band */}
-      <div className="section-divider-blend-top absolute inset-x-0 top-0 h-[42%]" />
-      <div className="section-divider-blend-bottom absolute inset-x-0 bottom-0 h-[42%]" />
-
       {ornament && (
         <div className="relative flex h-full items-center justify-center px-6">
           {/* Left filigree */}

@@ -5,13 +5,13 @@ const config: Config = {
   theme: {
     extend: {
       keyframes: {
-        shimmer: {
-          "0%": { backgroundPosition: "0% center" },
-          "100%": { backgroundPosition: "200% center" },
+        letterSheen: {
+          "0%": { transform: "translateX(-140%)" },
+          "100%": { transform: "translateX(140%)" },
         },
       },
       animation: {
-        shimmer: "shimmer 3.2s linear infinite",
+        "letter-sheen": "letterSheen 3.6s ease-in-out infinite",
       },
     },
   },
