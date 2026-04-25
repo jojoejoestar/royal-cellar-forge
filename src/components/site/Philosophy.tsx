@@ -64,7 +64,7 @@ export function Philosophy() {
     <section
       id="terroir"
       ref={ref}
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       <div className="absolute inset-0 pattern-damask opacity-40" />
       <div className="absolute inset-0 pattern-grapes opacity-20" />
@@ -72,7 +72,7 @@ export function Philosophy() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         {/* Two-column hero: glass + manifesto */}
-        <div className="grid items-center gap-16 lg:grid-cols-12 lg:gap-20">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
           {/* Glass image - left */}
           <div className="philo-glass relative lg:col-span-5">
             <div className="relative mx-auto max-w-md">
@@ -136,7 +136,7 @@ export function Philosophy() {
         </div>
 
         {/* Pillars */}
-        <div className="philo-grid mt-24 grid gap-6 md:grid-cols-3">
+        <div className="philo-grid mt-12 grid gap-6 md:grid-cols-3 lg:mt-14">
           {pillars.map((p) => (
             <div
               key={p.title}

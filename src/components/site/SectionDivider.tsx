@@ -21,7 +21,7 @@ export function SectionDivider({
   return (
     <div
       aria-hidden
-      className="section-divider-edge relative h-24 w-full overflow-hidden md:h-28"
+      className="section-divider-edge relative h-16 w-full overflow-hidden md:h-20"
       style={{
         backgroundColor: "transparent",
       }}

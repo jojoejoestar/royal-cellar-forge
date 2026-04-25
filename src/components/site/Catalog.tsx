@@ -97,7 +97,7 @@ export function Catalog() {
     <section
       id="acervo"
       ref={sectionRef}
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       <div className="absolute inset-0 pattern-damask opacity-25" />
       <div className="absolute inset-0 pattern-grapes opacity-25" />
@@ -122,7 +122,7 @@ export function Catalog() {
         </div>
 
         {/* Featured carousel */}
-        <div className="mt-20 grid items-center gap-12 lg:grid-cols-2">
+        <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:mt-14 lg:gap-12">
           <div className="relative h-[520px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal">
             <div className="absolute inset-0 spotlight-gold" />
             <AnimatePresence mode="wait">
@@ -216,7 +216,7 @@ export function Catalog() {
         </div>
 
         {/* Mini grid of all */}
-        <div className="cat-grid mt-28 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="cat-grid mt-14 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
           {wines.map((w, i) => (
             <button
               key={w.name}

@@ -390,20 +390,40 @@
     transform: scaleX(1);
   }
 
-  @keyframes float-particle {
+  @keyframes firefly-wander {
     0%,
     100% {
-      transform: translate3d(0, 0, 0) scale(1);
-      opacity: 0.65;
+      transform: translate3d(0, 0, 0);
+      opacity: 0.32;
     }
-    50% {
-      transform: translate3d(14px, -36px, 0) scale(1.12);
+    21% {
+      transform: translate3d(var(--ff-dx1), var(--ff-dy1), 0);
+      opacity: 0.95;
+    }
+    46% {
+      transform: translate3d(var(--ff-dx2), var(--ff-dy2), 0);
+      opacity: 0.48;
+    }
+    68% {
+      transform: translate3d(var(--ff-dx3), var(--ff-dy3), 0);
       opacity: 1;
     }
+    86% {
+      transform: translate3d(
+        calc(var(--ff-dx1) * 0.28 + var(--ff-dx3) * 0.22),
+        calc(var(--ff-dy2) * 0.32 + var(--ff-dy1) * 0.18),
+        0
+      );
+      opacity: 0.62;
+    }
   }
-  .animate-float-particle {
-    animation: float-particle 6.5s ease-in-out infinite;
-    will-change: transform, opacity;
+
+  @media (prefers-reduced-motion: reduce) {
+    .forge-particle-core,
+    .forge-particle-bright {
+      animation: none !important;
+      opacity: 0.72 !important;
+    }
   }
 
   @keyframes shimmer {

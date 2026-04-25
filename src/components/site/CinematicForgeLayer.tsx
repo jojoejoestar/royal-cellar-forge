@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { fireflyBright, fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
@@ -364,18 +365,13 @@ export function CinematicForgeLayer() {
       <div className="forge-noise absolute inset-0" />
       <div className="forge-vignette absolute inset-0" />
       <div className="forge-particles absolute inset-0" aria-hidden>
-        {Array.from({ length: 52 }).map((_, i) => (
+        {Array.from({ length: 58 }).map((_, i) => (
           <span
             key={i}
-            className={`absolute rounded-full animate-float-particle ${
-              i % 5 === 0 ? "forge-particle-bright" : "forge-particle-core"
+            className={`absolute rounded-full will-change-transform ${
+              fireflyBright(i) ? "forge-particle-bright" : "forge-particle-core"
             }`}
-            style={{
-              left: `${(i * 29.7) % 100}%`,
-              top: `${(i * 19.3) % 100}%`,
-              animationDuration: `${5.2 + (i % 8) * 0.62}s`,
-              animationDelay: `${(i % 11) * 0.31}s`,
-            }}
+            style={fireflyMotionStyle(i, 1)}
           />
         ))}
       </div>

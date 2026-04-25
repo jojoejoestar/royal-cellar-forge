@@ -232,7 +232,7 @@ export function Gallery() {
     <section
       id="galeria"
       ref={sectionRef}
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       <div className="absolute inset-0 pattern-grapes opacity-25" />
       <div className="absolute inset-0 pattern-damask opacity-20" />
@@ -258,7 +258,7 @@ export function Gallery() {
         </div>
 
         {/* Filters */}
-        <div className="gal-head mt-16 flex flex-col items-center gap-6 lg:flex-row lg:justify-between">
+        <div className="gal-head mt-10 flex flex-col items-center gap-5 lg:mt-12 lg:flex-row lg:justify-between lg:gap-6">
           <div className="flex flex-wrap items-center justify-center gap-2">
             {regions.map((r) => {
               const active = filter === r;
@@ -368,7 +368,7 @@ export function Gallery() {
           </div>
 
           {filtered.length === 0 && (
-            <div className="py-20 text-center text-champagne/60">
+            <div className="py-12 text-center text-champagne/60 md:py-14">
               <Wine className="mx-auto mb-4 h-10 w-10 text-gold/60" />
               <p className="font-serif text-2xl">Nenhum rótulo encontrado.</p>
               <p className="mt-2 text-sm">

@@ -120,7 +120,7 @@ export function Tasting() {
         </div>
 
         {/* Mosaic */}
-        <div className="tast-mosaic mt-12 grid gap-5 lg:mt-14 lg:grid-cols-12 lg:grid-rows-2 lg:gap-6">
+        <div className="tast-mosaic mt-10 grid gap-5 lg:mt-12 lg:grid-cols-12 lg:grid-rows-2 lg:gap-6">
           {/* Hero image - pour */}
           <figure className="tast-hero relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />

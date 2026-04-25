@@ -32,13 +32,13 @@ export function Confraria() {
     <section
       id="confraria"
       ref={ref}
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       <div className="absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 spotlight-gold" />
       <div className="absolute inset-0 pattern-damask opacity-20" />
       <div className="absolute inset-0 pattern-grapes opacity-25" />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 lg:grid-cols-2 lg:gap-12 lg:px-10">
         <div>
           <p className="conf-el inline-flex items-center gap-2 rounded-full border border-gold/30 bg-background/60 px-4 py-1.5 text-[10px] uppercase tracking-[0.3em] text-gold backdrop-blur">
             <Lock className="h-3 w-3" /> Acesso por Convite

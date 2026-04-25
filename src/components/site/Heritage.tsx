@@ -70,7 +70,7 @@ export function Heritage() {
     <section
       id="heritage"
       ref={ref}
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       {/* Background ornaments */}
       <div className="absolute inset-0 pattern-grapes opacity-30" />
@@ -106,7 +106,7 @@ export function Heritage() {
         </div>
 
         {/* Mosaic of three images - the relic, the fruit, the sanctuary */}
-        <div className="heritage-mosaic mt-24 grid gap-5 md:grid-cols-12 md:gap-6">
+        <div className="heritage-mosaic mt-12 grid gap-5 md:grid-cols-12 md:gap-6 lg:mt-14">
           {/* Chalice - large left */}
           <figure className="heritage-img group relative md:col-span-7 md:row-span-2">
             <div className="pointer-events-none absolute -inset-6 rounded-full opacity-60 blur-3xl"
@@ -191,7 +191,7 @@ export function Heritage() {
         </div>
 
         {/* Timeline - three eras */}
-        <div className="heritage-timeline mt-28">
+        <div className="heritage-timeline mt-14 lg:mt-16">
           <div className="mx-auto mb-14 max-w-2xl text-center">
             <p className="text-xs uppercase tracking-[0.5em] text-gold">
               · Oito Mil Anos ·
@@ -244,7 +244,7 @@ export function Heritage() {
         </div>
 
         {/* Closing manifesto */}
-        <div className="mx-auto mt-28 max-w-3xl text-center">
+        <div className="mx-auto mt-14 max-w-3xl text-center lg:mt-16">
           <div className="mx-auto gold-divider w-24" />
           <blockquote className="mt-10 font-serif text-2xl italic leading-relaxed text-champagne md:text-3xl lg:text-4xl">
             “O vinho é a única obra de arte que se pode beber. Toda taça erguida

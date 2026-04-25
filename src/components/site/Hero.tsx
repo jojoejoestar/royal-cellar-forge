@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-cellar\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
 
 const particles = Array.from({ length: 28 });
 
@@ -32,13 +33,8 @@ export function Hero() {
         {particles.map((_, i) => (
           <span
             key={i}
-            className="absolute block h-1 w-1 rounded-full bg-gold/60 animate-float-particle"
-            style={{
-              left: `${(i * 37) % 100}%`,
-              top: `${(i * 53) % 100}%`,
-              animationDelay: `${(i % 6) * 0.7}s`,
-              animationDuration: `${5 + (i % 4)}s`,
-            }}
+            className="hero-firefly absolute block h-1 w-1 rounded-full bg-gold/75 shadow-[0_0_6px_oklch(0.72_0.1_78_/_0.55)]"
+            style={fireflyMotionStyle(i, 0.42)}
           />
         ))}
       </div>

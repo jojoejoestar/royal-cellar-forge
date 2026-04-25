@@ -54,7 +54,7 @@ export function Faq() {
   return (
     <section
       ref={ref}
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       <div className="absolute inset-0 pattern-damask opacity-35" />
       <div className="absolute inset-0 pattern-grapes opacity-20" />
@@ -75,7 +75,7 @@ export function Faq() {
           </AnimatedTitle>
         </div>
 
-        <div className="faq-list mt-16 space-y-4">
+        <div className="faq-list mt-10 space-y-4 lg:mt-12">
           {faqs.map((f, i) => (
             <div
               key={i}

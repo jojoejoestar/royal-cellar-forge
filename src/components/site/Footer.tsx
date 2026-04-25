@@ -5,12 +5,12 @@ import { Mail, MapPin, AtSign } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-transparent pt-20 pb-10">
+    <footer className="relative overflow-hidden bg-transparent pb-8 pt-14 md:pt-16">
       <div className="absolute inset-0 pattern-damask opacity-25" />
       <div className="absolute inset-0 pattern-grapes opacity-25" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="grid gap-12 md:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-4 md:gap-10 lg:gap-12">
           <div className="md:col-span-2">
             <div className="flex items-center">
               <Image

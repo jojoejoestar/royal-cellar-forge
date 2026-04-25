@@ -67,7 +67,7 @@ export function Chalet() {
     <section
       id="chale"
       ref={ref}
-      className="relative overflow-hidden bg-transparent py-20 md:py-28"
+      className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       {/* Floral grape backdrop + gold spotlight */}
       <div className="absolute inset-0 pattern-grapes opacity-25" />
@@ -98,7 +98,7 @@ export function Chalet() {
         </div>
 
         {/* Mosaic of three images */}
-        <div className="mt-16 grid grid-cols-12 gap-4 md:gap-6">
+        <div className="mt-10 grid grid-cols-12 gap-4 md:gap-6 lg:mt-12">
           <div className="chalet-img col-span-12 lg:col-span-8">
             <div className="group relative h-[420px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[540px]">
               <img
@@ -159,7 +159,7 @@ export function Chalet() {
         </div>
 
         {/* Quote band */}
-        <div className="chalet-reveal mt-20 mx-auto max-w-4xl rounded-sm border border-gold/20 glass-dark px-8 py-10 text-center md:px-14 md:py-14">
+        <div className="chalet-reveal mt-12 mx-auto max-w-4xl rounded-sm border border-gold/20 glass-dark px-8 py-10 text-center md:px-14 md:py-14 lg:mt-14">
           <div className="mx-auto gold-divider w-24" />
           <p className="mt-6 font-serif text-2xl italic leading-relaxed text-champagne md:text-3xl">
             "Aqui não recebo clientes. Recebo amigos do vinho. Quem cruza
@@ -172,7 +172,7 @@ export function Chalet() {
         </div>
 
         {/* Three experience pillars */}
-        <div className="chalet-cards mt-20 grid gap-6 md:grid-cols-3 md:gap-8">
+        <div className="chalet-cards mt-12 grid gap-6 md:grid-cols-3 md:gap-8 lg:mt-14">
           {experiences.map((e) => (
             <div
               key={e.title}
@@ -194,7 +194,7 @@ export function Chalet() {
         </div>
 
         {/* CTA */}
-        <div className="chalet-reveal mt-20 flex flex-col items-center justify-center gap-6 text-center">
+        <div className="chalet-reveal mt-12 flex flex-col items-center justify-center gap-5 text-center lg:mt-14 lg:gap-6">
           <div className="flex items-center gap-3 text-gold">
             <span className="h-px w-10 bg-gold/40" />
             <Calendar className="h-4 w-4" />
