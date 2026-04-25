@@ -44,7 +44,6 @@ export function Faq() {
       gsap.from(".faq-item", {
         scrollTrigger: { trigger: ".faq-list", start: "top 80%", once: true },
         y: 36,
-        opacity: 0,
         duration: 0.95,
         stagger: 0.11,
         ease: "power3.out",

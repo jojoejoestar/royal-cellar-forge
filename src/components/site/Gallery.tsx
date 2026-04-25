@@ -224,7 +224,6 @@ export function Gallery() {
       gsap.from(".gal-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
         y: 42,
-        opacity: 0,
         duration: 1.05,
         ease: "power3.out",
         stagger: 0.12,

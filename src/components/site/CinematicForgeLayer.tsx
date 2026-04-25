@@ -124,7 +124,7 @@ export function CinematicForgeLayer() {
         });
 
         gsap.utils
-          .toArray<HTMLElement>(".spotlight-gold, .pattern-damask, .pattern-grapes")
+          .toArray<HTMLElement>(".ambient-spotlight, .pattern-damask, .pattern-grapes")
           .forEach((node, index) => {
             gsap.to(node, {
               yPercent: index % 2 === 0 ? -14 : 12,
@@ -138,7 +138,7 @@ export function CinematicForgeLayer() {
             });
           });
 
-        gsap.to(".spotlight-gold", {
+        gsap.to(".ambient-spotlight", {
           scale: 1.06,
           opacity: 0.88,
           duration: 4.8,

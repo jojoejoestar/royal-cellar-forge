@@ -388,10 +388,8 @@
     position: absolute;
     inset: 0;
     border-radius: inherit;
-    border: 1px solid oklch(0.8 0.12 82 / 0.18);
-    box-shadow:
-      inset 0 0 0 1px oklch(0.8 0.12 82 / 0.08),
-      0 0 0 1px oklch(0.8 0.12 82 / 0.06);
+    border: 1px solid transparent;
+    box-shadow: none;
     opacity: 0;
     transition: opacity 420ms var(--ease-luxury);
     pointer-events: none;
@@ -407,6 +405,10 @@
   }
 
   .image-hover-luxury:hover::after {
+    border-color: rgba(212, 175, 55, 0.45);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 241, 196, 0.2),
+      0 0 0 1px rgba(212, 175, 55, 0.25);
     opacity: 1;
   }
 

@@ -40,7 +40,6 @@ export function Chalet() {
       gsap.from(".chalet-reveal", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
         y: 42,
-        opacity: 0,
         duration: 1.05,
         ease: "power3.out",
         stagger: 0.12,
@@ -48,7 +47,6 @@ export function Chalet() {
       gsap.from(".chalet-img", {
         scrollTrigger: { trigger: ref.current, start: "top 65%", once: true },
         y: 56,
-        opacity: 0,
         duration: 1.1,
         ease: "power3.out",
         stagger: 0.14,
@@ -56,7 +54,6 @@ export function Chalet() {
       gsap.from(".chalet-card", {
         scrollTrigger: { trigger: ".chalet-cards", start: "top 80%", once: true },
         y: 48,
-        opacity: 0,
         duration: 1,
         ease: "power3.out",
         stagger: 0.14,
@@ -73,8 +70,8 @@ export function Chalet() {
     >
       {/* Floral grape backdrop + gold spotlight */}
       <div className="absolute inset-0 pattern-grapes opacity-25" />
-      <div className="absolute -left-32 top-1/3 h-[520px] w-[520px] spotlight-gold opacity-70" />
-      <div className="absolute right-0 bottom-0 h-[420px] w-[420px] spotlight-gold opacity-50" />
+      <div className="ambient-spotlight absolute -left-32 top-1/3 h-[520px] w-[520px] spotlight-gold opacity-70" />
+      <div className="ambient-spotlight absolute right-0 bottom-0 h-[420px] w-[420px] spotlight-gold opacity-50" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         {/* Header */}

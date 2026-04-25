@@ -80,7 +80,6 @@ export function Catalog() {
       gsap.from(".cat-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
         y: 42,
-        opacity: 0,
         duration: 1.05,
         ease: "power3.out",
         stagger: 0.12,
@@ -88,7 +87,6 @@ export function Catalog() {
       gsap.from(".cat-card", {
         scrollTrigger: { trigger: ".cat-grid", start: "top 80%", once: true },
         y: 48,
-        opacity: 0,
         duration: 1,
         ease: "power3.out",
         stagger: 0.14,

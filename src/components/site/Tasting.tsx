@@ -53,7 +53,6 @@ export function Tasting() {
       gsap.from(".tast-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
         y: 42,
-        opacity: 0,
         duration: 1.05,
         ease: "power3.out",
         stagger: 0.12,
@@ -62,7 +61,6 @@ export function Tasting() {
       gsap.from(".tast-hero", {
         scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%", once: true },
         y: 56,
-        opacity: 0,
         duration: 1.1,
         ease: "power3.out",
       });
@@ -70,7 +68,6 @@ export function Tasting() {
       gsap.from(".tast-side", {
         scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%", once: true },
         y: 56,
-        opacity: 0,
         duration: 1.1,
         ease: "power3.out",
         stagger: 0.14,
@@ -79,7 +76,6 @@ export function Tasting() {
       gsap.from(".tast-step", {
         scrollTrigger: { trigger: ".tast-grid", start: "top 80%", once: true },
         y: 48,
-        opacity: 0,
         duration: 1,
         ease: "power3.out",
         stagger: 0.14,

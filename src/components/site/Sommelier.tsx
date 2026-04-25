@@ -20,14 +20,12 @@ export function Sommelier() {
       gsap.from(".som-img", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
         x: -56,
-        opacity: 0,
         duration: 1.1,
         ease: "power3.out",
       });
       gsap.from(".som-text", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
         x: 56,
-        opacity: 0,
         duration: 1.1,
         ease: "power3.out",
         stagger: 0.12,
@@ -43,7 +41,7 @@ export function Sommelier() {
       className="relative overflow-hidden bg-transparent py-14 md:py-20"
     >
       <div className="absolute inset-0 pattern-grapes opacity-25" />
-      <div className="absolute right-0 top-1/4 h-[600px] w-[600px] spotlight-gold" />
+      <div className="ambient-spotlight absolute right-0 top-1/4 h-[600px] w-[600px] spotlight-gold" />
 
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
         {/* Image */}
