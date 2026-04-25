@@ -16,7 +16,7 @@ export function Sommelier() {
     if (!ref.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".som-img", {
-        scrollTrigger: { trigger: ref.current, start: "top 70%" },
+        scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
         immediateRender: false,
         x: -60,
         opacity: 0,
@@ -24,7 +24,7 @@ export function Sommelier() {
         ease: "power3.out",
       });
       gsap.from(".som-text", {
-        scrollTrigger: { trigger: ref.current, start: "top 70%" },
+        scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
         immediateRender: false,
         x: 60,
         opacity: 0,

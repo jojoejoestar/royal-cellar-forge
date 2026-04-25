@@ -17,7 +17,7 @@ export function Confraria() {
     if (!ref.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".conf-el", {
-        scrollTrigger: { trigger: ref.current, start: "top 75%" },
+        scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
         immediateRender: false,
         y: 50,
         opacity: 0,

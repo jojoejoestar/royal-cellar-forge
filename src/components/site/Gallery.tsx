@@ -41,6 +41,7 @@ type RareWine = {
   image: StaticImageData;
   rarity: string;
   bottles: string;
+  marketPrice: string;
   notes: string;
   pairing: string;
   story: string;
@@ -49,132 +50,140 @@ type RareWine = {
 
 const collection: RareWine[] = [
   {
-    id: "bordeaux-2010",
-    name: "Château Premier Cru",
+    id: "margaux-2015",
+    name: "Chateau Margaux",
+    region: "França",
+    appellation: "Bordeaux · Margaux",
+    vintage: "2015",
+    image: bordeaux,
+    rarity: "1er Grand Cru Classé",
+    bottles: "Alocação extremamente limitada",
+    marketPrice: "US$ 1.200 - 2.000 (R$ 6.300 - 10.500)",
+    notes:
+      "Fruta negra precisa, violeta, tabaco fino e grafite. Profundo, aristocrático e de final persistente.",
+    pairing: "Carré de cordeiro · Rossini de filé com trufas",
+    story:
+      "Um dos grandes ícones de Bordeaux, produzido no lendário terroir de Margaux com seleção parcelar rigorosa e potencial de guarda por décadas.",
+    score: "99/100",
+  },
+  {
+    id: "lafite-2010",
+    name: "Chateau Lafite Rothschild",
     region: "França",
     appellation: "Bordeaux · Pauillac",
     vintage: "2010",
     image: bordeaux,
-    rarity: "Edição Limitada",
-    bottles: "412 garrafas no mundo",
+    rarity: "1er Grand Cru Classé",
+    bottles: "Mercado secundário disputado",
+    marketPrice: "US$ 1.050 - 1.400 (R$ 5.500 - 7.400)",
     notes:
-      "Cassis maduro, cedro, trufa negra e tabaco fino. Taninos sedosos e final mineral que persiste por minutos infinitos.",
-    pairing: "Cordeiro confitado · Queijos azuis envelhecidos",
+      "Cassis, cedro, caixa de charuto e mineralidade precisa. Estrutura impecável, nobreza e longevidade exemplar.",
+    pairing: "Cordeiro em crosta de ervas · Queijos curados",
     story:
-      "Engarrafado em uma das safras mais aclamadas do século XXI em Bordeaux, este rótulo descansou em barricas de carvalho francês por 22 meses antes de adormecer 14 anos em nossa adega subterrânea.",
+      "Safra histórica em Pauillac, reverenciada por críticos e colecionadores; Lafite 2010 é referência de equilíbrio entre poder e elegância.",
     score: "100/100",
   },
   {
-    id: "brunello-2015",
-    name: "Brunello di Montalcino",
+    id: "sassicaia-2018",
+    name: "Tenuta San Guido Sassicaia",
     region: "Itália",
-    appellation: "Toscana · Montalcino",
-    vintage: "2015",
+    appellation: "Toscana · Bolgheri Sassicaia DOC",
+    vintage: "2018",
     image: brunello,
-    rarity: "Reserva Histórica",
-    bottles: "780 garrafas",
+    rarity: "Super Toscano Icônico",
+    bottles: "Alocação premium internacional",
+    marketPrice: "US$ 255 - 500 (R$ 1.350 - 2.650)",
     notes:
-      "Cereja preta, couro italiano, alcaçuz e violetas. Estrutura imponente e elegância aristocrática que evolui na taça.",
-    pairing: "Bistecca alla Fiorentina · Risotto de funghi porcini",
+      "Cassis, ervas secas, cedro e toque marítimo. Tanino refinado, acidez viva e textura de grande precisão.",
+    pairing: "Bistecca alla Fiorentina · Tagliata de wagyu",
     story:
-      "Sangiovese Grosso de cepas centenárias plantadas nos solos calcários da colina sagrada de Montalcino. Apenas safras excepcionais merecem a denominação Brunello.",
-    score: "98/100",
-  },
-  {
-    id: "burgundy-2012",
-    name: "Domaine Grand Cru",
-    region: "França",
-    appellation: "Borgonha · Côte de Nuits",
-    vintage: "2012",
-    image: burgundy,
-    rarity: "Coleção Privada",
-    bottles: "240 garrafas",
-    notes:
-      "Framboesa silvestre, terra úmida e pétalas de rosa. A definição clássica de finesse em Pinot Noir borgonhês.",
-    pairing: "Pato selvagem ao molho de cassis · Cogumelos selvagens",
-    story:
-      "Pinot Noir de uma parcela de 0,4 hectares trabalhada manualmente há sete gerações. O terroir mais cobiçado da França condensado em líquido.",
-    score: "99/100",
-  },
-  {
-    id: "champagne-2008",
-    name: "Cuvée de Prestige",
-    region: "França",
-    appellation: "Champagne · Côte des Blancs",
-    vintage: "2008",
-    image: champagneImg,
-    rarity: "Millésime Excepcional",
-    bottles: "1.200 garrafas",
-    notes:
-      "Brioche tostada, mel de acácia, amêndoas e cítricos confitados. Perlage finíssima e cremosidade régia.",
-    pairing: "Ostras Belon · Caviar Oscietra · Carpaccio de vieira",
-    story:
-      "Apenas safras com energia solar e acidez impecável recebem o título Millésime. 2008 entrou para a história como uma das três maiores em meio século.",
+      "O vinho que redefiniu a Toscana moderna ao provar o potencial bordalês em Bolgheri; safra 2018 une classicismo e energia.",
     score: "97/100",
   },
   {
-    id: "loire-2014",
-    name: "Cuvée Royale Loire",
-    region: "França",
-    appellation: "Vale do Loire · Vouvray",
-    vintage: "2014",
-    image: loire,
-    rarity: "Edição Numerada",
-    bottles: "560 garrafas",
-    notes:
-      "Marmelo, mel silvestre, sílex molhado e camomila. Acidez vibrante sustenta uma textura sedosa de ouro líquido.",
-    pairing: "Foie gras de Estrasburgo · Queijo de cabra Sainte-Maure",
-    story:
-      "Chenin Blanc de vinhas plantadas sobre o tuffeau, a pedra calcária branca dos castelos do Loire. Vinificação ancestral em barricas centenárias.",
-    score: "96/100",
-  },
-  {
-    id: "rioja-2004",
-    name: "Gran Reserva Castillo",
+    id: "vega-unico-2012",
+    name: "Vega Sicilia Unico",
     region: "Espanha",
-    appellation: "Rioja · Alavesa",
-    vintage: "2004",
+    appellation: "Ribera del Duero · Unico Gran Reserva",
+    vintage: "2012",
     image: rioja,
-    rarity: "Joia da Adega",
-    bottles: "180 garrafas",
+    rarity: "Gran Reserva de culto",
+    bottles: "Lotes restritos por safra",
+    marketPrice: "US$ 394 - 720 (R$ 2.100 - 3.800)",
     notes:
-      "Ameixa preta, baunilha mexicana, tabaco cubano e couro de Córdoba. Tempranillo no auge absoluto de sua maturidade.",
-    pairing: "Cochinillo asado · Jamón ibérico de bellota",
+      "Ameixa preta, cedro, especiarias finas e couro. Potente e ao mesmo tempo preciso, com final de longa reverberação.",
+    pairing: "Leitão assado · Jamón ibérico bellota",
     story:
-      "Vinificado em uma das três safras mais lendárias da Rioja moderna. Repousou cinco anos em barricas de carvalho americano e mais dez em garrafa.",
-    score: "98/100",
+      "Ícone absoluto da Espanha, elaborado com longuíssimo envelhecimento antes de chegar ao mercado e reputação de guarda lendária.",
+    score: "97/100",
   },
   {
-    id: "douro-2003",
-    name: "Vintage Port Royal",
-    region: "Portugal",
-    appellation: "Douro · Pinhão",
-    vintage: "2003",
-    image: douro,
-    rarity: "Declaração de Vintage",
-    bottles: "320 garrafas",
+    id: "drc-echezeaux-2012",
+    name: "Domaine de la Romanee-Conti Echezeaux",
+    region: "França",
+    appellation: "Borgonha · Echezeaux Grand Cru",
+    vintage: "2012",
+    image: burgundy,
+    rarity: "Grand Cru de elite",
+    bottles: "Extrema escassez global",
+    marketPrice: "US$ 1.450 - 2.900 (R$ 7.600 - 15.300)",
     notes:
-      "Frutas negras compotadas, chocolate amargo, especiarias do Oriente e final infinito de cacau. Néctar puro.",
-    pairing: "Queijo Stilton · Sobremesas de chocolate 80% · Charutos cubanos",
+      "Framboesa silvestre, rosa seca, especiarias doces e sous-bois. Profundo, sedoso e de assinatura etérea.",
+    pairing: "Pato ao molho de cassis · Cogumelos selvagens",
     story:
-      "Apenas três a quatro safras por década recebem a Declaração de Vintage. As uvas foram pisadas em lagares de granito por gerações de famílias do Douro.",
+      "Produzido pela casa mais desejada da Borgonha, combina precisão artesanal extrema e um dos terroirs mais cobiçados do planeta.",
     score: "99/100",
   },
   {
-    id: "napa-2013",
-    name: "Cabernet Reserva Onyx",
+    id: "noval-nacional-2017",
+    name: "Quinta do Noval Nacional Vintage Port",
+    region: "Portugal",
+    appellation: "Douro · Porto Vintage Nacional",
+    vintage: "2017",
+    image: douro,
+    rarity: "Nacional - lendário",
+    bottles: "Produção mínima da parcela Nacional",
+    marketPrice: "GBP 1.790+ (aprox. R$ 11.500+)",
+    notes:
+      "Fruta negra licorosa, cacau, alcaçuz e especiarias orientais. Concentração monumental e final praticamente infinito.",
+    pairing: "Stilton · Chocolate amargo 80% · Charutos premium",
+    story:
+      "Nacional é um dos nomes mais míticos do vinho do Porto, proveniente de vinhas não enxertadas e produzido apenas em anos excepcionais.",
+    score: "100/100",
+  },
+  {
+    id: "krug-2008",
+    name: "Krug Vintage Brut",
+    region: "França",
+    appellation: "Champagne · Reims",
+    vintage: "2008",
+    image: champagneImg,
+    rarity: "Millesime de referência",
+    bottles: "Alta demanda internacional",
+    marketPrice: "US$ 470 - 575 (R$ 2.500 - 3.050)",
+    notes:
+      "Cítricos confit, brioche, amêndoas e notas calcárias. Tensão e cremosidade em equilíbrio magistral.",
+    pairing: "Ostras Belon · Caviar Oscietra",
+    story:
+      "Krug lança Vintage apenas em anos de identidade singular; 2008 tornou-se uma safra cultuada entre colecionadores.",
+    score: "98/100",
+  },
+  {
+    id: "opus-one-2019",
+    name: "Opus One",
     region: "Estados Unidos",
     appellation: "Napa Valley · Oakville",
-    vintage: "2013",
+    vintage: "2019",
     image: napa,
-    rarity: "Cult Wine",
-    bottles: "96 garrafas",
+    rarity: "Napa icon",
+    bottles: "Alocação concorrida",
+    marketPrice: "US$ 314 - 500 (R$ 1.650 - 2.650)",
     notes:
-      "Cassis confitado, mocha, grafite e baunilha tostada. Potência californiana com elegância europeia.",
-    pairing: "Costela Wagyu A5 · Magret de pato com molho de figo",
+      "Amora, violeta, cacau, grafite e especiarias doces. Cabernet de luxo com tanino refinado e final expansivo.",
+    pairing: "Prime rib dry-aged · Magret de pato",
     story:
-      "Produzido em quantidades minúsculas por um dos mais lendários enólogos do Vale de Napa. Lista de espera de cinco anos para entrar no clube de alocação.",
-    score: "100/100",
+      "Nascido da parceria entre Robert Mondavi e Baron Philippe de Rothschild, Opus One é símbolo do encontro Napa + Bordeaux.",
+    score: "97/100",
   },
 ];
 
@@ -211,7 +220,7 @@ export function Gallery() {
     if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".gal-head", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
         immediateRender: false,
         y: 40,
         opacity: 0,
@@ -359,6 +368,9 @@ export function Gallery() {
                     <p className="mt-1 text-[11px] uppercase tracking-widest text-champagne/60">
                       {w.appellation}
                     </p>
+                    <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-gold/80">
+                      {w.marketPrice}
+                    </p>
                     <span className="mt-4 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-gold transition-all group-hover:gap-3">
                       Ver Ficha Completa →
                     </span>
@@ -477,6 +489,9 @@ export function Gallery() {
                       </p>
                       <p className="mt-1 font-serif text-base text-champagne">
                         {selected.bottles}
+                      </p>
+                      <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-gold/80">
+                        {selected.marketPrice}
                       </p>
                     </div>
                     <a

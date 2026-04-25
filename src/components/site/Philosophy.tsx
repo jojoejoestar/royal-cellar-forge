@@ -34,7 +34,7 @@ export function Philosophy() {
     if (!ref.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".philo-line", {
-        scrollTrigger: { trigger: ref.current, start: "top 75%" },
+        scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
         immediateRender: false,
         y: 50,
         opacity: 0,
@@ -43,7 +43,7 @@ export function Philosophy() {
         stagger: 0.15,
       });
       gsap.from(".philo-glass", {
-        scrollTrigger: { trigger: ref.current, start: "top 70%" },
+        scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
         immediateRender: false,
         x: -60,
         opacity: 0,
@@ -51,7 +51,7 @@ export function Philosophy() {
         ease: "power3.out",
       });
       gsap.from(".philo-pillar", {
-        scrollTrigger: { trigger: ".philo-grid", start: "top 85%" },
+        scrollTrigger: { trigger: ".philo-grid", start: "top 85%", once: true },
         immediateRender: false,
         y: 60,
         opacity: 0,

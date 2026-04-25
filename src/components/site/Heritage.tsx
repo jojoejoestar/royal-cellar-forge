@@ -39,7 +39,7 @@ export function Heritage() {
     if (!ref.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".heritage-line", {
-        scrollTrigger: { trigger: ref.current, start: "top 75%" },
+        scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
         immediateRender: false,
         y: 50,
         opacity: 0,
@@ -48,7 +48,7 @@ export function Heritage() {
         stagger: 0.15,
       });
       gsap.from(".heritage-img", {
-        scrollTrigger: { trigger: ".heritage-mosaic", start: "top 80%" },
+        scrollTrigger: { trigger: ".heritage-mosaic", start: "top 80%", once: true },
         immediateRender: false,
         y: 80,
         opacity: 0,
@@ -57,7 +57,7 @@ export function Heritage() {
         stagger: 0.2,
       });
       gsap.from(".heritage-era", {
-        scrollTrigger: { trigger: ".heritage-timeline", start: "top 85%" },
+        scrollTrigger: { trigger: ".heritage-timeline", start: "top 85%", once: true },
         immediateRender: false,
         x: -40,
         opacity: 0,

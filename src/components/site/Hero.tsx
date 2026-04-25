@@ -12,7 +12,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen w-full overflow-hidden bg-transparent"
+      className="relative min-h-[88svh] w-full overflow-hidden bg-transparent md:min-h-screen"
     >
       {/* Background image */}
       <div className="absolute inset-0">
@@ -26,6 +26,8 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent" />
         <div className="absolute inset-0 pattern-damask opacity-40" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-44 bg-gradient-to-b from-transparent via-background/82 to-background" />
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 h-20 bg-gradient-to-t from-background/70 to-transparent blur-xl" />
       </div>
 
       {/* Floating gold particles */}
@@ -40,6 +42,7 @@ export function Hero() {
       </div>
 
       <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-20 lg:px-10">
+      <div className="relative mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-center px-5 pb-14 pt-24 md:min-h-screen md:px-6 md:pb-16 md:pt-28 lg:px-10 lg:pb-20 lg:pt-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -55,7 +58,7 @@ export function Hero() {
 
           <AnimatedTitle
             as="h1"
-            className="font-serif text-5xl leading-[1.05] sm:text-6xl md:text-7xl lg:text-[5.5rem]"
+            className="font-serif text-[clamp(2.9rem,10.6vw,5.5rem)] leading-[0.98] md:leading-[1.02]"
           >
             O Tempo Engarrafado.
             <br />
@@ -69,7 +72,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.6 }}
-            className="mt-8 max-w-xl text-base font-light leading-relaxed text-champagne/75 md:text-lg"
+            className="mt-7 max-w-xl text-[0.98rem] font-light leading-relaxed text-champagne/75 md:mt-8 md:text-lg"
           >
             Uma curadoria exclusiva de rótulos raros e safras históricas. Para
             paladares que exigem a excelência absoluta e o verdadeiro sabor do
@@ -80,18 +83,18 @@ export function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.9, delay: 0.85 }}
-            className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center"
+            className="mt-9 flex w-full flex-col items-start gap-3.5 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4"
           >
             <a
               href="#acervo"
-              className="btn-gold-glow group inline-flex items-center gap-3 rounded-sm px-8 py-4 text-sm font-semibold uppercase tracking-[0.25em]"
+              className="btn-gold-glow group inline-flex w-full items-center justify-center gap-3 rounded-sm px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto sm:px-8 sm:py-4 sm:text-sm sm:tracking-[0.25em]"
             >
               Explorar o Acervo Privado
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#sommelier"
-              className="btn-outline-gold inline-flex items-center gap-2 rounded-sm px-7 py-4 text-xs font-medium uppercase tracking-[0.3em]"
+              className="btn-outline-gold inline-flex w-full items-center justify-center gap-2 rounded-sm px-6 py-3.5 text-[10px] font-medium uppercase tracking-[0.28em] sm:w-auto sm:px-7 sm:py-4 sm:text-xs sm:tracking-[0.3em]"
             >
               Conhecer o Mestre
             </a>
@@ -101,7 +104,7 @@ export function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.2, duration: 1 }}
-            className="mt-16 flex items-center gap-10 text-champagne/60"
+            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5 text-champagne/60 md:mt-16 md:flex-nowrap md:gap-10"
           >
             <div>
               <p className="font-serif text-3xl text-gold">37+</p>

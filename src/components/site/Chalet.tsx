@@ -36,7 +36,7 @@ export function Chalet() {
     if (!ref.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".chalet-reveal", {
-        scrollTrigger: { trigger: ref.current, start: "top 70%" },
+        scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
         immediateRender: false,
         y: 60,
         opacity: 0,
@@ -45,7 +45,7 @@ export function Chalet() {
         stagger: 0.12,
       });
       gsap.from(".chalet-img", {
-        scrollTrigger: { trigger: ref.current, start: "top 65%" },
+        scrollTrigger: { trigger: ref.current, start: "top 65%", once: true },
         immediateRender: false,
         scale: 1.08,
         opacity: 0,
@@ -54,7 +54,7 @@ export function Chalet() {
         stagger: 0.15,
       });
       gsap.from(".chalet-card", {
-        scrollTrigger: { trigger: ".chalet-cards", start: "top 80%" },
+        scrollTrigger: { trigger: ".chalet-cards", start: "top 80%", once: true },
         immediateRender: false,
         y: 40,
         opacity: 0,

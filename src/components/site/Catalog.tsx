@@ -21,44 +21,49 @@ type Wine = {
   image: StaticImageData;
   notes: string;
   pairing: string;
+  marketPrice: string;
 };
 
 const wines: Wine[] = [
   {
-    name: "Château Premier Cru",
+    name: "Chateau Lafite Rothschild",
     region: "Bordeaux · França",
     vintage: "2010",
     image: bordeaux,
     notes:
-      "Cassis maduro, cedro, trufa negra e tabaco fino. Taninos sedosos e final mineral que persiste por minutos.",
+      "Cassis, cedro, grafite, caixa de charuto e mineralidade nobre. Estrutura monumental com taninos polidos e final extremamente longo.",
     pairing: "Cordeiro confitado · Queijos azuis envelhecidos",
+    marketPrice: "US$ 1.050 - 1.400 (R$ 5.500 - 7.400)",
   },
   {
-    name: "Brunello di Montalcino",
+    name: "Biondi-Santi Brunello di Montalcino Riserva",
     region: "Toscana · Itália",
-    vintage: "2015",
+    vintage: "2016",
     image: brunello,
     notes:
-      "Cereja preta, couro italiano, alcaçuz e violetas. Estrutura imponente e elegância aristocrática.",
+      "Cereja ácida, ervas mediterrâneas, couro fino, tabaco e notas terrosas. Acidez vibrante e perfil clássico de guarda longa.",
     pairing: "Bistecca alla Fiorentina · Risotto de funghi",
+    marketPrice: "US$ 645 - 750 (R$ 3.400 - 4.000)",
   },
   {
-    name: "Domaine Grand Cru",
+    name: "Domaine de la Romanee-Conti Echezeaux Grand Cru",
     region: "Borgonha · França",
     vintage: "2012",
     image: burgundy,
     notes:
-      "Framboesa silvestre, terra úmida e pétalas de rosa. A definição clássica de finesse em Pinot Noir.",
+      "Frutas vermelhas puras, pétalas secas, especiarias doces e sous-bois. Pinot Noir de textura sedosa e assinatura etérea.",
     pairing: "Pato selvagem · Cogumelos selvagens",
+    marketPrice: "US$ 1.450 - 2.900 (R$ 7.600 - 15.300)",
   },
   {
-    name: "Cuvée de Prestige",
+    name: "Krug Vintage Brut",
     region: "Champagne · França",
     vintage: "2008",
     image: champagneImg,
     notes:
-      "Brioche tostada, mel de acácia, amêndoas e cítricos confitados. Perlage finíssima e cremosidade régia.",
+      "Brioche, frutas cítricas confitadas, avelã tostada e mineralidade calcária. Perlage finíssimo e energia impressionante.",
     pairing: "Ostras Belon · Caviar Oscietra",
+    marketPrice: "US$ 470 - 575 (R$ 2.500 - 3.050)",
   },
 ];
 
@@ -71,7 +76,7 @@ export function Catalog() {
     if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".cat-head", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
         immediateRender: false,
         y: 40,
         opacity: 0,
@@ -80,7 +85,7 @@ export function Catalog() {
         stagger: 0.12,
       });
       gsap.from(".cat-card", {
-        scrollTrigger: { trigger: ".cat-grid", start: "top 80%" },
+        scrollTrigger: { trigger: ".cat-grid", start: "top 80%", once: true },
         immediateRender: false,
         y: 80,
         opacity: 0,
@@ -206,6 +211,12 @@ export function Catalog() {
               </h4>
               <p className="mt-3 text-sm font-light italic text-champagne/70">
                 {wines[active].pairing}
+              </p>
+              <h4 className="mt-8 text-xs uppercase tracking-[0.3em] text-gold">
+                Preço de Mercado (750ml)
+              </h4>
+              <p className="mt-3 text-sm font-light text-champagne/78">
+                {wines[active].marketPrice}
               </p>
               <a
                 href="#confraria"

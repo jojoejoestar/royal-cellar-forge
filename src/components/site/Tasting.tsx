@@ -49,7 +49,7 @@ export function Tasting() {
     if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from(".tast-head", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
+        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
         immediateRender: false,
         y: 40,
         opacity: 0,
@@ -59,7 +59,7 @@ export function Tasting() {
       });
 
       gsap.from(".tast-hero", {
-        scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%" },
+        scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%", once: true },
         immediateRender: false,
         y: 60,
         opacity: 0,
@@ -68,7 +68,7 @@ export function Tasting() {
       });
 
       gsap.from(".tast-side", {
-        scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%" },
+        scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%", once: true },
         immediateRender: false,
         y: 60,
         opacity: 0,
@@ -79,7 +79,7 @@ export function Tasting() {
       });
 
       gsap.from(".tast-step", {
-        scrollTrigger: { trigger: ".tast-grid", start: "top 80%" },
+        scrollTrigger: { trigger: ".tast-grid", start: "top 80%", once: true },
         immediateRender: false,
         y: 50,
         opacity: 0,
