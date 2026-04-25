@@ -374,6 +374,42 @@
     position: relative;
   }
 
+  .image-hover-luxury {
+    position: relative;
+    transition:
+      border-color 420ms var(--ease-luxury),
+      box-shadow 420ms var(--ease-luxury),
+      transform 420ms var(--ease-luxury),
+      filter 420ms var(--ease-luxury);
+  }
+
+  .image-hover-luxury::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    border: 1px solid oklch(0.8 0.12 82 / 0.18);
+    box-shadow:
+      inset 0 0 0 1px oklch(0.8 0.12 82 / 0.08),
+      0 0 0 1px oklch(0.8 0.12 82 / 0.06);
+    opacity: 0;
+    transition: opacity 420ms var(--ease-luxury);
+    pointer-events: none;
+  }
+
+  .image-hover-luxury:hover {
+    border-color: oklch(0.8 0.12 82 / 0.58) !important;
+    box-shadow:
+      0 0 0 1px oklch(0.8 0.12 82 / 0.42),
+      0 10px 34px oklch(0.72 0.10 78 / 0.24),
+      0 0 44px oklch(0.72 0.10 78 / 0.22);
+    filter: brightness(1.04) saturate(1.03);
+  }
+
+  .image-hover-luxury:hover::after {
+    opacity: 1;
+  }
+
   .btn-gold-glow::after,
   .btn-outline-gold::after,
   .magnetic-underline::after {

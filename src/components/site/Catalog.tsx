@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
@@ -72,8 +72,10 @@ export function Catalog() {
   const [active, setActive] = useState(0);
   const [flipped, setFlipped] = useState<number | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!sectionRef.current) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".cat-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
@@ -128,7 +130,7 @@ export function Catalog() {
 
         {/* Featured carousel */}
         <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:mt-14 lg:gap-12">
-          <div className="relative h-[520px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal">
+          <div className="image-hover-luxury relative h-[520px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal">
             <div className="absolute inset-0 spotlight-gold" />
             <AnimatePresence mode="wait">
               <motion.div
@@ -234,7 +236,7 @@ export function Catalog() {
               onClick={() => setActive(i)}
               onMouseEnter={() => setFlipped(i)}
               onMouseLeave={() => setFlipped(null)}
-              className="cat-card group relative h-80 overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:border-gold/50 hover:-translate-y-1"
+              className="cat-card image-hover-luxury group relative h-80 overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:border-gold/50 hover:-translate-y-1"
             >
               <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <AnimatePresence>

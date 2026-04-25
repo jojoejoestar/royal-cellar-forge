@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mountain, Droplets, Sun } from "lucide-react";
@@ -30,8 +30,10 @@ const pillars = [
 export function Philosophy() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!ref.current) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".philo-line", {
         scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
@@ -84,7 +86,7 @@ export function Philosophy() {
                 }}
               />
               {/* Frame */}
-              <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
+              <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
                 <img
                   src={wineGlassSolo.src}
                   alt="Taça de cristal com vinho tinto profundo iluminada por luz dourada"

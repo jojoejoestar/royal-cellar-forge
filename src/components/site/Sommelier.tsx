@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Award, Quote } from "lucide-react";
@@ -12,8 +12,10 @@ gsap.registerPlugin(ScrollTrigger);
 export function Sommelier() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!ref.current) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".som-img", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
@@ -46,7 +48,7 @@ export function Sommelier() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
         {/* Image */}
         <div className="som-img relative">
-          <div className="relative overflow-hidden rounded-sm border border-gold/20 shadow-velvet">
+          <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/20 shadow-velvet">
             <img
               src={sommelierImg.src}
               alt="O Mestre Sommelier da Cave Royale"

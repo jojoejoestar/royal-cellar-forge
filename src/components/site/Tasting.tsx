@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Eye, Wind, GlassWater, Sparkles } from "lucide-react";
@@ -45,8 +45,10 @@ const steps = [
 export function Tasting() {
   const sectionRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!sectionRef.current) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".tast-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
@@ -121,7 +123,7 @@ export function Tasting() {
         {/* Mosaic */}
         <div className="tast-mosaic mt-10 grid gap-5 lg:mt-12 lg:grid-cols-12 lg:grid-rows-2 lg:gap-6">
           {/* Hero image - pour */}
-          <figure className="tast-hero relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
+          <figure className="tast-hero image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />
             <div className="relative">
               <img
@@ -150,7 +152,7 @@ export function Tasting() {
           </figure>
 
           {/* Side - swirl */}
-          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
+          <figure className="tast-side image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
               src={swirl.src}
               alt="Macro do vinho sendo agitado em taça de cristal"
@@ -172,7 +174,7 @@ export function Tasting() {
           </figure>
 
           {/* Side - nose */}
-          <figure className="tast-side relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
+          <figure className="tast-side image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <img
               src={nose.src}
               alt="Sommelier inspirando o aroma do vinho à luz de vela"

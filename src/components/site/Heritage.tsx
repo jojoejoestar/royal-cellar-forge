@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Crown, Scroll, Grape } from "lucide-react";
@@ -35,8 +35,10 @@ const eras = [
 export function Heritage() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!ref.current) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".heritage-line", {
         scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
@@ -115,7 +117,7 @@ export function Heritage() {
                   "radial-gradient(ellipse at center, oklch(0.78 0.13 85 / 0.22) 0%, transparent 65%)",
               }}
             />
-            <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
+            <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <img
                 src={chalice.src}
                 alt="Cálice real cravejado de rubis sobre mesa medieval com pergaminho selado"
@@ -141,7 +143,7 @@ export function Heritage() {
 
           {/* Grapes - top right */}
           <figure className="heritage-img group relative md:col-span-5">
-            <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
+            <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <img
                 src={grapes.src}
                 alt="Cacho de uvas tintas com folhas douradas em pintura barroca"
@@ -166,7 +168,7 @@ export function Heritage() {
 
           {/* Cellar - bottom right */}
           <figure className="heritage-img group relative md:col-span-5">
-            <div className="relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
+            <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <img
                 src={cellar.src}
                 alt="Catedral subterrânea com fileiras de barris e candelabros dourados"

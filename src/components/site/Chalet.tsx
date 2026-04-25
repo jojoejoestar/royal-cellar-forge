@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mountain, Flame, Key, MapPin, ArrowRight, Calendar } from "lucide-react";
@@ -32,8 +32,10 @@ const experiences = [
 export function Chalet() {
   const ref = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!ref.current) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".chalet-reveal", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
@@ -100,7 +102,7 @@ export function Chalet() {
         {/* Mosaic of three images */}
         <div className="mt-10 grid grid-cols-12 gap-4 md:gap-6 lg:mt-12">
           <div className="chalet-img col-span-12 lg:col-span-8">
-            <div className="group relative h-[420px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[540px]">
+            <div className="image-hover-luxury group relative h-[420px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[540px]">
               <img
                 src={chaletInterior.src}
                 alt="Salão íntimo do chalé com lareira e adega particular"
@@ -122,7 +124,7 @@ export function Chalet() {
           </div>
 
           <div className="chalet-img col-span-12 lg:col-span-4 flex flex-col gap-4 md:gap-6">
-            <div className="group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
+            <div className="image-hover-luxury group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
               <img
                 src={chaletExterior.src}
                 alt="Fachada do chalé alpino entre vinhedos ao entardecer"
@@ -139,7 +141,7 @@ export function Chalet() {
                 </p>
               </div>
             </div>
-            <div className="group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
+            <div className="image-hover-luxury group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
               <img
                 src={chaletTable.src}
                 alt="Mesa íntima posta com cristais e candelabros"

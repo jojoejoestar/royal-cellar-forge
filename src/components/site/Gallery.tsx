@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useMemo } from "react";
+import { useLayoutEffect, useRef, useState, useMemo } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
@@ -216,8 +216,10 @@ export function Gallery() {
     });
   }, [filter, search]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!sectionRef.current) return;
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
       gsap.from(".gal-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
@@ -329,7 +331,7 @@ export function Gallery() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: i * 0.04 }}
                   onClick={() => setSelected(w)}
-                  className="gal-card group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:-translate-y-2 hover:border-gold/55 sm:w-[320px]"
+                  className="gal-card image-hover-luxury group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:-translate-y-2 hover:border-gold/55 sm:w-[320px]"
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative h-[360px] overflow-hidden">
