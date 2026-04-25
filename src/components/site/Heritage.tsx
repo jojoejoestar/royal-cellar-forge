@@ -40,6 +40,7 @@ export function Heritage() {
     const ctx = gsap.context(() => {
       gsap.from(".heritage-line", {
         scrollTrigger: { trigger: ref.current, start: "top 75%" },
+        immediateRender: false,
         y: 50,
         opacity: 0,
         duration: 1.1,
@@ -48,6 +49,7 @@ export function Heritage() {
       });
       gsap.from(".heritage-img", {
         scrollTrigger: { trigger: ".heritage-mosaic", start: "top 80%" },
+        immediateRender: false,
         y: 80,
         opacity: 0,
         duration: 1.4,
@@ -56,6 +58,7 @@ export function Heritage() {
       });
       gsap.from(".heritage-era", {
         scrollTrigger: { trigger: ".heritage-timeline", start: "top 85%" },
+        immediateRender: false,
         x: -40,
         opacity: 0,
         duration: 1,
@@ -75,7 +78,7 @@ export function Heritage() {
       {/* Background ornaments */}
       <div className="absolute inset-0 pattern-grapes opacity-30" />
       <div className="absolute inset-0 pattern-damask opacity-20" />
-      <div className="absolute -top-40 left-1/2 h-[600px] w-[600px] -translate-x-1/2 spotlight-gold" />
+      <div className="absolute left-1/2 top-32 h-[620px] w-[620px] -translate-x-1/2 spotlight-gold opacity-75" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         {/* Heading */}

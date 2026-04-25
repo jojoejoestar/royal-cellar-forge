@@ -72,6 +72,7 @@ export function Catalog() {
     const ctx = gsap.context(() => {
       gsap.from(".cat-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
+        immediateRender: false,
         y: 40,
         opacity: 0,
         duration: 1,
@@ -80,6 +81,7 @@ export function Catalog() {
       });
       gsap.from(".cat-card", {
         scrollTrigger: { trigger: ".cat-grid", start: "top 80%" },
+        immediateRender: false,
         y: 80,
         opacity: 0,
         duration: 1,

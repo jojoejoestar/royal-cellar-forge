@@ -212,6 +212,7 @@ export function Gallery() {
     const ctx = gsap.context(() => {
       gsap.from(".gal-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
+        immediateRender: false,
         y: 40,
         opacity: 0,
         duration: 1,

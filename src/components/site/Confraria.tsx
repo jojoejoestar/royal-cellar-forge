@@ -18,6 +18,7 @@ export function Confraria() {
     const ctx = gsap.context(() => {
       gsap.from(".conf-el", {
         scrollTrigger: { trigger: ref.current, start: "top 75%" },
+        immediateRender: false,
         y: 50,
         opacity: 0,
         duration: 1,

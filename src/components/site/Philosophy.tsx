@@ -35,6 +35,7 @@ export function Philosophy() {
     const ctx = gsap.context(() => {
       gsap.from(".philo-line", {
         scrollTrigger: { trigger: ref.current, start: "top 75%" },
+        immediateRender: false,
         y: 50,
         opacity: 0,
         duration: 1.1,
@@ -43,6 +44,7 @@ export function Philosophy() {
       });
       gsap.from(".philo-glass", {
         scrollTrigger: { trigger: ref.current, start: "top 70%" },
+        immediateRender: false,
         x: -60,
         opacity: 0,
         duration: 1.4,
@@ -50,6 +52,7 @@ export function Philosophy() {
       });
       gsap.from(".philo-pillar", {
         scrollTrigger: { trigger: ".philo-grid", start: "top 85%" },
+        immediateRender: false,
         y: 60,
         opacity: 0,
         duration: 1,
@@ -68,7 +71,7 @@ export function Philosophy() {
     >
       <div className="absolute inset-0 pattern-damask opacity-40" />
       <div className="absolute inset-0 pattern-grapes opacity-20" />
-      <div className="absolute -top-40 left-1/2 h-[500px] w-[500px] -translate-x-1/2 spotlight-gold opacity-60" />
+      <div className="absolute left-1/2 top-28 h-[520px] w-[520px] -translate-x-1/2 spotlight-gold opacity-68" />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         {/* Two-column hero: glass + manifesto */}

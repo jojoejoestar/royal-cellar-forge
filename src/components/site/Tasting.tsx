@@ -50,6 +50,7 @@ export function Tasting() {
     const ctx = gsap.context(() => {
       gsap.from(".tast-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%" },
+        immediateRender: false,
         y: 40,
         opacity: 0,
         duration: 1,
@@ -59,6 +60,7 @@ export function Tasting() {
 
       gsap.from(".tast-hero", {
         scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%" },
+        immediateRender: false,
         y: 60,
         opacity: 0,
         duration: 1.2,
@@ -67,6 +69,7 @@ export function Tasting() {
 
       gsap.from(".tast-side", {
         scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%" },
+        immediateRender: false,
         y: 60,
         opacity: 0,
         duration: 1.2,
@@ -77,6 +80,7 @@ export function Tasting() {
 
       gsap.from(".tast-step", {
         scrollTrigger: { trigger: ".tast-grid", start: "top 80%" },
+        immediateRender: false,
         y: 50,
         opacity: 0,
         duration: 0.9,

@@ -41,6 +41,7 @@ export function Faq() {
     const ctx = gsap.context(() => {
       gsap.from(".faq-item", {
         scrollTrigger: { trigger: ".faq-list", start: "top 80%" },
+        immediateRender: false,
         y: 30,
         opacity: 0,
         duration: 0.8,
