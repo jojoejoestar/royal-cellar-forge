@@ -50,42 +50,37 @@ export function Tasting() {
     const ctx = gsap.context(() => {
       gsap.from(".tast-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
-        immediateRender: false,
-        y: 40,
+        y: 42,
         opacity: 0,
-        duration: 1,
+        duration: 1.05,
         ease: "power3.out",
         stagger: 0.12,
       });
 
       gsap.from(".tast-hero", {
         scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%", once: true },
-        immediateRender: false,
-        y: 60,
+        y: 56,
         opacity: 0,
-        duration: 1.2,
+        duration: 1.1,
         ease: "power3.out",
       });
 
       gsap.from(".tast-side", {
         scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%", once: true },
-        immediateRender: false,
-        y: 60,
+        y: 56,
         opacity: 0,
-        duration: 1.2,
+        duration: 1.1,
         ease: "power3.out",
-        stagger: 0.2,
-        delay: 0.2,
+        stagger: 0.14,
       });
 
       gsap.from(".tast-step", {
         scrollTrigger: { trigger: ".tast-grid", start: "top 80%", once: true },
-        immediateRender: false,
-        y: 50,
+        y: 48,
         opacity: 0,
-        duration: 0.9,
+        duration: 1,
         ease: "power3.out",
-        stagger: 0.15,
+        stagger: 0.14,
       });
     }, sectionRef);
     return () => ctx.revert();

@@ -41,11 +41,10 @@ export function Faq() {
     const ctx = gsap.context(() => {
       gsap.from(".faq-item", {
         scrollTrigger: { trigger: ".faq-list", start: "top 80%", once: true },
-        immediateRender: false,
-        y: 30,
+        y: 36,
         opacity: 0,
-        duration: 0.8,
-        stagger: 0.1,
+        duration: 0.95,
+        stagger: 0.11,
         ease: "power3.out",
       });
     }, ref);

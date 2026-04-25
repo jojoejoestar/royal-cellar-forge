@@ -35,29 +35,26 @@ export function Philosophy() {
     const ctx = gsap.context(() => {
       gsap.from(".philo-line", {
         scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-        immediateRender: false,
-        y: 50,
+        y: 42,
         opacity: 0,
-        duration: 1.1,
+        duration: 1.05,
         ease: "power3.out",
-        stagger: 0.15,
+        stagger: 0.12,
       });
       gsap.from(".philo-glass", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
-        immediateRender: false,
-        x: -60,
+        x: -56,
         opacity: 0,
-        duration: 1.4,
+        duration: 1.1,
         ease: "power3.out",
       });
       gsap.from(".philo-pillar", {
         scrollTrigger: { trigger: ".philo-grid", start: "top 85%", once: true },
-        immediateRender: false,
-        y: 60,
+        y: 48,
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        stagger: 0.18,
+        stagger: 0.14,
       });
     }, ref);
     return () => ctx.revert();

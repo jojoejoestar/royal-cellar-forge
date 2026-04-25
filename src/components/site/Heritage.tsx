@@ -40,30 +40,27 @@ export function Heritage() {
     const ctx = gsap.context(() => {
       gsap.from(".heritage-line", {
         scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-        immediateRender: false,
-        y: 50,
+        y: 42,
         opacity: 0,
-        duration: 1.1,
+        duration: 1.05,
         ease: "power3.out",
-        stagger: 0.15,
+        stagger: 0.12,
       });
       gsap.from(".heritage-img", {
         scrollTrigger: { trigger: ".heritage-mosaic", start: "top 80%", once: true },
-        immediateRender: false,
-        y: 80,
+        y: 56,
         opacity: 0,
-        duration: 1.4,
+        duration: 1.1,
         ease: "power3.out",
-        stagger: 0.2,
+        stagger: 0.14,
       });
       gsap.from(".heritage-era", {
         scrollTrigger: { trigger: ".heritage-timeline", start: "top 85%", once: true },
-        immediateRender: false,
-        x: -40,
+        y: 48,
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        stagger: 0.18,
+        stagger: 0.14,
       });
     }, ref);
     return () => ctx.revert();

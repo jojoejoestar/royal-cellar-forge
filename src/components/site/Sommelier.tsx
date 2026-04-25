@@ -17,20 +17,18 @@ export function Sommelier() {
     const ctx = gsap.context(() => {
       gsap.from(".som-img", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
-        immediateRender: false,
-        x: -60,
+        x: -56,
         opacity: 0,
-        duration: 1.2,
+        duration: 1.1,
         ease: "power3.out",
       });
       gsap.from(".som-text", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
-        immediateRender: false,
-        x: 60,
+        x: 56,
         opacity: 0,
-        duration: 1.2,
+        duration: 1.1,
         ease: "power3.out",
-        stagger: 0.1,
+        stagger: 0.12,
       });
     }, ref);
     return () => ctx.revert();

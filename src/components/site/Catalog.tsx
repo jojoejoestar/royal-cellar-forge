@@ -26,44 +26,44 @@ type Wine = {
 
 const wines: Wine[] = [
   {
-    name: "Chateau Lafite Rothschild",
+    name: "Bordeaux Premium Reserve",
     region: "Bordeaux · França",
-    vintage: "2010",
+    vintage: "2018",
     image: bordeaux,
     notes:
-      "Cassis, cedro, grafite, caixa de charuto e mineralidade nobre. Estrutura monumental com taninos polidos e final extremamente longo.",
+      "Cassis maduro, cedro e grafite com textura sedosa. Perfil clássico bordalês de corpo médio-alto e final elegante.",
     pairing: "Cordeiro confitado · Queijos azuis envelhecidos",
-    marketPrice: "US$ 1.050 - 1.400 (R$ 5.500 - 7.400)",
+    marketPrice: "US$ 55 - 140 (R$ 290 - 740)",
   },
   {
-    name: "Biondi-Santi Brunello di Montalcino Riserva",
+    name: "Italian Brunello Riserva",
     region: "Toscana · Itália",
-    vintage: "2016",
+    vintage: "2017",
     image: brunello,
     notes:
-      "Cereja ácida, ervas mediterrâneas, couro fino, tabaco e notas terrosas. Acidez vibrante e perfil clássico de guarda longa.",
+      "Cereja seca, ervas mediterrâneas, couro e especiarias doces. Estruturado, com acidez firme e vocação gastronômica.",
     pairing: "Bistecca alla Fiorentina · Risotto de funghi",
-    marketPrice: "US$ 645 - 750 (R$ 3.400 - 4.000)",
+    marketPrice: "US$ 70 - 220 (R$ 370 - 1.160)",
   },
   {
-    name: "Domaine de la Romanee-Conti Echezeaux Grand Cru",
+    name: "Pinot Noir Vintage",
     region: "Borgonha · França",
-    vintage: "2012",
+    vintage: "2016",
     image: burgundy,
     notes:
-      "Frutas vermelhas puras, pétalas secas, especiarias doces e sous-bois. Pinot Noir de textura sedosa e assinatura etérea.",
+      "Framboesa, cereja fresca, sous-bois e toque terroso. Pinot de corpo médio, tanino fino e final delicado.",
     pairing: "Pato selvagem · Cogumelos selvagens",
-    marketPrice: "US$ 1.450 - 2.900 (R$ 7.600 - 15.300)",
+    marketPrice: "US$ 45 - 120 (R$ 240 - 635)",
   },
   {
-    name: "Krug Vintage Brut",
+    name: "Champagne Dom Perignon Cuvée",
     region: "Champagne · França",
-    vintage: "2008",
+    vintage: "2013",
     image: champagneImg,
     notes:
-      "Brioche, frutas cítricas confitadas, avelã tostada e mineralidade calcária. Perlage finíssimo e energia impressionante.",
+      "Brioche, frutas cítricas confitadas e amêndoas tostadas. Perlage fino, acidez vibrante e final mineral.",
     pairing: "Ostras Belon · Caviar Oscietra",
-    marketPrice: "US$ 470 - 575 (R$ 2.500 - 3.050)",
+    marketPrice: "US$ 220 - 340 (R$ 1.160 - 1.790)",
   },
 ];
 
@@ -77,21 +77,19 @@ export function Catalog() {
     const ctx = gsap.context(() => {
       gsap.from(".cat-head", {
         scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
-        immediateRender: false,
-        y: 40,
+        y: 42,
         opacity: 0,
-        duration: 1,
+        duration: 1.05,
         ease: "power3.out",
         stagger: 0.12,
       });
       gsap.from(".cat-card", {
         scrollTrigger: { trigger: ".cat-grid", start: "top 80%", once: true },
-        immediateRender: false,
-        y: 80,
+        y: 48,
         opacity: 0,
         duration: 1,
         ease: "power3.out",
-        stagger: 0.15,
+        stagger: 0.14,
       });
     }, sectionRef);
     return () => ctx.revert();

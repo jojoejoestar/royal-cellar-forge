@@ -37,30 +37,27 @@ export function Chalet() {
     const ctx = gsap.context(() => {
       gsap.from(".chalet-reveal", {
         scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
-        immediateRender: false,
-        y: 60,
+        y: 42,
         opacity: 0,
-        duration: 1.2,
+        duration: 1.05,
         ease: "power3.out",
         stagger: 0.12,
       });
       gsap.from(".chalet-img", {
         scrollTrigger: { trigger: ref.current, start: "top 65%", once: true },
-        immediateRender: false,
-        scale: 1.08,
+        y: 56,
         opacity: 0,
-        duration: 1.6,
+        duration: 1.1,
         ease: "power3.out",
-        stagger: 0.15,
+        stagger: 0.14,
       });
       gsap.from(".chalet-card", {
         scrollTrigger: { trigger: ".chalet-cards", start: "top 80%", once: true },
-        immediateRender: false,
-        y: 40,
+        y: 48,
         opacity: 0,
-        duration: 0.9,
+        duration: 1,
         ease: "power3.out",
-        stagger: 0.15,
+        stagger: 0.14,
       });
     }, ref);
     return () => ctx.revert();
