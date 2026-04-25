@@ -41,7 +41,6 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-6 pt-32 pb-20 lg:px-10">
       <div className="relative mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-center px-5 pb-14 pt-24 md:min-h-screen md:px-6 md:pb-16 md:pt-28 lg:px-10 lg:pb-20 lg:pt-32">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
