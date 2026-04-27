@@ -13,7 +13,7 @@ export function Hero() {
   const heroEase: [number, number, number, number] = [0.25, 1, 0.5, 1];
 
   return (
-    <section id="top" className="relative w-full overflow-hidden bg-transparent md:min-h-screen">
+    <section id="top" className="relative w-full overflow-visible bg-transparent md:min-h-screen">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -146,7 +146,7 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 translate-y-1/2">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 translate-y-1/2">
         <SectionDivider from="background" to="imperial" />
       </div>
     </section>

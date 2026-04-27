@@ -361,7 +361,7 @@ export function Gallery() {
                       ))}
                     </div>
                   </div>
-                  <div className="relative border-t border-gold/15 p-5">
+                  <div className="relative z-10 -mt-10 bg-gradient-to-b from-onyx/0 via-onyx/96 to-onyx p-5 pt-12">
                     <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
                       Safra {w.vintage}
                     </p>
