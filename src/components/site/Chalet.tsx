@@ -181,22 +181,21 @@ export function Chalet() {
         </div>
 
         {/* Three experience pillars */}
-        <div className="chalet-cards mt-12 grid gap-6 md:grid-cols-3 md:gap-8 lg:mt-14">
+        <div className="chalet-cards mt-10 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-6 lg:mt-14">
           {experiences.map((e) => (
             <div
               key={e.title}
               data-scroll-premium
-              className="chalet-card scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/15 bg-card/40 p-8 backdrop-blur-sm transition-all duration-500 hover:border-gold/50 hover:shadow-gold-soft hover:-translate-y-1"
+              className="chalet-card scroll-premium-card group relative rounded-sm border border-gold/15 bg-card/45 px-5 py-4 backdrop-blur-sm transition-[border-color,box-shadow] duration-500 md:px-6 md:py-5 hover:border-gold/35"
             >
-              <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/5 blur-2xl transition-opacity duration-500 group-hover:bg-gold/15" />
-              <div className="relative flex h-12 w-12 items-center justify-center rounded-sm border border-gold/40 bg-background/60">
-                <e.icon className="h-5 w-5 text-gold" strokeWidth={1.4} />
+              <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-gold/35 bg-background/55 md:h-10 md:w-10">
+                <e.icon className="h-4 w-4 text-gold md:h-[17px] md:w-[17px]" strokeWidth={1.35} />
               </div>
-              <h3 className="relative mt-6 font-serif text-2xl text-champagne">
+              <h3 className="relative mt-3.5 font-serif text-lg leading-snug tracking-wide text-champagne md:mt-4 md:text-xl">
                 {e.title}
               </h3>
-              <div className="relative mt-3 gold-divider w-12" />
-              <p className="relative mt-4 text-sm font-light leading-relaxed text-champagne/70">
+              <div className="relative mt-2.5 gold-divider w-10 md:w-11" />
+              <p className="relative mt-2.5 text-[13px] font-light leading-relaxed text-champagne/72 md:text-sm">
                 {e.desc}
               </p>
             </div>
