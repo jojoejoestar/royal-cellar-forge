@@ -757,17 +757,17 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 44px;
-    height: 44px;
+    width: 30px;
+    height: 30px;
     border-radius: 999px;
     transform: translate(-50%, -50%);
     background: radial-gradient(
       circle,
-      oklch(0.82 0.12 82 / 0.12) 0%,
-      oklch(0.72 0.1 78 / 0.06) 30%,
-      transparent 56%
+      oklch(0.82 0.12 82 / 0.085) 0%,
+      oklch(0.72 0.1 78 / 0.04) 26%,
+      transparent 48%
     );
-    filter: blur(4px);
+    filter: blur(2.5px);
     opacity: 0;
     transition: opacity 220ms ease;
     will-change: left, top;

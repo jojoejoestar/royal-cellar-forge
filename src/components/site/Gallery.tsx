@@ -342,7 +342,7 @@ export function Gallery() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: i * 0.04 }}
                   onClick={() => setSelected(w)}
-                  className="gal-card image-hover-luxury group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-all duration-500 hover:border-gold/55 sm:w-[320px]"
+                  className="gal-card image-hover-luxury group relative flex h-[520px] w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-all duration-500 hover:border-gold/55 sm:w-[320px]"
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative z-10 flex items-center justify-between border-b border-gold/15 bg-onyx px-4 py-3">
@@ -376,20 +376,20 @@ export function Gallery() {
                       ))}
                     </div>
                   </div>
-                  <div className="relative border-t border-gold/15 bg-onyx/95 p-5">
+                  <div className="relative flex min-h-0 flex-1 flex-col border-t border-gold/15 bg-onyx/95 p-5">
                     <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
                       Safra {w.vintage}
                     </p>
-                    <h3 className="mt-2 font-serif text-xl leading-tight text-champagne">
+                    <h3 className="mt-2 line-clamp-2 min-h-[4.25rem] font-serif text-xl leading-tight text-champagne">
                       {w.name}
                     </h3>
-                    <p className="mt-1 text-[11px] uppercase tracking-widest text-champagne/60">
+                    <p className="mt-1 line-clamp-1 min-h-[1rem] text-[11px] uppercase tracking-widest text-champagne/60">
                       {w.appellation}
                     </p>
                     <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-gold/80">
                       {w.marketPrice}
                     </p>
-                    <span className="mt-4 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.25em] text-gold transition-all group-hover:gap-3">
+                    <span className="mt-auto inline-flex items-center gap-2 pt-4 text-[11px] uppercase tracking-[0.25em] text-gold transition-all group-hover:gap-3">
                       Ver Ficha Completa →
                     </span>
                   </div>
