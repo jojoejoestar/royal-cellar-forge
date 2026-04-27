@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { Eye, Wind, GlassWater, Sparkles } from "lucide-react";
+import { Eye, Wind, Wine, Gem } from "lucide-react";
 import pour from "@/assets/tasting-pour\.jpg";
 import swirl from "@/assets/tasting-swirl\.jpg";
 import nose from "@/assets/tasting-nose\.jpg";
@@ -27,14 +27,14 @@ const steps = [
     text: "Aproximamos a taça em silêncio reverente. Frutas negras, especiarias do Oriente, couro envelhecido, terra molhada. Cada inspiração revela uma camada esquecida do tempo.",
   },
   {
-    icon: GlassWater,
+    icon: Wine,
     roman: "III",
     title: "O Paladar",
     subtitle: "Gustus",
     text: "O primeiro gole atravessa séculos. Taninos sedosos abraçam a língua, a acidez vibra como uma sinfonia, e o final persiste por minutos infinitos. Aqui mora a verdade.",
   },
   {
-    icon: Sparkles,
+    icon: Gem,
     roman: "IV",
     title: "A Memória",
     subtitle: "Memoria",

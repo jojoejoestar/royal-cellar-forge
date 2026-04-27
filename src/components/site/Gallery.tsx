@@ -342,27 +342,31 @@ export function Gallery() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: i * 0.04 }}
                   onClick={() => setSelected(w)}
-                  className="gal-card image-hover-luxury group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:-translate-y-2 hover:border-gold/55 sm:w-[320px]"
+                  className="gal-card image-hover-luxury group relative w-[280px] shrink-0 snap-start overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-all duration-500 hover:border-gold/55 sm:w-[320px]"
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <div className="relative h-[360px] overflow-hidden">
-                    <Image
-                      src={w.image}
-                      alt={`${w.name} ${w.vintage}`}
-                      fill
-                      className="object-cover scale-[1.12] transition-transform duration-700 group-hover:scale-[1.17]"
-                      style={{ objectPosition: `50% ${w.focusY ?? 66}%` }}
-                      sizes="(max-width: 640px) 85vw, 320px"
-                    />
-                    <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-onyx/96 via-onyx/72 to-transparent" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent" />
-                    <span className="absolute left-4 top-4 rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur-md">
+                  <div className="relative z-10 flex items-center justify-between border-b border-gold/15 bg-onyx px-4 py-3">
+                    <span className="rounded-full border border-gold/40 bg-onyx px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold">
                       {w.rarity}
                     </span>
-                    <span className="absolute right-4 top-4 rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[10px] font-semibold tracking-widest text-gold backdrop-blur-md">
+                    <span className="rounded-full border border-gold/40 bg-onyx px-3 py-1 text-[10px] font-semibold tracking-widest text-gold">
                       {w.score}
                     </span>
-                    <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-1 rounded-full border border-gold/40 bg-onyx/80 px-3 py-1.5 backdrop-blur-md">
+                  </div>
+
+                  <div className="relative h-[320px] overflow-hidden bg-onyx p-4">
+                    <div className="relative h-full w-full overflow-hidden rounded-sm border border-gold/15 bg-black/90">
+                      <Image
+                        src={w.image}
+                        alt={`${w.name} ${w.vintage}`}
+                        fill
+                        className="object-cover scale-[1.12] transition-transform duration-700 group-hover:scale-[1.17]"
+                        style={{ objectPosition: `50% ${w.focusY ?? 66}%` }}
+                        sizes="(max-width: 640px) 85vw, 320px"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/22 to-transparent" />
+                    </div>
+                    <div className="absolute bottom-8 left-1/2 z-10 flex -translate-x-1/2 items-center gap-1 rounded-full border border-gold/40 bg-onyx/85 px-3 py-1.5">
                       {Array.from({ length: 5 }).map((_, idx) => (
                         <Star
                           key={idx}
