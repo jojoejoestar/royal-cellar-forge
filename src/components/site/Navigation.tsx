@@ -66,19 +66,16 @@ export function Navigation() {
           Acesso VIP
         </a>
 
-        <button
-          onClick={() => setOpen(!open)}
-          className="md:hidden text-gold"
-          aria-label="Menu"
-        >
+        <button onClick={() => setOpen(!open)} className="md:hidden text-gold" aria-label="Menu">
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
         </button>
       </div>
 
       {open && (
         <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, x: 30 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
           className="md:hidden glass-scarlet mt-3 mx-6 rounded-sm border border-gold/20 p-6 flex flex-col gap-5"
         >
           {links.map((l) => (
@@ -103,4 +100,3 @@ export function Navigation() {
     </motion.header>
   );
 }
-

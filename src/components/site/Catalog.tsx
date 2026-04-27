@@ -7,10 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import Image, { type StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight, Wine } from "lucide-react";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
-import bordeaux from "@/assets/wine-bordeaux\.jpg";
-import brunello from "@/assets/wine-brunello\.jpg";
-import burgundy from "@/assets/wine-burgundy\.jpg";
-import champagneImg from "@/assets/wine-champagne\.jpg";
+import bordeaux from "@/assets/wine-bordeaux.jpg";
+import brunello from "@/assets/wine-brunello.jpg";
+import burgundy from "@/assets/wine-burgundy.jpg";
+import champagneImg from "@/assets/wine-champagne.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -77,20 +77,65 @@ export function Catalog() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.from(".cat-head", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
-        y: 42,
-        duration: 1.05,
-        ease: "power3.out",
-        stagger: 0.12,
-      });
-      gsap.from(".cat-card", {
-        scrollTrigger: { trigger: ".cat-grid", start: "top 80%", once: true },
-        y: 48,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.14,
-      });
+      gsap.fromTo(
+        ".cat-head",
+        {
+          autoAlpha: 0,
+          x: -44,
+        },
+        {
+          scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
+          autoAlpha: 1,
+          x: 0,
+          duration: 1.05,
+          ease: "power3.out",
+          stagger: 0.12,
+        },
+      );
+      gsap.fromTo(
+        ".cat-card",
+        {
+          autoAlpha: 0,
+          y: 24,
+        },
+        {
+          scrollTrigger: { trigger: ".cat-grid", start: "top 80%", once: true },
+          autoAlpha: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.14,
+        },
+      );
+      gsap.fromTo(
+        ".cat-showcase-left",
+        {
+          autoAlpha: 0,
+          x: -56,
+        },
+        {
+          scrollTrigger: { trigger: ".cat-showcase", start: "top 82%", once: true },
+          autoAlpha: 1,
+          x: 0,
+          duration: 1.05,
+          ease: "power3.out",
+        },
+      );
+      gsap.fromTo(
+        ".cat-showcase-right",
+        {
+          autoAlpha: 0,
+          x: 56,
+        },
+        {
+          scrollTrigger: { trigger: ".cat-showcase", start: "top 82%", once: true },
+          autoAlpha: 1,
+          x: 0,
+          duration: 1.05,
+          ease: "power3.out",
+          delay: 0.08,
+        },
+      );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -109,9 +154,7 @@ export function Catalog() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
         <div className="text-center">
-          <p className="cat-head text-xs uppercase tracking-[0.5em] text-gold">
-            O Acervo Privado
-          </p>
+          <p className="cat-head text-xs uppercase tracking-[0.5em] text-gold">O Acervo Privado</p>
           <div className="cat-head mx-auto mt-6 gold-divider w-32" />
           <AnimatedTitle
             as="h2"
@@ -127,8 +170,8 @@ export function Catalog() {
         </div>
 
         {/* Featured carousel */}
-        <div className="mt-12 grid items-center gap-10 lg:grid-cols-2 lg:mt-14 lg:gap-12">
-          <div className="image-hover-luxury relative h-[520px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal">
+        <div className="cat-showcase mt-12 grid items-center gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-12">
+          <div className="cat-showcase-left image-hover-luxury relative h-[520px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal">
             <div className="absolute inset-0 spotlight-gold" />
             <AnimatePresence mode="wait">
               <motion.div
@@ -187,6 +230,7 @@ export function Catalog() {
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.6 }}
+              className="cat-showcase-right"
             >
               <p className="text-xs uppercase tracking-[0.4em] text-gold">
                 Safra {wines[active].vintage}
@@ -198,15 +242,11 @@ export function Catalog() {
                 {wines[active].region}
               </p>
               <div className="my-8 gold-divider w-24" />
-              <h4 className="text-xs uppercase tracking-[0.3em] text-gold">
-                Notas de Degustação
-              </h4>
+              <h4 className="text-xs uppercase tracking-[0.3em] text-gold">Notas de Degustação</h4>
               <p className="mt-3 text-base font-light leading-relaxed text-champagne/80">
                 {wines[active].notes}
               </p>
-              <h4 className="mt-8 text-xs uppercase tracking-[0.3em] text-gold">
-                Harmonização
-              </h4>
+              <h4 className="mt-8 text-xs uppercase tracking-[0.3em] text-gold">Harmonização</h4>
               <p className="mt-3 text-sm font-light italic text-champagne/70">
                 {wines[active].pairing}
               </p>
@@ -248,9 +288,7 @@ export function Catalog() {
                     className="absolute inset-0 flex flex-col justify-between p-6"
                   >
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
-                        Notas
-                      </p>
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-gold">Notas</p>
                       <p className="mt-3 text-sm font-light leading-relaxed text-champagne/85">
                         {w.notes}
                       </p>
@@ -297,6 +335,3 @@ export function Catalog() {
     </section>
   );
 }
-
-
-

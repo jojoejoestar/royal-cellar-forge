@@ -5,32 +5,30 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
 import Image, { type StaticImageData } from "next/image";
-import { ChevronLeft, ChevronRight, Search, Wine, Award, Calendar, MapPin, Star } from "lucide-react";
 import {
-  Dialog,
-  DialogContent,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
+  ChevronLeft,
+  ChevronRight,
+  Search,
+  Wine,
+  Award,
+  Calendar,
+  MapPin,
+  Star,
+} from "lucide-react";
+import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
-import bordeaux from "@/assets/wine-bordeaux\.jpg";
-import brunello from "@/assets/wine-brunello\.jpg";
-import burgundy from "@/assets/wine-burgundy\.jpg";
-import champagneImg from "@/assets/wine-champagne\.jpg";
-import loire from "@/assets/wine-loire\.jpg";
-import rioja from "@/assets/wine-rioja\.jpg";
-import douro from "@/assets/wine-douro\.jpg";
-import napa from "@/assets/wine-napa\.jpg";
+import bordeaux from "@/assets/wine-bordeaux.jpg";
+import brunello from "@/assets/wine-brunello.jpg";
+import burgundy from "@/assets/wine-burgundy.jpg";
+import champagneImg from "@/assets/wine-champagne.jpg";
+import loire from "@/assets/wine-loire.jpg";
+import rioja from "@/assets/wine-rioja.jpg";
+import douro from "@/assets/wine-douro.jpg";
+import napa from "@/assets/wine-napa.jpg";
 
 gsap.registerPlugin(ScrollTrigger);
 
-type Region =
-  | "Todos"
-  | "França"
-  | "Itália"
-  | "Espanha"
-  | "Portugal"
-  | "Estados Unidos";
+type Region = "Todos" | "França" | "Itália" | "Espanha" | "Portugal" | "Estados Unidos";
 
 type RareWine = {
   id: string;
@@ -59,8 +57,7 @@ const collection: RareWine[] = [
     rarity: "Rótulo de Curadoria",
     bottles: "Lote privado selecionado",
     marketPrice: "US$ 55 - 140 (R$ 290 - 740)",
-    notes:
-      "Cassis maduro, cedro e grafite, com tanino macio e final limpo.",
+    notes: "Cassis maduro, cedro e grafite, com tanino macio e final limpo.",
     pairing: "Carré de cordeiro · Entrecôte maturado",
     story:
       "Garrafa de perfil clássico bordalês, escolhida pela elegância visual e pelo estilo gastronômico versátil para adegas de assinatura.",
@@ -76,8 +73,7 @@ const collection: RareWine[] = [
     rarity: "Rótulo de Curadoria",
     bottles: "Lote com disponibilidade reduzida",
     marketPrice: "US$ 70 - 220 (R$ 370 - 1.160)",
-    notes:
-      "Cereja seca, couro fino e ervas mediterrâneas com acidez longa e precisa.",
+    notes: "Cereja seca, couro fino e ervas mediterrâneas com acidez longa e precisa.",
     pairing: "Bistecca alla Fiorentina · Pappardelle al ragù",
     story:
       "Representa a escola toscana de longa guarda: estrutura, concentração e elegância rústica refinada.",
@@ -93,11 +89,9 @@ const collection: RareWine[] = [
     rarity: "Safra de Adega",
     bottles: "Pequeno lote maturado",
     marketPrice: "US$ 45 - 120 (R$ 240 - 635)",
-    notes:
-      "Framboesa, cereja e terra úmida em perfil sedoso, com final delicado.",
+    notes: "Framboesa, cereja e terra úmida em perfil sedoso, com final delicado.",
     pairing: "Magret de pato · Cogumelos selvagens",
-    story:
-      "Estilo clássico de Pinot Noir com caráter de adega e assinatura aromática elegante.",
+    story: "Estilo clássico de Pinot Noir com caráter de adega e assinatura aromática elegante.",
     score: "93/100",
   },
   {
@@ -110,8 +104,7 @@ const collection: RareWine[] = [
     rarity: "Prestige Cuvée",
     bottles: "Alocação sazonal",
     marketPrice: "US$ 220 - 340 (R$ 1.160 - 1.790)",
-    notes:
-      "Brioche, cítricos confit e notas de amêndoas com mousse cremosa e vibrante.",
+    notes: "Brioche, cítricos confit e notas de amêndoas com mousse cremosa e vibrante.",
     pairing: "Ostras · Caviar Oscietra",
     story:
       "Rótulo de inspiração prestige, selecionado para experiências de celebração e harmonizações de alta precisão.",
@@ -127,8 +120,7 @@ const collection: RareWine[] = [
     rarity: "Edição Curadoria",
     bottles: "Lote limitado",
     marketPrice: "US$ 35 - 95 (R$ 185 - 500)",
-    notes:
-      "Frutas brancas, flores secas e toques de pão tostado em corpo fresco e longo.",
+    notes: "Frutas brancas, flores secas e toques de pão tostado em corpo fresco e longo.",
     pairing: "Queijo de cabra · Frutos do mar",
     story:
       "Expressão do Loire em estilo espumante, com foco em frescor mineral e versatilidade gastronômica.",
@@ -144,8 +136,7 @@ const collection: RareWine[] = [
     rarity: "Biblioteca Ibérica",
     bottles: "Lote de adega histórica",
     marketPrice: "US$ 40 - 110 (R$ 210 - 580)",
-    notes:
-      "Ameixa madura, baunilha e couro, com taninos redondos e final especiado.",
+    notes: "Ameixa madura, baunilha e couro, com taninos redondos e final especiado.",
     pairing: "Cordeiro assado · Jamón ibérico",
     story:
       "Perfil clássico de Rioja de guarda, com madeira integrada e assinatura terrosa elegante.",
@@ -161,11 +152,9 @@ const collection: RareWine[] = [
     rarity: "Seleção Atlântica",
     bottles: "Micro lote de curadoria",
     marketPrice: "US$ 45 - 130 (R$ 240 - 690)",
-    notes:
-      "Fruta negra concentrada, cacau e especiarias quentes, com final profundo.",
+    notes: "Fruta negra concentrada, cacau e especiarias quentes, com final profundo.",
     pairing: "Queijos curados · Carnes de caça",
-    story:
-      "Rótulo de estilo duriense, com concentração e estrutura para serviço meditativo.",
+    story: "Rótulo de estilo duriense, com concentração e estrutura para serviço meditativo.",
     score: "94/100",
   },
   {
@@ -178,8 +167,7 @@ const collection: RareWine[] = [
     rarity: "Napa Signature",
     bottles: "Alocação concorrida",
     marketPrice: "US$ 80 - 240 (R$ 420 - 1.265)",
-    notes:
-      "Amora, cassis, cacau e cedro em estrutura ampla com final persistente.",
+    notes: "Amora, cassis, cacau e cedro em estrutura ampla com final persistente.",
     pairing: "Prime rib dry-aged · Short rib braseada",
     story:
       "Cabernet de perfil californiano clássico: fruta intensa, concentração e acabamento polido.",
@@ -187,14 +175,7 @@ const collection: RareWine[] = [
   },
 ];
 
-const regions: Region[] = [
-  "Todos",
-  "França",
-  "Itália",
-  "Espanha",
-  "Portugal",
-  "Estados Unidos",
-];
+const regions: Region[] = ["Todos", "França", "Itália", "Espanha", "Portugal", "Estados Unidos"];
 
 export function Gallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -221,13 +202,35 @@ export function Gallery() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.from(".gal-head", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
-        y: 42,
-        duration: 1.05,
-        ease: "power3.out",
-        stagger: 0.12,
-      });
+      gsap.fromTo(
+        ".gal-head",
+        {
+          autoAlpha: 0,
+          x: -42,
+        },
+        {
+          scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
+          autoAlpha: 1,
+          x: 0,
+          duration: 1.05,
+          ease: "power3.out",
+          stagger: 0.12,
+        },
+      );
+      gsap.fromTo(
+        ".gal-track",
+        {
+          autoAlpha: 0,
+          x: 48,
+        },
+        {
+          scrollTrigger: { trigger: ".gal-track-wrap", start: "top 82%", once: true },
+          autoAlpha: 1,
+          x: 0,
+          duration: 1.1,
+          ease: "power3.out",
+        },
+      );
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -262,8 +265,8 @@ export function Gallery() {
             por Terroir.
           </AnimatedTitle>
           <p className="gal-head mx-auto mt-6 max-w-2xl text-base font-light text-champagne/70">
-            Filtre por região, percorra o carrossel e descubra a história
-            completa de cada relíquia em nosso acervo privado.
+            Filtre por região, percorra o carrossel e descubra a história completa de cada relíquia
+            em nosso acervo privado.
           </p>
         </div>
 
@@ -300,7 +303,7 @@ export function Gallery() {
         </div>
 
         {/* Carousel */}
-        <div className="relative mt-12">
+        <div className="gal-track-wrap relative mt-12">
           <button
             onClick={() => scrollBy(-1)}
             aria-label="Anterior"
@@ -318,7 +321,7 @@ export function Gallery() {
 
           <div
             ref={trackRef}
-            className="flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
+            className="gal-track flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             <AnimatePresence mode="popLayout">
               {filtered.map((w, i) => (
@@ -384,9 +387,7 @@ export function Gallery() {
             <div className="py-12 text-center text-champagne/60 md:py-14">
               <Wine className="mx-auto mb-4 h-10 w-10 text-gold/60" />
               <p className="font-serif text-2xl">Nenhum rótulo encontrado.</p>
-              <p className="mt-2 text-sm">
-                Ajuste os filtros para revelar outros tesouros.
-              </p>
+              <p className="mt-2 text-sm">Ajuste os filtros para revelar outros tesouros.</p>
             </div>
           )}
         </div>
@@ -437,9 +438,16 @@ export function Gallery() {
                     <span className="inline-flex items-center gap-1 text-[10px] tracking-widest text-gold">
                       <Award className="h-3 w-3" /> {selected.score}
                     </span>
-                    <span className="inline-flex items-center gap-0.5" aria-label="Classificação cinco estrelas">
+                    <span
+                      className="inline-flex items-center gap-0.5"
+                      aria-label="Classificação cinco estrelas"
+                    >
                       {Array.from({ length: 5 }).map((_, idx) => (
-                        <Star key={idx} className="h-3.5 w-3.5 fill-gold text-gold" aria-hidden="true" />
+                        <Star
+                          key={idx}
+                          className="h-3.5 w-3.5 fill-gold text-gold"
+                          aria-hidden="true"
+                        />
                       ))}
                     </span>
                   </div>
@@ -487,9 +495,7 @@ export function Gallery() {
                       <p className="text-[9px] uppercase tracking-[0.3em] text-gold/80">
                         Disponibilidade
                       </p>
-                      <p className="mt-1 font-serif text-base text-champagne">
-                        {selected.bottles}
-                      </p>
+                      <p className="mt-1 font-serif text-base text-champagne">{selected.bottles}</p>
                       <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-gold/80">
                         {selected.marketPrice}
                       </p>
@@ -511,6 +517,3 @@ export function Gallery() {
     </section>
   );
 }
-
-
-

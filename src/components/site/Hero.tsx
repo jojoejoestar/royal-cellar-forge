@@ -2,13 +2,15 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroImg from "@/assets/hero-cellar\.jpg";
+import heroImg from "@/assets/hero-cellar.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
 
 const particles = Array.from({ length: 28 });
 
 export function Hero() {
+  const heroEase: [number, number, number, number] = [0.25, 1, 0.5, 1];
+
   return (
     <section
       id="top"
@@ -41,23 +43,30 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="relative mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-center px-5 pb-14 pt-24 md:min-h-screen md:px-6 md:pb-16 md:pt-28 lg:px-10 lg:pb-20 lg:pt-32">
+      <div className="relative mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-center px-5 pb-16 pt-28 md:min-h-screen md:px-6 md:pb-16 md:pt-28 lg:px-10 lg:pb-20 lg:pt-32">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.2, ease: [0.25, 1, 0.5, 1] }}
-          className="max-w-3xl"
+          initial={{ opacity: 0, x: -44 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.45 }}
+          transition={{ duration: 1.05, delay: 0.1, ease: heroEase }}
+          className="mx-auto max-w-3xl text-center md:mx-0 md:text-left"
         >
-          <div className="flex items-center gap-3 mb-8">
-            <span className="h-px w-12 bg-gold" />
-            <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.4em] text-gold">
+          <motion.div
+            initial={{ opacity: 0, x: -26 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.8 }}
+            transition={{ duration: 0.75, delay: 0.2, ease: heroEase }}
+            className="mb-7 flex items-center justify-center gap-3 md:mb-8 md:justify-start"
+          >
+            <span className="h-px w-10 bg-gold md:w-12" />
+            <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-gold sm:text-xs sm:tracking-[0.4em]">
               <Sparkles className="h-3 w-3" /> Curadoria Privada · Desde 1987
             </span>
-          </div>
+          </motion.div>
 
           <AnimatedTitle
             as="h1"
-            className="font-serif text-[clamp(2.9rem,10.6vw,5.5rem)] leading-[0.98] md:leading-[1.02]"
+            className="mx-auto max-w-[16ch] font-serif text-[clamp(2.35rem,12.2vw,5.5rem)] leading-[1.01] md:mx-0 md:max-w-none md:leading-[1.02]"
           >
             O Tempo Engarrafado.
             <br />
@@ -68,21 +77,22 @@ export function Hero() {
           </AnimatedTitle>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.6 }}
-            className="mt-7 max-w-xl text-[0.98rem] font-light leading-relaxed text-champagne/75 md:mt-8 md:text-lg"
+            initial={{ opacity: 0, x: 28 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.7 }}
+            transition={{ duration: 0.88, delay: 0.35, ease: heroEase }}
+            className="mx-auto mt-6 max-w-xl text-[0.98rem] font-light leading-relaxed text-champagne/78 md:mx-0 md:mt-8 md:text-lg"
           >
-            Uma curadoria exclusiva de rótulos raros e safras históricas. Para
-            paladares que exigem a excelência absoluta e o verdadeiro sabor do
-            terroir.
+            Uma curadoria exclusiva de rótulos raros e safras históricas. Para paladares que exigem
+            a excelência absoluta e o verdadeiro sabor do terroir.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, delay: 0.85 }}
-            className="mt-9 flex w-full flex-col items-start gap-3.5 sm:mt-10 sm:w-auto sm:flex-row sm:items-center sm:gap-4"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.65 }}
+            transition={{ duration: 0.95, delay: 0.5, ease: heroEase }}
+            className="mx-auto mt-8 flex w-full max-w-md flex-col items-center gap-3.5 sm:mt-10 sm:max-w-none sm:w-auto sm:flex-row sm:items-center sm:gap-4 md:mx-0 md:items-start"
           >
             <a
               href="#acervo"
@@ -100,45 +110,43 @@ export function Hero() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.2, duration: 1 }}
-            className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-5 text-champagne/60 md:mt-16 md:flex-nowrap md:gap-10"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.6 }}
+            transition={{ delay: 0.7, duration: 0.95, ease: heroEase }}
+            className="mx-auto mt-11 grid w-full max-w-xl grid-cols-2 gap-x-6 gap-y-5 text-champagne/60 sm:flex sm:flex-wrap sm:items-center sm:gap-x-8 md:mx-0 md:mt-16 md:flex-nowrap md:gap-10"
           >
-            <div>
+            <div className="text-center sm:text-left">
               <p className="font-serif text-3xl text-gold">37+</p>
-              <p className="text-[10px] uppercase tracking-widest">
-                Anos de Curadoria
-              </p>
-            </div>
-            <div className="h-10 w-px bg-gold/20" />
-            <div>
-              <p className="font-serif text-3xl text-gold">120</p>
-              <p className="text-[10px] uppercase tracking-widest">
-                Vinícolas Premiadas
-              </p>
+              <p className="text-[10px] uppercase tracking-widest">Anos de Curadoria</p>
             </div>
             <div className="hidden h-10 w-px bg-gold/20 sm:block" />
-            <div className="hidden sm:block">
+            <div className="text-center sm:text-left">
+              <p className="font-serif text-3xl text-gold">120</p>
+              <p className="text-[10px] uppercase tracking-widest">Vinícolas Premiadas</p>
+            </div>
+            <div className="hidden h-10 w-px bg-gold/20 lg:block" />
+            <div className="col-span-2 text-center sm:col-span-1 sm:text-left">
               <p className="font-serif text-3xl text-gold">∞</p>
-              <p className="text-[10px] uppercase tracking-widest">
-                Memórias Eternas
-              </p>
+              <p className="text-[10px] uppercase tracking-widest">Memórias Eternas</p>
             </div>
           </motion.div>
         </motion.div>
       </div>
 
       {/* Scroll cue */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 text-gold/60">
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.9 }}
+        transition={{ delay: 1, duration: 0.7, ease: heroEase }}
+        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-gold/60 md:block"
+      >
         <div className="flex flex-col items-center gap-2">
           <span className="text-[10px] uppercase tracking-[0.4em]">Descubra</span>
           <span className="block h-10 w-px animate-pulse bg-gradient-to-b from-gold to-transparent" />
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
-
-
-

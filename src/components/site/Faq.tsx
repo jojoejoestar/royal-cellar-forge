@@ -41,34 +41,57 @@ export function Faq() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.from(".faq-item", {
-        scrollTrigger: { trigger: ".faq-list", start: "top 80%", once: true },
-        y: 36,
-        duration: 0.95,
-        stagger: 0.11,
-        ease: "power3.out",
+      gsap.fromTo(
+        ".faq-heading",
+        {
+          autoAlpha: 0,
+          x: -38,
+        },
+        {
+          scrollTrigger: { trigger: ref.current, start: "top 80%", once: true },
+          autoAlpha: 1,
+          x: 0,
+          duration: 1,
+          ease: "power3.out",
+          stagger: 0.1,
+        },
+      );
+
+      const faqItems = gsap.utils.toArray<HTMLElement>(".faq-item");
+      faqItems.forEach((item, index) => {
+        gsap.fromTo(
+          item,
+          {
+            autoAlpha: 0,
+            x: index % 2 === 0 ? -36 : 36,
+          },
+          {
+            scrollTrigger: { trigger: item, start: "top 86%", once: true },
+            autoAlpha: 1,
+            x: 0,
+            duration: 0.8,
+            ease: "power3.out",
+          },
+        );
       });
     }, ref);
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      ref={ref}
-      className="relative overflow-hidden bg-transparent py-14 md:py-20"
-    >
+    <section ref={ref} className="relative overflow-hidden bg-transparent py-14 md:py-20">
       <div className="absolute inset-0 pattern-damask opacity-35" />
       <div className="absolute inset-0 pattern-grapes opacity-20" />
 
       <div className="relative mx-auto max-w-4xl px-6 lg:px-10">
         <div className="text-center">
-          <p className="text-xs uppercase tracking-[0.5em] text-gold">
+          <p className="faq-heading text-xs uppercase tracking-[0.5em] text-gold">
             Dúvidas Aristocráticas
           </p>
-          <div className="mx-auto mt-6 gold-divider w-32" />
+          <div className="faq-heading mx-auto mt-6 gold-divider w-32" />
           <AnimatedTitle
             as="h2"
-            className="mt-8 font-serif text-4xl leading-tight md:text-6xl"
+            className="faq-heading mt-8 font-serif text-4xl leading-tight md:text-6xl"
           >
             Respostas <span className="italic text-gradient-gold">à Altura</span>
             <br />
@@ -86,15 +109,9 @@ export function Faq() {
                 onClick={() => setOpen(open === i ? null : i)}
                 className="flex w-full items-center justify-between gap-6 px-7 py-6 text-left"
               >
-                <span className="font-serif text-lg text-champagne md:text-xl">
-                  {f.q}
-                </span>
+                <span className="font-serif text-lg text-champagne md:text-xl">{f.q}</span>
                 <span className="shrink-0 rounded-full border border-gold/40 p-1.5 text-gold transition-transform">
-                  {open === i ? (
-                    <Minus className="h-4 w-4" />
-                  ) : (
-                    <Plus className="h-4 w-4" />
-                  )}
+                  {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                 </span>
               </button>
               <AnimatePresence initial={false}>
@@ -118,4 +135,3 @@ export function Faq() {
     </section>
   );
 }
-

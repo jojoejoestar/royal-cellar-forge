@@ -8,6 +8,8 @@ type Props = {
   to?: "background" | "scarlet-deep" | "scarlet" | "imperial";
   /** Show the central grape ornament over a continuous gold hairline */
   ornament?: boolean;
+  /** Optional spacing control for edge-to-edge section cuts */
+  className?: string;
 };
 
 /**
@@ -15,13 +17,11 @@ type Props = {
  * - One continuous gold hairline behind the center glyph (no edge cut-outs).
  * - Diamond accents and a soft radial glow on the grape seal.
  */
-export function SectionDivider({
-  ornament = true,
-}: Props) {
+export function SectionDivider({ ornament = true, className = "" }: Props) {
   return (
     <div
       aria-hidden
-      className="section-divider-edge relative h-16 w-full overflow-hidden md:h-20"
+      className={`section-divider-edge relative z-20 h-16 w-full overflow-hidden md:h-20 ${className}`}
       style={{
         backgroundColor: "transparent",
       }}
@@ -31,12 +31,11 @@ export function SectionDivider({
           {/* Single continuous hairline - edges stay faintly visible (no hard cut) */}
           <span
             aria-hidden
-            className="pointer-events-none absolute left-6 right-6 top-1/2 h-px -translate-y-1/2 rounded-full md:left-10 md:right-10"
+            className="pointer-events-none absolute left-6 right-6 top-1/2 h-[1.5px] -translate-y-1/2 rounded-full md:left-10 md:right-10"
             style={{
               background:
-                "linear-gradient(90deg, oklch(0.72 0.10 78 / 0.14) 0%, oklch(0.72 0.10 78 / 0.42) 18%, oklch(0.72 0.10 78 / 0.78) 50%, oklch(0.72 0.10 78 / 0.42) 82%, oklch(0.72 0.10 78 / 0.14) 100%)",
-              boxShadow:
-                "0 0 18px oklch(0.72 0.10 78 / 0.22), 0 0 42px oklch(0.72 0.10 78 / 0.08)",
+                "linear-gradient(90deg, oklch(0.72 0.10 78 / 0.34) 0%, oklch(0.72 0.10 78 / 0.62) 20%, oklch(0.8 0.12 82 / 0.95) 50%, oklch(0.72 0.10 78 / 0.62) 80%, oklch(0.72 0.10 78 / 0.34) 100%)",
+              boxShadow: "0 0 20px oklch(0.72 0.10 78 / 0.36), 0 0 48px oklch(0.72 0.10 78 / 0.18)",
             }}
           />
           {/* Diamond + grape glyph */}
@@ -68,4 +67,3 @@ export function SectionDivider({
     </div>
   );
 }
-
