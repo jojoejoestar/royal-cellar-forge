@@ -186,7 +186,7 @@ export function Chalet() {
             <div
               key={e.title}
               data-scroll-premium
-              className="chalet-card scroll-premium-card group relative rounded-sm border border-gold/15 bg-card/45 px-5 py-4 backdrop-blur-sm transition-[border-color,box-shadow] duration-500 md:px-6 md:py-5 hover:border-gold/35"
+              className="chalet-card scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/15 bg-card/45 px-5 py-4 backdrop-blur-sm transition-[border-color,box-shadow] duration-500 md:px-6 md:py-5 hover:border-gold/35"
             >
               <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-gold/35 bg-background/55 md:h-10 md:w-10">
                 <e.icon className="h-4 w-4 text-gold md:h-[17px] md:w-[17px]" strokeWidth={1.35} />
