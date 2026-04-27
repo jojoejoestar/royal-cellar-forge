@@ -44,6 +44,7 @@ type RareWine = {
   pairing: string;
   story: string;
   score: string;
+  focusY?: number;
 };
 
 const collection: RareWine[] = [
@@ -62,6 +63,7 @@ const collection: RareWine[] = [
     story:
       "Garrafa de perfil clássico bordalês, escolhida pela elegância visual e pelo estilo gastronômico versátil para adegas de assinatura.",
     score: "94/100",
+    focusY: 64,
   },
   {
     id: "brunello-riserva-2017",
@@ -78,6 +80,7 @@ const collection: RareWine[] = [
     story:
       "Representa a escola toscana de longa guarda: estrutura, concentração e elegância rústica refinada.",
     score: "95/100",
+    focusY: 66,
   },
   {
     id: "pinot-vintage-2016",
@@ -93,6 +96,7 @@ const collection: RareWine[] = [
     pairing: "Magret de pato · Cogumelos selvagens",
     story: "Estilo clássico de Pinot Noir com caráter de adega e assinatura aromática elegante.",
     score: "93/100",
+    focusY: 67,
   },
   {
     id: "champagne-dom-perignon-2013",
@@ -109,6 +113,7 @@ const collection: RareWine[] = [
     story:
       "Rótulo de inspiração prestige, selecionado para experiências de celebração e harmonizações de alta precisão.",
     score: "96/100",
+    focusY: 71,
   },
   {
     id: "loire-cuvee-2019",
@@ -125,6 +130,7 @@ const collection: RareWine[] = [
     story:
       "Expressão do Loire em estilo espumante, com foco em frescor mineral e versatilidade gastronômica.",
     score: "92/100",
+    focusY: 70,
   },
   {
     id: "rioja-reserva-2014",
@@ -141,6 +147,7 @@ const collection: RareWine[] = [
     story:
       "Perfil clássico de Rioja de guarda, com madeira integrada e assinatura terrosa elegante.",
     score: "93/100",
+    focusY: 66,
   },
   {
     id: "douro-valley-2016",
@@ -156,6 +163,7 @@ const collection: RareWine[] = [
     pairing: "Queijos curados · Carnes de caça",
     story: "Rótulo de estilo duriense, com concentração e estrutura para serviço meditativo.",
     score: "94/100",
+    focusY: 68,
   },
   {
     id: "napa-cabernet-2019",
@@ -172,6 +180,7 @@ const collection: RareWine[] = [
     story:
       "Cabernet de perfil californiano clássico: fruta intensa, concentração e acabamento polido.",
     score: "95/100",
+    focusY: 64,
   },
 ];
 
@@ -341,10 +350,11 @@ export function Gallery() {
                       src={w.image}
                       alt={`${w.name} ${w.vintage}`}
                       fill
-                      className="object-cover object-[50%_58%] scale-[1.08] transition-transform duration-700 group-hover:scale-[1.14]"
+                      className="object-cover scale-[1.12] transition-transform duration-700 group-hover:scale-[1.17]"
+                      style={{ objectPosition: `50% ${w.focusY ?? 66}%` }}
                       sizes="(max-width: 640px) 85vw, 320px"
                     />
-                    <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-onyx via-onyx/70 to-transparent" />
+                    <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-onyx/96 via-onyx/72 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent" />
                     <span className="absolute left-4 top-4 rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur-md">
                       {w.rarity}
