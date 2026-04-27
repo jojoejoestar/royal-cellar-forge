@@ -341,9 +341,10 @@ export function Gallery() {
                       src={w.image}
                       alt={`${w.name} ${w.vintage}`}
                       fill
-                      className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover object-[50%_58%] scale-[1.08] transition-transform duration-700 group-hover:scale-[1.14]"
                       sizes="(max-width: 640px) 85vw, 320px"
                     />
+                    <div className="absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-onyx via-onyx/70 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent" />
                     <span className="absolute left-4 top-4 rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur-md">
                       {w.rarity}
@@ -361,7 +362,7 @@ export function Gallery() {
                       ))}
                     </div>
                   </div>
-                  <div className="relative z-10 -mt-10 bg-gradient-to-b from-onyx/0 via-onyx/96 to-onyx p-5 pt-12">
+                  <div className="relative border-t border-gold/15 bg-onyx/95 p-5">
                     <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
                       Safra {w.vintage}
                     </p>
