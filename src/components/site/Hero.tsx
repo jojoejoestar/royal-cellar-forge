@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import heroImg from "@/assets/hero-cellar.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { SectionDivider } from "@/components/site/SectionDivider";
 import { fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
 
 const particles = Array.from({ length: 28 });
@@ -144,6 +145,10 @@ export function Hero() {
           <span className="block h-10 w-px animate-pulse bg-gradient-to-b from-gold to-transparent" />
         </div>
       </motion.div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 translate-y-1/2">
+        <SectionDivider from="background" to="imperial" />
+      </div>
     </section>
   );
 }

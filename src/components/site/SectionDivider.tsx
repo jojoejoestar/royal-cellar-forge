@@ -28,14 +28,23 @@ export function SectionDivider({ ornament = true, className = "" }: Props) {
     >
       {ornament && (
         <div className="relative flex h-full items-center justify-center px-6">
-          {/* Single continuous hairline - edges stay faintly visible (no hard cut) */}
+          {/* Split hairline: keep center clean for ornament emphasis */}
           <span
             aria-hidden
-            className="pointer-events-none absolute left-6 right-6 top-1/2 h-[1.5px] -translate-y-1/2 rounded-full md:left-10 md:right-10"
+            className="pointer-events-none absolute left-6 top-1/2 h-[1.5px] w-[calc(50%-74px)] -translate-y-1/2 rounded-full md:left-10 md:w-[calc(50%-86px)]"
             style={{
               background:
-                "linear-gradient(90deg, oklch(0.72 0.10 78 / 0.34) 0%, oklch(0.72 0.10 78 / 0.62) 20%, oklch(0.8 0.12 82 / 0.95) 50%, oklch(0.72 0.10 78 / 0.62) 80%, oklch(0.72 0.10 78 / 0.34) 100%)",
-              boxShadow: "0 0 20px oklch(0.72 0.10 78 / 0.36), 0 0 48px oklch(0.72 0.10 78 / 0.18)",
+                "linear-gradient(90deg, oklch(0.72 0.10 78 / 0.22) 0%, oklch(0.72 0.10 78 / 0.55) 45%, oklch(0.8 0.12 82 / 0.88) 100%)",
+              boxShadow: "0 0 16px oklch(0.72 0.10 78 / 0.28), 0 0 34px oklch(0.72 0.10 78 / 0.14)",
+            }}
+          />
+          <span
+            aria-hidden
+            className="pointer-events-none absolute right-6 top-1/2 h-[1.5px] w-[calc(50%-74px)] -translate-y-1/2 rounded-full md:right-10 md:w-[calc(50%-86px)]"
+            style={{
+              background:
+                "linear-gradient(90deg, oklch(0.8 0.12 82 / 0.88) 0%, oklch(0.72 0.10 78 / 0.55) 55%, oklch(0.72 0.10 78 / 0.22) 100%)",
+              boxShadow: "0 0 16px oklch(0.72 0.10 78 / 0.28), 0 0 34px oklch(0.72 0.10 78 / 0.14)",
             }}
           />
           {/* Diamond + grape glyph */}
