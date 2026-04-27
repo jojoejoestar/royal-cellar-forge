@@ -385,43 +385,53 @@ export function Catalog() {
         </div>
 
         <div className="mt-14 sm:hidden">
-          <AnimatePresence mode="wait">
-            <motion.button
-              key={wines[mobileSlide].name}
-              initial={{ opacity: 0, x: 26 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -26 }}
-              transition={{ duration: 0.42 }}
-              onClick={() => setActive(mobileSlide)}
-              onTouchStart={pauseMobileAutoplay}
-              onMouseEnter={pauseMobileAutoplay}
-              className="cat-card image-hover-luxury group relative h-80 w-full overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:border-gold/50"
+          <div
+            className="overflow-hidden rounded-sm"
+            onTouchStart={pauseMobileAutoplay}
+            onMouseEnter={pauseMobileAutoplay}
+          >
+            <motion.div
+              animate={{ x: `${-mobileSlide * 100}%` }}
+              transition={{ duration: 0.55, ease: [0.25, 1, 0.5, 1] }}
+              className="flex"
             >
-              <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <div className="absolute inset-0 flex flex-col">
-                <div className="relative flex-1 overflow-hidden">
-                  <Image
-                    src={wines[mobileSlide].image}
-                    alt={wines[mobileSlide].name}
-                    fill
-                    className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
-                    sizes="100vw"
-                  />
-                </div>
-                <div className="border-t border-gold/15 p-4">
-                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
-                    {wines[mobileSlide].vintage}
-                  </p>
-                  <h4 className="mt-1 font-serif text-lg leading-tight text-champagne">
-                    {wines[mobileSlide].name}
-                  </h4>
-                  <p className="mt-1 text-[11px] uppercase tracking-widest text-champagne/60">
-                    {wines[mobileSlide].region}
-                  </p>
-                </div>
-              </div>
-            </motion.button>
-          </AnimatePresence>
+              {wines.map((w, i) => (
+                <button
+                  key={`mobile-slide-${w.name}`}
+                  onClick={() => {
+                    setMobileSlide(i);
+                    setActive(i);
+                    pauseMobileAutoplay();
+                  }}
+                  className="cat-card image-hover-luxury group relative h-80 w-full shrink-0 overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:border-gold/50"
+                >
+                  <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                  <div className="absolute inset-0 flex flex-col">
+                    <div className="relative flex-1 overflow-hidden">
+                      <Image
+                        src={w.image}
+                        alt={w.name}
+                        fill
+                        className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                        sizes="100vw"
+                      />
+                    </div>
+                    <div className="border-t border-gold/15 p-4">
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
+                        {w.vintage}
+                      </p>
+                      <h4 className="mt-1 font-serif text-lg leading-tight text-champagne">
+                        {w.name}
+                      </h4>
+                      <p className="mt-1 text-[11px] uppercase tracking-widest text-champagne/60">
+                        {w.region}
+                      </p>
+                    </div>
+                  </div>
+                </button>
+              ))}
+            </motion.div>
+          </div>
 
           <div className="mt-4 flex items-center justify-center gap-2">
             {wines.map((_, i) => (
