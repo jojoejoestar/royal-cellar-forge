@@ -416,10 +416,10 @@
     position: relative;
     isolation: isolate;
     transition:
-      box-shadow 520ms var(--ease-luxury),
-      border-color 520ms var(--ease-luxury),
-      filter 520ms var(--ease-luxury),
-      transform 520ms var(--ease-luxury);
+      box-shadow 640ms var(--ease-luxury),
+      border-color 640ms var(--ease-luxury),
+      filter 640ms var(--ease-luxury),
+      transform 640ms var(--ease-luxury);
   }
 
   .scroll-premium-card::before {
@@ -428,14 +428,14 @@
     inset: -1px;
     border-radius: inherit;
     background: radial-gradient(
-      130% 85% at 50% -8%,
-      oklch(0.85 0.13 84 / 0.26) 0%,
-      oklch(0.76 0.11 80 / 0.12) 28%,
-      transparent 72%
+      108% 72% at 50% -4%,
+      oklch(0.8 0.1 80 / 0.11) 0%,
+      oklch(0.74 0.09 78 / 0.055) 34%,
+      transparent 70%
     );
     opacity: 0;
-    filter: blur(8px);
-    transition: opacity 520ms var(--ease-luxury);
+    filter: blur(5px);
+    transition: opacity 640ms var(--ease-luxury);
     pointer-events: none;
     z-index: 0;
   }
@@ -446,19 +446,19 @@
     inset: -1px;
     border-radius: inherit;
     background: linear-gradient(
-      112deg,
+      108deg,
       transparent 0%,
-      transparent 35%,
-      oklch(0.92 0.06 92 / 0.38) 48%,
-      oklch(0.8 0.12 82 / 0.14) 54%,
-      transparent 66%,
+      transparent 40%,
+      oklch(0.92 0.05 92 / 0.16) 50%,
+      oklch(0.76 0.1 80 / 0.07) 55%,
+      transparent 62%,
       transparent 100%
     );
-    transform: translateX(-78%);
+    transform: translateX(-62%);
     opacity: 0;
     transition:
-      transform 820ms var(--ease-luxury),
-      opacity 520ms var(--ease-luxury);
+      transform 900ms var(--ease-luxury),
+      opacity 640ms var(--ease-luxury);
     pointer-events: none;
     mix-blend-mode: screen;
     z-index: 0;
@@ -470,22 +470,22 @@
   }
 
   .scroll-premium-card.is-scroll-lit {
-    border-color: oklch(0.8 0.12 82 / 0.55) !important;
+    border-color: oklch(0.76 0.1 78 / 0.36) !important;
     box-shadow:
-      0 0 0 1px oklch(0.85 0.13 84 / 0.32),
-      0 14px 36px oklch(0.72 0.1 78 / 0.2),
-      0 0 58px oklch(0.72 0.1 78 / 0.3);
-    filter: brightness(1.045) saturate(1.06);
-    transform: translateY(-1px);
+      0 0 0 1px oklch(0.78 0.1 80 / 0.14),
+      0 6px 22px oklch(0.72 0.1 78 / 0.08),
+      0 0 32px oklch(0.72 0.1 78 / 0.1);
+    filter: brightness(1.018) saturate(1.02);
+    transform: none;
   }
 
   .scroll-premium-card.is-scroll-lit::before {
-    opacity: 1;
+    opacity: 0.55;
   }
 
   .scroll-premium-card.is-scroll-lit::after {
-    opacity: 1;
-    transform: translateX(68%);
+    opacity: 0.42;
+    transform: translateX(38%);
   }
 
   .btn-gold-glow::after,
