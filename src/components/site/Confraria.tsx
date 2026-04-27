@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion } from "framer-motion";
 import { Lock, ArrowRight, Check } from "lucide-react";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { primeAndReveal, revealEase, stRevealOnce } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,49 +19,36 @@ export function Confraria() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(
+      primeAndReveal(
         ".conf-copy",
-        {
-          autoAlpha: 0,
-          x: -52,
-        },
-        {
-          scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-          autoAlpha: 1,
-          x: 0,
-          duration: 1.05,
-          ease: "power3.out",
-        },
+        ref.current,
+        { autoAlpha: 0, x: -48 },
+        { autoAlpha: 1, x: 0, duration: 1.05 },
+        { trigger: ref.current, start: "top 84%" },
       );
-      gsap.fromTo(
+      primeAndReveal(
         ".conf-form",
-        {
-          autoAlpha: 0,
-          x: 52,
-        },
-        {
-          scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-          autoAlpha: 1,
-          x: 0,
-          duration: 1.05,
-          delay: 0.08,
-          ease: "power3.out",
-        },
+        ref.current,
+        { autoAlpha: 0, x: 48 },
+        { autoAlpha: 1, x: 0, duration: 1.05, delay: 0.08 },
+        { trigger: ref.current, start: "top 84%" },
       );
-      gsap.fromTo(
-        ".conf-el",
-        {
-          autoAlpha: 0,
-          y: 18,
-        },
-        {
+      const confEls = gsap.utils.toArray<HTMLElement>(".conf-el", ref.current);
+      if (confEls.length) {
+        gsap.set(confEls, { autoAlpha: 0, y: 16 });
+        gsap.to(confEls, {
           autoAlpha: 1,
           y: 0,
           duration: 0.95,
           stagger: 0.12,
-          ease: "power3.out",
-        },
-      );
+          ease: revealEase,
+          scrollTrigger: {
+            ...stRevealOnce,
+            trigger: ref.current,
+            start: "top 80%",
+          },
+        });
+      }
     }, ref);
     return () => ctx.revert();
   }, []);

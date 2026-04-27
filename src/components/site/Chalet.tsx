@@ -8,6 +8,7 @@ import chaletInterior from "@/assets/chalet-interior\.jpg";
 import chaletExterior from "@/assets/chalet-exterior\.jpg";
 import chaletTable from "@/assets/chalet-table\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { primeAndReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -37,27 +38,27 @@ export function Chalet() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.from(".chalet-reveal", {
-        scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
-        y: 42,
-        duration: 1.05,
-        ease: "power3.out",
-        stagger: 0.12,
-      });
-      gsap.from(".chalet-img", {
-        scrollTrigger: { trigger: ref.current, start: "top 65%", once: true },
-        y: 56,
-        duration: 1.1,
-        ease: "power3.out",
-        stagger: 0.14,
-      });
-      gsap.from(".chalet-card", {
-        scrollTrigger: { trigger: ".chalet-cards", start: "top 80%", once: true },
-        y: 48,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.14,
-      });
+      primeAndReveal(
+        ".chalet-reveal",
+        ref.current,
+        { autoAlpha: 0, y: 40 },
+        { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
+        { trigger: ref.current, start: "top 84%" },
+      );
+      primeAndReveal(
+        ".chalet-img",
+        ref.current,
+        { autoAlpha: 0, y: 52 },
+        { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.14 },
+        { trigger: ref.current, start: "top 82%" },
+      );
+      primeAndReveal(
+        ".chalet-card",
+        ref.current,
+        { autoAlpha: 0, y: 44 },
+        { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
+        { trigger: ".chalet-cards", start: "top 88%" },
+      );
 
       const premiumCards = gsap.utils.toArray<HTMLElement>("[data-scroll-premium]", ref.current);
       premiumCards.forEach((card) => {

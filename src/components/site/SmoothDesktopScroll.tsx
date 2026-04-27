@@ -2,6 +2,10 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export function SmoothDesktopScroll() {
   useEffect(() => {
@@ -36,12 +40,15 @@ export function SmoothDesktopScroll() {
         anchors: true,
       });
 
+      lenis.on("scroll", ScrollTrigger.update);
+
       const raf = (time: number) => {
         lenis?.raf(time);
         rafId = requestAnimationFrame(raf);
       };
 
       rafId = requestAnimationFrame(raf);
+      requestAnimationFrame(() => ScrollTrigger.refresh());
     };
 
     setupLenis();
@@ -52,6 +59,18 @@ export function SmoothDesktopScroll() {
       desktopMq.removeEventListener("change", setupLenis);
       reduceMq.removeEventListener("change", setupLenis);
       stopLenis();
+    };
+  }, []);
+
+  useEffect(() => {
+    const refresh = () => ScrollTrigger.refresh();
+    window.addEventListener("load", refresh);
+    window.addEventListener("resize", refresh);
+    const id = requestAnimationFrame(refresh);
+    return () => {
+      window.removeEventListener("load", refresh);
+      window.removeEventListener("resize", refresh);
+      cancelAnimationFrame(id);
     };
   }, []);
 

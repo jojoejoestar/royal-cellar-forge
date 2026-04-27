@@ -8,6 +8,7 @@ import pour from "@/assets/tasting-pour\.jpg";
 import swirl from "@/assets/tasting-swirl\.jpg";
 import nose from "@/assets/tasting-nose\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { primeAndReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -50,36 +51,37 @@ export function Tasting() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.from(".tast-head", {
-        scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
-        y: 42,
-        duration: 1.05,
-        ease: "power3.out",
-        stagger: 0.12,
-      });
+      primeAndReveal(
+        ".tast-head",
+        sectionRef.current,
+        { autoAlpha: 0, y: 40 },
+        { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
+        { trigger: sectionRef.current, start: "top 84%" },
+      );
 
-      gsap.from(".tast-hero", {
-        scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%", once: true },
-        y: 56,
-        duration: 1.1,
-        ease: "power3.out",
-      });
+      primeAndReveal(
+        ".tast-hero",
+        sectionRef.current,
+        { autoAlpha: 0, y: 52 },
+        { autoAlpha: 1, y: 0, duration: 1.1 },
+        { trigger: ".tast-mosaic", start: "top 88%" },
+      );
 
-      gsap.from(".tast-side", {
-        scrollTrigger: { trigger: ".tast-mosaic", start: "top 80%", once: true },
-        y: 56,
-        duration: 1.1,
-        ease: "power3.out",
-        stagger: 0.14,
-      });
+      primeAndReveal(
+        ".tast-side",
+        sectionRef.current,
+        { autoAlpha: 0, y: 52 },
+        { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.14 },
+        { trigger: ".tast-mosaic", start: "top 88%" },
+      );
 
-      gsap.from(".tast-step", {
-        scrollTrigger: { trigger: ".tast-grid", start: "top 80%", once: true },
-        y: 48,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.14,
-      });
+      primeAndReveal(
+        ".tast-step",
+        sectionRef.current,
+        { autoAlpha: 0, y: 44 },
+        { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
+        { trigger: ".tast-grid", start: "top 88%" },
+      );
 
       const premiumCards = gsap.utils.toArray<HTMLElement>("[data-scroll-premium]", sectionRef.current);
       premiumCards.forEach((card) => {

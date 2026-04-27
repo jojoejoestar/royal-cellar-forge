@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Plus, Minus } from "lucide-react";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { primeAndReveal, revealEase, stRevealOnce } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -41,38 +42,28 @@ export function Faq() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(
+      primeAndReveal(
         ".faq-heading",
-        {
-          autoAlpha: 0,
-          x: -38,
-        },
-        {
-          scrollTrigger: { trigger: ref.current, start: "top 80%", once: true },
-          autoAlpha: 1,
-          x: 0,
-          duration: 1,
-          ease: "power3.out",
-          stagger: 0.1,
-        },
+        ref.current,
+        { autoAlpha: 0, x: -36 },
+        { autoAlpha: 1, x: 0, duration: 1, stagger: 0.1 },
+        { trigger: ref.current, start: "top 86%" },
       );
 
-      const faqItems = gsap.utils.toArray<HTMLElement>(".faq-item");
+      const faqItems = gsap.utils.toArray<HTMLElement>(".faq-item", ref.current);
       faqItems.forEach((item, index) => {
-        gsap.fromTo(
-          item,
-          {
-            autoAlpha: 0,
-            x: index % 2 === 0 ? -36 : 36,
+        gsap.set(item, { autoAlpha: 0, x: index % 2 === 0 ? -32 : 32 });
+        gsap.to(item, {
+          autoAlpha: 1,
+          x: 0,
+          duration: 0.85,
+          ease: revealEase,
+          scrollTrigger: {
+            ...stRevealOnce,
+            trigger: item,
+            start: "top 92%",
           },
-          {
-            scrollTrigger: { trigger: item, start: "top 86%", once: true },
-            autoAlpha: 1,
-            x: 0,
-            duration: 0.8,
-            ease: "power3.out",
-          },
-        );
+        });
       });
     }, ref);
     return () => ctx.revert();

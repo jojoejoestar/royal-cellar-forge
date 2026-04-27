@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Mountain, Droplets, Sun } from "lucide-react";
 import wineGlassSolo from "@/assets/wine-glass-solo\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { primeAndReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -35,26 +36,27 @@ export function Philosophy() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.from(".philo-line", {
-        scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-        y: 42,
-        duration: 1.05,
-        ease: "power3.out",
-        stagger: 0.12,
-      });
-      gsap.from(".philo-glass", {
-        scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
-        x: -56,
-        duration: 1.1,
-        ease: "power3.out",
-      });
-      gsap.from(".philo-pillar", {
-        scrollTrigger: { trigger: ".philo-grid", start: "top 85%", once: true },
-        y: 48,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.14,
-      });
+      primeAndReveal(
+        ".philo-line",
+        ref.current,
+        { autoAlpha: 0, y: 40 },
+        { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
+        { trigger: ref.current, start: "top 84%" },
+      );
+      primeAndReveal(
+        ".philo-glass",
+        ref.current,
+        { autoAlpha: 0, x: -48 },
+        { autoAlpha: 1, x: 0, duration: 1.1 },
+        { trigger: ref.current, start: "top 82%" },
+      );
+      primeAndReveal(
+        ".philo-pillar",
+        ref.current,
+        { autoAlpha: 0, y: 44 },
+        { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
+        { trigger: ".philo-grid", start: "top 88%" },
+      );
 
       const premiumCards = gsap.utils.toArray<HTMLElement>("[data-scroll-premium]", ref.current);
       premiumCards.forEach((card) => {

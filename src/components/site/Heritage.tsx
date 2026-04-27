@@ -8,6 +8,7 @@ import chalice from "@/assets/heritage-chalice\.jpg";
 import grapes from "@/assets/heritage-grapes\.jpg";
 import cellar from "@/assets/heritage-cellar\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { primeAndReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -40,27 +41,27 @@ export function Heritage() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.from(".heritage-line", {
-        scrollTrigger: { trigger: ref.current, start: "top 75%", once: true },
-        y: 42,
-        duration: 1.05,
-        ease: "power3.out",
-        stagger: 0.12,
-      });
-      gsap.from(".heritage-img", {
-        scrollTrigger: { trigger: ".heritage-mosaic", start: "top 80%", once: true },
-        y: 56,
-        duration: 1.1,
-        ease: "power3.out",
-        stagger: 0.14,
-      });
-      gsap.from(".heritage-era", {
-        scrollTrigger: { trigger: ".heritage-timeline", start: "top 85%", once: true },
-        y: 48,
-        duration: 1,
-        ease: "power3.out",
-        stagger: 0.14,
-      });
+      primeAndReveal(
+        ".heritage-line",
+        ref.current,
+        { autoAlpha: 0, y: 40 },
+        { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
+        { trigger: ref.current, start: "top 84%" },
+      );
+      primeAndReveal(
+        ".heritage-img",
+        ref.current,
+        { autoAlpha: 0, y: 52 },
+        { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.14 },
+        { trigger: ".heritage-mosaic", start: "top 88%" },
+      );
+      primeAndReveal(
+        ".heritage-era",
+        ref.current,
+        { autoAlpha: 0, y: 44 },
+        { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
+        { trigger: ".heritage-timeline", start: "top 90%" },
+      );
     }, ref);
     return () => ctx.revert();
   }, []);

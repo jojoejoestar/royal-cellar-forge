@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Award, Quote } from "lucide-react";
 import sommelierImg from "@/assets/sommelier\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { primeAndReveal } from "@/lib/scrollReveal";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -17,19 +18,20 @@ export function Sommelier() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.from(".som-img", {
-        scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
-        x: -56,
-        duration: 1.1,
-        ease: "power3.out",
-      });
-      gsap.from(".som-text", {
-        scrollTrigger: { trigger: ref.current, start: "top 70%", once: true },
-        x: 56,
-        duration: 1.1,
-        ease: "power3.out",
-        stagger: 0.12,
-      });
+      primeAndReveal(
+        ".som-img",
+        ref.current,
+        { autoAlpha: 0, x: -48 },
+        { autoAlpha: 1, x: 0, duration: 1.1 },
+        { trigger: ref.current, start: "top 84%" },
+      );
+      primeAndReveal(
+        ".som-text",
+        ref.current,
+        { autoAlpha: 0, x: 48 },
+        { autoAlpha: 1, x: 0, duration: 1.1, stagger: 0.12 },
+        { trigger: ref.current, start: "top 84%" },
+      );
     }, ref);
     return () => ctx.revert();
   }, []);

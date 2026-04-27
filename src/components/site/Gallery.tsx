@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { primeAndReveal } from "@/lib/scrollReveal";
 import bordeaux from "@/assets/wine-bordeaux.jpg";
 import brunello from "@/assets/wine-brunello.jpg";
 import burgundy from "@/assets/wine-burgundy.jpg";
@@ -211,34 +212,19 @@ export function Gallery() {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
     const ctx = gsap.context(() => {
-      gsap.fromTo(
+      primeAndReveal(
         ".gal-head",
-        {
-          autoAlpha: 0,
-          x: -42,
-        },
-        {
-          scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true },
-          autoAlpha: 1,
-          x: 0,
-          duration: 1.05,
-          ease: "power3.out",
-          stagger: 0.12,
-        },
+        sectionRef.current,
+        { autoAlpha: 0, x: -40 },
+        { autoAlpha: 1, x: 0, duration: 1.05, stagger: 0.12 },
+        { trigger: sectionRef.current, start: "top 84%" },
       );
-      gsap.fromTo(
+      primeAndReveal(
         ".gal-track",
-        {
-          autoAlpha: 0,
-          x: 48,
-        },
-        {
-          scrollTrigger: { trigger: ".gal-track-wrap", start: "top 82%", once: true },
-          autoAlpha: 1,
-          x: 0,
-          duration: 1.1,
-          ease: "power3.out",
-        },
+        sectionRef.current,
+        { autoAlpha: 0, x: 44 },
+        { autoAlpha: 1, x: 0, duration: 1.1 },
+        { trigger: ".gal-track-wrap", start: "top 88%" },
       );
     }, sectionRef);
     return () => ctx.revert();
