@@ -185,7 +185,6 @@ const collection: RareWine[] = [
 ];
 
 const regions: Region[] = ["Todos", "França", "Itália", "Espanha", "Portugal", "Estados Unidos"];
-const WHATSAPP_URL = "https://wa.me/5537998282282";
 
 export function Gallery() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -390,15 +389,9 @@ export function Gallery() {
                     <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-gold/80">
                       {w.marketPrice}
                     </p>
-                    <a
-                      href={WHATSAPP_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={(event) => event.stopPropagation()}
-                      className="mt-auto inline-flex items-center gap-2 pt-4 text-[11px] uppercase tracking-[0.25em] text-gold transition-all hover:gap-3"
-                    >
+                    <span className="mt-auto inline-flex items-center gap-2 pt-4 text-[11px] uppercase tracking-[0.25em] text-gold transition-all group-hover:gap-3">
                       Ver Ficha Completa →
-                    </a>
+                    </span>
                   </div>
                 </motion.button>
               ))}
@@ -508,11 +501,11 @@ export function Gallery() {
                   <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
                     A História
                   </h4>
-                  <p className="mt-2 line-clamp-3 text-sm font-light leading-relaxed text-champagne/75 md:line-clamp-4">
+                  <p className="mt-2 text-sm font-light leading-relaxed text-champagne/75">
                     {selected.story}
                   </p>
 
-                  <div className="mt-6 flex flex-col gap-4 rounded-sm border border-gold/20 bg-onyx/40 p-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="mt-6 rounded-sm border border-gold/20 bg-onyx/40 p-4">
                     <div>
                       <p className="text-[9px] uppercase tracking-[0.3em] text-gold/80">
                         Disponibilidade
@@ -522,15 +515,6 @@ export function Gallery() {
                         {selected.marketPrice}
                       </p>
                     </div>
-                    <a
-                      href={WHATSAPP_URL}
-                      target="_blank"
-                      rel="noreferrer"
-                      onClick={() => setSelected(null)}
-                      className="btn-gold-glow inline-flex items-center justify-center gap-2 self-start rounded-sm px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.25em] sm:self-auto"
-                    >
-                      <Wine className="h-4 w-4" /> WhatsApp
-                    </a>
                   </div>
                 </div>
               </div>
