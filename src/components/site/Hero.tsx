@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
-import heroImg from "@/assets/hero-cellar.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { SectionDivider } from "@/components/site/SectionDivider";
 import { fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
@@ -20,7 +19,7 @@ export function Hero() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img
-          src={heroImg.src}
+          src="/hero-background-new.png"
           alt="Adega real iluminada com luz dourada"
           className="h-full w-full object-cover object-center"
           width={1920}

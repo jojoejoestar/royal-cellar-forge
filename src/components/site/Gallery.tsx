@@ -435,7 +435,7 @@ export function Gallery() {
 
       {/* Modal */}
       <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="h-[92svh] w-[96vw] max-w-4xl overflow-hidden border-gold/30 bg-background p-0 sm:h-auto sm:w-auto sm:rounded-sm">
+        <DialogContent className="w-[96vw] max-w-4xl overflow-hidden border-gold/30 bg-background p-0 sm:rounded-sm">
           {selected && (
             <div className="grid gap-0 lg:grid-cols-2">
               <div className="relative h-72 overflow-hidden bg-gradient-royal lg:h-auto">
@@ -450,7 +450,7 @@ export function Gallery() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-onyx/40" />
               </div>
 
-              <div className="relative max-h-[65svh] overflow-y-auto overscroll-contain p-6 [scrollbar-gutter:stable] [-webkit-overflow-scrolling:touch] md:max-h-[72svh] md:p-8 lg:max-h-[85vh] lg:p-10">
+              <div className="relative p-5 md:p-7 lg:p-8">
                 <div className="absolute inset-0 pattern-damask opacity-30" />
                 <div className="relative">
                   <div className="flex items-center gap-3">
@@ -474,7 +474,7 @@ export function Gallery() {
                     </span>
                   </div>
 
-                  <DialogTitle className="mt-5 font-serif text-3xl leading-tight text-champagne md:text-4xl">
+                  <DialogTitle className="mt-4 font-serif text-3xl leading-tight text-champagne md:text-4xl">
                     {selected.name}
                   </DialogTitle>
                   <DialogDescription className="mt-2 text-[11px] uppercase tracking-[0.3em] text-champagne/60">
@@ -489,30 +489,30 @@ export function Gallery() {
                     </span>
                   </DialogDescription>
 
-                  <div className="my-6 gold-divider w-24" />
+                  <div className="my-5 gold-divider w-24" />
 
                   <h4 className="text-[11px] uppercase tracking-[0.3em] text-gold">
                     Notas de Degustação
                   </h4>
-                  <p className="mt-3 text-sm font-light leading-relaxed text-champagne/85">
+                  <p className="mt-2 text-sm font-light leading-relaxed text-champagne/85">
                     {selected.notes}
                   </p>
 
-                  <h4 className="mt-7 text-[11px] uppercase tracking-[0.3em] text-gold">
+                  <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
                     Harmonização
                   </h4>
-                  <p className="mt-3 text-sm italic font-light text-champagne/75">
+                  <p className="mt-2 text-sm italic font-light text-champagne/75">
                     {selected.pairing}
                   </p>
 
-                  <h4 className="mt-7 text-[11px] uppercase tracking-[0.3em] text-gold">
+                  <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
                     A História
                   </h4>
-                  <p className="mt-3 text-sm font-light leading-relaxed text-champagne/75">
+                  <p className="mt-2 line-clamp-3 text-sm font-light leading-relaxed text-champagne/75 md:line-clamp-4">
                     {selected.story}
                   </p>
 
-                  <div className="mt-7 flex items-center justify-between rounded-sm border border-gold/20 bg-onyx/40 p-4">
+                  <div className="mt-6 flex flex-col gap-4 rounded-sm border border-gold/20 bg-onyx/40 p-4 sm:flex-row sm:items-center sm:justify-between">
                     <div>
                       <p className="text-[9px] uppercase tracking-[0.3em] text-gold/80">
                         Disponibilidade
@@ -527,7 +527,7 @@ export function Gallery() {
                       target="_blank"
                       rel="noreferrer"
                       onClick={() => setSelected(null)}
-                      className="btn-gold-glow inline-flex items-center gap-2 rounded-sm px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.25em]"
+                      className="btn-gold-glow inline-flex items-center justify-center gap-2 self-start rounded-sm px-5 py-3 text-[11px] font-semibold uppercase tracking-[0.25em] sm:self-auto"
                     >
                       <Wine className="h-4 w-4" /> WhatsApp
                     </a>
