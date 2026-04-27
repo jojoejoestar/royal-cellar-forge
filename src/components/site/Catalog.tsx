@@ -171,7 +171,7 @@ export function Catalog() {
 
         {/* Featured carousel */}
         <div className="cat-showcase mt-12 grid items-center gap-10 lg:mt-14 lg:grid-cols-2 lg:gap-12">
-          <div className="cat-showcase-left image-hover-luxury relative h-[520px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal">
+          <div className="cat-showcase-left image-hover-luxury relative h-[430px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal sm:h-[470px] lg:h-[520px]">
             <div className="absolute inset-0 spotlight-gold" />
             <AnimatePresence mode="wait">
               <motion.div
@@ -186,7 +186,7 @@ export function Catalog() {
                   src={wines[active].image}
                   alt={wines[active].name}
                   fill
-                  className="object-contain p-8"
+                  className="object-contain p-5 sm:p-7 lg:p-8"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   priority={active === 0}
                 />

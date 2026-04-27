@@ -24,7 +24,7 @@ export default function HomePage() {
       <Navigation />
       <main className="relative z-10">
         <Hero />
-        <SectionDivider from="background" to="imperial" className="-mt-8 md:-mt-10" />
+        <SectionDivider from="background" to="imperial" className="-mt-14 md:-mt-16" />
         <Philosophy />
         <SectionDivider from="imperial" to="background" />
         <Heritage />

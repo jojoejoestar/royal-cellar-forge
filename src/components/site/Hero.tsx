@@ -12,10 +12,7 @@ export function Hero() {
   const heroEase: [number, number, number, number] = [0.25, 1, 0.5, 1];
 
   return (
-    <section
-      id="top"
-      className="relative min-h-[88svh] w-full overflow-hidden bg-transparent md:min-h-screen"
-    >
+    <section id="top" className="relative w-full overflow-hidden bg-transparent md:min-h-screen">
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -43,7 +40,7 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="relative mx-auto flex min-h-[88svh] max-w-7xl flex-col justify-center px-5 pb-16 pt-28 md:min-h-screen md:px-6 md:pb-16 md:pt-28 lg:px-10 lg:pb-20 lg:pt-32">
+      <div className="relative mx-auto flex max-w-7xl flex-col justify-start px-4 pb-12 pt-24 sm:px-5 md:min-h-screen md:justify-center md:px-6 md:pb-16 md:pt-28 lg:px-10 lg:pb-20 lg:pt-32">
         <motion.div
           initial={{ opacity: 0, x: -44 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -66,7 +63,7 @@ export function Hero() {
 
           <AnimatedTitle
             as="h1"
-            className="mx-auto max-w-[16ch] font-serif text-[clamp(2.35rem,12.2vw,5.5rem)] leading-[1.01] md:mx-0 md:max-w-none md:leading-[1.02]"
+            className="mx-auto max-w-[14ch] font-serif text-[clamp(1.95rem,11.3vw,5.5rem)] leading-[1.03] md:mx-0 md:max-w-none md:leading-[1.02]"
           >
             O Tempo Engarrafado.
             <br />

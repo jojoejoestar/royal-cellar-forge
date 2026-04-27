@@ -341,9 +341,10 @@ export function Gallery() {
                       src={w.image}
                       alt={`${w.name} ${w.vintage}`}
                       fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      className="object-cover object-center transition-transform duration-700 group-hover:scale-110"
                       sizes="(max-width: 640px) 85vw, 320px"
                     />
+                    <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-onyx/88 via-onyx/42 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/30 to-transparent" />
                     <span className="absolute left-4 top-4 rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold backdrop-blur-md">
                       {w.rarity}
