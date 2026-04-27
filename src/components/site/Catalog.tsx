@@ -1,6 +1,6 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, AnimatePresence } from "framer-motion";
@@ -69,8 +69,11 @@ const wines: Wine[] = [
 
 export function Catalog() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const mobileResumeTimeoutRef = useRef<number | null>(null);
   const [active, setActive] = useState(0);
   const [flipped, setFlipped] = useState<number | null>(null);
+  const [mobileSlide, setMobileSlide] = useState(0);
+  const [mobileAutoPaused, setMobileAutoPaused] = useState(false);
 
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
@@ -142,6 +145,55 @@ export function Catalog() {
 
   const next = () => setActive((p) => (p + 1) % wines.length);
   const prev = () => setActive((p) => (p - 1 + wines.length) % wines.length);
+
+  const pauseMobileAutoplay = () => {
+    setMobileAutoPaused(true);
+    if (mobileResumeTimeoutRef.current) {
+      window.clearTimeout(mobileResumeTimeoutRef.current);
+    }
+    mobileResumeTimeoutRef.current = window.setTimeout(() => {
+      setMobileAutoPaused(false);
+    }, 4500);
+  };
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 639px)");
+    let timer: number | null = null;
+
+    const syncSlide = () => {
+      if (!media.matches) {
+        if (timer) {
+          window.clearInterval(timer);
+          timer = null;
+        }
+        return;
+      }
+
+      if (timer) {
+        window.clearInterval(timer);
+      }
+
+      timer = window.setInterval(() => {
+        setMobileSlide((prevSlide) => {
+          if (mobileAutoPaused) return prevSlide;
+          return (prevSlide + 1) % wines.length;
+        });
+      }, 2800);
+    };
+
+    syncSlide();
+    media.addEventListener("change", syncSlide);
+
+    return () => {
+      media.removeEventListener("change", syncSlide);
+      if (timer) {
+        window.clearInterval(timer);
+      }
+      if (mobileResumeTimeoutRef.current) {
+        window.clearTimeout(mobileResumeTimeoutRef.current);
+      }
+    };
+  }, [mobileAutoPaused]);
 
   return (
     <section
@@ -257,7 +309,7 @@ export function Catalog() {
                 {wines[active].marketPrice}
               </p>
               <a
-                href="#confraria"
+                href="#galeria"
                 className="mt-10 btn-outline-gold inline-flex items-center gap-3 rounded-sm px-7 py-4 text-xs font-medium uppercase tracking-[0.3em]"
               >
                 <Wine className="h-4 w-4" /> Consultar Valor
@@ -267,7 +319,7 @@ export function Catalog() {
         </div>
 
         {/* Mini grid of all */}
-        <div className="cat-grid mt-14 grid gap-6 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
+        <div className="cat-grid mt-14 hidden gap-6 sm:grid sm:grid-cols-2 lg:mt-16 lg:grid-cols-4">
           {wines.map((w, i) => (
             <button
               key={w.name}
@@ -330,6 +382,62 @@ export function Catalog() {
               </AnimatePresence>
             </button>
           ))}
+        </div>
+
+        <div className="mt-14 sm:hidden">
+          <AnimatePresence mode="wait">
+            <motion.button
+              key={wines[mobileSlide].name}
+              initial={{ opacity: 0, x: 26 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -26 }}
+              transition={{ duration: 0.42 }}
+              onClick={() => setActive(mobileSlide)}
+              onTouchStart={pauseMobileAutoplay}
+              onMouseEnter={pauseMobileAutoplay}
+              className="cat-card image-hover-luxury group relative h-80 w-full overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:border-gold/50"
+            >
+              <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+              <div className="absolute inset-0 flex flex-col">
+                <div className="relative flex-1 overflow-hidden">
+                  <Image
+                    src={wines[mobileSlide].image}
+                    alt={wines[mobileSlide].name}
+                    fill
+                    className="object-contain p-4 transition-transform duration-700 group-hover:scale-105"
+                    sizes="100vw"
+                  />
+                </div>
+                <div className="border-t border-gold/15 p-4">
+                  <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
+                    {wines[mobileSlide].vintage}
+                  </p>
+                  <h4 className="mt-1 font-serif text-lg leading-tight text-champagne">
+                    {wines[mobileSlide].name}
+                  </h4>
+                  <p className="mt-1 text-[11px] uppercase tracking-widest text-champagne/60">
+                    {wines[mobileSlide].region}
+                  </p>
+                </div>
+              </div>
+            </motion.button>
+          </AnimatePresence>
+
+          <div className="mt-4 flex items-center justify-center gap-2">
+            {wines.map((_, i) => (
+              <button
+                key={`mobile-dot-${i}`}
+                onClick={() => {
+                  setMobileSlide(i);
+                  pauseMobileAutoplay();
+                }}
+                className={`h-1 rounded-full transition-all ${
+                  i === mobileSlide ? "w-7 bg-gold" : "w-3 bg-gold/30"
+                }`}
+                aria-label={`Exibir item ${i + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </section>

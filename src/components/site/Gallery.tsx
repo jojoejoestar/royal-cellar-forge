@@ -342,7 +342,7 @@ export function Gallery() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: i * 0.04 }}
                   onClick={() => setSelected(w)}
-                  className="gal-card image-hover-luxury group relative flex h-[520px] w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-all duration-500 hover:border-gold/55 sm:w-[320px]"
+                  className="gal-card image-hover-luxury group relative flex h-[570px] w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-all duration-500 hover:border-gold/55 sm:w-[320px]"
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative z-10 flex items-center justify-between border-b border-gold/15 bg-onyx px-4 py-3">
