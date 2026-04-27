@@ -35,7 +35,7 @@ export function SectionDivider({ ornament = true, className = "" }: Props) {
             style={{
               background:
                 "linear-gradient(90deg, oklch(0.72 0.10 78 / 0.22) 0%, oklch(0.72 0.10 78 / 0.55) 45%, oklch(0.8 0.12 82 / 0.88) 100%)",
-              boxShadow: "0 0 16px oklch(0.72 0.10 78 / 0.28), 0 0 34px oklch(0.72 0.10 78 / 0.14)",
+              boxShadow: "0 0 10px oklch(0.72 0.10 78 / 0.16), 0 0 18px oklch(0.72 0.10 78 / 0.08)",
             }}
           />
           <span
@@ -44,7 +44,7 @@ export function SectionDivider({ ornament = true, className = "" }: Props) {
             style={{
               background:
                 "linear-gradient(90deg, oklch(0.8 0.12 82 / 0.88) 0%, oklch(0.72 0.10 78 / 0.55) 55%, oklch(0.72 0.10 78 / 0.22) 100%)",
-              boxShadow: "0 0 16px oklch(0.72 0.10 78 / 0.28), 0 0 34px oklch(0.72 0.10 78 / 0.14)",
+              boxShadow: "0 0 10px oklch(0.72 0.10 78 / 0.16), 0 0 18px oklch(0.72 0.10 78 / 0.08)",
             }}
           />
           {/* Diamond + grape glyph */}

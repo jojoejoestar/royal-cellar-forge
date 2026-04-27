@@ -13,7 +13,10 @@ export function Hero() {
   const heroEase: [number, number, number, number] = [0.25, 1, 0.5, 1];
 
   return (
-    <section id="top" className="relative w-full overflow-visible bg-transparent md:min-h-screen">
+    <section
+      id="top"
+      className="relative w-full overflow-x-clip overflow-y-visible bg-transparent md:min-h-screen"
+    >
       {/* Background image */}
       <div className="absolute inset-0">
         <img
@@ -41,30 +44,30 @@ export function Hero() {
         ))}
       </div>
 
-      <div className="relative mx-auto flex max-w-7xl flex-col justify-start px-4 pb-12 pt-24 sm:px-5 md:min-h-screen md:justify-center md:px-6 md:pb-16 md:pt-28 lg:px-10 lg:pb-20 lg:pt-32">
+      <div className="relative mx-auto flex w-full min-w-0 max-w-7xl flex-col justify-start px-4 pb-16 pt-[5.75rem] sm:px-5 md:min-h-screen md:justify-center md:px-6 md:pb-16 md:pt-28 lg:px-10 lg:pb-20 lg:pt-32">
         <motion.div
           initial={{ opacity: 0, x: -44 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.45 }}
           transition={{ duration: 1.05, delay: 0.1, ease: heroEase }}
-          className="mx-auto max-w-3xl text-center md:mx-0 md:text-left"
+          className="mx-auto w-full min-w-0 max-w-3xl text-center md:mx-0 md:text-left"
         >
           <motion.div
             initial={{ opacity: 0, x: -26 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.8 }}
             transition={{ duration: 0.75, delay: 0.2, ease: heroEase }}
-            className="mb-7 flex items-center justify-center gap-3 md:mb-8 md:justify-start"
+            className="mb-7 flex w-full min-w-0 flex-wrap items-center justify-center gap-x-3 gap-y-2 md:mb-8 md:flex-nowrap md:justify-start"
           >
-            <span className="h-px w-10 bg-gold md:w-12" />
-            <span className="inline-flex items-center gap-2 text-[10px] uppercase tracking-[0.28em] text-gold sm:text-xs sm:tracking-[0.4em]">
-              <Sparkles className="h-3 w-3" /> Curadoria Privada · Desde 1987
+            <span className="hidden h-px w-10 shrink-0 bg-gold sm:block md:w-12" />
+            <span className="inline-flex max-w-full min-w-0 items-center justify-center gap-2 text-center text-[10px] uppercase tracking-[0.22em] text-gold sm:text-xs sm:tracking-[0.32em] md:justify-start md:text-left md:tracking-[0.4em]">
+              <Sparkles className="h-3 w-3 shrink-0" /> Curadoria Privada · Desde 1987
             </span>
           </motion.div>
 
           <AnimatedTitle
             as="h1"
-            className="mx-auto max-w-[14ch] font-serif text-[clamp(1.95rem,11.3vw,5.5rem)] leading-[1.03] md:mx-0 md:max-w-none md:leading-[1.02]"
+            className="mx-auto max-w-[min(100%,14ch)] font-serif text-[clamp(1.85rem,10.5vw,5.5rem)] leading-[1.04] md:mx-0 md:max-w-none md:leading-[1.02]"
           >
             O Tempo Engarrafado.
             <br />
@@ -79,7 +82,7 @@ export function Hero() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.7 }}
             transition={{ duration: 0.88, delay: 0.35, ease: heroEase }}
-            className="mx-auto mt-6 max-w-xl text-[0.98rem] font-light leading-relaxed text-champagne/78 md:mx-0 md:mt-8 md:text-lg"
+            className="mx-auto mt-6 max-w-xl px-0.5 text-[0.98rem] font-light leading-relaxed text-champagne/78 md:mx-0 md:mt-8 md:px-0 md:text-lg"
           >
             Uma curadoria exclusiva de rótulos raros e safras históricas. Para paladares que exigem
             a excelência absoluta e o verdadeiro sabor do terroir.
@@ -90,7 +93,7 @@ export function Hero() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.65 }}
             transition={{ duration: 0.95, delay: 0.5, ease: heroEase }}
-            className="mx-auto mt-8 flex w-full max-w-md flex-col items-center gap-3.5 sm:mt-10 sm:max-w-none sm:w-auto sm:flex-row sm:items-center sm:gap-4 md:mx-0 md:items-start"
+            className="mx-auto mt-8 flex w-full min-w-0 max-w-md flex-col items-stretch gap-3.5 sm:mt-10 sm:max-w-none sm:w-auto sm:flex-row sm:items-center sm:gap-4 md:mx-0 md:items-start"
           >
             <a
               href="#acervo"
@@ -112,7 +115,7 @@ export function Hero() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ delay: 0.7, duration: 0.95, ease: heroEase }}
-            className="mx-auto mt-11 grid w-full max-w-xl grid-cols-2 gap-x-6 gap-y-5 text-champagne/60 sm:flex sm:flex-wrap sm:items-center sm:gap-x-8 md:mx-0 md:mt-16 md:flex-nowrap md:gap-10"
+            className="mx-auto mt-11 grid w-full min-w-0 max-w-xl grid-cols-2 gap-x-5 gap-y-5 text-champagne/60 sm:flex sm:flex-wrap sm:items-center sm:gap-x-8 md:mx-0 md:mt-16 md:flex-nowrap md:gap-10"
           >
             <div className="text-center sm:text-left">
               <p className="font-serif text-3xl text-gold">37+</p>
@@ -146,7 +149,7 @@ export function Hero() {
         </div>
       </motion.div>
 
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 translate-y-1/2">
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-30 max-w-full translate-y-1/2">
         <SectionDivider from="background" to="imperial" />
       </div>
     </section>
