@@ -4,8 +4,10 @@ import "./globals.css";
 
 const serif = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["500", "600", "700", "800"],
+  weight: ["500", "600", "700"],
   variable: "--font-serif",
+  display: "swap",
+  adjustFontFallback: true,
 });
 
 const sans = Inter({

@@ -825,17 +825,17 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
     border-radius: 999px;
     transform: translate(-50%, -50%);
     background: radial-gradient(
       circle,
-      oklch(0.82 0.12 82 / 0.085) 0%,
-      oklch(0.72 0.1 78 / 0.04) 26%,
-      transparent 48%
+      oklch(0.82 0.12 82 / 0.065) 0%,
+      oklch(0.74 0.1 78 / 0.032) 22%,
+      transparent 40%
     );
-    filter: blur(2.5px);
+    filter: blur(1.25px);
     opacity: 0;
     transition: opacity 220ms ease;
     will-change: left, top;
@@ -860,8 +860,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 0 8px oklch(0.72 0.1 78 / 0.55))
-      drop-shadow(0 1px 10px oklch(0.05 0.02 320 / 0.75));
+    filter: drop-shadow(0 0 4px oklch(0.72 0.1 78 / 0.45))
+      drop-shadow(0 1px 5px oklch(0.05 0.02 320 / 0.65));
   }
 }
 

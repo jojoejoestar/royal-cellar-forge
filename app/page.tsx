@@ -1,49 +1,86 @@
+import dynamic from "next/dynamic";
+import { Suspense } from "react";
+import { ClientDeferredShell } from "@/components/site/ClientDeferredShell";
 import { Navigation } from "@/components/site/Navigation";
 import { Hero } from "@/components/site/Hero";
-import { Philosophy } from "@/components/site/Philosophy";
-import { Heritage } from "@/components/site/Heritage";
-import { Catalog } from "@/components/site/Catalog";
-import { Gallery } from "@/components/site/Gallery";
-import { Tasting } from "@/components/site/Tasting";
-import { Sommelier } from "@/components/site/Sommelier";
-import { Chalet } from "@/components/site/Chalet";
-import { Faq } from "@/components/site/Faq";
-import { Confraria } from "@/components/site/Confraria";
-import { Footer } from "@/components/site/Footer";
 import { SectionDivider } from "@/components/site/SectionDivider";
-import { CinematicForgeLayer } from "@/components/site/CinematicForgeLayer";
-import { SmoothDesktopScroll } from "@/components/site/SmoothDesktopScroll";
-import { GoldenGrapeCursor } from "@/components/site/GoldenGrapeCursor";
+
+const Philosophy = dynamic(() =>
+  import("@/components/site/Philosophy").then((m) => ({ default: m.Philosophy })),
+);
+const Heritage = dynamic(() =>
+  import("@/components/site/Heritage").then((m) => ({ default: m.Heritage })),
+);
+const Catalog = dynamic(() =>
+  import("@/components/site/Catalog").then((m) => ({ default: m.Catalog })),
+);
+const Gallery = dynamic(() =>
+  import("@/components/site/Gallery").then((m) => ({ default: m.Gallery })),
+);
+const Tasting = dynamic(() =>
+  import("@/components/site/Tasting").then((m) => ({ default: m.Tasting })),
+);
+const Sommelier = dynamic(() =>
+  import("@/components/site/Sommelier").then((m) => ({ default: m.Sommelier })),
+);
+const Chalet = dynamic(() =>
+  import("@/components/site/Chalet").then((m) => ({ default: m.Chalet })),
+);
+const Faq = dynamic(() => import("@/components/site/Faq").then((m) => ({ default: m.Faq })));
+const Confraria = dynamic(() =>
+  import("@/components/site/Confraria").then((m) => ({ default: m.Confraria })),
+);
+const Footer = dynamic(() =>
+  import("@/components/site/Footer").then((m) => ({ default: m.Footer })),
+);
 
 export default function HomePage() {
   return (
     <div className="relative min-h-screen text-foreground">
-      <SmoothDesktopScroll />
-      <GoldenGrapeCursor />
-      <CinematicForgeLayer />
+      <ClientDeferredShell />
       <Navigation />
       <main className="relative z-10">
         <Hero />
-        <Philosophy />
+        <Suspense fallback={null}>
+          <Philosophy />
+        </Suspense>
         <SectionDivider from="imperial" to="background" />
-        <Heritage />
+        <Suspense fallback={null}>
+          <Heritage />
+        </Suspense>
         <SectionDivider from="background" to="background" />
-        <Catalog />
+        <Suspense fallback={null}>
+          <Catalog />
+        </Suspense>
         <SectionDivider from="background" to="background" />
-        <Gallery />
+        <Suspense fallback={null}>
+          <Gallery />
+        </Suspense>
         <SectionDivider from="background" to="imperial" />
-        <Tasting />
+        <Suspense fallback={null}>
+          <Tasting />
+        </Suspense>
         <SectionDivider from="imperial" to="background" />
-        <Sommelier />
+        <Suspense fallback={null}>
+          <Sommelier />
+        </Suspense>
         <SectionDivider from="background" to="background" />
-        <Chalet />
+        <Suspense fallback={null}>
+          <Chalet />
+        </Suspense>
         <SectionDivider from="background" to="imperial" />
-        <Faq />
+        <Suspense fallback={null}>
+          <Faq />
+        </Suspense>
         <SectionDivider from="imperial" to="background" />
-        <Confraria />
+        <Suspense fallback={null}>
+          <Confraria />
+        </Suspense>
       </main>
       <SectionDivider from="background" to="imperial" />
-      <Footer />
+      <Suspense fallback={null}>
+        <Footer />
+      </Suspense>
     </div>
   );
 }

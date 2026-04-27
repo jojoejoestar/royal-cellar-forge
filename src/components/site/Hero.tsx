@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { SectionDivider } from "@/components/site/SectionDivider";
@@ -18,12 +19,15 @@ export function Hero() {
     >
       {/* Background image */}
       <div className="absolute inset-0">
-        <img
+        <Image
           src="/hero-background-new.png"
           alt="Adega real iluminada com luz dourada"
-          className="h-full w-full object-cover object-center"
-          width={1920}
-          height={1280}
+          fill
+          priority
+          fetchPriority="high"
+          sizes="100vw"
+          quality={85}
+          className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
         <div className="absolute inset-0 bg-gradient-to-r from-background via-background/30 to-transparent" />

@@ -20,9 +20,17 @@ export function Navigation() {
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
+    let ticking = false;
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 30);
+        ticking = false;
+      });
+    };
     onScroll();
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
@@ -42,8 +50,8 @@ export function Navigation() {
             alt="Cave Royale"
             width={220}
             height={74}
+            sizes="140px"
             className="h-10 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
-            priority
           />
         </a>
 

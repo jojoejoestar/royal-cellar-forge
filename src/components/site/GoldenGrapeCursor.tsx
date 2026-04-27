@@ -47,7 +47,7 @@ export function GoldenGrapeCursor() {
         cursorRef.current.style.opacity = "1";
       }
       if (auraRef.current) {
-        auraRef.current.style.opacity = "0.55";
+        auraRef.current.style.opacity = "0.38";
       }
     };
 
