@@ -58,6 +58,16 @@ export function Chalet() {
         ease: "power3.out",
         stagger: 0.14,
       });
+
+      const premiumCards = gsap.utils.toArray<HTMLElement>("[data-scroll-premium]", ref.current);
+      premiumCards.forEach((card) => {
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 88%",
+          end: "bottom 24%",
+          toggleClass: { targets: card, className: "is-scroll-lit" },
+        });
+      });
     }, ref);
     return () => ctx.revert();
   }, []);
@@ -175,7 +185,8 @@ export function Chalet() {
           {experiences.map((e) => (
             <div
               key={e.title}
-              className="chalet-card group relative overflow-hidden rounded-sm border border-gold/15 bg-card/40 p-8 backdrop-blur-sm transition-all duration-500 hover:border-gold/50 hover:shadow-gold-soft hover:-translate-y-1"
+              data-scroll-premium
+              className="chalet-card scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/15 bg-card/40 p-8 backdrop-blur-sm transition-all duration-500 hover:border-gold/50 hover:shadow-gold-soft hover:-translate-y-1"
             >
               <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-gold/5 blur-2xl transition-opacity duration-500 group-hover:bg-gold/15" />
               <div className="relative flex h-12 w-12 items-center justify-center rounded-sm border border-gold/40 bg-background/60">

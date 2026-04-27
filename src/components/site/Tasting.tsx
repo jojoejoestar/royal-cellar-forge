@@ -80,6 +80,16 @@ export function Tasting() {
         ease: "power3.out",
         stagger: 0.14,
       });
+
+      const premiumCards = gsap.utils.toArray<HTMLElement>("[data-scroll-premium]", sectionRef.current);
+      premiumCards.forEach((card) => {
+        ScrollTrigger.create({
+          trigger: card,
+          start: "top 88%",
+          end: "bottom 24%",
+          toggleClass: { targets: card, className: "is-scroll-lit" },
+        });
+      });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -121,14 +131,14 @@ export function Tasting() {
           {/* Hero image - pour */}
           <figure className="tast-hero image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />
-            <div className="relative">
+            <div className="relative leading-none">
               <img
                 src={pour.src}
                 alt="Decanter de cristal vertendo vinho em taça"
                 loading="lazy"
                 width={1280}
                 height={1600}
-                className="aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[640px]"
+                className="block aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[640px]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-onyx/95 via-onyx/30 to-transparent" />
               <figcaption className="absolute inset-x-0 bottom-0 p-8 lg:p-10">
@@ -155,7 +165,7 @@ export function Tasting() {
               loading="lazy"
               width={1280}
               height={1280}
-              className="h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[308px]"
+              className="block h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[308px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 p-6">
@@ -177,7 +187,7 @@ export function Tasting() {
               loading="lazy"
               width={1280}
               height={1280}
-              className="h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[308px]"
+              className="block h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[308px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 p-6">
@@ -214,7 +224,8 @@ export function Tasting() {
             return (
               <article
                 key={s.roman}
-                className="tast-step group relative overflow-hidden rounded-sm border border-gold/20 bg-onyx/50 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-gold/55"
+                data-scroll-premium
+                className="tast-step scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/20 bg-onyx/50 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-gold/55"
               >
                 <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative">

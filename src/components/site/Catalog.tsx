@@ -70,10 +70,9 @@ const wines: Wine[] = [
 export function Catalog() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const mobileResumeTimeoutRef = useRef<number | null>(null);
+  const mobileAutoPausedRef = useRef(false);
   const [active, setActive] = useState(0);
   const [flipped, setFlipped] = useState<number | null>(null);
-  const [mobileSlide, setMobileSlide] = useState(0);
-  const [mobileAutoPaused, setMobileAutoPaused] = useState(false);
 
   useLayoutEffect(() => {
     if (!sectionRef.current) return;
@@ -147,53 +146,73 @@ export function Catalog() {
   const prev = () => setActive((p) => (p - 1 + wines.length) % wines.length);
 
   const pauseMobileAutoplay = () => {
-    setMobileAutoPaused(true);
+    mobileAutoPausedRef.current = true;
     if (mobileResumeTimeoutRef.current) {
       window.clearTimeout(mobileResumeTimeoutRef.current);
     }
     mobileResumeTimeoutRef.current = window.setTimeout(() => {
-      setMobileAutoPaused(false);
+      mobileAutoPausedRef.current = false;
+      mobileResumeTimeoutRef.current = null;
     }, 4500);
   };
 
   useEffect(() => {
     const media = window.matchMedia("(max-width: 639px)");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
     let timer: number | null = null;
+    const section = sectionRef.current;
+    let sectionVisible = false;
+    if (section) {
+      const r = section.getBoundingClientRect();
+      const vh = window.innerHeight || document.documentElement.clientHeight;
+      sectionVisible = r.bottom > 0 && r.top < vh * 0.94;
+    }
 
-    const syncSlide = () => {
-      if (!media.matches) {
-        if (timer) {
-          window.clearInterval(timer);
-          timer = null;
-        }
-        return;
-      }
-
-      if (timer) {
+    const clearTimer = () => {
+      if (timer !== null) {
         window.clearInterval(timer);
+        timer = null;
       }
-
-      timer = window.setInterval(() => {
-        setMobileSlide((prevSlide) => {
-          if (mobileAutoPaused) return prevSlide;
-          return (prevSlide + 1) % wines.length;
-        });
-      }, 2800);
     };
 
-    syncSlide();
-    media.addEventListener("change", syncSlide);
+    const startTimer = () => {
+      clearTimer();
+      if (!media.matches || reducedMotion.matches) return;
+      timer = window.setInterval(() => {
+        if (mobileAutoPausedRef.current || !sectionVisible) return;
+        setActive((i) => (i + 1) % wines.length);
+      }, 3400);
+    };
+
+    const onBreakpointOrMotion = () => startTimer();
+
+    let io: IntersectionObserver | null = null;
+    if (section && typeof IntersectionObserver !== "undefined") {
+      io = new IntersectionObserver(
+        (entries) => {
+          sectionVisible = entries[0]?.isIntersecting ?? false;
+        },
+        { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
+      );
+      io.observe(section);
+    } else {
+      sectionVisible = true;
+    }
+
+    startTimer();
+    media.addEventListener("change", onBreakpointOrMotion);
+    reducedMotion.addEventListener("change", onBreakpointOrMotion);
 
     return () => {
-      media.removeEventListener("change", syncSlide);
-      if (timer) {
-        window.clearInterval(timer);
-      }
+      media.removeEventListener("change", onBreakpointOrMotion);
+      reducedMotion.removeEventListener("change", onBreakpointOrMotion);
+      clearTimer();
+      io?.disconnect();
       if (mobileResumeTimeoutRef.current) {
         window.clearTimeout(mobileResumeTimeoutRef.current);
       }
     };
-  }, [mobileAutoPaused]);
+  }, []);
 
   return (
     <section
@@ -391,15 +410,14 @@ export function Catalog() {
             onMouseEnter={pauseMobileAutoplay}
           >
             <motion.div
-              animate={{ x: `${-mobileSlide * 100}%` }}
-              transition={{ duration: 0.55, ease: [0.25, 1, 0.5, 1] }}
+              animate={{ x: `${-active * 100}%` }}
+              transition={{ duration: 0.65, ease: [0.25, 1, 0.5, 1] }}
               className="flex"
             >
               {wines.map((w, i) => (
                 <button
                   key={`mobile-slide-${w.name}`}
                   onClick={() => {
-                    setMobileSlide(i);
                     setActive(i);
                     pauseMobileAutoplay();
                   }}
@@ -438,11 +456,11 @@ export function Catalog() {
               <button
                 key={`mobile-dot-${i}`}
                 onClick={() => {
-                  setMobileSlide(i);
+                  setActive(i);
                   pauseMobileAutoplay();
                 }}
                 className={`h-1 rounded-full transition-all ${
-                  i === mobileSlide ? "w-7 bg-gold" : "w-3 bg-gold/30"
+                  i === active ? "w-7 bg-gold" : "w-3 bg-gold/30"
                 }`}
                 aria-label={`Exibir item ${i + 1}`}
               />
