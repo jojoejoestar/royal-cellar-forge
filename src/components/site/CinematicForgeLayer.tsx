@@ -271,13 +271,10 @@ export function CinematicForgeLayer() {
 
         if (spotlight && !reducedMotion) {
           const moveSpotlight = (event: PointerEvent) => {
-            gsap.to(spotlight, {
+            gsap.set(spotlight, {
               x: event.clientX,
               y: event.clientY,
               force3D: true,
-              duration: 0.35,
-              ease: "power2.out",
-              overwrite: true,
             });
           };
 
