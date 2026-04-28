@@ -322,7 +322,7 @@ export function CinematicForgeLayer() {
 
   return (
     <div ref={rootRef} className="pointer-events-none fixed inset-0 z-40 overflow-hidden">
-      <div className="forge-cursor-spotlight pointer-events-none absolute left-0 top-0 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full will-change-transform" />
+      <div className="forge-cursor-spotlight pointer-events-none absolute left-0 top-0 h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full will-change-transform" />
       <div className="forge-noise absolute inset-0" />
       <div className="forge-vignette absolute inset-0" />
       <div className="forge-particles absolute inset-0" aria-hidden>
