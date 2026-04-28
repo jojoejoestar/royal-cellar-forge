@@ -52,10 +52,11 @@ export function Faq() {
 
       const faqItems = gsap.utils.toArray<HTMLElement>(".faq-item", ref.current);
       faqItems.forEach((item, index) => {
-        gsap.set(item, { autoAlpha: 0, x: index % 2 === 0 ? -32 : 32 });
+        gsap.set(item, { autoAlpha: 0, x: index % 2 === 0 ? -32 : 32, force3D: true });
         gsap.to(item, {
           autoAlpha: 1,
           x: 0,
+          force3D: true,
           duration: 0.85,
           ease: revealEase,
           scrollTrigger: {
@@ -76,9 +77,7 @@ export function Faq() {
 
       <div className="relative mx-auto max-w-4xl px-6 lg:px-10">
         <div className="text-center">
-          <p className="faq-heading text-xs uppercase tracking-[0.5em] text-gold">
-            Dúvidas Aristocráticas
-          </p>
+          <p className="faq-heading text-xs uppercase tracking-[0.5em] text-gold">Dúvidas Aristocráticas</p>
           <div className="faq-heading mx-auto mt-6 gold-divider w-32" />
           <AnimatedTitle
             as="h2"
@@ -101,17 +100,19 @@ export function Faq() {
                 className="flex w-full items-center justify-between gap-6 px-7 py-6 text-left"
               >
                 <span className="font-serif text-lg text-champagne md:text-xl">{f.q}</span>
-                <span className="shrink-0 rounded-full border border-gold/40 p-1.5 text-gold transition-transform">
+                <span className="shrink-0 rounded-full border border-gold/40 p-1.5 text-gold transition-transform will-change-transform">
                   {open === i ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
                 </span>
               </button>
               <AnimatePresence initial={false}>
                 {open === i && (
                   <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: "auto", opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.4, ease: [0.25, 1, 0.5, 1] }}
+                    key={`faq-body-${i}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 4 }}
+                    transition={{ duration: 0.36, ease: [0.25, 1, 0.5, 1] }}
+                    className="will-change-transform"
                   >
                     <div className="px-7 pb-7 text-[15px] font-light leading-relaxed text-champagne/75">
                       {f.a}

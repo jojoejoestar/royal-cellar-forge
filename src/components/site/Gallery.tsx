@@ -274,7 +274,7 @@ export function Gallery() {
                 <button
                   key={r}
                   onClick={() => setFilter(r)}
-                  className={`rounded-sm border px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] transition-all duration-300 ${
+                  className={`rounded-sm border px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] transition-[border-color,background-color,color,box-shadow,opacity] duration-300 ${
                     active
                       ? "border-gold bg-gold text-onyx shadow-gold-soft"
                       : "border-gold/25 text-champagne/70 hover:border-gold/60 hover:text-gold"
@@ -328,7 +328,7 @@ export function Gallery() {
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: i * 0.04 }}
                   onClick={() => setSelected(w)}
-                  className="gal-card image-hover-luxury group relative flex h-[570px] w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-all duration-500 hover:border-gold/55 sm:w-[320px]"
+                  className="gal-card image-hover-luxury group relative flex h-[570px] w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-[transform,box-shadow,border-color] duration-500 will-change-transform hover:border-gold/55 sm:w-[320px]"
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative z-10 flex items-center justify-between border-b border-gold/15 bg-onyx px-4 py-3">
@@ -375,7 +375,7 @@ export function Gallery() {
                     <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-gold/80">
                       {w.marketPrice}
                     </p>
-                    <span className="mt-auto inline-flex items-center gap-2 pt-4 text-[11px] uppercase tracking-[0.25em] text-gold transition-all group-hover:gap-3">
+                    <span className="mt-auto inline-flex items-center gap-2 pt-4 text-[11px] uppercase tracking-[0.25em] text-gold transition-transform duration-300 will-change-transform group-hover:translate-x-1">
                       Ver Ficha Completa →
                     </span>
                   </div>

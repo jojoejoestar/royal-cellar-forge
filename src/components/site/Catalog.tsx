@@ -290,8 +290,8 @@ export function Catalog() {
                       setActive(i);
                       pauseMobileAutoplay();
                     }}
-                    className={`h-1 shrink-0 rounded-full transition-all duration-300 ${
-                      i === active ? "w-7 bg-gold" : "w-2.5 bg-gold/35"
+                    className={`h-1 w-7 shrink-0 origin-center rounded-full transition-[transform,background-color] duration-300 will-change-transform ${
+                      i === active ? "scale-x-100 bg-gold" : "scale-x-[0.36] bg-gold/35"
                     }`}
                     aria-label={`Exibir ${wines[i].name}`}
                     aria-current={i === active}
@@ -379,8 +379,8 @@ export function Catalog() {
                     key={i}
                     type="button"
                     onClick={() => setActive(i)}
-                    className={`h-1 rounded-full transition-all ${
-                      i === active ? "w-8 bg-gold" : "w-4 bg-gold/30"
+                    className={`h-1 w-8 origin-center rounded-full transition-[transform,background-color] duration-300 will-change-transform ${
+                      i === active ? "scale-x-100 bg-gold" : "scale-x-50 bg-gold/30"
                     }`}
                     aria-label={`Slide ${i + 1}`}
                   />
@@ -435,7 +435,7 @@ export function Catalog() {
               onClick={() => setActive(i)}
               onMouseEnter={() => setFlipped(i)}
               onMouseLeave={() => setFlipped(null)}
-              className="cat-card image-hover-luxury group relative h-80 overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-all duration-500 hover:border-gold/50 hover:-translate-y-1"
+              className="cat-card image-hover-luxury group relative h-80 overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-[transform,box-shadow,border-color] duration-500 will-change-transform hover:border-gold/50 hover:-translate-y-1"
             >
               <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <AnimatePresence>

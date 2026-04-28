@@ -344,23 +344,109 @@
     backface-visibility: hidden;
   }
 
+  @keyframes forge-btn-cinematic-sheen {
+    0%,
+    100% {
+      opacity: 0.3;
+      transform: translate3d(0, 0, 0) scale(1);
+    }
+    50% {
+      opacity: 0.55;
+      transform: translate3d(0, -1px, 0) scale(1.01);
+    }
+  }
+
+  @keyframes forge-outline-cinematic {
+    0%,
+    100% {
+      opacity: 0.22;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(1.008);
+    }
+  }
+
+  @keyframes hero-scroll-cue-line {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 0.85;
+    }
+  }
+
+  .hero-scroll-cue-line {
+    animation: hero-scroll-cue-line 2s ease-in-out infinite;
+  }
+
   .btn-gold-glow {
     position: relative;
+    isolation: isolate;
+    overflow: visible;
     background: var(--gradient-gold);
     color: var(--onyx);
     box-shadow: 0 0 0 1px oklch(0.8 0.12 82 / 0.5), 0 8px 24px oklch(0.72 0.10 78 / 0.35);
-    transition: all 0.4s var(--ease-luxury);
+    transition:
+      transform 0.4s var(--ease-luxury),
+      box-shadow 0.4s var(--ease-luxury);
+  }
+  .btn-gold-glow::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      165deg,
+      oklch(1 0 0 / 0.16) 0%,
+      transparent 40%,
+      oklch(0.75 0.08 78 / 0.12) 100%
+    );
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 0;
+    animation: forge-btn-cinematic-sheen 2.6s ease-in-out infinite;
+  }
+  .btn-gold-glow > * {
+    position: relative;
+    z-index: 1;
   }
   .btn-gold-glow:hover {
     box-shadow: 0 0 0 1px oklch(0.8 0.12 82 / 0.8), 0 12px 40px oklch(0.72 0.10 78 / 0.55), 0 0 60px oklch(0.72 0.10 78 / 0.4);
-    transform: translateY(-2px);
+    transform: translate3d(0, -2px, 0);
   }
 
   .btn-outline-gold {
     border: 1px solid oklch(0.72 0.10 78 / 0.5);
     color: var(--gold);
     background: oklch(0.72 0.10 78 / 0.04);
-    transition: all 0.35s var(--ease-luxury);
+    position: relative;
+    isolation: isolate;
+    transition:
+      background-color 0.35s var(--ease-luxury),
+      border-color 0.35s var(--ease-luxury),
+      box-shadow 0.35s var(--ease-luxury);
+  }
+  .btn-outline-gold::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: radial-gradient(
+      120% 100% at 50% 0%,
+      oklch(0.72 0.1 78 / 0.2) 0%,
+      transparent 58%
+    );
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: 0;
+    animation: forge-outline-cinematic 3.1s ease-in-out infinite;
+  }
+  .btn-outline-gold > * {
+    position: relative;
+    z-index: 1;
   }
   .btn-outline-gold:hover {
     background: oklch(0.72 0.10 78 / 0.12);
@@ -376,13 +462,12 @@
 
   .image-hover-luxury {
     position: relative;
+    will-change: transform;
     transition:
       border-color 420ms var(--ease-luxury),
       box-shadow 420ms var(--ease-luxury),
-      transform 420ms var(--ease-luxury),
-      filter 420ms var(--ease-luxury);
+      transform 420ms var(--ease-luxury);
   }
-
   .image-hover-luxury::after {
     content: "";
     position: absolute;
@@ -412,71 +497,37 @@
     opacity: 1;
   }
 
-  /* Scroll-reveal: só borda dourada animada (sem “vidro” / sheen no preenchimento) */
+  /* Cartões premium (Filosofia, Degustação, Chalé): brilho dourado no hover/foco, sem borda cônica */
   .scroll-premium-card {
     position: relative;
     isolation: isolate;
-    transition: border-color 520ms var(--ease-luxury);
+    transition:
+      border-color 520ms var(--ease-luxury),
+      box-shadow 520ms var(--ease-luxury),
+      background-color 520ms var(--ease-luxury);
   }
 
-  .scroll-premium-card::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: conic-gradient(
-      from 200deg,
-      oklch(0.58 0.06 78 / 0.12),
-      oklch(0.74 0.1 80 / 0.42),
-      oklch(0.82 0.11 82 / 0.55),
-      oklch(0.7 0.09 78 / 0.38),
-      oklch(0.58 0.06 78 / 0.12)
-    );
-    opacity: 0;
-    pointer-events: none;
-    z-index: 0;
-    transition: opacity 480ms var(--ease-luxury);
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask-composite: exclude;
-    transform-origin: 50% 50%;
-  }
-
-  .scroll-premium-card > * {
-    position: relative;
-    z-index: 1;
-  }
-
-  .scroll-premium-card.is-scroll-lit {
-    border-color: oklch(0.72 0.1 78 / 0.22) !important;
-    box-shadow: none;
-    filter: none;
-  }
-
-  .scroll-premium-card.is-scroll-lit::before {
-    opacity: 1;
-    animation: scroll-premium-border-orbit 6.5s linear infinite;
-  }
-
-  @keyframes scroll-premium-border-orbit {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
+  @media (hover: hover) and (pointer: fine) {
+    .scroll-premium-card:hover {
+      box-shadow:
+        0 0 0 1px oklch(0.72 0.1 78 / 0.35),
+        0 14px 48px -18px oklch(0.05 0.02 0 / 0.55),
+        0 0 56px -12px oklch(0.75 0.1 80 / 0.22);
     }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .scroll-premium-card.is-scroll-lit::before {
-      animation: none;
-      opacity: 0.75;
+  .scroll-premium-card:focus-within {
+    box-shadow:
+      0 0 0 1px oklch(0.72 0.1 78 / 0.35),
+      0 14px 48px -18px oklch(0.05 0.02 0 / 0.55),
+      0 0 56px -12px oklch(0.75 0.1 80 / 0.22);
+  }
+
+  @media (hover: none) {
+    .scroll-premium-card:active {
+      box-shadow:
+        0 0 0 1px oklch(0.72 0.1 78 / 0.3),
+        0 8px 32px -12px oklch(0.75 0.1 80 / 0.16);
     }
   }
 
@@ -493,6 +544,7 @@
     transform: scaleX(0);
     transform-origin: left;
     transition: transform 500ms ease-out;
+    z-index: 2;
   }
 
   .btn-gold-glow:hover::after,
@@ -530,6 +582,15 @@
   }
 
   @media (prefers-reduced-motion: reduce) {
+    .btn-gold-glow::before,
+    .btn-outline-gold::before {
+      animation: none !important;
+      opacity: 0.42;
+    }
+    .hero-scroll-cue-line {
+      animation: none !important;
+      opacity: 0.6;
+    }
     .forge-particle-core,
     .forge-particle-bright {
       animation: none !important;
@@ -651,11 +712,9 @@
   }
 
   .luxury-title-interactive {
-    will-change: transform, text-shadow, letter-spacing;
+    will-change: transform;
     transform-origin: 50% 50%;
-    transition:
-      text-shadow 0.5s ease-out,
-      letter-spacing 0.5s ease-out;
+    transition: text-shadow 0.5s ease-out, transform 0.5s ease-out;
   }
 
   .luxury-title-interactive.is-active {
@@ -747,7 +806,7 @@
   .luxury-title-interactive:hover,
   .luxury-link:hover,
   .luxury-action:hover {
-    letter-spacing: 0.03em;
+    transform: translateZ(0) scale(1.006);
     text-shadow:
       0 1px 0 oklch(0.95 0.05 92 / 0.75),
       0 0 26px rgba(212, 175, 55, 0.55),
@@ -757,15 +816,30 @@
   .luxury-link,
   .luxury-action {
     transition:
-      letter-spacing 0.5s ease-out,
       text-shadow 0.5s ease-out,
-      color 0.5s ease-out;
+      color 0.5s ease-out,
+      transform 0.5s ease-out;
   }
 
   .luxury-highlight-interactive {
-    will-change: transform, filter;
+    will-change: transform;
     transform-origin: 50% 50%;
-    transition: filter 0.35s var(--ease-luxury);
+  }
+
+  .luxury-highlight-interactive.is-forge-bright {
+    filter: brightness(1.25) saturate(1.15);
+  }
+
+  .luxury-media-interactive {
+    will-change: transform;
+    transform-style: preserve-3d;
+    box-shadow: 0 12px 28px oklch(0.05 0 0 / 0.2);
+    transition: box-shadow 0.32s var(--ease-luxury);
+  }
+
+  .luxury-media-interactive.is-luxury-hover {
+    box-shadow: 0 18px 36px oklch(0.05 0 0 / 0.3);
+    filter: brightness(1.07) saturate(1.08);
   }
 
   .luxury-title-interactive .text-gradient-gold {
@@ -828,7 +902,6 @@
     width: 20px;
     height: 20px;
     border-radius: 999px;
-    transform: translate(-50%, -50%);
     background: radial-gradient(
       circle,
       oklch(0.82 0.12 82 / 0.065) 0%,
@@ -838,7 +911,7 @@
     filter: blur(1.25px);
     opacity: 0;
     transition: opacity 220ms ease;
-    will-change: left, top;
+    will-change: transform;
   }
 
   .grape-cursor-dot {
@@ -847,10 +920,9 @@
     top: 0;
     width: 32px;
     height: 32px;
-    transform: translate(-50%, -50%);
     opacity: 0;
     transition: opacity 170ms ease;
-    will-change: left, top;
+    will-change: transform;
     display: flex;
     align-items: center;
     justify-content: center;

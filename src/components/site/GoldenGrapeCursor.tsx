@@ -3,6 +3,11 @@
 import { Grape } from "lucide-react";
 import { useEffect, useRef } from "react";
 
+function setTranslateCentered(el: HTMLElement | null, x: number, y: number, halfW: number, halfH: number) {
+  if (!el) return;
+  el.style.transform = `translate3d(${x - halfW}px, ${y - halfH}px, 0)`;
+}
+
 export function GoldenGrapeCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
   const auraRef = useRef<HTMLDivElement>(null);
@@ -30,10 +35,7 @@ export function GoldenGrapeCursor() {
     const tick = () => {
       ax += (tx - ax) * 0.2;
       ay += (ty - ay) * 0.2;
-      if (auraRef.current) {
-        auraRef.current.style.left = `${ax}px`;
-        auraRef.current.style.top = `${ay}px`;
-      }
+      setTranslateCentered(auraRef.current, ax, ay, 10, 10);
       rafRef.current = requestAnimationFrame(tick);
     };
 
@@ -41,9 +43,8 @@ export function GoldenGrapeCursor() {
       tx = event.clientX;
       ty = event.clientY;
 
+      setTranslateCentered(cursorRef.current, event.clientX, event.clientY, 16, 16);
       if (cursorRef.current) {
-        cursorRef.current.style.left = `${event.clientX}px`;
-        cursorRef.current.style.top = `${event.clientY}px`;
         cursorRef.current.style.opacity = "1";
       }
       if (auraRef.current) {

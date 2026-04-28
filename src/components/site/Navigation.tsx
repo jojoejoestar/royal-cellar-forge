@@ -39,7 +39,7 @@ export function Navigation() {
       initial={{ y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-500 ${
+      className={`will-change-transform fixed inset-x-0 top-0 z-50 transition-[padding,box-shadow,background-color,backdrop-filter] duration-500 ${
         scrolled ? "glass-scarlet py-3" : "py-6"
       }`}
     >
@@ -51,7 +51,8 @@ export function Navigation() {
             width={220}
             height={74}
             sizes="140px"
-            className="h-10 w-auto transition-transform duration-300 group-hover:scale-[1.02]"
+            priority
+            className="h-10 w-auto will-change-transform transition-transform duration-300 group-hover:scale-[1.02]"
           />
         </a>
 
@@ -84,7 +85,7 @@ export function Navigation() {
           initial={{ opacity: 0, x: 30 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.45, ease: [0.25, 1, 0.5, 1] }}
-          className="md:hidden glass-scarlet mt-3 mx-6 rounded-sm border border-gold/20 p-6 flex flex-col gap-5"
+          className="will-change-transform mx-6 mt-3 flex flex-col gap-5 rounded-sm border border-gold/20 p-6 glass-scarlet md:hidden"
         >
           {links.map((l) => (
             <a

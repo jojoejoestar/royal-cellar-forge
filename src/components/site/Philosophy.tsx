@@ -57,16 +57,6 @@ export function Philosophy() {
         { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
         { trigger: ".philo-grid", start: "top 88%" },
       );
-
-      const premiumCards = gsap.utils.toArray<HTMLElement>("[data-scroll-premium]", ref.current);
-      premiumCards.forEach((card) => {
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 88%",
-          end: "bottom 24%",
-          toggleClass: { targets: card, className: "is-scroll-lit" },
-        });
-      });
     }, ref);
     return () => ctx.revert();
   }, []);
@@ -151,8 +141,7 @@ export function Philosophy() {
           {pillars.map((p) => (
             <div
               key={p.title}
-              data-scroll-premium
-              className="philo-pillar scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/15 bg-background/40 p-10 backdrop-blur-sm transition-all duration-500 hover:border-gold/40 hover:bg-background/60"
+              className="philo-pillar scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/15 bg-background/40 p-10 backdrop-blur-sm transition-[border-color,box-shadow,background-color] duration-500 will-change-transform hover:border-gold/40 hover:bg-background/60"
             >
               <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <p.icon className="mx-auto h-9 w-9 text-gold transition-transform duration-500 group-hover:scale-110" />

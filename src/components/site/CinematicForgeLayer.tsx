@@ -148,15 +148,6 @@ export function CinematicForgeLayer() {
           transformOrigin: "50% 50%",
         });
 
-        gsap.to(".btn-gold-glow, .btn-outline-gold", {
-          boxShadow:
-            "0 0 0 1px oklch(0.8 0.12 82 / 0.85), 0 0 42px oklch(0.72 0.10 78 / 0.45)",
-          duration: 2.6,
-          ease: "sine.inOut",
-          repeat: reducedMotion ? 0 : -1,
-          yoyo: true,
-        });
-
         const highlightTargets = gsap.utils.toArray<HTMLElement>(
           ".text-gradient-gold, .gold-divider, .section-ornament",
         );
@@ -184,21 +175,11 @@ export function CinematicForgeLayer() {
           node.classList.add("luxury-highlight-interactive");
           const toY = gsap.quickTo(node, "y", { duration: 0.34, ease: "power2.out" });
           const enter = () => {
-            gsap.to(node, {
-              filter: "brightness(1.25) saturate(1.15)",
-              duration: 0.28,
-              ease: "power2.out",
-              overwrite: true,
-            });
+            node.classList.add("is-forge-bright");
             toY(-2);
           };
           const leave = () => {
-            gsap.to(node, {
-              filter: "brightness(1) saturate(1)",
-              duration: 0.33,
-              ease: "power2.out",
-              overwrite: true,
-            });
+            node.classList.remove("is-forge-bright");
             toY(0);
           };
           node.addEventListener("mouseenter", enter);
@@ -223,7 +204,7 @@ export function CinematicForgeLayer() {
           gsap.set(node, {
             transformPerspective: 900,
             transformStyle: "preserve-3d",
-            willChange: "transform, filter, box-shadow",
+            willChange: "transform",
           });
 
           const toX = gsap.quickTo(node, "x", { duration: 0.34, ease: "power2.out" });
@@ -234,13 +215,7 @@ export function CinematicForgeLayer() {
 
           const enter = () => {
             toScale(1.012);
-            gsap.to(node, {
-              filter: "brightness(1.07) saturate(1.08)",
-              boxShadow: "0 18px 36px oklch(0.05 0 0 / 0.3)",
-              duration: 0.32,
-              ease: "power2.out",
-              overwrite: true,
-            });
+            node.classList.add("is-luxury-hover");
           };
 
           const leave = () => {
@@ -249,13 +224,7 @@ export function CinematicForgeLayer() {
             toRotateX(0);
             toRotateY(0);
             toScale(1);
-            gsap.to(node, {
-              filter: "brightness(1) saturate(1)",
-              boxShadow: "none",
-              duration: 0.36,
-              ease: "power2.out",
-              overwrite: true,
-            });
+            node.classList.remove("is-luxury-hover");
           };
 
           const move = (event: MouseEvent) => {
@@ -280,9 +249,10 @@ export function CinematicForgeLayer() {
             node.removeEventListener("mouseleave", leave);
             node.removeEventListener("mousemove", move);
             node.classList.remove("luxury-media-interactive");
+            node.classList.remove("is-luxury-hover");
             gsap.set(node, {
               clearProps:
-                "x,y,rotateX,rotateY,scale,filter,boxShadow,transformPerspective,transformStyle,willChange",
+                "x,y,rotateX,rotateY,scale,transformPerspective,transformStyle,willChange",
             });
           });
         };
@@ -292,10 +262,9 @@ export function CinematicForgeLayer() {
             node.removeEventListener("mouseenter", enter);
             node.removeEventListener("mouseleave", leave);
             node.removeEventListener("mousemove", move);
-            node.classList.remove("luxury-highlight-interactive");
+            node.classList.remove("luxury-highlight-interactive", "is-forge-bright");
             gsap.set(node, {
-              clearProps:
-                "x,y,rotateX,rotateY,scale,letterSpacing,filter,transform,perspective,transformStyle",
+              clearProps: "x,y,scale,transform,perspective,transformStyle",
             });
           });
         };
@@ -305,6 +274,7 @@ export function CinematicForgeLayer() {
             gsap.to(spotlight, {
               x: event.clientX,
               y: event.clientY,
+              force3D: true,
               duration: 0.35,
               ease: "power2.out",
               overwrite: true,
@@ -327,15 +297,6 @@ export function CinematicForgeLayer() {
 
       mm.add("(max-width: 1024px), (pointer: coarse)", () => {
         const revealTargets = gsap.utils.toArray<HTMLElement>("section");
-
-        gsap.to(".btn-gold-glow, .btn-outline-gold", {
-          boxShadow:
-            "0 0 0 1px oklch(0.8 0.12 82 / 0.65), 0 0 30px oklch(0.72 0.10 78 / 0.3)",
-          duration: 3.1,
-          ease: "sine.inOut",
-          repeat: reducedMotion ? 0 : -1,
-          yoyo: true,
-        });
 
         revealTargets.forEach((section, index) => {
           if (section.id === "top") return;
@@ -361,7 +322,7 @@ export function CinematicForgeLayer() {
 
   return (
     <div ref={rootRef} className="pointer-events-none fixed inset-0 z-40 overflow-hidden">
-      <div className="forge-cursor-spotlight absolute left-0 top-0 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full" />
+      <div className="forge-cursor-spotlight pointer-events-none absolute left-0 top-0 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full will-change-transform" />
       <div className="forge-noise absolute inset-0" />
       <div className="forge-vignette absolute inset-0" />
       <div className="forge-particles absolute inset-0" aria-hidden>

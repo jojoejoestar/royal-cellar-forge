@@ -82,16 +82,6 @@ export function Tasting() {
         { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
         { trigger: ".tast-grid", start: "top 88%" },
       );
-
-      const premiumCards = gsap.utils.toArray<HTMLElement>("[data-scroll-premium]", sectionRef.current);
-      premiumCards.forEach((card) => {
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 88%",
-          end: "bottom 24%",
-          toggleClass: { targets: card, className: "is-scroll-lit" },
-        });
-      });
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -226,8 +216,7 @@ export function Tasting() {
             return (
               <article
                 key={s.roman}
-                data-scroll-premium
-                className="tast-step scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/20 bg-onyx/50 p-7 backdrop-blur-sm transition-all duration-500 hover:-translate-y-1 hover:border-gold/55"
+                className="tast-step scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/20 bg-onyx/50 p-7 backdrop-blur-sm transition-[transform,box-shadow,border-color,background-color] duration-500 will-change-transform hover:-translate-y-1 hover:border-gold/55"
               >
                 <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative">

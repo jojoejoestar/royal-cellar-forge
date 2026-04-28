@@ -17,7 +17,7 @@ export function Hero() {
       id="top"
       className="relative w-full overflow-x-clip overflow-y-visible bg-transparent md:min-h-screen"
     >
-      {/* Background image */}
+      {/* Background image — LCP: prioritize decode path + responsive selection */}
       <div className="absolute inset-0">
         <Image
           src="/hero-background-new.png"
@@ -25,8 +25,9 @@ export function Hero() {
           fill
           priority
           fetchPriority="high"
-          sizes="100vw"
-          quality={85}
+          decoding="sync"
+          sizes="(max-width: 768px) 100vw, 100vw"
+          quality={82}
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />
@@ -41,7 +42,7 @@ export function Hero() {
         {particles.map((_, i) => (
           <span
             key={i}
-            className="hero-firefly absolute block h-1 w-1 rounded-full bg-gold/75 shadow-[0_0_6px_oklch(0.72_0.1_78_/_0.55)]"
+            className="hero-firefly absolute block h-1 w-1 rounded-full bg-gold/75 shadow-[0_0_6px_oklch(0.72_0.1_78_/_0.55)] will-change-transform"
             style={fireflyMotionStyle(i, 0.42)}
           />
         ))}
@@ -53,14 +54,14 @@ export function Hero() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0.45 }}
           transition={{ duration: 1.05, delay: 0.1, ease: heroEase }}
-          className="mx-auto w-full min-w-0 max-w-3xl text-center md:mx-0 md:text-left"
+          className="will-change-transform mx-auto w-full min-w-0 max-w-3xl text-center md:mx-0 md:text-left"
         >
           <motion.div
             initial={{ opacity: 0, x: -26 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.8 }}
             transition={{ duration: 0.75, delay: 0.2, ease: heroEase }}
-            className="mb-7 flex w-full min-w-0 flex-wrap items-center justify-center gap-x-3 gap-y-2 md:mb-8 md:flex-nowrap md:justify-start"
+            className="mb-7 flex w-full min-w-0 flex-wrap items-center justify-center gap-x-3 gap-y-2 will-change-transform md:mb-8 md:flex-nowrap md:justify-start"
           >
             <span className="hidden h-px w-10 shrink-0 bg-gold sm:block md:w-12" />
             <span className="inline-flex max-w-full min-w-0 items-center justify-center gap-2 text-center text-[10px] uppercase tracking-[0.22em] text-gold sm:text-xs sm:tracking-[0.32em] md:justify-start md:text-left md:tracking-[0.4em]">
@@ -74,9 +75,7 @@ export function Hero() {
           >
             O Tempo Engarrafado.
             <br />
-            <span className="optical-word optical-word-realeza italic text-gradient-gold">
-              A Realeza
-            </span>{" "}
+            <span className="optical-word optical-word-realeza italic text-gradient-gold">A Realeza</span>{" "}
             <span className="text-champagne">em Cada Taça.</span>
           </AnimatedTitle>
 
@@ -85,10 +84,10 @@ export function Hero() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.7 }}
             transition={{ duration: 0.88, delay: 0.35, ease: heroEase }}
-            className="mx-auto mt-6 max-w-xl px-0.5 text-[0.98rem] font-light leading-relaxed text-champagne/78 md:mx-0 md:mt-8 md:px-0 md:text-lg"
+            className="mx-auto mt-6 max-w-xl px-0.5 will-change-transform text-[0.98rem] font-light leading-relaxed text-champagne/78 md:mx-0 md:mt-8 md:px-0 md:text-lg"
           >
-            Uma curadoria exclusiva de rótulos raros e safras históricas. Para paladares que exigem
-            a excelência absoluta e o verdadeiro sabor do terroir.
+            Uma curadoria exclusiva de rótulos raros e safras históricas. Para paladares que exigem a
+            excelência absoluta e o verdadeiro sabor do terroir.
           </motion.p>
 
           <motion.div
@@ -96,14 +95,14 @@ export function Hero() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.65 }}
             transition={{ duration: 0.95, delay: 0.5, ease: heroEase }}
-            className="mx-auto mt-8 flex w-full min-w-0 max-w-md flex-col items-stretch gap-3.5 sm:mt-10 sm:max-w-none sm:w-auto sm:flex-row sm:items-center sm:gap-4 md:mx-0 md:items-start"
+            className="mx-auto mt-8 flex w-full min-w-0 max-w-md will-change-transform flex-col items-stretch gap-3.5 sm:mt-10 sm:max-w-none sm:w-auto sm:flex-row sm:items-center sm:gap-4 md:mx-0 md:items-start"
           >
             <a
               href="#acervo"
               className="btn-gold-glow group inline-flex w-full items-center justify-center gap-3 rounded-sm px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto sm:px-8 sm:py-4 sm:text-sm sm:tracking-[0.25em]"
             >
               Explorar o Acervo Privado
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-4 w-4 will-change-transform transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#sommelier"
@@ -118,7 +117,7 @@ export function Hero() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.6 }}
             transition={{ delay: 0.7, duration: 0.95, ease: heroEase }}
-            className="mx-auto mt-11 grid w-full min-w-0 max-w-xl grid-cols-2 gap-x-5 gap-y-5 text-champagne/60 sm:flex sm:flex-wrap sm:items-center sm:gap-x-8 md:mx-0 md:mt-16 md:flex-nowrap md:gap-10"
+            className="mx-auto mt-11 grid w-full min-w-0 max-w-xl will-change-transform grid-cols-2 gap-x-5 gap-y-5 text-champagne/60 sm:flex sm:flex-wrap sm:items-center sm:gap-x-8 md:mx-0 md:mt-16 md:flex-nowrap md:gap-10"
           >
             <div className="text-center sm:text-left">
               <p className="font-serif text-3xl text-gold">37+</p>
@@ -138,17 +137,16 @@ export function Hero() {
         </motion.div>
       </div>
 
-      {/* Scroll cue */}
       <motion.div
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.9 }}
         transition={{ delay: 1, duration: 0.7, ease: heroEase }}
-        className="absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-gold/60 md:block"
+        className="will-change-transform absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-gold/60 md:block"
       >
         <div className="flex flex-col items-center gap-2">
           <span className="text-[10px] uppercase tracking-[0.4em]">Descubra</span>
-          <span className="block h-10 w-px animate-pulse bg-gradient-to-b from-gold to-transparent" />
+          <span className="hero-scroll-cue-line block h-10 w-px bg-gradient-to-b from-gold to-transparent" />
         </div>
       </motion.div>
 
