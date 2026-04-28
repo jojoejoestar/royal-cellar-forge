@@ -274,7 +274,7 @@ export function Gallery() {
                 <button
                   key={r}
                   onClick={() => setFilter(r)}
-                  className={`rounded-sm border px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] transition-[border-color,background-color,color,box-shadow,opacity] duration-300 ${
+                  className={`rounded-sm border px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] transition-[border-color,background-color,color,opacity] duration-300 ${
                     active
                       ? "border-gold bg-gold text-onyx shadow-gold-soft"
                       : "border-gold/25 text-champagne/70 hover:border-gold/60 hover:text-gold"
@@ -327,8 +327,8 @@ export function Gallery() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: i * 0.04 }}
-                  onClick={() => setSelected(w)}
-                  className="gal-card image-hover-luxury group relative flex h-[570px] w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-[transform,box-shadow,border-color] duration-500 will-change-transform hover:border-gold/55 sm:w-[320px]"
+                  onClick={() => setSelected((prev) => (prev?.id === w.id ? null : w))}
+                  className="gal-card image-hover-luxury group relative flex h-[570px] w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-[transform,border-color] duration-500 will-change-transform hover:border-gold/55 sm:w-[320px]"
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative z-10 flex items-center justify-between border-b border-gold/15 bg-onyx px-4 py-3">
@@ -414,10 +414,10 @@ export function Gallery() {
 
       {/* Modal */}
       <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="w-[96vw] max-w-4xl overflow-hidden border-gold/30 bg-background p-0 sm:rounded-sm">
+        <DialogContent className="left-1/2 top-1/2 grid h-auto max-h-[92dvh] w-[96vw] max-w-4xl -translate-x-1/2 -translate-y-1/2 overflow-hidden border-gold/30 bg-background p-0 sm:rounded-sm">
           {selected && (
-            <div className="grid gap-0 lg:grid-cols-2">
-              <div className="relative h-72 overflow-hidden bg-gradient-royal lg:h-auto">
+            <div className="grid max-h-[92dvh] gap-0 lg:grid-cols-2">
+              <div className="relative h-56 overflow-hidden bg-gradient-royal sm:h-64 lg:h-auto">
                 <div className="absolute inset-0 spotlight-gold opacity-70" />
                 <Image
                   src={selected.image}
@@ -429,9 +429,9 @@ export function Gallery() {
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-onyx/40" />
               </div>
 
-              <div className="relative p-5 md:p-7 lg:p-8">
+              <div className="relative flex max-h-[calc(92dvh-14rem)] flex-col overflow-y-auto p-4 sm:max-h-[calc(92dvh-16rem)] sm:p-5 md:p-7 lg:max-h-[92dvh] lg:p-8">
                 <div className="absolute inset-0 pattern-damask opacity-30" />
-                <div className="relative">
+                <div className="relative pb-3 sm:pb-4 lg:pb-0">
                   <div className="flex items-center gap-3">
                     <span className="rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold">
                       {selected.rarity}
@@ -453,7 +453,7 @@ export function Gallery() {
                     </span>
                   </div>
 
-                  <DialogTitle className="mt-4 font-serif text-3xl leading-tight text-champagne md:text-4xl">
+                  <DialogTitle className="mt-3 font-serif text-2xl leading-tight text-champagne sm:mt-4 sm:text-3xl md:text-4xl">
                     {selected.name}
                   </DialogTitle>
                   <DialogDescription className="mt-2 text-[11px] uppercase tracking-[0.3em] text-champagne/60">
@@ -468,7 +468,7 @@ export function Gallery() {
                     </span>
                   </DialogDescription>
 
-                  <div className="my-5 gold-divider w-24" />
+                  <div className="my-4 gold-divider w-20 sm:my-5 sm:w-24" />
 
                   <h4 className="text-[11px] uppercase tracking-[0.3em] text-gold">
                     Notas de Degustação
@@ -491,7 +491,7 @@ export function Gallery() {
                     {selected.story}
                   </p>
 
-                  <div className="mt-6 rounded-sm border border-gold/20 bg-onyx/40 p-4">
+                  <div className="mt-5 rounded-sm border border-gold/20 bg-onyx/40 p-4 sm:mt-6">
                     <div>
                       <p className="text-[9px] uppercase tracking-[0.3em] text-gold/80">
                         Disponibilidade
@@ -502,6 +502,13 @@ export function Gallery() {
                       </p>
                     </div>
                   </div>
+                  <button
+                    type="button"
+                    onClick={() => setSelected(null)}
+                    className="mt-5 inline-flex w-full items-center justify-center rounded-sm border border-gold/30 bg-background/70 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-gold transition-colors hover:bg-gold/12 lg:hidden"
+                  >
+                    Fechar ficha
+                  </button>
                 </div>
               </div>
             </div>

@@ -435,7 +435,7 @@ export function Catalog() {
               onClick={() => setActive(i)}
               onMouseEnter={() => setFlipped(i)}
               onMouseLeave={() => setFlipped(null)}
-              className="cat-card image-hover-luxury group relative h-80 overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-[transform,box-shadow,border-color] duration-500 will-change-transform hover:border-gold/50 hover:-translate-y-1"
+              className="cat-card image-hover-luxury group relative h-80 overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal text-left shadow-card-luxury transition-[transform,border-color] duration-500 will-change-transform hover:border-gold/50 hover:-translate-y-1"
             >
               <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
               <AnimatePresence>

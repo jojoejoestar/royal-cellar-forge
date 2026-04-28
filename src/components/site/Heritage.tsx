@@ -224,7 +224,7 @@ export function Heritage() {
                 className="heritage-era group relative flex flex-col items-center text-center"
               >
                 {/* Node */}
-                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-gold/40 bg-background shadow-gold-soft transition-[box-shadow,border-color] duration-500 will-change-transform group-hover:border-gold group-hover:shadow-gold">
+                <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-gold/40 bg-background shadow-gold-soft transition-[border-color] duration-500 will-change-transform group-hover:border-gold group-hover:shadow-gold">
                   <era.icon
                     className="h-6 w-6 text-gold transition-transform duration-500 group-hover:scale-110"
                     strokeWidth={1.4}

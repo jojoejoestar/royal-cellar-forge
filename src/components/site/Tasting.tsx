@@ -223,7 +223,7 @@ export function Tasting() {
             return (
               <article
                 key={s.roman}
-                className="tast-step scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/20 bg-onyx/50 p-7 backdrop-blur-sm transition-[transform,box-shadow,border-color,background-color] duration-500 will-change-transform hover:-translate-y-1 hover:border-gold/55"
+                className="tast-step scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/20 bg-onyx/50 p-7 backdrop-blur-sm transition-[transform,border-color,background-color] duration-500 will-change-transform hover:-translate-y-1 hover:border-gold/55"
               >
                 <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                 <div className="relative">

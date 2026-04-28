@@ -18,6 +18,18 @@ const links = [
 export function Navigation() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const [canAnimate, setCanAnimate] = useState(false);
+
+  useEffect(() => {
+    let timer = 0;
+    const raf = requestAnimationFrame(() => {
+      timer = window.setTimeout(() => setCanAnimate(true), 100);
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      if (timer) window.clearTimeout(timer);
+    };
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -36,10 +48,10 @@ export function Navigation() {
 
   return (
     <motion.header
-      initial={{ y: -40, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
+      initial={canAnimate ? { y: -40, opacity: 0 } : false}
+      animate={canAnimate ? { y: 0, opacity: 1 } : undefined}
       transition={{ duration: 0.8, ease: [0.25, 1, 0.5, 1] }}
-      className={`will-change-transform fixed inset-x-0 top-0 z-50 transition-[padding,box-shadow,background-color,backdrop-filter] duration-500 ${
+      className={`will-change-transform fixed inset-x-0 top-0 z-50 transition-[padding,background-color,backdrop-filter] duration-500 ${
         scrolled ? "glass-scarlet py-3" : "py-6"
       }`}
     >

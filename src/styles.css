@@ -419,9 +419,7 @@
     background: var(--gradient-gold);
     color: var(--onyx);
     box-shadow: 0 0 0 1px oklch(0.8 0.12 82 / 0.5), 0 8px 24px oklch(0.72 0.10 78 / 0.35);
-    transition:
-      transform 0.4s var(--ease-luxury),
-      box-shadow 0.4s var(--ease-luxury);
+    transition: transform 0.4s var(--ease-luxury);
   }
   .btn-gold-glow::before {
     content: "";
@@ -456,8 +454,7 @@
     isolation: isolate;
     transition:
       background-color 0.35s var(--ease-luxury),
-      border-color 0.35s var(--ease-luxury),
-      box-shadow 0.35s var(--ease-luxury);
+      border-color 0.35s var(--ease-luxury);
   }
   .btn-outline-gold::before {
     content: "";
@@ -495,7 +492,6 @@
     will-change: transform;
     transition:
       border-color 420ms var(--ease-luxury),
-      box-shadow 420ms var(--ease-luxury),
       transform 420ms var(--ease-luxury);
   }
   .image-hover-luxury::after {
@@ -533,7 +529,6 @@
     isolation: isolate;
     transition:
       border-color 520ms var(--ease-luxury),
-      box-shadow 520ms var(--ease-luxury),
       background-color 520ms var(--ease-luxury);
   }
 
@@ -864,7 +859,6 @@
     will-change: transform;
     transform-style: preserve-3d;
     box-shadow: 0 12px 28px oklch(0.05 0 0 / 0.2);
-    transition: box-shadow 0.32s var(--ease-luxury);
   }
 
   .luxury-media-interactive.is-luxury-hover {

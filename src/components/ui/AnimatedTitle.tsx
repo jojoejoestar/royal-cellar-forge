@@ -25,6 +25,7 @@ export function AnimatedTitle({
     () => {
       const node = ref.current;
       if (!node) return;
+      let timer = 0;
 
       const run = () => {
         gsap.set(node, { "--title-underline-scale": 0 });
@@ -59,7 +60,13 @@ export function AnimatedTitle({
         });
       };
 
-      queueMicrotask(run);
+      const raf = requestAnimationFrame(() => {
+        timer = window.setTimeout(run, 100);
+      });
+      return () => {
+        cancelAnimationFrame(raf);
+        if (timer) window.clearTimeout(timer);
+      };
     },
     { scope: ref, dependencies: [], revertOnUpdate: true },
   );
