@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -124,12 +125,14 @@ export function Tasting() {
           <figure className="tast-hero image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal lg:col-span-7 lg:row-span-2">
             <div className="pointer-events-none absolute -inset-1 bg-gradient-gold opacity-30 blur-3xl" />
             <div className="relative leading-none">
-              <img
-                src={pour.src}
+              <Image
+                src={pour}
                 alt="Decanter de cristal vertendo vinho em taça"
                 loading="lazy"
                 width={1280}
                 height={1600}
+                sizes="(max-width: 1024px) 100vw, 58vw"
+                quality={78}
                 className="block aspect-[4/5] w-full object-cover lg:aspect-auto lg:h-[640px]"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-onyx/95 via-onyx/30 to-transparent" />
@@ -151,12 +154,14 @@ export function Tasting() {
 
           {/* Side - swirl */}
           <figure className="tast-side image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
-            <img
-              src={swirl.src}
+            <Image
+              src={swirl}
               alt="Macro do vinho sendo agitado em taça de cristal"
               loading="lazy"
               width={1280}
               height={1280}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 42vw"
+              quality={78}
               className="block h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[308px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 to-transparent" />
@@ -173,12 +178,14 @@ export function Tasting() {
 
           {/* Side - nose */}
           <figure className="tast-side image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
-            <img
-              src={nose.src}
+            <Image
+              src={nose}
               alt="Sommelier inspirando o aroma do vinho à luz de vela"
               loading="lazy"
               width={1280}
               height={1280}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 42vw"
+              quality={78}
               className="block h-72 w-full object-cover transition-transform duration-700 hover:scale-105 lg:h-[308px]"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 to-transparent" />

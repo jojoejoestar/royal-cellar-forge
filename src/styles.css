@@ -312,6 +312,36 @@
     background: var(--gradient-spotlight);
   }
 
+  /* Sommelier: números dourados com halo suave */
+  .som-stat-gold {
+    text-shadow:
+      0 0 20px oklch(0.72 0.1 78 / 0.32),
+      0 0 42px oklch(0.72 0.1 78 / 0.12),
+      0 1px 0 oklch(0.92 0.05 88 / 0.28);
+  }
+
+  @media (min-width: 768px) {
+    .som-stat-gold {
+      text-shadow:
+        0 0 14px oklch(0.72 0.1 78 / 0.2),
+        0 1px 0 oklch(0.92 0.05 88 / 0.2);
+    }
+  }
+
+  .som-heading-gold-shine {
+    filter: drop-shadow(0 0 10px oklch(0.72 0.1 78 / 0.22))
+      drop-shadow(0 0 22px oklch(0.72 0.1 78 / 0.08));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .som-stat-gold {
+      text-shadow: 0 1px 0 oklch(0.92 0.05 88 / 0.22);
+    }
+    .som-heading-gold-shine {
+      filter: none;
+    }
+  }
+
   .gold-divider {
     height: 1px;
     background: linear-gradient(90deg, transparent, oklch(0.72 0.10 78 / 0.6), transparent);
@@ -899,16 +929,16 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: 20px;
-    height: 20px;
+    width: 12px;
+    height: 12px;
     border-radius: 999px;
     background: radial-gradient(
-      circle,
-      oklch(0.82 0.12 82 / 0.065) 0%,
-      oklch(0.74 0.1 78 / 0.032) 22%,
-      transparent 40%
+      circle at center,
+      oklch(0.82 0.12 82 / 0.14) 0%,
+      oklch(0.76 0.1 78 / 0.05) 42%,
+      transparent 62%
     );
-    filter: blur(1.25px);
+    filter: blur(0.45px);
     opacity: 0;
     transition: opacity 220ms ease;
     will-change: transform;
@@ -932,8 +962,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    filter: drop-shadow(0 0 4px oklch(0.72 0.1 78 / 0.45))
-      drop-shadow(0 1px 5px oklch(0.05 0.02 320 / 0.65));
+    filter: drop-shadow(0 0 1.5px oklch(0.72 0.1 78 / 0.38))
+      drop-shadow(0 0 3px oklch(0.72 0.1 78 / 0.12));
   }
 }
 

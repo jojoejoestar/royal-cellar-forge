@@ -35,7 +35,7 @@ export function GoldenGrapeCursor() {
     const tick = () => {
       ax += (tx - ax) * 0.2;
       ay += (ty - ay) * 0.2;
-      setTranslateCentered(auraRef.current, ax, ay, 10, 10);
+      setTranslateCentered(auraRef.current, ax, ay, 6, 6);
       rafRef.current = requestAnimationFrame(tick);
     };
 

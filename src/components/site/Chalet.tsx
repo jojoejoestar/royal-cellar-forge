@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -101,13 +102,14 @@ export function Chalet() {
         <div className="mt-10 grid grid-cols-12 gap-4 md:gap-6 lg:mt-12">
           <div className="chalet-img col-span-12 lg:col-span-8">
             <div className="image-hover-luxury group relative h-[420px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[540px]">
-              <img
-                src={chaletInterior.src}
+              <Image
+                src={chaletInterior}
                 alt="Salão íntimo do chalé com lareira e adega particular"
-                className="h-full w-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"
-                width={1536}
-                height={1024}
+                sizes="(max-width: 1024px) 100vw, 66vw"
+                quality={78}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8">
@@ -123,13 +125,14 @@ export function Chalet() {
 
           <div className="chalet-img col-span-12 lg:col-span-4 flex flex-col gap-4 md:gap-6">
             <div className="image-hover-luxury group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
-              <img
-                src={chaletExterior.src}
+              <Image
+                src={chaletExterior}
                 alt="Fachada do chalé alpino entre vinhedos ao entardecer"
-                className="h-full w-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"
-                width={1536}
-                height={1024}
+                sizes="(max-width: 1024px) 100vw, 34vw"
+                quality={78}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4 flex items-center gap-2">
@@ -140,13 +143,14 @@ export function Chalet() {
               </div>
             </div>
             <div className="image-hover-luxury group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
-              <img
-                src={chaletTable.src}
+              <Image
+                src={chaletTable}
                 alt="Mesa íntima posta com cristais e candelabros"
-                className="h-full w-full object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
+                fill
+                className="object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"
-                width={1024}
-                height={1280}
+                sizes="(max-width: 1024px) 100vw, 34vw"
+                quality={78}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4">

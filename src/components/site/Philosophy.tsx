@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -86,12 +87,14 @@ export function Philosophy() {
               />
               {/* Frame */}
               <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
-                <img
-                  src={wineGlassSolo.src}
+                <Image
+                  src={wineGlassSolo}
                   alt="Taça de cristal com vinho tinto profundo iluminada por luz dourada"
                   loading="lazy"
                   width={1024}
                   height={1024}
+                  sizes="(max-width: 1024px) min(92vw, 28rem), 420px"
+                  quality={78}
                   className="block h-auto w-full"
                 />
                 {/* Inner gold gradient frame */}

@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -48,14 +49,15 @@ export function Sommelier() {
       <div className="relative mx-auto grid max-w-7xl items-center gap-16 px-6 lg:grid-cols-2 lg:px-10">
         {/* Image */}
         <div className="som-img relative">
-          <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/20 shadow-velvet">
-            <img
-              src={sommelierImg.src}
+          <div className="image-hover-luxury relative h-[640px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet">
+            <Image
+              src={sommelierImg}
               alt="O Mestre Sommelier da Cave Royale"
-              className="h-[640px] w-full object-cover object-center grayscale-[15%] contrast-110"
+              fill
+              className="object-cover object-center grayscale-[15%] contrast-110"
               loading="lazy"
-              width={1024}
-              height={1280}
+              sizes="(max-width: 1024px) 100vw, 50vw"
+              quality={78}
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
           </div>
@@ -75,14 +77,14 @@ export function Sommelier() {
           <p className="som-text text-xs uppercase tracking-[0.5em] text-gold">
             O Sommelier
           </p>
-          <div className="som-text mt-6 gold-divider w-32" />
+          <div className="som-text mx-auto mt-6 gold-divider w-32 md:mx-0" />
           <AnimatedTitle
             as="h2"
             className="som-text mt-8 font-serif text-4xl leading-tight md:text-6xl"
           >
             A Curadoria
             <br />
-            <span className="italic text-gradient-gold">do Mestre.</span>
+            <span className="som-heading-gold-shine italic text-gradient-gold">do Mestre.</span>
           </AnimatedTitle>
 
           <div className="som-text mt-10 flex items-start gap-4">
@@ -103,22 +105,22 @@ export function Sommelier() {
             rótulo da Cave Royale.
           </p>
 
-          <div className="som-text mt-10 grid grid-cols-3 gap-6 border-t border-gold/15 pt-8">
-            <div>
-              <p className="font-serif text-3xl text-gold">30+</p>
-              <p className="mt-1 text-[10px] uppercase tracking-widest text-champagne/60">
+          <div className="som-text mt-10 grid grid-cols-3 gap-3 border-t border-gold/15 pt-8 sm:gap-5 md:gap-6">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+              <p className="som-stat-gold font-serif text-3xl text-gold">30+</p>
+              <p className="mt-1 max-w-[11rem] text-[10px] uppercase leading-snug tracking-widest text-champagne/60 md:max-w-none">
                 Anos de ofício
               </p>
             </div>
-            <div>
-              <p className="font-serif text-3xl text-gold">200+</p>
-              <p className="mt-1 text-[10px] uppercase tracking-widest text-champagne/60">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+              <p className="som-stat-gold font-serif text-3xl text-gold">200+</p>
+              <p className="mt-1 max-w-[11rem] text-[10px] uppercase leading-snug tracking-widest text-champagne/60 md:max-w-none">
                 Vinícolas visitadas
               </p>
             </div>
-            <div>
-              <p className="font-serif text-3xl text-gold">12</p>
-              <p className="mt-1 text-[10px] uppercase tracking-widest text-champagne/60">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+              <p className="som-stat-gold font-serif text-3xl text-gold">12</p>
+              <p className="mt-1 max-w-[11rem] text-[10px] uppercase leading-snug tracking-widest text-champagne/60 md:max-w-none">
                 Estrelas Michelin
               </p>
             </div>

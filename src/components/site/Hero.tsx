@@ -27,7 +27,7 @@ export function Hero() {
           fetchPriority="high"
           decoding="sync"
           sizes="(max-width: 768px) 100vw, 100vw"
-          quality={82}
+          quality={78}
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />

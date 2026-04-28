@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -116,12 +117,14 @@ export function Heritage() {
               }}
             />
             <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
-              <img
-                src={chalice.src}
+              <Image
+                src={chalice}
                 alt="Cálice real cravejado de rubis sobre mesa medieval com pergaminho selado"
                 loading="lazy"
                 width={1280}
                 height={896}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 58vw"
+                quality={78}
                 className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
@@ -142,12 +145,14 @@ export function Heritage() {
           {/* Grapes - top right */}
           <figure className="heritage-img group relative md:col-span-5">
             <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
-              <img
-                src={grapes.src}
+              <Image
+                src={grapes}
                 alt="Cacho de uvas tintas com folhas douradas em pintura barroca"
                 loading="lazy"
                 width={1024}
                 height={1280}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 38vw"
+                quality={78}
                 className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 style={{ aspectRatio: "5 / 4" }}
               />
@@ -167,12 +172,14 @@ export function Heritage() {
           {/* Cellar - bottom right */}
           <figure className="heritage-img group relative md:col-span-5">
             <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
-              <img
-                src={cellar.src}
+              <Image
+                src={cellar}
                 alt="Catedral subterrânea com fileiras de barris e candelabros dourados"
                 loading="lazy"
                 width={1280}
                 height={896}
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 45vw, 38vw"
+                quality={78}
                 className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 style={{ aspectRatio: "5 / 4" }}
               />
