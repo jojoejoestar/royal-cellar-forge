@@ -81,13 +81,13 @@ export default function HomePage() {
           <SectionDivider from="background" to="imperial" />
         </Suspense>
         <Suspense fallback={null}>
-          <Tasting />
+          <Sommelier />
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="imperial" to="background" />
         </Suspense>
         <Suspense fallback={null}>
-          <Sommelier />
+          <Tasting />
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="background" to="background" />

@@ -9,8 +9,8 @@ const links = [
   { label: "Acervo", href: "#acervo" },
   { label: "Galeria", href: "#galeria" },
   { label: "Heritage", href: "#heritage" },
-  { label: "Degustação", href: "#degustacao" },
   { label: "O Sommelier", href: "#sommelier" },
+  { label: "Degustação", href: "#degustacao" },
   { label: "O Chalé", href: "#chale" },
   { label: "Confraria", href: "#confraria" },
 ];

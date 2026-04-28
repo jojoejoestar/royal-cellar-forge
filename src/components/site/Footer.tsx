@@ -35,8 +35,8 @@ export function Footer() {
               <li><a href="#acervo" className="magnetic-underline hover:text-gold transition-colors">Acervo</a></li>
               <li><a href="#galeria" className="magnetic-underline hover:text-gold transition-colors">Galeria de Rótulos</a></li>
               <li><a href="#heritage" className="magnetic-underline hover:text-gold transition-colors">Heritage</a></li>
-              <li><a href="#degustacao" className="magnetic-underline hover:text-gold transition-colors">Ritual de Degustação</a></li>
               <li><a href="#sommelier" className="magnetic-underline hover:text-gold transition-colors">O Sommelier</a></li>
+              <li><a href="#degustacao" className="magnetic-underline hover:text-gold transition-colors">Ritual de Degustação</a></li>
               <li><a href="#confraria" className="magnetic-underline hover:text-gold transition-colors">Confraria</a></li>
             </ul>
           </div>
