@@ -1,8 +1,14 @@
 import dynamic from "next/dynamic";
+import type { ReactNode } from "react";
 import { Suspense } from "react";
 import { ClientDeferredShell } from "@/components/site/ClientDeferredShell";
 import { Navigation } from "@/components/site/Navigation";
 import { Hero } from "@/components/site/Hero";
+
+/** Mobile-only: shrinks Style & Layout work for off-screen sections (content-visibility). */
+function Cv({ children }: { children: ReactNode }) {
+  return <div className="cv-mobile-auto">{children}</div>;
+}
 
 const SectionDivider = dynamic(
   () => import("@/components/site/SectionDivider").then((m) => ({ default: m.SectionDivider })),
@@ -57,62 +63,82 @@ export default function HomePage() {
       <main className="relative z-10">
         <Hero />
         <Suspense fallback={null}>
-          <Philosophy />
+          <Cv>
+            <Philosophy />
+          </Cv>
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="imperial" to="background" />
         </Suspense>
         <Suspense fallback={null}>
-          <Heritage />
+          <Cv>
+            <Heritage />
+          </Cv>
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="background" to="background" />
         </Suspense>
         <Suspense fallback={null}>
-          <Catalog />
+          <Cv>
+            <Catalog />
+          </Cv>
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="background" to="background" />
         </Suspense>
         <Suspense fallback={null}>
-          <Gallery />
+          <Cv>
+            <Gallery />
+          </Cv>
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="background" to="imperial" />
         </Suspense>
         <Suspense fallback={null}>
-          <Sommelier />
+          <Cv>
+            <Sommelier />
+          </Cv>
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="imperial" to="background" />
         </Suspense>
         <Suspense fallback={null}>
-          <Tasting />
+          <Cv>
+            <Tasting />
+          </Cv>
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="background" to="background" />
         </Suspense>
         <Suspense fallback={null}>
-          <Chalet />
+          <Cv>
+            <Chalet />
+          </Cv>
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="background" to="imperial" />
         </Suspense>
         <Suspense fallback={null}>
-          <Faq />
+          <Cv>
+            <Faq />
+          </Cv>
         </Suspense>
         <Suspense fallback={null}>
           <SectionDivider from="imperial" to="background" />
         </Suspense>
         <Suspense fallback={null}>
-          <Confraria />
+          <Cv>
+            <Confraria />
+          </Cv>
         </Suspense>
       </main>
       <Suspense fallback={null}>
         <SectionDivider from="background" to="imperial" />
       </Suspense>
       <Suspense fallback={null}>
-        <Footer />
+        <Cv>
+          <Footer />
+        </Cv>
       </Suspense>
     </div>
   );

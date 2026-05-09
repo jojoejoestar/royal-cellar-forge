@@ -1,13 +1,7 @@
 import gsap from "@/lib/gsapBoot";
+import { revealEase, stRevealOnce } from "@/lib/revealTiming";
 
-/** Shared ease for editorial scroll reveals */
-export const revealEase = "power3.out";
-
-export const stRevealOnce = {
-  once: true as const,
-  toggleActions: "play none none none" as const,
-  invalidateOnRefresh: true as const,
-};
+export { revealEase, stRevealOnce };
 
 export type RevealScroll = {
   trigger: gsap.DOMTarget;

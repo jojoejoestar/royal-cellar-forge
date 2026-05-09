@@ -1,23 +1,15 @@
 import type { Metadata } from "next";
-import { Bodoni_Moda, Inter } from "next/font/google";
+import { Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 
+/* One webfont on the critical path: LCP headings. Sans = system stack in CSS (no second WOFF2 chain). */
 const serif = Bodoni_Moda({
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["600", "700"],
   variable: "--font-serif",
   display: "swap",
   adjustFontFallback: true,
   preload: true,
-});
-
-const sans = Inter({
-  subsets: ["latin"],
-  variable: "--font-sans",
-  display: "swap",
-  adjustFontFallback: true,
-  /* Defer secondary sans fetch — reduces CSS→font critical chain vs LCP serif */
-  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -36,7 +28,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
-      <body className={`${serif.variable} ${sans.variable} relative`}>
+      <body className={`${serif.variable} relative`}>
         <div
           aria-hidden
           className="pointer-events-none fixed inset-0 -z-10 bg-[radial-gradient(ellipse_120%_85%_at_50%_-8%,oklch(0.26_0.12_312_/_0.42)_0%,oklch(0.14_0.07_318_/_0.92)_42%,oklch(0.06_0.03_322)_100%)]"

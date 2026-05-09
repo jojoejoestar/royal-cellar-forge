@@ -71,7 +71,10 @@
   --onyx: oklch(0.09 0.045 318);
 
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  --font-sans: 'Inter', system-ui, sans-serif;
+  /* No remote sans WOFF2 — matches layout (Inter removed) for a single critical font + faster FCP/LCP */
+  --font-sans:
+    ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, sans-serif;
 
   /* Gradients */
   --gradient-royal: linear-gradient(
@@ -194,7 +197,7 @@
   #galeria [class*="tracking-[0.5em]"],
   #degustacao [class*="tracking-[0.5em]"],
   #confraria [class*="tracking-[0.3em]"] {
-    font-weight: 500;
+    font-weight: 600;
     letter-spacing: 0.45em !important;
     opacity: 0.95;
   }
@@ -1018,5 +1021,13 @@
   .royal-floral-right {
     right: 2px;
     top: 15%;
+  }
+}
+
+/* Below-fold sections: defer full layout/paint until near viewport (mobile Lighthouse). */
+@media (max-width: 1024px) {
+  .cv-mobile-auto {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 880px;
   }
 }
