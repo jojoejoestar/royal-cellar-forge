@@ -25,48 +25,77 @@ export function AnimatedTitle({
     () => {
       const node = ref.current;
       if (!node) return;
-      let timer = 0;
+      const mm = gsap.matchMedia();
 
-      const run = () => {
+      mm.add("(max-width: 1024px)", () => {
         gsap.set(node, { "--title-underline-scale": 0 });
 
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           gsap.set(node, { autoAlpha: 1, y: 0, "--title-underline-scale": 1 });
-          return;
+          return () => undefined;
         }
 
-        gsap.set(node, { autoAlpha: 0, y: 14, force3D: true });
-
-        const st = () => ({
-          ...stRevealOnce,
-          trigger: node,
-          start: "top bottom-=8%",
-        });
-
-        gsap.to(node, {
-          autoAlpha: 1,
-          y: 0,
-          force3D: true,
-          duration: 0.95,
-          ease: revealEase,
-          scrollTrigger: st(),
-        });
-
+        /* Mobile LCP: keep hero copy painted immediately; only animate the underline. */
+        gsap.set(node, { autoAlpha: 1, y: 0, force3D: true });
         gsap.to(node, {
           "--title-underline-scale": 1,
           duration: 1.05,
           ease: revealEase,
-          scrollTrigger: st(),
+          scrollTrigger: {
+            ...stRevealOnce,
+            trigger: node,
+            start: "top bottom-=8%",
+          },
         });
-      };
-
-      const raf = requestAnimationFrame(() => {
-        timer = window.setTimeout(run, 100);
+        return () => undefined;
       });
-      return () => {
-        cancelAnimationFrame(raf);
-        if (timer) window.clearTimeout(timer);
-      };
+
+      mm.add("(min-width: 1025px)", () => {
+        let timer = 0;
+
+        const run = () => {
+          gsap.set(node, { "--title-underline-scale": 0 });
+
+          if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+            gsap.set(node, { autoAlpha: 1, y: 0, "--title-underline-scale": 1 });
+            return;
+          }
+
+          gsap.set(node, { autoAlpha: 0, y: 14, force3D: true });
+
+          const st = () => ({
+            ...stRevealOnce,
+            trigger: node,
+            start: "top bottom-=8%",
+          });
+
+          gsap.to(node, {
+            autoAlpha: 1,
+            y: 0,
+            force3D: true,
+            duration: 0.95,
+            ease: revealEase,
+            scrollTrigger: st(),
+          });
+
+          gsap.to(node, {
+            "--title-underline-scale": 1,
+            duration: 1.05,
+            ease: revealEase,
+            scrollTrigger: st(),
+          });
+        };
+
+        const raf = requestAnimationFrame(() => {
+          timer = window.setTimeout(run, 100);
+        });
+        return () => {
+          cancelAnimationFrame(raf);
+          if (timer) window.clearTimeout(timer);
+        };
+      });
+
+      return () => mm.revert();
     },
     { scope: ref, dependencies: [], revertOnUpdate: true },
   );

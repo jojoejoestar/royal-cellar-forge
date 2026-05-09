@@ -122,6 +122,13 @@
     background-attachment: fixed;
   }
 
+  @media (max-width: 1024px) {
+    body {
+      /* fixed attachment forces expensive repaints on mobile compositors */
+      background-attachment: scroll;
+    }
+  }
+
   main {
     background: transparent;
     isolation: isolate;
@@ -796,6 +803,22 @@
       0 0 14px rgba(212, 175, 55, 0.55),
       0 0 26px rgba(212, 175, 55, 0.28);
     pointer-events: none;
+  }
+
+  @media (max-width: 1024px) {
+    /* Non-composited text-shadow animation → static premium glow on mobile */
+    .animated-title {
+      animation: none;
+      text-shadow:
+        0 1px 0 oklch(0.93 0.04 90 / 0.42),
+        0 0 22px oklch(0.72 0.1 78 / 0.18);
+    }
+
+    .animated-title::before {
+      animation: none;
+      opacity: 0.52;
+      transform: translate3d(0, 0, 0);
+    }
   }
 
   @keyframes title-royal-shimmer {

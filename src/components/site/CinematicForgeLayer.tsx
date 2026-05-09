@@ -1,15 +1,36 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { fireflyBright, fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
+import { MOBILE_PERF_MQ } from "@/lib/mobilePerf";
 
 gsap.registerPlugin(ScrollTrigger, useGSAP);
 
+const FORGE_PARTICLE_DESKTOP = 58;
+const FORGE_PARTICLE_MOBILE = 22;
+
 export function CinematicForgeLayer() {
   const rootRef = useRef<HTMLDivElement>(null);
+  const [forgeParticleCount, setForgeParticleCount] = useState(
+    () =>
+      typeof window !== "undefined" && window.matchMedia(MOBILE_PERF_MQ).matches
+        ? FORGE_PARTICLE_MOBILE
+        : FORGE_PARTICLE_DESKTOP,
+  );
+
+  useEffect(() => {
+    const mq = window.matchMedia(MOBILE_PERF_MQ);
+    const sync = () =>
+      setForgeParticleCount(
+        mq.matches ? FORGE_PARTICLE_MOBILE : FORGE_PARTICLE_DESKTOP,
+      );
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, []);
 
   useGSAP(
     () => {
@@ -323,7 +344,7 @@ export function CinematicForgeLayer() {
       <div className="forge-noise absolute inset-0" />
       <div className="forge-vignette absolute inset-0" />
       <div className="forge-particles absolute inset-0" aria-hidden>
-        {Array.from({ length: 58 }).map((_, i) => (
+        {Array.from({ length: forgeParticleCount }).map((_, i) => (
           <span
             key={i}
             className={`absolute rounded-full will-change-transform ${

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { MOBILE_PERF_MQ } from "@/lib/mobilePerf";
 
 const links = [
   { label: "Acervo", href: "#acervo" },
@@ -21,9 +22,10 @@ export function Navigation() {
   const [canAnimate, setCanAnimate] = useState(false);
 
   useEffect(() => {
+    const delay = window.matchMedia(MOBILE_PERF_MQ).matches ? 0 : 100;
     let timer = 0;
     const raf = requestAnimationFrame(() => {
-      timer = window.setTimeout(() => setCanAnimate(true), 100);
+      timer = window.setTimeout(() => setCanAnimate(true), delay);
     });
     return () => {
       cancelAnimationFrame(raf);
