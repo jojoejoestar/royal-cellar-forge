@@ -1,8 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef, useState, useMemo } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { motion, AnimatePresence } from "framer-motion";
 import Image, { type StaticImageData } from "next/image";
 import {
@@ -26,8 +25,6 @@ import loire from "@/assets/wine-loire.jpg";
 import rioja from "@/assets/wine-rioja.jpg";
 import douro from "@/assets/wine-douro.jpg";
 import napa from "@/assets/wine-napa.jpg";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type Region = "Todos" | "França" | "Itália" | "Espanha" | "Portugal" | "Estados Unidos";
 

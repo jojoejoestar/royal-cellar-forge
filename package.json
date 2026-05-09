@@ -1,7 +1,7 @@
 {
   "name": "royal-cellar-forge",
   "private": true,
-  "sideEffects": false,
+  "sideEffects": ["**/*.css", "**/gsapBoot.ts"],
   "type": "module",
   "browserslist": [
     "chrome >= 120",

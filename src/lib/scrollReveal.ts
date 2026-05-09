@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import gsap from "@/lib/gsapBoot";
 
 /** Shared ease for editorial scroll reveals */
 export const revealEase = "power3.out";

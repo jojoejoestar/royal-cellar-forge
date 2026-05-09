@@ -2,14 +2,11 @@
 
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { Mountain, Droplets, Sun } from "lucide-react";
 import wineGlassSolo from "@/assets/wine-glass-solo\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { primeAndReveal } from "@/lib/scrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const pillars = [
   {

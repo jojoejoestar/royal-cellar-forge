@@ -2,16 +2,13 @@
 
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { Crown, Scroll, Grape } from "lucide-react";
 import chalice from "@/assets/heritage-chalice\.jpg";
 import grapes from "@/assets/heritage-grapes\.jpg";
 import cellar from "@/assets/heritage-cellar\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { primeAndReveal } from "@/lib/scrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const eras = [
   {

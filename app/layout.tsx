@@ -8,6 +8,7 @@ const serif = Bodoni_Moda({
   variable: "--font-serif",
   display: "swap",
   adjustFontFallback: true,
+  preload: true,
 });
 
 const sans = Inter({
@@ -15,6 +16,8 @@ const sans = Inter({
   variable: "--font-sans",
   display: "swap",
   adjustFontFallback: true,
+  /* Defer secondary sans fetch — reduces CSS→font critical chain vs LCP serif */
+  preload: false,
 });
 
 export const metadata: Metadata = {

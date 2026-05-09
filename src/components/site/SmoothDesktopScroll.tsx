@@ -2,10 +2,7 @@
 
 import { useEffect } from "react";
 import Lenis from "lenis";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-
-gsap.registerPlugin(ScrollTrigger);
+import { ScrollTrigger } from "@/lib/gsapBoot";
 
 export function SmoothDesktopScroll() {
   useEffect(() => {
@@ -63,14 +60,20 @@ export function SmoothDesktopScroll() {
   }, []);
 
   useEffect(() => {
-    const refresh = () => ScrollTrigger.refresh();
-    window.addEventListener("load", refresh);
-    window.addEventListener("resize", refresh);
-    const id = requestAnimationFrame(refresh);
+    let resizeTimer = 0;
+    const refreshNow = () => ScrollTrigger.refresh();
+    const refreshResize = () => {
+      window.clearTimeout(resizeTimer);
+      resizeTimer = window.setTimeout(refreshNow, 120);
+    };
+    window.addEventListener("load", refreshNow);
+    window.addEventListener("resize", refreshResize, { passive: true });
+    const id = requestAnimationFrame(refreshNow);
     return () => {
-      window.removeEventListener("load", refresh);
-      window.removeEventListener("resize", refresh);
+      window.removeEventListener("load", refreshNow);
+      window.removeEventListener("resize", refreshResize);
       cancelAnimationFrame(id);
+      window.clearTimeout(resizeTimer);
     };
   }, []);
 

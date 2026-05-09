@@ -1,8 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useLayoutEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { motion, AnimatePresence } from "framer-motion";
 import Image, { type StaticImageData } from "next/image";
 import { ChevronLeft, ChevronRight, Wine } from "lucide-react";
@@ -12,8 +11,6 @@ import bordeaux from "@/assets/wine-bordeaux.jpg";
 import brunello from "@/assets/wine-brunello.jpg";
 import burgundy from "@/assets/wine-burgundy.jpg";
 import champagneImg from "@/assets/wine-champagne.jpg";
-
-gsap.registerPlugin(ScrollTrigger);
 
 type Wine = {
   name: string;

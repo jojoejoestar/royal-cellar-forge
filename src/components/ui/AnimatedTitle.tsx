@@ -2,11 +2,10 @@
 
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap } from "@/lib/gsapBoot";
 import { revealEase, stRevealOnce } from "@/lib/scrollReveal";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger);
+gsap.registerPlugin(useGSAP);
 
 type AnimatedTitleProps = {
   as?: "h1" | "h2";

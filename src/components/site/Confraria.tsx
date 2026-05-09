@@ -1,14 +1,11 @@
 "use client";
 
 import { useState, useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { motion } from "framer-motion";
 import { Lock, ArrowRight, Check } from "lucide-react";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { primeAndReveal, revealEase, stRevealOnce } from "@/lib/scrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 export function Confraria() {
   const [submitted, setSubmitted] = useState(false);

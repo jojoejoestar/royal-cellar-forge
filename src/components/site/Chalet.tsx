@@ -2,16 +2,13 @@
 
 import Image from "next/image";
 import { useLayoutEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { Mountain, Flame, Key, MapPin, ArrowRight, Calendar } from "lucide-react";
 import chaletInterior from "@/assets/chalet-interior\.jpg";
 import chaletExterior from "@/assets/chalet-exterior\.jpg";
 import chaletTable from "@/assets/chalet-table\.jpg";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { primeAndReveal } from "@/lib/scrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const experiences = [
   {

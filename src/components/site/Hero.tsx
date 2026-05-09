@@ -51,8 +51,8 @@ export function Hero() {
           priority
           fetchPriority="high"
           decoding={mobilePerf ? "async" : "sync"}
-          sizes="(max-width: 768px) 100vw, 50vw"
-          quality={mobilePerf ? 74 : 78}
+          sizes="(max-width: 1024px) 100vw, 50vw"
+          quality={mobilePerf ? 68 : 78}
           className="object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/55 to-background" />

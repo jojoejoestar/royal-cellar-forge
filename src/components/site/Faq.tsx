@@ -2,13 +2,10 @@
 
 import { useState, useLayoutEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { Plus, Minus } from "lucide-react";
 import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { primeAndReveal, revealEase, stRevealOnce } from "@/lib/scrollReveal";
-
-gsap.registerPlugin(ScrollTrigger);
 
 const faqs = [
   {

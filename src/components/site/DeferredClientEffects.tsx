@@ -2,12 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useLayoutEffect, useState } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MOBILE_PERF_MQ } from "@/lib/mobilePerf";
-
-gsap.registerPlugin(ScrollTrigger);
-ScrollTrigger.config({ limitCallbacks: true, ignoreMobileResize: true });
 
 const SmoothDesktopScroll = dynamic(
   () => import("@/components/site/SmoothDesktopScroll").then((m) => ({ default: m.SmoothDesktopScroll })),
@@ -54,9 +49,9 @@ export default function DeferredClientEffects() {
     const enableForge = () => setShowForge(true);
 
     if (typeof requestIdleCallback !== "undefined") {
-      idleId = requestIdleCallback(enableForge, { timeout: 480 });
+      idleId = requestIdleCallback(enableForge, { timeout: 1600 });
     } else {
-      timeoutId = window.setTimeout(enableForge, 48);
+      timeoutId = window.setTimeout(enableForge, 120);
     }
 
     return () => {

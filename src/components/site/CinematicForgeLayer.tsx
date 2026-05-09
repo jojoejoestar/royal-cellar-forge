@@ -2,12 +2,11 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
+import gsap from "@/lib/gsapBoot";
 import { fireflyBright, fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
 import { MOBILE_PERF_MQ } from "@/lib/mobilePerf";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
+gsap.registerPlugin(useGSAP);
 
 const FORGE_PARTICLE_DESKTOP = 58;
 const FORGE_PARTICLE_MOBILE = 22;
