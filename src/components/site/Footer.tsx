@@ -69,13 +69,13 @@ export function Footer() {
             © 2026 Cave Royale · Todos os direitos reservados · Aprecie com moderação
           </p>
           <a
-            href="https://agentejoestar.online"
+            href="https://agentejoestar.vercel.app"
             target="_blank"
             rel="noopener noreferrer"
             className="magnetic-underline group inline-flex items-center gap-2 text-xs font-light tracking-[0.25em] text-champagne/70 transition-colors hover:text-gold"
           >
             <span className="inline-block h-px w-10 origin-center scale-x-[0.6] bg-gold/40 transition-[transform,background-color] duration-300 will-change-transform group-hover:scale-x-100 group-hover:bg-gold" />
-            Design Original{" "}
+            Next.js Architecture ©{" "}
             <span className="font-serif italic text-gold">Agente Joestar</span>
             <span className="inline-block h-px w-10 origin-center scale-x-[0.6] bg-gold/40 transition-[transform,background-color] duration-300 will-change-transform group-hover:scale-x-100 group-hover:bg-gold" />
           </a>
