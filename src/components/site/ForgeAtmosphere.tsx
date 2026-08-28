@@ -4,28 +4,24 @@ import { useEffect, useRef, useState } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "@/lib/gsapBoot";
 import { fireflyBright, fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
-import { MOBILE_PERF_MQ } from "@/lib/mobilePerf";
-
-gsap.registerPlugin(useGSAP);
+import { DESKTOP_POINTER_MQ, MOBILE_MQ, prefersReducedMotion } from "@/lib/media";
+import { mountRoyalFloral } from "@/lib/royalFloral";
 
 const FORGE_PARTICLE_DESKTOP = 58;
 const FORGE_PARTICLE_MOBILE = 22;
 
-export function CinematicForgeLayer() {
+export function ForgeAtmosphere() {
   const rootRef = useRef<HTMLDivElement>(null);
-  const [forgeParticleCount, setForgeParticleCount] = useState(
-    () =>
-      typeof window !== "undefined" && window.matchMedia(MOBILE_PERF_MQ).matches
-        ? FORGE_PARTICLE_MOBILE
-        : FORGE_PARTICLE_DESKTOP,
+  const [particleCount, setParticleCount] = useState(() =>
+    typeof window !== "undefined" && window.matchMedia(MOBILE_MQ).matches
+      ? FORGE_PARTICLE_MOBILE
+      : FORGE_PARTICLE_DESKTOP,
   );
 
   useEffect(() => {
-    const mq = window.matchMedia(MOBILE_PERF_MQ);
+    const mq = window.matchMedia(MOBILE_MQ);
     const sync = () =>
-      setForgeParticleCount(
-        mq.matches ? FORGE_PARTICLE_MOBILE : FORGE_PARTICLE_DESKTOP,
-      );
+      setParticleCount(mq.matches ? FORGE_PARTICLE_MOBILE : FORGE_PARTICLE_DESKTOP);
     sync();
     mq.addEventListener("change", sync);
     return () => mq.removeEventListener("change", sync);
@@ -33,115 +29,34 @@ export function CinematicForgeLayer() {
 
   useGSAP(
     () => {
-      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const reducedMotion = prefersReducedMotion();
       const spotlight = rootRef.current?.querySelector<HTMLElement>(".forge-cursor-spotlight");
       const mm = gsap.matchMedia();
+      const floralNodes: HTMLElement[] = [];
       let removePointerMove: (() => void) | undefined;
       let removeLuxuryInteractions: (() => void) | undefined;
       let removeMediaInteractions: (() => void) | undefined;
 
-      const floralNodes: HTMLElement[] = [];
-
-      const createRoyalFloral = (
-        section: HTMLElement,
-        side: "left" | "right",
-        index: number,
-      ) => {
-        const ornament = document.createElement("div");
-        ornament.className = `royal-floral royal-floral-${side}`;
-        ornament.innerHTML = `
-          <svg class="royal-floral-svg" viewBox="0 0 320 320" aria-hidden="true">
-            <g class="royal-floral-stroke">
-              <path class="royal-floral-line" d="M20 260 C 70 240, 120 200, 130 150 C 140 95, 170 60, 220 40" />
-              <path class="royal-floral-line" d="M105 210 C 140 175, 158 135, 155 100" />
-              <path class="royal-floral-line" d="M78 234 C 110 222, 140 202, 164 176" />
-              <path class="royal-floral-line" d="M120 152 C 98 134, 84 112, 82 84" />
-            </g>
-            <g class="royal-floral-petals">
-              <ellipse cx="164" cy="176" rx="18" ry="10" />
-              <ellipse cx="176" cy="164" rx="12" ry="7" />
-              <ellipse cx="146" cy="188" rx="9" ry="5.5" />
-              <ellipse cx="132" cy="150" rx="11" ry="6.5" />
-              <ellipse cx="112" cy="122" rx="9" ry="5.5" />
-              <ellipse cx="88" cy="92" rx="8" ry="5" />
-            </g>
-            <g class="royal-floral-bloom">
-              <circle cx="220" cy="40" r="12" />
-              <circle cx="232" cy="32" r="6" />
-              <circle cx="208" cy="48" r="5" />
-            </g>
-          </svg>
-        `;
-
-        ornament.style.setProperty("--floral-delay", `${index * 0.06}s`);
-        section.appendChild(ornament);
-        floralNodes.push(ornament);
-
-        const lines = ornament.querySelectorAll<SVGPathElement>(".royal-floral-line");
-        const petals = ornament.querySelectorAll<SVGEllipseElement>(".royal-floral-petals ellipse");
-        const bloom = ornament.querySelectorAll<SVGCircleElement>(".royal-floral-bloom circle");
-
-        lines.forEach((line) => {
-          const len = line.getTotalLength();
-          line.style.strokeDasharray = `${len}`;
-          line.style.strokeDashoffset = `${len}`;
-        });
-
-        const reveal = gsap.timeline({
-          scrollTrigger: {
-            trigger: section,
-            start: "top 78%",
-          },
-          defaults: { ease: "power3.out" },
-        });
-
-        reveal
-          .fromTo(
-            ornament,
-            { opacity: 0, scale: 0.9, rotate: side === "left" ? -8 : 8 },
-            { opacity: 1, scale: 1, rotate: 0, duration: 1.1 },
-          )
-          .to(
-            lines,
-            {
-              strokeDashoffset: 0,
-              duration: 1.2,
-              stagger: 0.12,
-            },
-            "-=0.75",
-          )
-          .fromTo(
-            petals,
-            { opacity: 0, scale: 0.6, transformOrigin: "50% 50%" },
-            { opacity: 1, scale: 1, duration: 0.9, stagger: 0.08 },
-            "-=0.6",
-          )
-          .fromTo(
-            bloom,
-            { opacity: 0, scale: 0.5, transformOrigin: "50% 50%" },
-            { opacity: 1, scale: 1, duration: 0.7, stagger: 0.06 },
-            "-=0.45",
-          );
-
-        gsap.to(ornament, {
-          y: side === "left" ? -8 : -10,
-          x: side === "left" ? 4 : -4,
-          duration: 4.6 + index * 0.03,
-          ease: "sine.inOut",
-          repeat: reducedMotion ? 0 : -1,
-          yoyo: true,
-        });
-      };
-
-      mm.add("(min-width: 1025px) and (pointer: fine)", () => {
-        const revealTargets = gsap.utils.toArray<HTMLElement>("section");
-        revealTargets.forEach((section, index) => {
+      const plantFlorals = (opacity?: number) => {
+        gsap.utils.toArray<HTMLElement>("section").forEach((section, index) => {
           if (section.id === "top") return;
           if (getComputedStyle(section).position === "static") {
             section.style.position = "relative";
           }
-          createRoyalFloral(section, index % 2 === 0 ? "left" : "right", index);
+          const node = mountRoyalFloral(
+            section,
+            index % 2 === 0 ? "left" : "right",
+            index,
+            gsap,
+            reducedMotion,
+          );
+          floralNodes.push(node);
+          if (opacity != null) gsap.to(node, { opacity, duration: 0.6 });
         });
+      };
+
+      mm.add(`${DESKTOP_POINTER_MQ}`, () => {
+        plantFlorals();
 
         gsap.utils
           .toArray<HTMLElement>(".ambient-spotlight, .pattern-damask, .pattern-grapes")
@@ -171,25 +86,23 @@ export function CinematicForgeLayer() {
         const highlightTargets = gsap.utils.toArray<HTMLElement>(
           ".text-gradient-gold, .gold-divider, .section-ornament",
         );
-        const actionableTargets = gsap.utils.toArray<HTMLElement>(
-          "a, button, [role='button'], input[type='submit']",
-        );
         const mediaTargets = gsap.utils.toArray<HTMLElement>(
           ".philo-glass, .heritage-img, .cat-card, .tast-hero, .tast-side, .som-img, .chalet-img, .gal-card",
         );
-        const luxuryInteractionHandlers: Array<{
-          node: HTMLElement;
-          enter: () => void;
-          leave: () => void;
-          move: (event: MouseEvent) => void;
-        }> = [];
+        const actionableTargets = gsap.utils.toArray<HTMLElement>(
+          "a, button, [role='button'], input[type='submit']",
+        );
 
         actionableTargets.forEach((node) => {
           node.classList.add("luxury-action");
-          if (node.matches("a")) {
-            node.classList.add("luxury-link");
-          }
+          if (node.matches("a")) node.classList.add("luxury-link");
         });
+
+        const luxuryHandlers: Array<{
+          node: HTMLElement;
+          enter: () => void;
+          leave: () => void;
+        }> = [];
 
         highlightTargets.forEach((node) => {
           node.classList.add("luxury-highlight-interactive");
@@ -204,15 +117,10 @@ export function CinematicForgeLayer() {
           };
           node.addEventListener("mouseenter", enter);
           node.addEventListener("mouseleave", leave);
-          luxuryInteractionHandlers.push({
-            node,
-            enter,
-            leave,
-            move: () => undefined,
-          });
+          luxuryHandlers.push({ node, enter, leave });
         });
 
-        const mediaInteractionHandlers: Array<{
+        const mediaHandlers: Array<{
           node: HTMLElement;
           enter: () => void;
           leave: () => void;
@@ -237,7 +145,6 @@ export function CinematicForgeLayer() {
             toScale(1.012);
             node.classList.add("is-luxury-hover");
           };
-
           const leave = () => {
             toX(0);
             toY(0);
@@ -246,7 +153,6 @@ export function CinematicForgeLayer() {
             toScale(1);
             node.classList.remove("is-luxury-hover");
           };
-
           const move = (event: MouseEvent) => {
             const bounds = node.getBoundingClientRect();
             const relX = (event.clientX - bounds.left) / bounds.width - 0.5;
@@ -260,16 +166,15 @@ export function CinematicForgeLayer() {
           node.addEventListener("mouseenter", enter);
           node.addEventListener("mouseleave", leave);
           node.addEventListener("mousemove", move);
-          mediaInteractionHandlers.push({ node, enter, leave, move });
+          mediaHandlers.push({ node, enter, leave, move });
         });
 
         removeMediaInteractions = () => {
-          mediaInteractionHandlers.forEach(({ node, enter, leave, move }) => {
+          mediaHandlers.forEach(({ node, enter, leave, move }) => {
             node.removeEventListener("mouseenter", enter);
             node.removeEventListener("mouseleave", leave);
             node.removeEventListener("mousemove", move);
-            node.classList.remove("luxury-media-interactive");
-            node.classList.remove("is-luxury-hover");
+            node.classList.remove("luxury-media-interactive", "is-luxury-hover");
             gsap.set(node, {
               clearProps:
                 "x,y,rotateX,rotateY,scale,transformPerspective,transformStyle,willChange",
@@ -278,26 +183,18 @@ export function CinematicForgeLayer() {
         };
 
         removeLuxuryInteractions = () => {
-          luxuryInteractionHandlers.forEach(({ node, enter, leave, move }) => {
+          luxuryHandlers.forEach(({ node, enter, leave }) => {
             node.removeEventListener("mouseenter", enter);
             node.removeEventListener("mouseleave", leave);
-            node.removeEventListener("mousemove", move);
             node.classList.remove("luxury-highlight-interactive", "is-forge-bright");
-            gsap.set(node, {
-              clearProps: "x,y,scale,transform,perspective,transformStyle",
-            });
+            gsap.set(node, { clearProps: "x,y,scale,transform,perspective,transformStyle" });
           });
         };
 
         if (spotlight && !reducedMotion) {
           const moveSpotlight = (event: PointerEvent) => {
-            gsap.set(spotlight, {
-              x: event.clientX,
-              y: event.clientY,
-              force3D: true,
-            });
+            gsap.set(spotlight, { x: event.clientX, y: event.clientY, force3D: true });
           };
-
           window.addEventListener("pointermove", moveSpotlight, { passive: true });
           removePointerMove = () => window.removeEventListener("pointermove", moveSpotlight);
         }
@@ -312,18 +209,8 @@ export function CinematicForgeLayer() {
         };
       });
 
-      mm.add("(max-width: 1024px), (pointer: coarse)", () => {
-        const revealTargets = gsap.utils.toArray<HTMLElement>("section");
-
-        revealTargets.forEach((section, index) => {
-          if (section.id === "top") return;
-          if (getComputedStyle(section).position === "static") {
-            section.style.position = "relative";
-          }
-          createRoyalFloral(section, index % 2 === 0 ? "left" : "right", index);
-          const node = floralNodes[floralNodes.length - 1];
-          gsap.to(node, { opacity: 0.75, duration: 0.6 });
-        });
+      mm.add(`(max-width: 1024px), (pointer: coarse)`, () => {
+        plantFlorals(0.75);
       });
 
       return () => {
@@ -343,7 +230,7 @@ export function CinematicForgeLayer() {
       <div className="forge-noise absolute inset-0" />
       <div className="forge-vignette absolute inset-0" />
       <div className="forge-particles absolute inset-0" aria-hidden>
-        {Array.from({ length: forgeParticleCount }).map((_, i) => (
+        {Array.from({ length: particleCount }).map((_, i) => (
           <span
             key={i}
             className={`absolute rounded-full will-change-transform ${

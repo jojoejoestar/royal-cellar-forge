@@ -2,8 +2,15 @@
 
 import { Grape } from "lucide-react";
 import { useEffect, useRef } from "react";
+import { DESKTOP_POINTER_MQ, REDUCED_MOTION_MQ } from "@/lib/media";
 
-function setTranslateCentered(el: HTMLElement | null, x: number, y: number, halfW: number, halfH: number) {
+function setTranslateCentered(
+  el: HTMLElement | null,
+  x: number,
+  y: number,
+  halfW: number,
+  halfH: number,
+) {
   if (!el) return;
   el.style.transform = `translate3d(${x - halfW}px, ${y - halfH}px, 0)`;
 }
@@ -12,8 +19,8 @@ export function GoldenGrapeCursor() {
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const desktopMq = window.matchMedia("(min-width: 1025px) and (pointer: fine)");
-    const reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const desktopMq = window.matchMedia(DESKTOP_POINTER_MQ);
+    const reduceMq = window.matchMedia(REDUCED_MOTION_MQ);
 
     let active = false;
 

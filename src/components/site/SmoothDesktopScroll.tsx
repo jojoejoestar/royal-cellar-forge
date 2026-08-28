@@ -3,11 +3,12 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
 import { ScrollTrigger } from "@/lib/gsapBoot";
+import { DESKTOP_POINTER_MQ, REDUCED_MOTION_MQ } from "@/lib/media";
 
 export function SmoothDesktopScroll() {
   useEffect(() => {
-    const desktopMq = window.matchMedia("(min-width: 1025px) and (pointer: fine)");
-    const reduceMq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const desktopMq = window.matchMedia(DESKTOP_POINTER_MQ);
+    const reduceMq = window.matchMedia(REDUCED_MOTION_MQ);
 
     let lenis: Lenis | null = null;
     let rafId = 0;

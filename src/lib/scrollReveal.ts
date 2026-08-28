@@ -3,16 +3,12 @@ import { revealEase, stRevealOnce } from "@/lib/revealTiming";
 
 export { revealEase, stRevealOnce };
 
-export type RevealScroll = {
+type RevealScroll = {
   trigger: gsap.DOMTarget;
   start?: string;
   end?: string;
 };
 
-/**
- * Primes targets to the hidden “from” state immediately (before paint when called from useLayoutEffect),
- * then animates to rest on scroll. Fixes gsap.from + ScrollTrigger leaving content visible until the tween starts.
- */
 export function primeAndReveal(
   selector: string,
   scope: Element | null | undefined,

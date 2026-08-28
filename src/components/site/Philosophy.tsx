@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { Mountain, Droplets, Sun } from "lucide-react";
-import wineGlassSolo from "@/assets/wine-glass-solo\.jpg";
-import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import wineGlassSolo from "@/assets/wine-glass-solo.jpg";
 import { primeAndReveal } from "@/lib/scrollReveal";
+import { useGsapReveal } from "@/hooks/useGsapReveal";
+import { Container, PatternBackdrop, Section } from "@/components/site/Section";
+import { SectionHeader } from "@/components/site/SectionHeader";
 
 const pillars = [
   {
@@ -27,62 +27,46 @@ const pillars = [
 ];
 
 export function Philosophy() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    if (!ref.current) return;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-    const ctx = gsap.context(() => {
-      primeAndReveal(
-        ".philo-line",
-        ref.current,
-        { autoAlpha: 0, y: 40 },
-        { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
-        { trigger: ref.current, start: "top 84%" },
-      );
-      primeAndReveal(
-        ".philo-glass",
-        ref.current,
-        { autoAlpha: 0, x: -48 },
-        { autoAlpha: 1, x: 0, duration: 1.1 },
-        { trigger: ref.current, start: "top 82%" },
-      );
-      primeAndReveal(
-        ".philo-pillar",
-        ref.current,
-        { autoAlpha: 0, y: 44 },
-        { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
-        { trigger: ".philo-grid", start: "top 88%" },
-      );
-    }, ref);
-    return () => ctx.revert();
-  }, []);
+  const ref = useGsapReveal((root) => {
+    primeAndReveal(
+      ".philo-line",
+      root,
+      { autoAlpha: 0, y: 40 },
+      { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
+      { trigger: root, start: "top 84%" },
+    );
+    primeAndReveal(
+      ".philo-glass",
+      root,
+      { autoAlpha: 0, x: -48 },
+      { autoAlpha: 1, x: 0, duration: 1.1 },
+      { trigger: root, start: "top 82%" },
+    );
+    primeAndReveal(
+      ".philo-pillar",
+      root,
+      { autoAlpha: 0, y: 44 },
+      { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
+      { trigger: ".philo-grid", start: "top 88%" },
+    );
+  });
 
   return (
-    <section
-      id="terroir"
-      ref={ref}
-      className="relative overflow-hidden bg-transparent py-14 md:py-20"
-    >
-      <div className="absolute inset-0 pattern-damask opacity-40" />
-      <div className="absolute inset-0 pattern-grapes opacity-20" />
+    <Section id="terroir" ref={ref}>
+      <PatternBackdrop damask={0.4} grapes={0.2} />
       <div className="ambient-spotlight absolute left-1/2 top-28 h-[520px] w-[520px] -translate-x-1/2 spotlight-gold opacity-68" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        {/* Two-column hero: glass + manifesto */}
+      <Container>
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-14">
-          {/* Glass image - left */}
           <div className="philo-glass relative lg:col-span-5">
             <div className="relative mx-auto max-w-md">
-              {/* Outer gold halo */}
-              <div className="pointer-events-none absolute -inset-10 rounded-full opacity-70 blur-3xl"
+              <div
+                className="pointer-events-none absolute -inset-10 rounded-full opacity-70 blur-3xl"
                 style={{
                   background:
                     "radial-gradient(ellipse at center, oklch(0.78 0.13 85 / 0.25) 0%, transparent 65%)",
                 }}
               />
-              {/* Frame */}
               <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
                 <Image
                   src={wineGlassSolo}
@@ -94,70 +78,55 @@ export function Philosophy() {
                   quality={78}
                   className="block h-auto w-full"
                 />
-                {/* Inner gold gradient frame */}
                 <div className="pointer-events-none absolute inset-0 rounded-sm ring-1 ring-inset ring-gold/20" />
-                {/* Top shimmer line */}
                 <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
-                {/* Bottom shimmer line */}
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
               </div>
-              {/* Caption */}
               <p className="mt-5 text-center text-[11px] uppercase tracking-[0.4em] text-gold/70">
                 · In Vino Veritas ·
               </p>
             </div>
           </div>
 
-          {/* Manifesto - right */}
           <div className="lg:col-span-7">
-            <p className="philo-line text-xs uppercase tracking-[0.5em] text-gold">
-              A Filosofia
-            </p>
-            <div className="philo-line mt-6 gold-divider w-32" />
-
-            <AnimatedTitle
-              as="h2"
-              className="philo-line mt-8 font-serif text-4xl leading-tight md:text-6xl lg:text-7xl"
-            >
-              Onde o Solo
-              <br />
-              <span className="optical-word optical-word-destino italic text-gradient-gold">
-                Dita o Destino.
-              </span>
-            </AnimatedTitle>
-
-            <p className="philo-line mt-10 max-w-2xl text-base font-light leading-relaxed text-champagne/75 md:text-lg">
-              Não vendemos vinhos. Custodiamos cápsulas líquidas do tempo -
-              meticulosamente eleitas dos vinhedos mais nobres da Borgonha,
-              Toscana e do Vale do Douro. Cada rótulo da Cave Royale carrega o
-              silêncio de gerações, a paciência das pedras e a ousadia de
-              mestres vignerons que recusam atalhos.
-            </p>
+            <SectionHeader
+              align="left"
+              revealClass="philo-line"
+              eyebrow="A Filosofia"
+              title={
+                <>
+                  Onde o Solo
+                  <br />
+                  <span className="optical-word optical-word-destino italic text-gradient-gold">
+                    Dita o Destino.
+                  </span>
+                </>
+              }
+              titleClassName="lg:text-7xl"
+              descriptionClassName="mt-10 max-w-2xl text-champagne/75 md:text-lg"
+              description="Não vendemos vinhos. Custodiamos cápsulas líquidas do tempo - meticulosamente eleitas dos vinhedos mais nobres da Borgonha, Toscana e do Vale do Douro. Cada rótulo da Cave Royale carrega o silêncio de gerações, a paciência das pedras e a ousadia de mestres vignerons que recusam atalhos."
+            />
           </div>
         </div>
 
-        {/* Pillars */}
         <div className="philo-grid mt-12 grid gap-6 md:grid-cols-3 lg:mt-14">
-          {pillars.map((p) => (
+          {pillars.map((pillar) => (
             <div
-              key={p.title}
+              key={pillar.title}
               className="philo-pillar scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/15 bg-background/40 p-10 backdrop-blur-sm transition-[border-color,background-color] duration-500 will-change-transform hover:border-gold/40 hover:bg-background/60"
             >
               <div className="absolute inset-x-0 -top-px h-px bg-gradient-to-r from-transparent via-gold/60 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-              <p.icon className="mx-auto h-9 w-9 text-gold transition-transform duration-500 group-hover:scale-110" />
-              <h3 className="mt-6 font-serif text-2xl text-champagne text-center">
-                {p.title}
+              <pillar.icon className="mx-auto h-9 w-9 text-gold transition-transform duration-500 group-hover:scale-110" />
+              <h3 className="mt-6 text-center font-serif text-2xl text-champagne">
+                {pillar.title}
               </h3>
-              <p className="mt-3 text-sm font-light leading-relaxed text-champagne/65 text-center">
-                {p.text}
+              <p className="mt-3 text-center text-sm font-light leading-relaxed text-champagne/65">
+                {pillar.text}
               </p>
             </div>
           ))}
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }
-
-
-

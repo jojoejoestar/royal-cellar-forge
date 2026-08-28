@@ -41,7 +41,7 @@
 :root {
   --radius: 0.5rem;
 
-  /* Imperial Velvet + Byzantine Gold Theme - vinho vivo (mais croma, menos cinza) */
+  /* Paleta: veludo imperial + ouro bizantino */
   --background: oklch(0.102 0.038 318);
   --foreground: oklch(0.95 0.02 72);
   --card: oklch(0.165 0.07 316);
@@ -71,7 +71,6 @@
   --onyx: oklch(0.09 0.045 318);
 
   --font-serif: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
-  /* No remote sans WOFF2 — matches layout (Inter removed) for a single critical font + faster FCP/LCP */
   --font-sans:
     ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue",
     Arial, sans-serif;
@@ -127,8 +126,7 @@
 
   @media (max-width: 1024px) {
     body {
-      /* fixed attachment forces expensive repaints on mobile compositors */
-      background-attachment: scroll;
+    background-attachment: scroll;
     }
   }
 
@@ -148,7 +146,6 @@
     position: relative;
   }
 
-  /* Chapter-level editorial typography curation */
   #top h1 {
     font-weight: 700;
     letter-spacing: 0.022em;
@@ -190,7 +187,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* Upper labels emulate luxury magazine overlines */
   #top [class*="tracking-[0.4em]"],
   #top [class*="tracking-[0.5em]"],
   #acervo [class*="tracking-[0.5em]"],
@@ -809,7 +805,6 @@
   }
 
   @media (max-width: 1024px) {
-    /* Non-composited text-shadow animation → static premium glow on mobile */
     .animated-title {
       animation: none;
       text-shadow:
@@ -1024,7 +1019,6 @@
   }
 }
 
-/* Below-fold sections: defer full layout/paint until near viewport (mobile Lighthouse). */
 @media (max-width: 1024px) {
   .cv-mobile-auto {
     content-visibility: auto;

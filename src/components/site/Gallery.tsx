@@ -1,231 +1,62 @@
 "use client";
 
-import { useLayoutEffect, useRef, useState, useMemo } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
+import { useMemo, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import Image, { type StaticImageData } from "next/image";
+import Image from "next/image";
 import {
   ChevronLeft,
   ChevronRight,
   Search,
-  Wine,
+  Wine as WineIcon,
   Award,
   Calendar,
   MapPin,
   Star,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import { wines, wineRegions, type Wine, type WineRegion } from "@/content/wines";
 import { primeAndReveal } from "@/lib/scrollReveal";
-import bordeaux from "@/assets/wine-bordeaux.jpg";
-import brunello from "@/assets/wine-brunello.jpg";
-import burgundy from "@/assets/wine-burgundy.jpg";
-import champagneImg from "@/assets/wine-champagne.jpg";
-import loire from "@/assets/wine-loire.jpg";
-import rioja from "@/assets/wine-rioja.jpg";
-import douro from "@/assets/wine-douro.jpg";
-import napa from "@/assets/wine-napa.jpg";
+import { useGsapReveal } from "@/hooks/useGsapReveal";
+import { Container, PatternBackdrop, Section } from "@/components/site/Section";
+import { SectionHeader } from "@/components/site/SectionHeader";
 
-type Region = "Todos" | "França" | "Itália" | "Espanha" | "Portugal" | "Estados Unidos";
-
-type RareWine = {
-  id: string;
-  name: string;
-  region: Region;
-  appellation: string;
-  vintage: string;
-  image: StaticImageData;
-  rarity: string;
-  bottles: string;
-  marketPrice: string;
-  notes: string;
-  pairing: string;
-  story: string;
-  score: string;
-  focusY?: number;
-};
-
-const collection: RareWine[] = [
-  {
-    id: "bordeaux-premium-2018",
-    name: "Bordeaux Premium Reserve",
-    region: "França",
-    appellation: "Bordeaux · Blend tinto",
-    vintage: "2018",
-    image: bordeaux,
-    rarity: "Rótulo de Curadoria",
-    bottles: "Lote privado selecionado",
-    marketPrice: "US$ 55 - 140 (R$ 290 - 740)",
-    notes: "Cassis maduro, cedro e grafite, com tanino macio e final limpo.",
-    pairing: "Carré de cordeiro · Entrecôte maturado",
-    story:
-      "Garrafa de perfil clássico bordalês, escolhida pela elegância visual e pelo estilo gastronômico versátil para adegas de assinatura.",
-    score: "94/100",
-    focusY: 64,
-  },
-  {
-    id: "brunello-riserva-2017",
-    name: "Italian Brunello Riserva",
-    region: "Itália",
-    appellation: "Toscana · Brunello di Montalcino",
-    vintage: "2017",
-    image: brunello,
-    rarity: "Rótulo de Curadoria",
-    bottles: "Lote com disponibilidade reduzida",
-    marketPrice: "US$ 70 - 220 (R$ 370 - 1.160)",
-    notes: "Cereja seca, couro fino e ervas mediterrâneas com acidez longa e precisa.",
-    pairing: "Bistecca alla Fiorentina · Pappardelle al ragù",
-    story:
-      "Representa a escola toscana de longa guarda: estrutura, concentração e elegância rústica refinada.",
-    score: "95/100",
-    focusY: 66,
-  },
-  {
-    id: "pinot-vintage-2016",
-    name: "Pinot Noir Vintage",
-    region: "França",
-    appellation: "Borgonha · Pinot Noir",
-    vintage: "2016",
-    image: burgundy,
-    rarity: "Safra de Adega",
-    bottles: "Pequeno lote maturado",
-    marketPrice: "US$ 45 - 120 (R$ 240 - 635)",
-    notes: "Framboesa, cereja e terra úmida em perfil sedoso, com final delicado.",
-    pairing: "Magret de pato · Cogumelos selvagens",
-    story: "Estilo clássico de Pinot Noir com caráter de adega e assinatura aromática elegante.",
-    score: "93/100",
-    focusY: 67,
-  },
-  {
-    id: "champagne-dom-perignon-2013",
-    name: "Champagne Dom Perignon Cuvée",
-    region: "França",
-    appellation: "Champagne · Brut",
-    vintage: "2013",
-    image: champagneImg,
-    rarity: "Prestige Cuvée",
-    bottles: "Alocação sazonal",
-    marketPrice: "US$ 220 - 340 (R$ 1.160 - 1.790)",
-    notes: "Brioche, cítricos confit e notas de amêndoas com mousse cremosa e vibrante.",
-    pairing: "Ostras · Caviar Oscietra",
-    story:
-      "Rótulo de inspiração prestige, selecionado para experiências de celebração e harmonizações de alta precisão.",
-    score: "96/100",
-    focusY: 71,
-  },
-  {
-    id: "loire-cuvee-2019",
-    name: "Loire Valley Cuvée",
-    region: "França",
-    appellation: "Vale do Loire · Espumante",
-    vintage: "2019",
-    image: loire,
-    rarity: "Edição Curadoria",
-    bottles: "Lote limitado",
-    marketPrice: "US$ 35 - 95 (R$ 185 - 500)",
-    notes: "Frutas brancas, flores secas e toques de pão tostado em corpo fresco e longo.",
-    pairing: "Queijo de cabra · Frutos do mar",
-    story:
-      "Expressão do Loire em estilo espumante, com foco em frescor mineral e versatilidade gastronômica.",
-    score: "92/100",
-    focusY: 70,
-  },
-  {
-    id: "rioja-reserva-2014",
-    name: "Rioja Reserva Antigua",
-    region: "Espanha",
-    appellation: "Rioja · Reserva",
-    vintage: "2014",
-    image: rioja,
-    rarity: "Biblioteca Ibérica",
-    bottles: "Lote de adega histórica",
-    marketPrice: "US$ 40 - 110 (R$ 210 - 580)",
-    notes: "Ameixa madura, baunilha e couro, com taninos redondos e final especiado.",
-    pairing: "Cordeiro assado · Jamón ibérico",
-    story:
-      "Perfil clássico de Rioja de guarda, com madeira integrada e assinatura terrosa elegante.",
-    score: "93/100",
-    focusY: 66,
-  },
-  {
-    id: "douro-valley-2016",
-    name: "Douro Valley Reserva",
-    region: "Portugal",
-    appellation: "Douro · Reserva",
-    vintage: "2016",
-    image: douro,
-    rarity: "Seleção Atlântica",
-    bottles: "Micro lote de curadoria",
-    marketPrice: "US$ 45 - 130 (R$ 240 - 690)",
-    notes: "Fruta negra concentrada, cacau e especiarias quentes, com final profundo.",
-    pairing: "Queijos curados · Carnes de caça",
-    story: "Rótulo de estilo duriense, com concentração e estrutura para serviço meditativo.",
-    score: "94/100",
-    focusY: 68,
-  },
-  {
-    id: "napa-cabernet-2019",
-    name: "Napa Valley Cabernet Sauvignon",
-    region: "Estados Unidos",
-    appellation: "Napa Valley · Cabernet Sauvignon",
-    vintage: "2019",
-    image: napa,
-    rarity: "Napa Signature",
-    bottles: "Alocação concorrida",
-    marketPrice: "US$ 80 - 240 (R$ 420 - 1.265)",
-    notes: "Amora, cassis, cacau e cedro em estrutura ampla com final persistente.",
-    pairing: "Prime rib dry-aged · Short rib braseada",
-    story:
-      "Cabernet de perfil californiano clássico: fruta intensa, concentração e acabamento polido.",
-    score: "95/100",
-    focusY: 64,
-  },
-];
-
-const regions: Region[] = ["Todos", "França", "Itália", "Espanha", "Portugal", "Estados Unidos"];
+type RegionFilter = "Todos" | WineRegion;
 
 export function Gallery() {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const trackRef = useRef<HTMLDivElement>(null);
-  const [filter, setFilter] = useState<Region>("Todos");
+  const [filter, setFilter] = useState<RegionFilter>("Todos");
   const [search, setSearch] = useState("");
-  const [selected, setSelected] = useState<RareWine | null>(null);
+  const [selected, setSelected] = useState<Wine | null>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  const sectionRef = useGsapReveal((root) => {
+    primeAndReveal(
+      ".gal-head",
+      root,
+      { autoAlpha: 0, x: -40 },
+      { autoAlpha: 1, x: 0, duration: 1.05, stagger: 0.12 },
+      { trigger: root, start: "top 84%" },
+    );
+    primeAndReveal(
+      ".gal-track",
+      root,
+      { autoAlpha: 0, x: 44 },
+      { autoAlpha: 1, x: 0, duration: 1.1 },
+      { trigger: ".gal-track-wrap", start: "top 88%" },
+    );
+  });
 
   const filtered = useMemo(() => {
-    return collection.filter((w) => {
-      const byRegion = filter === "Todos" || w.region === filter;
-      const q = search.trim().toLowerCase();
+    const q = search.trim().toLowerCase();
+    return wines.filter((wine) => {
+      const byRegion = filter === "Todos" || wine.region === filter;
       const byQuery =
         !q ||
-        w.name.toLowerCase().includes(q) ||
-        w.appellation.toLowerCase().includes(q) ||
-        w.vintage.includes(q);
+        wine.name.toLowerCase().includes(q) ||
+        wine.appellation.toLowerCase().includes(q) ||
+        wine.vintage.includes(q);
       return byRegion && byQuery;
     });
   }, [filter, search]);
-
-  useLayoutEffect(() => {
-    if (!sectionRef.current) return;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-    const ctx = gsap.context(() => {
-      primeAndReveal(
-        ".gal-head",
-        sectionRef.current,
-        { autoAlpha: 0, x: -40 },
-        { autoAlpha: 1, x: 0, duration: 1.05, stagger: 0.12 },
-        { trigger: sectionRef.current, start: "top 84%" },
-      );
-      primeAndReveal(
-        ".gal-track",
-        sectionRef.current,
-        { autoAlpha: 0, x: 44 },
-        { autoAlpha: 1, x: 0, duration: 1.1 },
-        { trigger: ".gal-track-wrap", start: "top 88%" },
-      );
-    }, sectionRef);
-    return () => ctx.revert();
-  }, []);
 
   const scrollBy = (dir: 1 | -1) => {
     const el = trackRef.current;
@@ -234,50 +65,38 @@ export function Gallery() {
   };
 
   return (
-    <section
-      id="galeria"
-      ref={sectionRef}
-      className="relative overflow-hidden bg-transparent py-14 md:py-20"
-    >
-      <div className="absolute inset-0 pattern-grapes opacity-25" />
-      <div className="absolute inset-0 pattern-damask opacity-20" />
+    <Section id="galeria" ref={sectionRef}>
+      <PatternBackdrop damask={0.2} grapes={0.25} />
+      <Container>
+        <SectionHeader
+          revealClass="gal-head"
+          eyebrow="Galeria de Rótulos Raros"
+          title={
+            <>
+              Tesouros <span className="italic text-gradient-gold">Selecionados</span>
+              <br />
+              por Terroir.
+            </>
+          }
+          description="Filtre por região, percorra o carrossel e descubra a história completa de cada relíquia em nosso acervo privado."
+        />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        <div className="text-center">
-          <p className="gal-head text-xs uppercase tracking-[0.5em] text-gold">
-            Galeria de Rótulos Raros
-          </p>
-          <div className="gal-head mx-auto mt-6 gold-divider w-32" />
-          <AnimatedTitle
-            as="h2"
-            className="gal-head mt-8 font-serif text-4xl leading-tight md:text-6xl"
-          >
-            Tesouros <span className="italic text-gradient-gold">Selecionados</span>
-            <br />
-            por Terroir.
-          </AnimatedTitle>
-          <p className="gal-head mx-auto mt-6 max-w-2xl text-base font-light text-champagne/70">
-            Filtre por região, percorra o carrossel e descubra a história completa de cada relíquia
-            em nosso acervo privado.
-          </p>
-        </div>
-
-        {/* Filters */}
         <div className="gal-head mt-10 flex flex-col items-center gap-5 lg:mt-12 lg:flex-row lg:justify-between lg:gap-6">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            {regions.map((r) => {
-              const active = filter === r;
+            {wineRegions.map((region) => {
+              const active = filter === region;
               return (
                 <button
-                  key={r}
-                  onClick={() => setFilter(r)}
+                  key={region}
+                  type="button"
+                  onClick={() => setFilter(region)}
                   className={`rounded-sm border px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] transition-[border-color,background-color,color,opacity] duration-300 ${
                     active
                       ? "border-gold bg-gold text-onyx shadow-gold-soft"
                       : "border-gold/25 text-champagne/70 hover:border-gold/60 hover:text-gold"
                   }`}
                 >
-                  {r}
+                  {region}
                 </button>
               );
             })}
@@ -294,9 +113,9 @@ export function Gallery() {
           </label>
         </div>
 
-        {/* Carousel */}
         <div className="gal-track-wrap relative mt-12">
           <button
+            type="button"
             onClick={() => scrollBy(-1)}
             aria-label="Anterior"
             className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-gold/30 bg-background/70 p-3 text-gold backdrop-blur-md transition hover:bg-gold/15 lg:block"
@@ -304,6 +123,7 @@ export function Gallery() {
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
+            type="button"
             onClick={() => scrollBy(1)}
             aria-label="Próximo"
             className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-gold/30 bg-background/70 p-3 text-gold backdrop-blur-md transition hover:bg-gold/15 lg:block"
@@ -316,35 +136,35 @@ export function Gallery() {
             className="gal-track flex snap-x snap-mandatory gap-6 overflow-x-auto scroll-smooth pb-6 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
             <AnimatePresence mode="popLayout">
-              {filtered.map((w, i) => (
+              {filtered.map((wine, i) => (
                 <motion.button
                   layout
-                  key={w.id}
+                  key={wine.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 20 }}
                   transition={{ duration: 0.5, delay: i * 0.04 }}
-                  onClick={() => setSelected((prev) => (prev?.id === w.id ? null : w))}
+                  onClick={() => setSelected((prev) => (prev?.id === wine.id ? null : wine))}
                   className="gal-card image-hover-luxury group relative flex h-[570px] w-[280px] shrink-0 snap-start flex-col overflow-hidden rounded-sm border border-gold/20 bg-onyx/95 text-left shadow-card-luxury transition-[transform,border-color] duration-500 will-change-transform hover:border-gold/55 sm:w-[320px]"
                 >
                   <div className="absolute inset-0 spotlight-gold opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
                   <div className="relative z-10 flex items-center justify-between border-b border-gold/15 bg-onyx px-4 py-3">
                     <span className="rounded-full border border-gold/40 bg-onyx px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold">
-                      {w.rarity}
+                      {wine.rarity}
                     </span>
                     <span className="rounded-full border border-gold/40 bg-onyx px-3 py-1 text-[10px] font-semibold tracking-widest text-gold">
-                      {w.score}
+                      {wine.score}
                     </span>
                   </div>
 
                   <div className="relative h-[320px] overflow-hidden bg-onyx p-4">
                     <div className="relative h-full w-full overflow-hidden rounded-sm border border-gold/15 bg-black/90">
                       <Image
-                        src={w.image}
-                        alt={`${w.name} ${w.vintage}`}
+                        src={wine.image}
+                        alt={`${wine.name} ${wine.vintage}`}
                         fill
                         className="object-cover scale-[1.12] transition-transform duration-700 group-hover:scale-[1.17]"
-                        style={{ objectPosition: `50% ${w.focusY ?? 66}%` }}
+                        style={{ objectPosition: `50% ${wine.focusY ?? 66}%` }}
                         sizes="(max-width: 640px) 85vw, 320px"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-onyx via-onyx/22 to-transparent" />
@@ -361,16 +181,16 @@ export function Gallery() {
                   </div>
                   <div className="relative flex min-h-0 flex-1 flex-col border-t border-gold/15 bg-onyx/95 p-5">
                     <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
-                      Safra {w.vintage}
+                      Safra {wine.vintage}
                     </p>
                     <h3 className="mt-2 line-clamp-2 min-h-[4.25rem] font-serif text-xl leading-tight text-champagne">
-                      {w.name}
+                      {wine.name}
                     </h3>
                     <p className="mt-1 line-clamp-1 min-h-[1rem] text-[11px] uppercase tracking-widest text-champagne/60">
-                      {w.appellation}
+                      {wine.appellation}
                     </p>
                     <p className="mt-2 text-[10px] uppercase tracking-[0.2em] text-gold/80">
-                      {w.marketPrice}
+                      {wine.marketPrice}
                     </p>
                     <span className="mt-auto inline-flex items-center gap-2 pt-4 text-[11px] uppercase tracking-[0.25em] text-gold transition-transform duration-300 will-change-transform group-hover:translate-x-1">
                       Ver Ficha Completa →
@@ -383,16 +203,16 @@ export function Gallery() {
 
           {filtered.length === 0 && (
             <div className="py-12 text-center text-champagne/60 md:py-14">
-              <Wine className="mx-auto mb-4 h-10 w-10 text-gold/60" />
+              <WineIcon className="mx-auto mb-4 h-10 w-10 text-gold/60" />
               <p className="font-serif text-2xl">Nenhum rótulo encontrado.</p>
               <p className="mt-2 text-sm">Ajuste os filtros para revelar outros tesouros.</p>
             </div>
           )}
         </div>
 
-        {/* Mobile arrows */}
         <div className="mt-6 flex justify-center gap-3 lg:hidden">
           <button
+            type="button"
             onClick={() => scrollBy(-1)}
             aria-label="Anterior"
             className="rounded-full border border-gold/30 bg-background/60 p-3 text-gold"
@@ -400,6 +220,7 @@ export function Gallery() {
             <ChevronLeft className="h-5 w-5" />
           </button>
           <button
+            type="button"
             onClick={() => scrollBy(1)}
             aria-label="Próximo"
             className="rounded-full border border-gold/30 bg-background/60 p-3 text-gold"
@@ -407,111 +228,112 @@ export function Gallery() {
             <ChevronRight className="h-5 w-5" />
           </button>
         </div>
-      </div>
+      </Container>
 
-      {/* Modal */}
-      <Dialog open={!!selected} onOpenChange={(o) => !o && setSelected(null)}>
-        <DialogContent className="left-1/2 top-1/2 grid h-auto max-h-[92dvh] w-[96vw] max-w-4xl -translate-x-1/2 -translate-y-1/2 overflow-hidden border-gold/30 bg-background p-0 sm:rounded-sm">
-          {selected && (
-            <div className="grid max-h-[92dvh] gap-0 lg:grid-cols-2">
-              <div className="relative h-56 overflow-hidden bg-gradient-royal sm:h-64 lg:h-auto">
-                <div className="absolute inset-0 spotlight-gold opacity-70" />
-                <Image
-                  src={selected.image}
-                  alt={selected.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-onyx/40" />
-              </div>
+      <WineDialog wine={selected} onClose={() => setSelected(null)} />
+    </Section>
+  );
+}
 
-              <div className="relative flex max-h-[calc(92dvh-14rem)] flex-col overflow-y-auto p-4 sm:max-h-[calc(92dvh-16rem)] sm:p-5 md:p-7 lg:max-h-[92dvh] lg:p-8">
-                <div className="absolute inset-0 pattern-damask opacity-30" />
-                <div className="relative pb-3 sm:pb-4 lg:pb-0">
-                  <div className="flex items-center gap-3">
-                    <span className="rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold">
-                      {selected.rarity}
-                    </span>
-                    <span className="inline-flex items-center gap-1 text-[10px] tracking-widest text-gold">
-                      <Award className="h-3 w-3" /> {selected.score}
-                    </span>
-                    <span
-                      className="inline-flex items-center gap-0.5"
-                      aria-label="Classificação cinco estrelas"
-                    >
-                      {Array.from({ length: 5 }).map((_, idx) => (
-                        <Star
-                          key={idx}
-                          className="h-3.5 w-3.5 fill-gold text-gold"
-                          aria-hidden="true"
-                        />
-                      ))}
-                    </span>
-                  </div>
+function WineDialog({ wine, onClose }: { wine: Wine | null; onClose: () => void }) {
+  return (
+    <Dialog open={!!wine} onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="left-1/2 top-1/2 grid h-auto max-h-[92dvh] w-[96vw] max-w-4xl -translate-x-1/2 -translate-y-1/2 overflow-hidden border-gold/30 bg-background p-0 sm:rounded-sm">
+        {wine && (
+          <div className="grid max-h-[92dvh] gap-0 lg:grid-cols-2">
+            <div className="relative h-56 overflow-hidden bg-gradient-royal sm:h-64 lg:h-auto">
+              <div className="absolute inset-0 spotlight-gold opacity-70" />
+              <Image
+                src={wine.image}
+                alt={wine.name}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1024px) 100vw, 50vw"
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-onyx/40" />
+            </div>
 
-                  <DialogTitle className="mt-3 font-serif text-2xl leading-tight text-champagne sm:mt-4 sm:text-3xl md:text-4xl">
-                    {selected.name}
-                  </DialogTitle>
-                  <DialogDescription className="mt-2 text-[11px] uppercase tracking-[0.3em] text-champagne/60">
-                    <span className="inline-flex items-center gap-1">
-                      <MapPin className="h-3 w-3 text-gold" />
-                      {selected.appellation}
-                    </span>
-                    <span className="mx-3 text-gold/40">·</span>
-                    <span className="inline-flex items-center gap-1">
-                      <Calendar className="h-3 w-3 text-gold" />
-                      Safra {selected.vintage}
-                    </span>
-                  </DialogDescription>
-
-                  <div className="my-4 gold-divider w-20 sm:my-5 sm:w-24" />
-
-                  <h4 className="text-[11px] uppercase tracking-[0.3em] text-gold">
-                    Notas de Degustação
-                  </h4>
-                  <p className="mt-2 text-sm font-light leading-relaxed text-champagne/85">
-                    {selected.notes}
-                  </p>
-
-                  <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
-                    Harmonização
-                  </h4>
-                  <p className="mt-2 text-sm italic font-light text-champagne/75">
-                    {selected.pairing}
-                  </p>
-
-                  <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
-                    A História
-                  </h4>
-                  <p className="mt-2 text-sm font-light leading-relaxed text-champagne/75">
-                    {selected.story}
-                  </p>
-
-                  <div className="mt-5 rounded-sm border border-gold/20 bg-onyx/40 p-4 sm:mt-6">
-                    <div>
-                      <p className="text-[9px] uppercase tracking-[0.3em] text-gold/80">
-                        Disponibilidade
-                      </p>
-                      <p className="mt-1 font-serif text-base text-champagne">{selected.bottles}</p>
-                      <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-gold/80">
-                        {selected.marketPrice}
-                      </p>
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setSelected(null)}
-                    className="mt-5 inline-flex w-full items-center justify-center rounded-sm border border-gold/30 bg-background/70 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-gold transition-colors hover:bg-gold/12 lg:hidden"
+            <div className="relative flex max-h-[calc(92dvh-14rem)] flex-col overflow-y-auto p-4 sm:max-h-[calc(92dvh-16rem)] sm:p-5 md:p-7 lg:max-h-[92dvh] lg:p-8">
+              <div className="absolute inset-0 pattern-damask opacity-30" />
+              <div className="relative pb-3 sm:pb-4 lg:pb-0">
+                <div className="flex items-center gap-3">
+                  <span className="rounded-full border border-gold/40 bg-onyx/70 px-3 py-1 text-[9px] font-semibold uppercase tracking-[0.25em] text-gold">
+                    {wine.rarity}
+                  </span>
+                  <span className="inline-flex items-center gap-1 text-[10px] tracking-widest text-gold">
+                    <Award className="h-3 w-3" /> {wine.score}
+                  </span>
+                  <span
+                    className="inline-flex items-center gap-0.5"
+                    aria-label="Classificação cinco estrelas"
                   >
-                    Fechar ficha
-                  </button>
+                    {Array.from({ length: 5 }).map((_, idx) => (
+                      <Star
+                        key={idx}
+                        className="h-3.5 w-3.5 fill-gold text-gold"
+                        aria-hidden="true"
+                      />
+                    ))}
+                  </span>
                 </div>
+
+                <DialogTitle className="mt-3 font-serif text-2xl leading-tight text-champagne sm:mt-4 sm:text-3xl md:text-4xl">
+                  {wine.name}
+                </DialogTitle>
+                <DialogDescription className="mt-2 text-[11px] uppercase tracking-[0.3em] text-champagne/60">
+                  <span className="inline-flex items-center gap-1">
+                    <MapPin className="h-3 w-3 text-gold" />
+                    {wine.appellation}
+                  </span>
+                  <span className="mx-3 text-gold/40">·</span>
+                  <span className="inline-flex items-center gap-1">
+                    <Calendar className="h-3 w-3 text-gold" />
+                    Safra {wine.vintage}
+                  </span>
+                </DialogDescription>
+
+                <div className="my-4 gold-divider w-20 sm:my-5 sm:w-24" />
+
+                <h4 className="text-[11px] uppercase tracking-[0.3em] text-gold">
+                  Notas de Degustação
+                </h4>
+                <p className="mt-2 text-sm font-light leading-relaxed text-champagne/85">
+                  {wine.notes}
+                </p>
+
+                <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
+                  Harmonização
+                </h4>
+                <p className="mt-2 text-sm italic font-light text-champagne/75">{wine.pairing}</p>
+
+                <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
+                  A História
+                </h4>
+                <p className="mt-2 text-sm font-light leading-relaxed text-champagne/75">
+                  {wine.story}
+                </p>
+
+                <div className="mt-5 rounded-sm border border-gold/20 bg-onyx/40 p-4 sm:mt-6">
+                  <p className="text-[9px] uppercase tracking-[0.3em] text-gold/80">
+                    Disponibilidade
+                  </p>
+                  <p className="mt-1 font-serif text-base text-champagne">{wine.bottles}</p>
+                  <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-gold/80">
+                    {wine.marketPrice}
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={onClose}
+                  className="mt-5 inline-flex w-full items-center justify-center rounded-sm border border-gold/30 bg-background/70 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-gold transition-colors hover:bg-gold/12 lg:hidden"
+                >
+                  Fechar ficha
+                </button>
               </div>
             </div>
-          )}
-        </DialogContent>
-      </Dialog>
-    </section>
+          </div>
+        )}
+      </DialogContent>
+    </Dialog>
   );
 }

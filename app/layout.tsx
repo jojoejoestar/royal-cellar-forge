@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Bodoni_Moda } from "next/font/google";
 import "./globals.css";
 
-/* One webfont on the critical path: LCP headings. Sans = system stack in CSS (no second WOFF2 chain). */
 const serif = Bodoni_Moda({
   subsets: ["latin"],
   weight: ["600", "700"],
@@ -23,9 +22,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{ children: React.ReactNode }>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
       <body className={`${serif.variable} relative`}>

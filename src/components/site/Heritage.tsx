@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { Crown, Scroll, Grape } from "lucide-react";
-import chalice from "@/assets/heritage-chalice\.jpg";
-import grapes from "@/assets/heritage-grapes\.jpg";
-import cellar from "@/assets/heritage-cellar\.jpg";
-import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import chalice from "@/assets/heritage-chalice.jpg";
+import grapes from "@/assets/heritage-grapes.jpg";
+import cellar from "@/assets/heritage-cellar.jpg";
 import { primeAndReveal } from "@/lib/scrollReveal";
+import { useGsapReveal } from "@/hooks/useGsapReveal";
+import { Container, PatternBackdrop, Section } from "@/components/site/Section";
+import { SectionHeader } from "@/components/site/SectionHeader";
 
 const eras = [
   {
@@ -32,82 +32,57 @@ const eras = [
 ];
 
 export function Heritage() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    if (!ref.current) return;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-    const ctx = gsap.context(() => {
-      primeAndReveal(
-        ".heritage-line",
-        ref.current,
-        { autoAlpha: 0, y: 40 },
-        { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
-        { trigger: ref.current, start: "top 84%" },
-      );
-      primeAndReveal(
-        ".heritage-img",
-        ref.current,
-        { autoAlpha: 0, y: 52 },
-        { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.14 },
-        { trigger: ".heritage-mosaic", start: "top 88%" },
-      );
-      primeAndReveal(
-        ".heritage-era",
-        ref.current,
-        { autoAlpha: 0, y: 44 },
-        { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
-        { trigger: ".heritage-timeline", start: "top 90%" },
-      );
-    }, ref);
-    return () => ctx.revert();
-  }, []);
+  const ref = useGsapReveal((root) => {
+    primeAndReveal(
+      ".heritage-line",
+      root,
+      { autoAlpha: 0, y: 40 },
+      { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
+      { trigger: root, start: "top 84%" },
+    );
+    primeAndReveal(
+      ".heritage-img",
+      root,
+      { autoAlpha: 0, y: 52 },
+      { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.14 },
+      { trigger: ".heritage-mosaic", start: "top 88%" },
+    );
+    primeAndReveal(
+      ".heritage-era",
+      root,
+      { autoAlpha: 0, y: 44 },
+      { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
+      { trigger: ".heritage-timeline", start: "top 90%" },
+    );
+  });
 
   return (
-    <section
-      id="heritage"
-      ref={ref}
-      className="relative overflow-hidden bg-transparent py-14 md:py-20"
-    >
-      {/* Background ornaments */}
-      <div className="absolute inset-0 pattern-grapes opacity-30" />
-      <div className="absolute inset-0 pattern-damask opacity-20" />
+    <Section id="heritage" ref={ref}>
+      <PatternBackdrop damask={0.2} grapes={0.3} />
       <div className="ambient-spotlight absolute left-1/2 top-32 h-[620px] w-[620px] -translate-x-1/2 spotlight-gold opacity-75" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        {/* Heading */}
-        <div className="mx-auto max-w-4xl text-center">
-          <p className="heritage-line text-xs uppercase tracking-[0.5em] text-gold">
-            Patrimônio · Heritage
-          </p>
-          <div className="heritage-line mx-auto mt-6 gold-divider w-32" />
+      <Container>
+        <SectionHeader
+          revealClass="heritage-line"
+          eyebrow="Patrimônio · Heritage"
+          title={
+            <>
+              A Bebida que Selou
+              <br />
+              <span className="optical-word optical-word-eternidades italic text-gradient-gold">
+                Impérios e Eternidades.
+              </span>
+            </>
+          }
+          titleClassName="lg:text-7xl"
+          descriptionClassName="mt-10 max-w-3xl text-champagne/75 md:text-lg"
+          description="Antes da escrita, antes das catedrais, antes das coroas - havia o vinho. Companheiro de faraós, sacerdotes e imperadores, o néctar da videira atravessou oito mil anos como o brinde silencioso de toda civilização que se ousou chamar nobre. Beber vinho é assinar um pacto com a história."
+        />
 
-          <AnimatedTitle
-            as="h2"
-            className="heritage-line mt-8 font-serif text-4xl leading-tight md:text-6xl lg:text-7xl"
-          >
-            A Bebida que Selou
-            <br />
-            <span className="optical-word optical-word-eternidades italic text-gradient-gold">
-              Impérios e Eternidades.
-            </span>
-          </AnimatedTitle>
-
-          <p className="heritage-line mx-auto mt-10 max-w-3xl text-base font-light leading-relaxed text-champagne/75 md:text-lg">
-            Antes da escrita, antes das catedrais, antes das coroas - havia o
-            vinho. Companheiro de faraós, sacerdotes e imperadores, o néctar da
-            videira atravessou oito mil anos como o brinde silencioso de toda
-            civilização que se ousou chamar nobre. Beber vinho é assinar um
-            pacto com a história.
-          </p>
-        </div>
-
-        {/* Mosaic of three images - the relic, the fruit, the sanctuary */}
         <div className="heritage-mosaic mt-12 grid gap-5 md:grid-cols-12 md:gap-6 lg:mt-14">
-          {/* Chalice - large left */}
           <figure className="heritage-img group relative md:col-span-7 md:row-span-2">
-            <div className="pointer-events-none absolute -inset-6 rounded-full opacity-60 blur-3xl"
+            <div
+              className="pointer-events-none absolute -inset-6 rounded-full opacity-60 blur-3xl"
               style={{
                 background:
                   "radial-gradient(ellipse at center, oklch(0.78 0.13 85 / 0.22) 0%, transparent 65%)",
@@ -139,7 +114,6 @@ export function Heritage() {
             </div>
           </figure>
 
-          {/* Grapes - top right */}
           <figure className="heritage-img group relative md:col-span-5">
             <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <Image
@@ -156,9 +130,7 @@ export function Heritage() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20" />
               <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold/80">
-                  · O Fruto ·
-                </p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold/80">· O Fruto ·</p>
                 <p className="mt-1.5 font-serif text-lg text-champagne md:text-xl">
                   Vitis Vinifera
                 </p>
@@ -166,7 +138,6 @@ export function Heritage() {
             </div>
           </figure>
 
-          {/* Cellar - bottom right */}
           <figure className="heritage-img group relative md:col-span-5">
             <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <Image
@@ -194,19 +165,15 @@ export function Heritage() {
           </figure>
         </div>
 
-        {/* Timeline - three eras */}
         <div className="heritage-timeline mt-14 lg:mt-16">
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <p className="text-xs uppercase tracking-[0.5em] text-gold">
-              · Oito Mil Anos ·
-            </p>
+            <p className="text-xs uppercase tracking-[0.5em] text-gold">· Oito Mil Anos ·</p>
             <h3 className="mt-5 font-serif text-3xl text-champagne md:text-4xl">
               Uma cronologia da nobreza líquida
             </h3>
           </div>
 
           <div className="relative grid gap-10 md:grid-cols-3 md:gap-8">
-            {/* Connecting filigree line (desktop) */}
             <div
               className="pointer-events-none absolute left-0 right-0 top-7 hidden h-px md:block"
               style={{
@@ -220,25 +187,16 @@ export function Heritage() {
                 key={era.year}
                 className="heritage-era group relative flex flex-col items-center text-center"
               >
-                {/* Node */}
                 <div className="relative z-10 flex h-14 w-14 items-center justify-center rounded-full border border-gold/40 bg-background shadow-gold-soft transition-[border-color] duration-500 will-change-transform group-hover:border-gold group-hover:shadow-gold">
                   <era.icon
                     className="h-6 w-6 text-gold transition-transform duration-500 group-hover:scale-110"
                     strokeWidth={1.4}
                   />
                 </div>
-
-                {/* Year badge */}
                 <p className="mt-5 text-[11px] uppercase tracking-[0.4em] text-gold/80">
                   {era.year}
                 </p>
-
-                {/* Title */}
-                <h4 className="mt-3 font-serif text-2xl italic text-gradient-gold">
-                  {era.title}
-                </h4>
-
-                {/* Body */}
+                <h4 className="mt-3 font-serif text-2xl italic text-gradient-gold">{era.title}</h4>
                 <p className="mt-4 max-w-xs text-sm font-light leading-relaxed text-champagne/70">
                   {era.text}
                 </p>
@@ -247,22 +205,17 @@ export function Heritage() {
           </div>
         </div>
 
-        {/* Closing manifesto */}
         <div className="mx-auto mt-14 max-w-3xl text-center lg:mt-16">
           <div className="mx-auto gold-divider w-24" />
           <blockquote className="mt-10 font-serif text-2xl italic leading-relaxed text-champagne md:text-3xl lg:text-4xl">
-            “O vinho é a única obra de arte que se pode beber. Toda taça erguida
-            é, em silêncio, uma{" "}
+            “O vinho é a única obra de arte que se pode beber. Toda taça erguida é, em silêncio, uma{" "}
             <span className="text-gradient-gold not-italic">coroação.</span>”
           </blockquote>
           <p className="mt-8 text-[11px] uppercase tracking-[0.45em] text-gold/70">
             - Manifesto Cave Royale
           </p>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }
-
-
-

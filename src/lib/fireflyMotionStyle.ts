@@ -1,19 +1,13 @@
 import type { CSSProperties } from "react";
 
-/** Deterministic 0..1 from index (SSR-safe, no diagonal “stripes”). */
 export function hash01(index: number, salt: number): number {
   const x = Math.sin(index * 12.9898 + salt * 78.233 + salt * salt * 0.001) * 43758.5453123;
   return x - Math.floor(x);
 }
 
-/**
- * Organic firefly motion: unique position + waypoint offsets per particle.
- * @param amplitude Scale drift distance (e.g. 0.35 on hero, 1 on global forge).
- */
 export function fireflyMotionStyle(index: number, amplitude = 1): CSSProperties {
   const h = (salt: number) => hash01(index, salt);
-  const px = (t: number, mag: number) =>
-    `${Math.round((t - 0.5) * 2 * mag * amplitude)}px`;
+  const px = (t: number, mag: number) => `${Math.round((t - 0.5) * 2 * mag * amplitude)}px`;
   const dur = (7.2 + h(9) * 17.5).toFixed(2);
   const delay = (-h(10) * 14).toFixed(2);
 

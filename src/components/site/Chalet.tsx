@@ -1,14 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import { useLayoutEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
 import { Mountain, Flame, Key, MapPin, ArrowRight, Calendar } from "lucide-react";
-import chaletInterior from "@/assets/chalet-interior\.jpg";
-import chaletExterior from "@/assets/chalet-exterior\.jpg";
-import chaletTable from "@/assets/chalet-table\.jpg";
-import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+import chaletInterior from "@/assets/chalet-interior.jpg";
+import chaletExterior from "@/assets/chalet-exterior.jpg";
+import chaletTable from "@/assets/chalet-table.jpg";
 import { primeAndReveal } from "@/lib/scrollReveal";
+import { useGsapReveal } from "@/hooks/useGsapReveal";
+import { Container, PatternBackdrop, Section } from "@/components/site/Section";
+import { SectionHeader } from "@/components/site/SectionHeader";
 
 const experiences = [
   {
@@ -29,73 +29,59 @@ const experiences = [
 ];
 
 export function Chalet() {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useLayoutEffect(() => {
-    if (!ref.current) return;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-    const ctx = gsap.context(() => {
-      primeAndReveal(
-        ".chalet-reveal",
-        ref.current,
-        { autoAlpha: 0, y: 40 },
-        { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
-        { trigger: ref.current, start: "top 84%" },
-      );
-      primeAndReveal(
-        ".chalet-img",
-        ref.current,
-        { autoAlpha: 0, y: 52 },
-        { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.14 },
-        { trigger: ref.current, start: "top 82%" },
-      );
-      primeAndReveal(
-        ".chalet-card",
-        ref.current,
-        { autoAlpha: 0, y: 44 },
-        { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
-        { trigger: ".chalet-cards", start: "top 88%" },
-      );
-    }, ref);
-    return () => ctx.revert();
-  }, []);
+  const ref = useGsapReveal((root) => {
+    primeAndReveal(
+      ".chalet-reveal",
+      root,
+      { autoAlpha: 0, y: 40 },
+      { autoAlpha: 1, y: 0, duration: 1.05, stagger: 0.12 },
+      { trigger: root, start: "top 84%" },
+    );
+    primeAndReveal(
+      ".chalet-img",
+      root,
+      { autoAlpha: 0, y: 52 },
+      { autoAlpha: 1, y: 0, duration: 1.1, stagger: 0.14 },
+      { trigger: root, start: "top 82%" },
+    );
+    primeAndReveal(
+      ".chalet-card",
+      root,
+      { autoAlpha: 0, y: 44 },
+      { autoAlpha: 1, y: 0, duration: 1, stagger: 0.14 },
+      { trigger: ".chalet-cards", start: "top 88%" },
+    );
+  });
 
   return (
-    <section
-      id="chale"
-      ref={ref}
-      className="relative overflow-hidden bg-transparent py-14 md:py-20"
-    >
-      {/* Floral grape backdrop + gold spotlight */}
-      <div className="absolute inset-0 pattern-grapes opacity-25" />
+    <Section id="chale" ref={ref}>
+      <PatternBackdrop grapes={0.25} />
       <div className="ambient-spotlight absolute -left-32 top-1/3 h-[520px] w-[520px] spotlight-gold opacity-70" />
-      <div className="ambient-spotlight absolute right-0 bottom-0 h-[420px] w-[420px] spotlight-gold opacity-50" />
+      <div className="ambient-spotlight absolute bottom-0 right-0 h-[420px] w-[420px] spotlight-gold opacity-50" />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-10">
-        {/* Header */}
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="chalet-reveal text-xs uppercase tracking-[0.5em] text-gold">
-            Um Convite Pessoal
-          </p>
-          <div className="chalet-reveal mx-auto mt-6 gold-divider w-32" />
-          <AnimatedTitle
-            as="h2"
-            className="chalet-reveal mt-8 font-serif text-4xl leading-[1.05] md:text-6xl lg:text-7xl"
-          >
-            O Chalé do
-            <br />
-            <span className="italic text-gradient-gold">Mestre Valverde.</span>
-          </AnimatedTitle>
-          <p className="chalet-reveal mt-8 text-lg font-light leading-relaxed text-champagne/75 md:text-xl">
-            Encravado entre vinhedos seculares, o refúgio particular de
-            Henrique Valverde abre as portas - apenas algumas vezes ao ano -
-            para hóspedes dispostos a viver o vinho como ele é vivido por quem
-            o ama profundamente. Não é um hotel. É uma casa. <span className="italic text-gold/90">A casa dele.</span>
-          </p>
-        </div>
+      <Container>
+        <SectionHeader
+          revealClass="chalet-reveal"
+          eyebrow="Um Convite Pessoal"
+          title={
+            <>
+              O Chalé do
+              <br />
+              <span className="italic text-gradient-gold">Mestre Valverde.</span>
+            </>
+          }
+          titleClassName="leading-[1.05] lg:text-7xl"
+          descriptionClassName="mt-8 text-lg text-champagne/75 md:text-xl"
+          description={
+            <>
+              Encravado entre vinhedos seculares, o refúgio particular de Henrique Valverde abre as
+              portas - apenas algumas vezes ao ano - para hóspedes dispostos a viver o vinho como
+              ele é vivido por quem o ama profundamente. Não é um hotel. É uma casa.{" "}
+              <span className="italic text-gold/90">A casa dele.</span>
+            </>
+          }
+        />
 
-        {/* Mosaic of three images */}
         <div className="mt-10 grid grid-cols-12 gap-4 md:gap-6 lg:mt-12">
           <div className="chalet-img col-span-12 lg:col-span-8">
             <div className="image-hover-luxury group relative h-[420px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[540px]">
@@ -120,7 +106,7 @@ export function Chalet() {
             </div>
           </div>
 
-          <div className="chalet-img col-span-12 lg:col-span-4 flex flex-col gap-4 md:gap-6">
+          <div className="chalet-img col-span-12 flex flex-col gap-4 md:gap-6 lg:col-span-4">
             <div className="image-hover-luxury group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
               <Image
                 src={chaletExterior}
@@ -159,41 +145,38 @@ export function Chalet() {
           </div>
         </div>
 
-        {/* Quote band */}
-        <div className="chalet-reveal mt-12 mx-auto max-w-4xl rounded-sm border border-gold/20 glass-dark px-8 py-10 text-center md:px-14 md:py-14 lg:mt-14">
+        <div className="chalet-reveal mx-auto mt-12 max-w-4xl rounded-sm border border-gold/20 glass-dark px-8 py-10 text-center md:px-14 md:py-14 lg:mt-14">
           <div className="mx-auto gold-divider w-24" />
           <p className="mt-6 font-serif text-2xl italic leading-relaxed text-champagne md:text-3xl">
-            "Aqui não recebo clientes. Recebo amigos do vinho. Quem cruza
-            esta porta sai com mais do que memórias - sai com um pedaço da
-            minha biblioteca líquida no paladar."
+            "Aqui não recebo clientes. Recebo amigos do vinho. Quem cruza esta porta sai com mais do
+            que memórias - sai com um pedaço da minha biblioteca líquida no paladar."
           </p>
-          <p className="mt-6 text-xs uppercase tracking-[0.4em] text-gold">
-            - Henrique Valverde
-          </p>
+          <p className="mt-6 text-xs uppercase tracking-[0.4em] text-gold">- Henrique Valverde</p>
         </div>
 
-        {/* Three experience pillars */}
         <div className="chalet-cards mt-10 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-6 lg:mt-14">
-          {experiences.map((e) => (
+          {experiences.map((item) => (
             <div
-              key={e.title}
-              className="chalet-card scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/15 bg-card/45 px-5 py-4 backdrop-blur-sm transition-[border-color,background-color] duration-500 will-change-transform md:px-6 md:py-5 hover:border-gold/35"
+              key={item.title}
+              className="chalet-card scroll-premium-card group relative overflow-hidden rounded-sm border border-gold/15 bg-card/45 px-5 py-4 backdrop-blur-sm transition-[border-color,background-color] duration-500 will-change-transform hover:border-gold/35 md:px-6 md:py-5"
             >
               <div className="relative flex h-9 w-9 shrink-0 items-center justify-center rounded-sm border border-gold/35 bg-background/55 md:h-10 md:w-10">
-                <e.icon className="h-4 w-4 text-gold md:h-[17px] md:w-[17px]" strokeWidth={1.35} />
+                <item.icon
+                  className="h-4 w-4 text-gold md:h-[17px] md:w-[17px]"
+                  strokeWidth={1.35}
+                />
               </div>
               <h3 className="relative mt-3.5 font-serif text-lg leading-snug tracking-wide text-champagne md:mt-4 md:text-xl">
-                {e.title}
+                {item.title}
               </h3>
               <div className="relative mt-2.5 gold-divider w-10 md:w-11" />
               <p className="relative mt-2.5 text-[13px] font-light leading-relaxed text-champagne/72 md:text-sm">
-                {e.desc}
+                {item.desc}
               </p>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
         <div className="chalet-reveal mt-12 flex flex-col items-center justify-center gap-5 text-center lg:mt-14 lg:gap-6">
           <div className="flex items-center gap-3 text-gold">
             <span className="h-px w-10 bg-gold/40" />
@@ -204,9 +187,8 @@ export function Chalet() {
             <span className="h-px w-10 bg-gold/40" />
           </div>
           <p className="max-w-xl text-sm font-light text-champagne/65">
-            Devido à natureza íntima do espaço, recebemos no máximo oito
-            hóspedes por temporada. Solicite seu convite e nossa curadoria
-            entrará em contato pessoalmente.
+            Devido à natureza íntima do espaço, recebemos no máximo oito hóspedes por temporada.
+            Solicite seu convite e nossa curadoria entrará em contato pessoalmente.
           </p>
           <a
             href="#confraria"
@@ -216,10 +198,7 @@ export function Chalet() {
             <ArrowRight className="h-4 w-4" />
           </a>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 }
-
-
-

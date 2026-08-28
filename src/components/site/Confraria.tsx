@@ -1,64 +1,69 @@
 "use client";
 
-import { useState, useLayoutEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "@/lib/gsapBoot";
+import { useState, type InputHTMLAttributes } from "react";
+import { gsap } from "@/lib/gsapBoot";
 import { motion } from "framer-motion";
 import { Lock, ArrowRight, Check } from "lucide-react";
-import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
 import { primeAndReveal, revealEase, stRevealOnce } from "@/lib/scrollReveal";
+import { useGsapReveal } from "@/hooks/useGsapReveal";
+import { PatternBackdrop, Section } from "@/components/site/Section";
+import { AnimatedTitle } from "@/components/ui/AnimatedTitle";
+
+const perks = [
+  "Alocação prioritária de safras limitadas",
+  "Wine Hunter para rótulos sob encomenda",
+  "Degustações privadas com vignerons internacionais",
+  "Consultoria Cellar Architecture inclusa",
+];
+
+const grapeOptions = [
+  "Cabernet Sauvignon",
+  "Pinot Noir",
+  "Sangiovese",
+  "Chardonnay",
+  "Champagne / Espumantes",
+  "Tudo · Sou eclético",
+];
 
 export function Confraria() {
   const [submitted, setSubmitted] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
 
-  useLayoutEffect(() => {
-    if (!ref.current) return;
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
-    const ctx = gsap.context(() => {
-      primeAndReveal(
-        ".conf-copy",
-        ref.current,
-        { autoAlpha: 0, x: -48 },
-        { autoAlpha: 1, x: 0, duration: 1.05 },
-        { trigger: ref.current, start: "top 84%" },
-      );
-      primeAndReveal(
-        ".conf-form",
-        ref.current,
-        { autoAlpha: 0, x: 48 },
-        { autoAlpha: 1, x: 0, duration: 1.05, delay: 0.08 },
-        { trigger: ref.current, start: "top 84%" },
-      );
-      const confEls = gsap.utils.toArray<HTMLElement>(".conf-el", ref.current);
-      if (confEls.length) {
-        gsap.set(confEls, { autoAlpha: 0, y: 16 });
-        gsap.to(confEls, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.95,
-          stagger: 0.12,
-          ease: revealEase,
-          scrollTrigger: {
-            ...stRevealOnce,
-            trigger: ref.current,
-            start: "top 80%",
-          },
-        });
-      }
-    }, ref);
-    return () => ctx.revert();
-  }, []);
+  const ref = useGsapReveal((root) => {
+    primeAndReveal(
+      ".conf-copy",
+      root,
+      { autoAlpha: 0, x: -48 },
+      { autoAlpha: 1, x: 0, duration: 1.05 },
+      { trigger: root, start: "top 84%" },
+    );
+    primeAndReveal(
+      ".conf-form",
+      root,
+      { autoAlpha: 0, x: 48 },
+      { autoAlpha: 1, x: 0, duration: 1.05, delay: 0.08 },
+      { trigger: root, start: "top 84%" },
+    );
+    const els = gsap.utils.toArray<HTMLElement>(".conf-el", root);
+    if (!els.length) return;
+    gsap.set(els, { autoAlpha: 0, y: 16 });
+    gsap.to(els, {
+      autoAlpha: 1,
+      y: 0,
+      duration: 0.95,
+      stagger: 0.12,
+      ease: revealEase,
+      scrollTrigger: {
+        ...stRevealOnce,
+        trigger: root,
+        start: "top 80%",
+      },
+    });
+  });
 
   return (
-    <section
-      id="confraria"
-      ref={ref}
-      className="relative overflow-hidden bg-transparent py-14 md:py-20"
-    >
+    <Section id="confraria" ref={ref}>
       <div className="ambient-spotlight absolute left-1/2 top-1/2 h-[800px] w-[800px] -translate-x-1/2 -translate-y-1/2 spotlight-gold" />
-      <div className="absolute inset-0 pattern-damask opacity-20" />
-      <div className="absolute inset-0 pattern-grapes opacity-25" />
+      <PatternBackdrop damask={0.2} grapes={0.25} />
 
       <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-6 lg:grid-cols-2 lg:gap-12 lg:px-10">
         <div className="conf-copy">
@@ -80,15 +85,10 @@ export function Confraria() {
           </p>
 
           <ul className="conf-el mt-10 space-y-4">
-            {[
-              "Alocação prioritária de safras limitadas",
-              "Wine Hunter para rótulos sob encomenda",
-              "Degustações privadas com vignerons internacionais",
-              "Consultoria Cellar Architecture inclusa",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3">
+            {perks.map((perk) => (
+              <li key={perk} className="flex items-start gap-3">
                 <Check className="mt-0.5 h-5 w-5 shrink-0 text-gold" />
-                <span className="text-sm font-light text-champagne/80">{b}</span>
+                <span className="text-sm font-light text-champagne/80">{perk}</span>
               </li>
             ))}
           </ul>
@@ -99,9 +99,9 @@ export function Confraria() {
             e.preventDefault();
             setSubmitted(true);
           }}
-          className="conf-form conf-el glass-dark relative rounded-sm p-8 md:p-10 shadow-velvet"
+          className="conf-form conf-el glass-dark relative rounded-sm p-8 shadow-velvet md:p-10"
         >
-          <div className="absolute -inset-px rounded-sm bg-gradient-to-br from-gold/30 via-transparent to-gold/10 opacity-50 -z-10 blur" />
+          <div className="absolute -inset-px -z-10 rounded-sm bg-gradient-to-br from-gold/30 via-transparent to-gold/10 opacity-50 blur" />
 
           <h3 className="font-serif text-2xl text-champagne">Solicitação de Ingresso</h3>
           <p className="mt-2 text-xs uppercase tracking-[0.25em] text-gold/80">
@@ -139,12 +139,11 @@ export function Confraria() {
                   <option value="" disabled className="bg-background">
                     Selecione...
                   </option>
-                  <option className="bg-background">Cabernet Sauvignon</option>
-                  <option className="bg-background">Pinot Noir</option>
-                  <option className="bg-background">Sangiovese</option>
-                  <option className="bg-background">Chardonnay</option>
-                  <option className="bg-background">Champagne / Espumantes</option>
-                  <option className="bg-background">Tudo · Sou eclético</option>
+                  {grapeOptions.map((option) => (
+                    <option key={option} className="bg-background">
+                      {option}
+                    </option>
+                  ))}
                 </select>
               </div>
 
@@ -163,23 +162,18 @@ export function Confraria() {
           )}
         </motion.form>
       </div>
-    </section>
+    </Section>
   );
 }
 
-function Field({
-  label,
-  ...rest
-}: {
-  label: string;
-} & React.InputHTMLAttributes<HTMLInputElement>) {
+function Field({ label, ...rest }: { label: string } & InputHTMLAttributes<HTMLInputElement>) {
   return (
     <div>
       <label className="text-[10px] uppercase tracking-[0.3em] text-gold/80">{label}</label>
       <input
         required
         {...rest}
-        className="mt-2 w-full rounded-sm border border-gold/20 bg-background/60 px-4 py-3 text-sm text-champagne placeholder:text-champagne/30 outline-none transition focus:border-gold/60 focus:bg-background/80"
+        className="mt-2 w-full rounded-sm border border-gold/20 bg-background/60 px-4 py-3 text-sm text-champagne outline-none transition placeholder:text-champagne/30 focus:border-gold/60 focus:bg-background/80"
       />
     </div>
   );

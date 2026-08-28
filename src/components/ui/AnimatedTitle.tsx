@@ -13,11 +13,7 @@ type AnimatedTitleProps = {
   children: React.ReactNode;
 };
 
-export function AnimatedTitle({
-  as = "h2",
-  className = "",
-  children,
-}: AnimatedTitleProps) {
+export function AnimatedTitle({ as = "h2", className = "", children }: AnimatedTitleProps) {
   const ref = useRef<HTMLHeadingElement>(null);
 
   useGSAP(
