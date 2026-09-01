@@ -7,26 +7,27 @@ import { primeAndReveal } from "@/lib/scrollReveal";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { Container, PatternBackdrop, Section } from "@/components/site/Section";
 import { SectionHeader } from "@/components/site/SectionHeader";
-
-const pillars = [
-  {
-    icon: Mountain,
-    title: "Solo",
-    text: "Cada terroir guarda séculos de minerais que dialogam com a videira.",
-  },
-  {
-    icon: Sun,
-    title: "Clima",
-    text: "Estações que esculpem caráter, taninos e a alma de cada safra.",
-  },
-  {
-    icon: Droplets,
-    title: "Mãos",
-    text: "Vignerons que tratam a uva como se fosse herança da família.",
-  },
-];
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function Philosophy() {
+  const t = useCopy().philosophy;
+  const pillars = [
+    {
+      icon: Mountain,
+      title: t.pillars[0].title,
+      text: t.pillars[0].text,
+    },
+    {
+      icon: Sun,
+      title: t.pillars[1].title,
+      text: t.pillars[1].text,
+    },
+    {
+      icon: Droplets,
+      title: t.pillars[2].title,
+      text: t.pillars[2].text,
+    },
+  ];
   const ref = useGsapReveal((root) => {
     primeAndReveal(
       ".philo-line",
@@ -70,7 +71,7 @@ export function Philosophy() {
               <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
                 <Image
                   src={wineGlassSolo}
-                  alt="Taça de cristal com vinho tinto profundo iluminada por luz dourada"
+                  alt={t.imageAlt}
                   loading="lazy"
                   width={1024}
                   height={1024}
@@ -83,7 +84,7 @@ export function Philosophy() {
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
               </div>
               <p className="mt-5 text-center text-[11px] uppercase tracking-[0.4em] text-gold/70">
-                · In Vino Veritas ·
+                {t.latin}
               </p>
             </div>
           </div>
@@ -92,19 +93,19 @@ export function Philosophy() {
             <SectionHeader
               align="left"
               revealClass="philo-line"
-              eyebrow="A Filosofia"
+              eyebrow={t.eyebrow}
               title={
                 <>
-                  Onde o Solo
+                  {t.titleLead}
                   <br />
                   <span className="optical-word optical-word-destino italic text-gradient-gold">
-                    Dita o Destino.
+                    {t.titleGold}
                   </span>
                 </>
               }
               titleClassName="lg:text-7xl"
               descriptionClassName="mt-10 max-w-2xl text-champagne/75 md:text-lg"
-              description="Não vendemos vinhos. Custodiamos cápsulas líquidas do tempo - meticulosamente eleitas dos vinhedos mais nobres da Borgonha, Toscana e do Vale do Douro. Cada rótulo da Cave Royale carrega o silêncio de gerações, a paciência das pedras e a ousadia de mestres vignerons que recusam atalhos."
+              description={t.description}
             />
           </div>
         </div>

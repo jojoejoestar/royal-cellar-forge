@@ -4,19 +4,22 @@ import { useCallback, useEffect, useRef, useState, type TouchEvent } from "react
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { featuredWines, type Wine } from "@/content/wines";
+import { type Wine } from "@/content/wines";
 import { easeLuxury } from "@/lib/ease";
 import { primeAndReveal } from "@/lib/scrollReveal";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { Container, PatternBackdrop, Section } from "@/components/site/Section";
 import { SectionHeader } from "@/components/site/SectionHeader";
 import { WineDetails } from "@/components/site/WineDetails";
+import { useCopy, useFeaturedWines } from "@/i18n/LocaleProvider";
 
 const SWIPE_PX = 42;
 const AUTOPLAY_MS = 4200;
 const MOBILE_MAX = 1023;
 
 export function Catalog() {
+  const t = useCopy().catalog;
+  const featuredWines = useFeaturedWines();
   const mobileResumeTimeoutRef = useRef<number | null>(null);
   const mobileAutoPausedRef = useRef(false);
   const touchStartX = useRef<number | null>(null);
@@ -146,22 +149,19 @@ export function Catalog() {
       <Container>
         <SectionHeader
           revealClass="cat-head"
-          eyebrow="O Acervo Privado"
+          eyebrow={t.eyebrow}
           title={
             <>
-              Um <span className="italic text-gradient-gold">Museu Vivo</span>
+              {t.titleLead}
+              <span className="italic text-gradient-gold">{t.titleGold}</span>
               <br />
-              em Sua Taça.
+              {t.titleRest}
             </>
           }
           description={
             <>
-              <span className="lg:hidden">
-                Deslize o palco ou use as setas — a curadoria avança sozinha enquanto você aprecia.
-              </span>
-              <span className="hidden lg:inline">
-                Passe sobre cada rótulo para revelar suas notas de degustação.
-              </span>
+              <span className="lg:hidden">{t.descriptionMobile}</span>
+              <span className="hidden lg:inline">{t.descriptionDesktop}</span>
             </>
           }
         />
@@ -205,7 +205,7 @@ export function Catalog() {
                   pauseMobileAutoplay();
                 }}
                 className="rounded-full border border-gold/35 bg-background/70 p-2.5 text-gold backdrop-blur-md transition active:scale-95"
-                aria-label="Rótulo anterior"
+                aria-label={t.prevLabel}
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
@@ -221,7 +221,7 @@ export function Catalog() {
                     className={`h-1 w-7 shrink-0 origin-center rounded-full transition-[transform,background-color] duration-300 will-change-transform ${
                       i === active ? "scale-x-100 bg-gold" : "scale-x-[0.36] bg-gold/35"
                     }`}
-                    aria-label={`Exibir ${item.name}`}
+                    aria-label={t.showLabel(item.name)}
                     aria-current={i === active}
                   />
                 ))}
@@ -233,7 +233,7 @@ export function Catalog() {
                   pauseMobileAutoplay();
                 }}
                 className="rounded-full border border-gold/35 bg-background/70 p-2.5 text-gold backdrop-blur-md transition active:scale-95"
-                aria-label="Próximo rótulo"
+                aria-label={t.nextLabel}
               >
                 <ChevronRight className="h-5 w-5" />
               </button>
@@ -275,13 +275,13 @@ export function Catalog() {
                     className="absolute inset-0 flex flex-col justify-between p-6"
                   >
                     <div>
-                      <p className="text-[10px] uppercase tracking-[0.3em] text-gold">Notas</p>
+                      <p className="text-[10px] uppercase tracking-[0.3em] text-gold">{t.notes}</p>
                       <p className="mt-3 text-sm font-light leading-relaxed text-champagne/85">
                         {item.notes}
                       </p>
                     </div>
                     <span className="text-xs uppercase tracking-[0.25em] text-gold">
-                      Consultar Valor →
+                      {t.inquire}
                     </span>
                   </motion.div>
                 ) : (
@@ -336,6 +336,8 @@ function DesktopShowcase({
   prev: () => void;
   onSelect: (index: number) => void;
 }) {
+  const t = useCopy().catalog;
+  const featuredWines = useFeaturedWines();
   return (
     <div className="cat-showcase mt-12 hidden items-center gap-10 lg:mt-14 lg:grid lg:grid-cols-2 lg:gap-12">
       <div className="cat-showcase-left image-hover-luxury relative h-[430px] overflow-hidden rounded-sm border border-gold/15 bg-gradient-royal sm:h-[470px] lg:h-[520px]">
@@ -365,7 +367,7 @@ function DesktopShowcase({
             type="button"
             onClick={prev}
             className="rounded-full border border-gold/30 bg-background/60 p-3 text-gold backdrop-blur-md transition hover:bg-gold/15"
-            aria-label="Anterior"
+            aria-label={t.prevLabel}
           >
             <ChevronLeft className="h-5 w-5" />
           </button>
@@ -378,7 +380,7 @@ function DesktopShowcase({
                 className={`h-1 w-8 origin-center rounded-full transition-[transform,background-color] duration-300 will-change-transform ${
                   i === active ? "scale-x-100 bg-gold" : "scale-x-50 bg-gold/30"
                 }`}
-                aria-label={`Slide ${i + 1}`}
+                aria-label={t.slideLabel(i + 1)}
               />
             ))}
           </div>
@@ -386,7 +388,7 @@ function DesktopShowcase({
             type="button"
             onClick={next}
             className="rounded-full border border-gold/30 bg-background/60 p-3 text-gold backdrop-blur-md transition hover:bg-gold/15"
-            aria-label="Próximo"
+            aria-label={t.nextLabel}
           >
             <ChevronRight className="h-5 w-5" />
           </button>

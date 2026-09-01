@@ -1,8 +1,12 @@
+"use client";
+
 import type { Wine } from "@/content/wines";
 import { Wine as WineIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function WineDetails({ wine, compact = false }: { wine: Wine; compact?: boolean }) {
+  const t = useCopy().wineDetails;
   return (
     <>
       <p
@@ -11,7 +15,7 @@ export function WineDetails({ wine, compact = false }: { wine: Wine; compact?: b
           compact ? "text-[10px] tracking-[0.38em]" : "text-xs tracking-[0.4em]",
         )}
       >
-        Safra {wine.vintage}
+        {t.vintage(wine.vintage)}
       </p>
       <h3
         className={cn(
@@ -36,7 +40,7 @@ export function WineDetails({ wine, compact = false }: { wine: Wine; compact?: b
           compact ? "text-[10px] tracking-[0.28em]" : "text-xs tracking-[0.3em]",
         )}
       >
-        Notas de Degustação
+        {t.tastingNotes}
       </h4>
       <p
         className={cn(
@@ -52,7 +56,7 @@ export function WineDetails({ wine, compact = false }: { wine: Wine; compact?: b
           compact ? "mt-5 text-[10px] tracking-[0.28em]" : "mt-8 text-xs tracking-[0.3em]",
         )}
       >
-        Harmonização
+        {t.pairing}
       </h4>
       <p
         className={cn(
@@ -68,7 +72,7 @@ export function WineDetails({ wine, compact = false }: { wine: Wine; compact?: b
           compact ? "mt-5 text-[10px] tracking-[0.28em]" : "mt-8 text-xs tracking-[0.3em]",
         )}
       >
-        Preço de Mercado (750ml)
+        {t.marketPrice}
       </h4>
       <p className={cn("font-light text-champagne/78", compact ? "mt-2 text-xs" : "mt-3 text-sm")}>
         {wine.marketPrice}
@@ -82,7 +86,7 @@ export function WineDetails({ wine, compact = false }: { wine: Wine; compact?: b
             : "mt-10 gap-3 px-7 py-4 text-xs tracking-[0.3em]",
         )}
       >
-        <WineIcon className="h-4 w-4 shrink-0" /> Consultar Valor
+        <WineIcon className="h-4 w-4 shrink-0" /> {t.inquire}
       </a>
     </>
   );

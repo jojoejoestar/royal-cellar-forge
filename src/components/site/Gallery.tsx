@@ -14,16 +14,18 @@ import {
   Star,
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { wines, wineRegions, type Wine, type WineRegion } from "@/content/wines";
+import { type Wine } from "@/content/wines";
 import { primeAndReveal } from "@/lib/scrollReveal";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { Container, PatternBackdrop, Section } from "@/components/site/Section";
 import { SectionHeader } from "@/components/site/SectionHeader";
-
-type RegionFilter = "Todos" | WineRegion;
+import { useCopy, useWines } from "@/i18n/LocaleProvider";
+import type { RegionFilterId } from "@/i18n/copy";
 
 export function Gallery() {
-  const [filter, setFilter] = useState<RegionFilter>("Todos");
+  const t = useCopy().gallery;
+  const wines = useWines();
+  const [filter, setFilter] = useState<RegionFilterId>("all");
   const [search, setSearch] = useState("");
   const [selected, setSelected] = useState<Wine | null>(null);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -48,7 +50,7 @@ export function Gallery() {
   const filtered = useMemo(() => {
     const q = search.trim().toLowerCase();
     return wines.filter((wine) => {
-      const byRegion = filter === "Todos" || wine.region === filter;
+      const byRegion = filter === "all" || wine.region === filter;
       const byQuery =
         !q ||
         wine.name.toLowerCase().includes(q) ||
@@ -70,33 +72,34 @@ export function Gallery() {
       <Container>
         <SectionHeader
           revealClass="gal-head"
-          eyebrow="Galeria de Rótulos Raros"
+          eyebrow={t.eyebrow}
           title={
             <>
-              Tesouros <span className="italic text-gradient-gold">Selecionados</span>
+              {t.titleLead}
+              <span className="italic text-gradient-gold">{t.titleGold}</span>
               <br />
-              por Terroir.
+              {t.titleRest}
             </>
           }
-          description="Filtre por região, percorra o carrossel e descubra a história completa de cada relíquia em nosso acervo privado."
+          description={t.description}
         />
 
         <div className="gal-head mt-10 flex flex-col items-center gap-5 lg:mt-12 lg:flex-row lg:justify-between lg:gap-6">
           <div className="flex flex-wrap items-center justify-center gap-2">
-            {wineRegions.map((region) => {
-              const active = filter === region;
+            {t.regions.map((region) => {
+              const active = filter === region.id;
               return (
                 <button
-                  key={region}
+                  key={region.id}
                   type="button"
-                  onClick={() => setFilter(region)}
+                  onClick={() => setFilter(region.id)}
                   className={`rounded-sm border px-5 py-2.5 text-[11px] font-medium uppercase tracking-[0.25em] transition-[border-color,background-color,color,opacity] duration-300 ${
                     active
                       ? "border-gold bg-gold text-onyx shadow-gold-soft"
                       : "border-gold/25 text-champagne/70 hover:border-gold/60 hover:text-gold"
                   }`}
                 >
-                  {region}
+                  {region.label}
                 </button>
               );
             })}
@@ -107,7 +110,7 @@ export function Gallery() {
             <input
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Buscar rótulo, safra..."
+              placeholder={t.searchPlaceholder}
               className="w-full rounded-sm border border-gold/20 bg-background/40 py-2.5 pl-10 pr-4 text-sm text-champagne placeholder:text-champagne/40 focus:border-gold/60 focus:outline-none"
             />
           </label>
@@ -117,7 +120,7 @@ export function Gallery() {
           <button
             type="button"
             onClick={() => scrollBy(-1)}
-            aria-label="Anterior"
+            aria-label={t.prevLabel}
             className="absolute -left-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-gold/30 bg-background/70 p-3 text-gold backdrop-blur-md transition hover:bg-gold/15 lg:block"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -125,7 +128,7 @@ export function Gallery() {
           <button
             type="button"
             onClick={() => scrollBy(1)}
-            aria-label="Próximo"
+            aria-label={t.nextLabel}
             className="absolute -right-4 top-1/2 z-10 hidden -translate-y-1/2 rounded-full border border-gold/30 bg-background/70 p-3 text-gold backdrop-blur-md transition hover:bg-gold/15 lg:block"
           >
             <ChevronRight className="h-5 w-5" />
@@ -181,7 +184,7 @@ export function Gallery() {
                   </div>
                   <div className="relative flex min-h-0 flex-1 flex-col border-t border-gold/15 bg-onyx/95 p-5">
                     <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
-                      Safra {wine.vintage}
+                      {t.vintage(wine.vintage)}
                     </p>
                     <h3 className="mt-2 line-clamp-2 min-h-[4.25rem] font-serif text-xl leading-tight text-champagne">
                       {wine.name}
@@ -193,7 +196,7 @@ export function Gallery() {
                       {wine.marketPrice}
                     </p>
                     <span className="mt-auto inline-flex items-center gap-2 pt-4 text-[11px] uppercase tracking-[0.25em] text-gold transition-transform duration-300 will-change-transform group-hover:translate-x-1">
-                      Ver Ficha Completa →
+                      {t.viewSheet}
                     </span>
                   </div>
                 </motion.button>
@@ -204,8 +207,8 @@ export function Gallery() {
           {filtered.length === 0 && (
             <div className="py-12 text-center text-champagne/60 md:py-14">
               <WineIcon className="mx-auto mb-4 h-10 w-10 text-gold/60" />
-              <p className="font-serif text-2xl">Nenhum rótulo encontrado.</p>
-              <p className="mt-2 text-sm">Ajuste os filtros para revelar outros tesouros.</p>
+              <p className="font-serif text-2xl">{t.emptyTitle}</p>
+              <p className="mt-2 text-sm">{t.emptyHint}</p>
             </div>
           )}
         </div>
@@ -214,7 +217,7 @@ export function Gallery() {
           <button
             type="button"
             onClick={() => scrollBy(-1)}
-            aria-label="Anterior"
+            aria-label={t.prevLabel}
             className="rounded-full border border-gold/30 bg-background/60 p-3 text-gold"
           >
             <ChevronLeft className="h-5 w-5" />
@@ -222,7 +225,7 @@ export function Gallery() {
           <button
             type="button"
             onClick={() => scrollBy(1)}
-            aria-label="Próximo"
+            aria-label={t.nextLabel}
             className="rounded-full border border-gold/30 bg-background/60 p-3 text-gold"
           >
             <ChevronRight className="h-5 w-5" />
@@ -236,6 +239,7 @@ export function Gallery() {
 }
 
 function WineDialog({ wine, onClose }: { wine: Wine | null; onClose: () => void }) {
+  const t = useCopy().gallery;
   return (
     <Dialog open={!!wine} onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="left-1/2 top-1/2 grid h-auto max-h-[92dvh] w-[96vw] max-w-4xl -translate-x-1/2 -translate-y-1/2 overflow-hidden border-gold/30 bg-background p-0 sm:rounded-sm">
@@ -265,7 +269,7 @@ function WineDialog({ wine, onClose }: { wine: Wine | null; onClose: () => void 
                   </span>
                   <span
                     className="inline-flex items-center gap-0.5"
-                    aria-label="Classificação cinco estrelas"
+                    aria-label={t.fiveStars}
                   >
                     {Array.from({ length: 5 }).map((_, idx) => (
                       <Star
@@ -288,26 +292,26 @@ function WineDialog({ wine, onClose }: { wine: Wine | null; onClose: () => void 
                   <span className="mx-3 text-gold/40">·</span>
                   <span className="inline-flex items-center gap-1">
                     <Calendar className="h-3 w-3 text-gold" />
-                    Safra {wine.vintage}
+                    {t.vintage(wine.vintage)}
                   </span>
                 </DialogDescription>
 
                 <div className="my-4 gold-divider w-20 sm:my-5 sm:w-24" />
 
                 <h4 className="text-[11px] uppercase tracking-[0.3em] text-gold">
-                  Notas de Degustação
+                  {t.tastingNotes}
                 </h4>
                 <p className="mt-2 text-sm font-light leading-relaxed text-champagne/85">
                   {wine.notes}
                 </p>
 
                 <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
-                  Harmonização
+                  {t.pairing}
                 </h4>
                 <p className="mt-2 text-sm italic font-light text-champagne/75">{wine.pairing}</p>
 
                 <h4 className="mt-5 text-[11px] uppercase tracking-[0.3em] text-gold">
-                  A História
+                  {t.story}
                 </h4>
                 <p className="mt-2 text-sm font-light leading-relaxed text-champagne/75">
                   {wine.story}
@@ -315,7 +319,7 @@ function WineDialog({ wine, onClose }: { wine: Wine | null; onClose: () => void 
 
                 <div className="mt-5 rounded-sm border border-gold/20 bg-onyx/40 p-4 sm:mt-6">
                   <p className="text-[9px] uppercase tracking-[0.3em] text-gold/80">
-                    Disponibilidade
+                    {t.availability}
                   </p>
                   <p className="mt-1 font-serif text-base text-champagne">{wine.bottles}</p>
                   <p className="mt-2 text-[10px] uppercase tracking-[0.22em] text-gold/80">
@@ -327,7 +331,7 @@ function WineDialog({ wine, onClose }: { wine: Wine | null; onClose: () => void 
                   onClick={onClose}
                   className="mt-5 inline-flex w-full items-center justify-center rounded-sm border border-gold/30 bg-background/70 px-4 py-3 text-[11px] font-semibold uppercase tracking-[0.24em] text-gold transition-colors hover:bg-gold/12 lg:hidden"
                 >
-                  Fechar ficha
+                  {t.closeSheet}
                 </button>
               </div>
             </div>

@@ -9,26 +9,15 @@ import { primeAndReveal } from "@/lib/scrollReveal";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { Container, PatternBackdrop, Section } from "@/components/site/Section";
 import { SectionHeader } from "@/components/site/SectionHeader";
-
-const experiences = [
-  {
-    icon: Flame,
-    title: "Lareira & Decanters",
-    desc: "Noites silenciosas diante do fogo, com decanters de cristal e safras escolhidas a dedo pelo próprio anfitrião.",
-  },
-  {
-    icon: Mountain,
-    title: "Vinhedo Privativo",
-    desc: "Caminhadas ao amanhecer entre as videiras que cercam o chalé - terroir vivo, intocado pelo turismo.",
-  },
-  {
-    icon: Key,
-    title: "Acesso por Convite",
-    desc: "Apenas oito hóspedes por temporada. Cada estadia é desenhada como uma carta pessoal de Henrique.",
-  },
-];
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function Chalet() {
+  const t = useCopy().chalet;
+  const experiences = [
+    { icon: Flame, ...t.experiences[0] },
+    { icon: Mountain, ...t.experiences[1] },
+    { icon: Key, ...t.experiences[2] },
+  ];
   const ref = useGsapReveal((root) => {
     primeAndReveal(
       ".chalet-reveal",
@@ -62,22 +51,20 @@ export function Chalet() {
       <Container>
         <SectionHeader
           revealClass="chalet-reveal"
-          eyebrow="Um Convite Pessoal"
+          eyebrow={t.eyebrow}
           title={
             <>
-              O Chalé do
+              {t.titleLead}
               <br />
-              <span className="italic text-gradient-gold">Mestre Valverde.</span>
+              <span className="italic text-gradient-gold">{t.titleGold}</span>
             </>
           }
           titleClassName="leading-[1.05] lg:text-7xl"
           descriptionClassName="mt-8 text-lg text-champagne/75 md:text-xl"
           description={
             <>
-              Encravado entre vinhedos seculares, o refúgio particular de Henrique Valverde abre as
-              portas - apenas algumas vezes ao ano - para hóspedes dispostos a viver o vinho como
-              ele é vivido por quem o ama profundamente. Não é um hotel. É uma casa.{" "}
-              <span className="italic text-gold/90">A casa dele.</span>
+              {t.description}
+              <span className="italic text-gold/90">{t.descriptionGold}</span>
             </>
           }
         />
@@ -87,7 +74,7 @@ export function Chalet() {
             <div className="image-hover-luxury group relative h-[420px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[540px]">
               <Image
                 src={chaletInterior}
-                alt="Salão íntimo do chalé com lareira e adega particular"
+                alt={t.interiorAlt}
                 fill
                 className="object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"
@@ -97,10 +84,10 @@ export function Chalet() {
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 md:bottom-8 md:left-8">
                 <p className="text-[10px] uppercase tracking-[0.4em] text-gold">
-                  O Salão Privativo
+                  {t.salonKicker}
                 </p>
                 <p className="mt-2 font-serif text-2xl text-champagne md:text-3xl">
-                  Onde o silêncio se serve em taças.
+                  {t.salonTitle}
                 </p>
               </div>
             </div>
@@ -110,7 +97,7 @@ export function Chalet() {
             <div className="image-hover-luxury group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
               <Image
                 src={chaletExterior}
-                alt="Fachada do chalé alpino entre vinhedos ao entardecer"
+                alt={t.exteriorAlt}
                 fill
                 className="object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"
@@ -121,14 +108,14 @@ export function Chalet() {
               <div className="absolute bottom-4 left-4 flex items-center gap-2">
                 <MapPin className="h-3.5 w-3.5 text-gold" />
                 <p className="text-[10px] uppercase tracking-[0.3em] text-champagne/85">
-                  Vale dos Vinhedos · Reservado
+                  {t.location}
                 </p>
               </div>
             </div>
             <div className="image-hover-luxury group relative h-[200px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet md:h-[260px]">
               <Image
                 src={chaletTable}
-                alt="Mesa íntima posta com cristais e candelabros"
+                alt={t.tableAlt}
                 fill
                 className="object-cover transition-transform duration-[2.5s] ease-out group-hover:scale-105"
                 loading="lazy"
@@ -138,7 +125,7 @@ export function Chalet() {
               <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent" />
               <div className="absolute bottom-4 left-4">
                 <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
-                  Jantar à Luz de Velas
+                  {t.candlelight}
                 </p>
               </div>
             </div>
@@ -148,10 +135,9 @@ export function Chalet() {
         <div className="chalet-reveal mx-auto mt-12 max-w-4xl rounded-sm border border-gold/20 glass-dark px-8 py-10 text-center md:px-14 md:py-14 lg:mt-14">
           <div className="mx-auto gold-divider w-24" />
           <p className="mt-6 font-serif text-2xl italic leading-relaxed text-champagne md:text-3xl">
-            "Aqui não recebo clientes. Recebo amigos do vinho. Quem cruza esta porta sai com mais do
-            que memórias - sai com um pedaço da minha biblioteca líquida no paladar."
+            {t.quote}
           </p>
-          <p className="mt-6 text-xs uppercase tracking-[0.4em] text-gold">- Henrique Valverde</p>
+          <p className="mt-6 text-xs uppercase tracking-[0.4em] text-gold">{t.quoteBy}</p>
         </div>
 
         <div className="chalet-cards mt-10 grid gap-4 md:mt-12 md:grid-cols-3 md:gap-6 lg:mt-14">
@@ -182,19 +168,18 @@ export function Chalet() {
             <span className="h-px w-10 bg-gold/40" />
             <Calendar className="h-4 w-4" />
             <span className="text-[11px] uppercase tracking-[0.4em]">
-              Estadias por Convite · 2026
+              {t.staysKicker}
             </span>
             <span className="h-px w-10 bg-gold/40" />
           </div>
           <p className="max-w-xl text-sm font-light text-champagne/65">
-            Devido à natureza íntima do espaço, recebemos no máximo oito hóspedes por temporada.
-            Solicite seu convite e nossa curadoria entrará em contato pessoalmente.
+            {t.staysText}
           </p>
           <a
             href="#confraria"
             className="btn-gold-glow inline-flex items-center gap-3 rounded-sm px-9 py-4 text-xs font-semibold uppercase tracking-[0.3em]"
           >
-            Solicitar Convite ao Chalé
+            {t.cta}
             <ArrowRight className="h-4 w-4" />
           </a>
         </div>

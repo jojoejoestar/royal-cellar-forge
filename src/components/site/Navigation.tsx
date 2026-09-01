@@ -4,12 +4,13 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
-import { navLinks } from "@/content/nav";
 import { easeLuxury } from "@/lib/ease";
 import { MOBILE_MQ } from "@/lib/media";
 import { useEntranceReady, useScrolled } from "@/hooks/useBrowser";
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function Navigation() {
+  const t = useCopy();
   const [open, setOpen] = useState(false);
   const scrolled = useScrolled(30);
   const canAnimate = useEntranceReady(
@@ -39,7 +40,7 @@ export function Navigation() {
         </a>
 
         <nav className="hidden items-center gap-10 md:flex">
-          {navLinks.map((link) => (
+          {t.nav.links.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -48,20 +49,27 @@ export function Navigation() {
               {link.label}
             </a>
           ))}
+          <a
+            href={t.nav.langHref}
+            aria-label={t.nav.langAria}
+            className="magnetic-underline relative text-sm font-light uppercase tracking-widest text-champagne/80 transition-colors hover:text-gold"
+          >
+            {t.nav.langSwitch}
+          </a>
         </nav>
 
         <a
           href="#confraria"
           className="btn-gold-glow hidden rounded-sm px-5 py-2.5 text-xs font-semibold uppercase tracking-[0.22em] md:inline-flex"
         >
-          Acesso VIP
+          {t.nav.vip}
         </a>
 
         <button
           type="button"
           onClick={() => setOpen(!open)}
           className="text-gold md:hidden"
-          aria-label="Menu"
+          aria-label={t.nav.menuAria}
           aria-expanded={open}
         >
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -75,7 +83,7 @@ export function Navigation() {
           transition={{ duration: 0.45, ease: easeLuxury }}
           className="will-change-transform glass-scarlet mx-6 mt-3 flex flex-col gap-5 rounded-sm border border-gold/20 p-6 md:hidden"
         >
-          {navLinks.map((link) => (
+          {t.nav.links.map((link) => (
             <a
               key={link.href}
               href={link.href}
@@ -86,11 +94,19 @@ export function Navigation() {
             </a>
           ))}
           <a
+            href={t.nav.langHref}
+            aria-label={t.nav.langAria}
+            onClick={() => setOpen(false)}
+            className="magnetic-underline text-sm uppercase tracking-widest text-champagne/80 hover:text-gold"
+          >
+            {t.nav.langSwitch}
+          </a>
+          <a
             href="#confraria"
             onClick={() => setOpen(false)}
             className="btn-gold-glow rounded-sm px-5 py-3 text-center text-xs font-semibold uppercase tracking-[0.22em]"
           >
-            Acesso VIP
+            {t.nav.vip}
           </a>
         </motion.div>
       )}

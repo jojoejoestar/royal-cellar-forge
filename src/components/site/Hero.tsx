@@ -9,14 +9,10 @@ import { fireflyMotionStyle } from "@/lib/fireflyMotionStyle";
 import { easeLuxury } from "@/lib/ease";
 import { MOBILE_MQ } from "@/lib/media";
 import { useEntranceReady, useMatchMedia } from "@/hooks/useBrowser";
-
-const stats = [
-  { value: "37+", label: "Anos de Curadoria" },
-  { value: "120", label: "Vinícolas Premiadas" },
-  { value: "∞", label: "Memórias Eternas" },
-];
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function Hero() {
+  const t = useCopy().hero;
   const isMobile = useMatchMedia(MOBILE_MQ);
   const canAnimate = useEntranceReady(isMobile ? 0 : 100);
   const fireflyCount = isMobile ? 12 : 28;
@@ -29,7 +25,7 @@ export function Hero() {
       <div className="absolute inset-0 [contain:layout_paint]">
         <Image
           src="/hero-background-new.png"
-          alt="Adega real iluminada com luz dourada"
+          alt={t.imageAlt}
           fill
           priority
           fetchPriority="high"
@@ -72,7 +68,7 @@ export function Hero() {
           >
             <span className="hidden h-px w-10 shrink-0 bg-gold sm:block md:w-12" aria-hidden />
             <span className="inline-flex max-w-full min-w-0 items-center justify-center gap-2 text-center text-[10px] uppercase tracking-[0.22em] text-gold sm:text-xs sm:tracking-[0.32em] md:tracking-[0.4em]">
-              <Sparkles className="h-3 w-3 shrink-0" /> Curadoria Privada · Desde 1987
+              <Sparkles className="h-3 w-3 shrink-0" /> {t.eyebrow}
             </span>
             <span className="hidden h-px w-10 shrink-0 bg-gold md:block md:w-12" aria-hidden />
           </motion.div>
@@ -81,12 +77,12 @@ export function Hero() {
             as="h1"
             className="mx-auto max-w-[min(100%,14ch)] font-serif text-[clamp(1.85rem,10.5vw,5.5rem)] leading-[1.04] md:max-w-5xl md:text-center md:leading-[1.02]"
           >
-            O Tempo Engarrafado.
+            {t.headline}
             <br />
             <span className="optical-word optical-word-realeza italic text-gradient-gold">
-              A Realeza
+              {t.headlineGold}
             </span>{" "}
-            <span className="text-champagne">em Cada Taça.</span>
+            <span className="text-champagne">{t.headlineRest}</span>
           </AnimatedTitle>
 
           <motion.p
@@ -96,8 +92,7 @@ export function Hero() {
             transition={{ duration: 0.88, delay: 0.35, ease: easeLuxury }}
             className="mx-auto mt-6 max-w-xl px-0.5 will-change-transform text-[0.98rem] font-light leading-relaxed text-champagne/78 md:mt-8 md:px-0 md:text-center md:text-lg"
           >
-            Uma curadoria exclusiva de rótulos raros e safras históricas. Para paladares que exigem
-            a excelência absoluta e o verdadeiro sabor do terroir.
+            {t.description}
           </motion.p>
 
           <motion.div
@@ -111,14 +106,14 @@ export function Hero() {
               href="#acervo"
               className="btn-gold-glow group inline-flex w-full items-center justify-center gap-3 rounded-sm px-6 py-3.5 text-[11px] font-semibold uppercase tracking-[0.22em] sm:w-auto sm:px-8 sm:py-4 sm:text-sm sm:tracking-[0.25em]"
             >
-              Explorar o Acervo Privado
+              {t.ctaCellar}
               <ArrowRight className="h-4 w-4 will-change-transform transition-transform group-hover:translate-x-1" />
             </a>
             <a
               href="#sommelier"
               className="btn-outline-gold inline-flex w-full items-center justify-center gap-2 rounded-sm px-6 py-3.5 text-[10px] font-medium uppercase tracking-[0.28em] sm:w-auto sm:px-7 sm:py-4 sm:text-xs sm:tracking-[0.3em]"
             >
-              Conhecer o Mestre
+              {t.ctaMaster}
             </a>
           </motion.div>
 
@@ -129,7 +124,7 @@ export function Hero() {
             transition={{ delay: 0.7, duration: 0.95, ease: easeLuxury }}
             className="mx-auto mt-11 grid w-full min-w-0 max-w-xl grid-cols-2 gap-x-5 gap-y-6 text-champagne/60 sm:flex sm:max-w-none sm:flex-wrap sm:items-center sm:justify-center sm:gap-x-6 sm:gap-y-5 md:mt-16 md:max-w-3xl md:gap-x-8 lg:gap-x-10"
           >
-            {stats.map((stat, i) => (
+            {t.stats.map((stat, i) => (
               <div key={stat.label} className="contents">
                 {i === 1 ? (
                   <div
@@ -165,7 +160,7 @@ export function Hero() {
         className="will-change-transform absolute bottom-8 left-1/2 hidden -translate-x-1/2 text-gold/60 md:block"
       >
         <div className="flex flex-col items-center gap-2">
-          <span className="text-[10px] uppercase tracking-[0.4em]">Descubra</span>
+          <span className="text-[10px] uppercase tracking-[0.4em]">{t.discover}</span>
           <span className="hero-scroll-cue-line block h-10 w-px bg-gradient-to-b from-gold to-transparent" />
         </div>
       </motion.div>

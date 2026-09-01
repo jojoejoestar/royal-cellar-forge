@@ -2,10 +2,12 @@
 
 import Image from "next/image";
 import { Mail, MapPin, AtSign } from "lucide-react";
-import { navLinks } from "@/content/nav";
 import { site } from "@/content/site";
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function Footer() {
+  const t = useCopy();
+
   return (
     <footer className="relative overflow-hidden bg-transparent pb-8 pt-14 md:pt-16">
       <div className="absolute inset-0 pattern-damask opacity-25" />
@@ -22,21 +24,20 @@ export function Footer() {
               className="h-14 w-auto"
             />
             <p className="mt-5 max-w-md text-sm font-light leading-relaxed text-champagne/65">
-              Curadoria privada de vinhos finos para paladares que reconhecem o tempo, a terra e o
-              silêncio em cada gole.
+              {t.footer.blurb}
             </p>
           </div>
 
           <div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gold">Navegação</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-gold">{t.footer.navigation}</p>
             <ul className="mt-4 space-y-2 text-sm text-champagne/70">
-              {navLinks.map((link) => (
+              {t.nav.links.map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
                     className="magnetic-underline transition-colors hover:text-gold"
                   >
-                    {"footerLabel" in link ? link.footerLabel : link.label}
+                    {link.footerLabel ?? link.label}
                   </a>
                 </li>
               ))}
@@ -44,11 +45,11 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="text-[10px] uppercase tracking-[0.3em] text-gold">Contato</p>
+            <p className="text-[10px] uppercase tracking-[0.3em] text-gold">{t.footer.contact}</p>
             <ul className="mt-4 space-y-3 text-sm text-champagne/70">
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 text-gold/70" />
-                <span>{site.location}</span>
+                <span>{t.footer.location}</span>
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="mt-0.5 h-4 w-4 text-gold/70" />
@@ -66,7 +67,7 @@ export function Footer() {
 
         <div className="flex flex-col items-center gap-4 text-center">
           <p className="text-[10px] uppercase tracking-[0.3em] text-champagne/50">
-            © 2026 {site.name} · Todos os direitos reservados · Aprecie com moderação
+            © 2026 {site.name} · {t.footer.rights}
           </p>
           <a
             href={site.creditUrl}

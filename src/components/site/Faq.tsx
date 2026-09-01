@@ -9,31 +9,11 @@ import { easeLuxury } from "@/lib/ease";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { Container, PatternBackdrop, Section } from "@/components/site/Section";
 import { SectionHeader } from "@/components/site/SectionHeader";
-
-const faqs = [
-  {
-    q: "Como é garantida a procedência de cada rótulo?",
-    a: "Cada garrafa da Cave Royale percorre uma cadeia rastreada do produtor à sua taça. Importamos diretamente das vinícolas ou de leilões certificados (Sotheby's, Christie's), com documentação de origem, certificados de autenticidade do château e selos de exportação. Nada entra em nossa adega sem a assinatura pessoal do nosso Mestre Sommelier.",
-  },
-  {
-    q: "Existe controle de temperatura no transporte?",
-    a: "Sim, sem exceções. Operamos com containers refrigerados a 14°C e umidade controlada em 70%, monitorados por sensores IoT 24/7. A entrega final é realizada em veículos climatizados próprios, com janela de horário acordada e protocolo de assinatura. Sua safra histórica chega como saiu da adega de origem.",
-  },
-  {
-    q: "Vocês buscam rótulos raros sob encomenda?",
-    a: "Esta é uma das vocações da nossa Confraria. Membros VIP têm acesso ao serviço de Wine Hunter - nossa rede internacional localiza safras descontinuadas, formatos magnum, jeroboam e edições limitadas. O prazo médio de localização é de 4 a 12 semanas, com preview fotográfico antes da aquisição.",
-  },
-  {
-    q: "Qual o investimento médio para integrar a Confraria?",
-    a: "A Confraria Cave Royale opera por convite e curadoria de perfil. Não trabalhamos com mensalidades - trabalhamos com relacionamento. O ticket médio anual de nossos membros gravita entre R$ 80 mil e R$ 600 mil, mas o valor real está no acesso prioritário a alocações limitadas que jamais chegam ao mercado público.",
-  },
-  {
-    q: "Oferecem consultoria para montagem de adega particular?",
-    a: "Absolutamente. Nosso serviço Cellar Architecture acompanha desde o projeto técnico (climatização, iluminação UV-free, sistemas anti-vibração) até a curadoria estratégica de portfólio com horizonte de 5, 10 e 25 anos - pensando guarda, valorização e legado familiar.",
-  },
-];
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function Faq() {
+  const t = useCopy().faq;
+  const faqs = t.items;
   const [open, setOpen] = useState<number | null>(0);
 
   const ref = useGsapReveal((root) => {
@@ -68,12 +48,13 @@ export function Faq() {
       <Container className="max-w-4xl">
         <SectionHeader
           revealClass="faq-heading"
-          eyebrow="Dúvidas Aristocráticas"
+          eyebrow={t.eyebrow}
           title={
             <>
-              Respostas <span className="italic text-gradient-gold">à Altura</span>
+              {t.titleLead}
+              <span className="italic text-gradient-gold">{t.titleGold}</span>
               <br />
-              do Seu Padrão.
+              {t.titleRest}
             </>
           }
         />

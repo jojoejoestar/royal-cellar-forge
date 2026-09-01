@@ -7,14 +7,10 @@ import { primeAndReveal } from "@/lib/scrollReveal";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { Container, PatternBackdrop, Section } from "@/components/site/Section";
 import { SectionHeader } from "@/components/site/SectionHeader";
-
-const stats = [
-  { value: "30+", label: "Anos de ofício" },
-  { value: "200+", label: "Vinícolas visitadas" },
-  { value: "12", label: "Estrelas Michelin" },
-];
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function Sommelier() {
+  const t = useCopy().sommelier;
   const ref = useGsapReveal((root) => {
     primeAndReveal(
       ".som-img",
@@ -42,7 +38,7 @@ export function Sommelier() {
           <div className="image-hover-luxury relative h-[640px] overflow-hidden rounded-sm border border-gold/20 shadow-velvet">
             <Image
               src={sommelierImg}
-              alt="O Mestre Sommelier da Cave Royale"
+              alt={t.imageAlt}
               fill
               className="object-cover object-center grayscale-[15%] contrast-110"
               loading="lazy"
@@ -57,7 +53,7 @@ export function Sommelier() {
               <p className="text-[10px] uppercase tracking-[0.3em] text-gold">
                 Court of Master Sommeliers
               </p>
-              <p className="text-xs text-champagne/80">Diploma Avançado · 2003</p>
+              <p className="text-xs text-champagne/80">{t.diploma}</p>
             </div>
           </div>
         </div>
@@ -66,12 +62,12 @@ export function Sommelier() {
           <SectionHeader
             align="left"
             revealClass="som-text"
-            eyebrow="O Sommelier"
+            eyebrow={t.eyebrow}
             title={
               <>
-                A Curadoria
+                {t.titleLead}
                 <br />
-                <span className="som-heading-gold-shine italic text-gradient-gold">do Mestre.</span>
+                <span className="som-heading-gold-shine italic text-gradient-gold">{t.titleGold}</span>
               </>
             }
           />
@@ -79,21 +75,16 @@ export function Sommelier() {
           <div className="som-text mt-10 flex items-start gap-4">
             <Quote className="mt-1 h-8 w-8 shrink-0 text-gold/60" />
             <p className="text-lg font-light italic leading-relaxed text-champagne/85">
-              "Eu não escolho vinhos. Eu descubro heranças. Cada rótulo que entra nesta adega passou
-              por uma conversa silenciosa entre o vigneron, a terra e o tempo - e meu papel é apenas
-              reconhecer quando essa conversa atingiu a perfeição."
+              {t.quote}
             </p>
           </div>
 
           <p className="som-text mt-8 text-base font-light leading-relaxed text-champagne/70">
-            Henrique Valverde percorreu mais de 200 vinícolas em quatro continentes ao longo de três
-            décadas. Formado em Bordeaux, certificado pela Court of Master Sommeliers e consultor de
-            cartas premiadas em Michelin, ele é a única assinatura que valida cada rótulo da Cave
-            Royale.
+            {t.bio}
           </p>
 
           <div className="som-text mt-10 grid grid-cols-3 gap-3 border-t border-gold/15 pt-8 sm:gap-5 md:gap-6">
-            {stats.map((stat) => (
+            {t.stats.map((stat) => (
               <div
                 key={stat.label}
                 className="flex flex-col items-center text-center md:items-start md:text-left"

@@ -3,6 +3,7 @@
 import { Grape } from "lucide-react";
 import { useEffect, useRef } from "react";
 import { DESKTOP_POINTER_MQ, REDUCED_MOTION_MQ } from "@/lib/media";
+import { useCopy } from "@/i18n/LocaleProvider";
 
 function setTranslateCentered(
   el: HTMLElement | null,
@@ -16,6 +17,7 @@ function setTranslateCentered(
 }
 
 export function GoldenGrapeCursor() {
+  const grapeSeal = useCopy().a11y.grapeSeal;
   const cursorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -69,7 +71,7 @@ export function GoldenGrapeCursor() {
   return (
     <div className="pointer-events-none fixed inset-0 z-[70] hidden lg:block">
       <div ref={cursorRef} className="grape-cursor-dot">
-        <span className="grape-cursor-icon" role="img" aria-label="Selo de uvas">
+        <span className="grape-cursor-icon" role="img" aria-label={grapeSeal}>
           <Grape className="h-5 w-5 text-gold" strokeWidth={1.3} />
         </span>
       </div>

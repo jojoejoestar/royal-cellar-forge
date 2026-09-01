@@ -9,29 +9,15 @@ import { primeAndReveal } from "@/lib/scrollReveal";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { Container, PatternBackdrop, Section } from "@/components/site/Section";
 import { SectionHeader } from "@/components/site/SectionHeader";
-
-const eras = [
-  {
-    icon: Grape,
-    year: "6000 a.C.",
-    title: "A Origem Sagrada",
-    text: "Nas encostas do Cáucaso, os primeiros vinhedos brotam. O homem descobre que o suco da uva, quando cultivado pelo tempo, transcende a sede - torna-se ritual.",
-  },
-  {
-    icon: Scroll,
-    year: "Antiguidade",
-    title: "Néctar dos Deuses",
-    text: "Egípcios o ofertam a Osíris. Gregos o consagram a Dionísio. Romanos o levam por todo o império em ânforas seladas. O vinho deixa de ser bebida - torna-se cultura.",
-  },
-  {
-    icon: Crown,
-    year: "Idade Média",
-    title: "A Bebida da Coroa",
-    text: "Monges beneditinos refinam a vinificação. Reis e cardeais brindam tratados, alianças e conquistas. Cada taça selada com cera carrega a assinatura de uma dinastia.",
-  },
-];
+import { useCopy } from "@/i18n/LocaleProvider";
 
 export function Heritage() {
+  const t = useCopy().heritage;
+  const eras = [
+    { icon: Grape, ...t.eras[0] },
+    { icon: Scroll, ...t.eras[1] },
+    { icon: Crown, ...t.eras[2] },
+  ];
   const ref = useGsapReveal((root) => {
     primeAndReveal(
       ".heritage-line",
@@ -64,19 +50,19 @@ export function Heritage() {
       <Container>
         <SectionHeader
           revealClass="heritage-line"
-          eyebrow="Patrimônio · Heritage"
+          eyebrow={t.eyebrow}
           title={
             <>
-              A Bebida que Selou
+              {t.titleLead}
               <br />
               <span className="optical-word optical-word-eternidades italic text-gradient-gold">
-                Impérios e Eternidades.
+                {t.titleGold}
               </span>
             </>
           }
           titleClassName="lg:text-7xl"
           descriptionClassName="mt-10 max-w-3xl text-champagne/75 md:text-lg"
-          description="Antes da escrita, antes das catedrais, antes das coroas - havia o vinho. Companheiro de faraós, sacerdotes e imperadores, o néctar da videira atravessou oito mil anos como o brinde silencioso de toda civilização que se ousou chamar nobre. Beber vinho é assinar um pacto com a história."
+          description={t.description}
         />
 
         <div className="heritage-mosaic mt-12 grid gap-5 md:grid-cols-12 md:gap-6 lg:mt-14">
@@ -91,7 +77,7 @@ export function Heritage() {
             <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <Image
                 src={chalice}
-                alt="Cálice real cravejado de rubis sobre mesa medieval com pergaminho selado"
+                alt={t.relicAlt}
                 loading="lazy"
                 width={1280}
                 height={896}
@@ -105,10 +91,10 @@ export function Heritage() {
               <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-gold/70 to-transparent" />
               <figcaption className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                 <p className="text-[10px] uppercase tracking-[0.4em] text-gold/80">
-                  · A Relíquia ·
+                  {t.relicKicker}
                 </p>
                 <p className="mt-2 font-serif text-xl text-champagne md:text-2xl">
-                  O cálice das dinastias
+                  {t.relicTitle}
                 </p>
               </figcaption>
             </div>
@@ -118,7 +104,7 @@ export function Heritage() {
             <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <Image
                 src={grapes}
-                alt="Cacho de uvas tintas com folhas douradas em pintura barroca"
+                alt={t.fruitAlt}
                 loading="lazy"
                 width={1024}
                 height={1280}
@@ -130,9 +116,9 @@ export function Heritage() {
               <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20" />
               <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold/80">· O Fruto ·</p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold/80">{t.fruitKicker}</p>
                 <p className="mt-1.5 font-serif text-lg text-champagne md:text-xl">
-                  Vitis Vinifera
+                  {t.fruitTitle}
                 </p>
               </figcaption>
             </div>
@@ -142,7 +128,7 @@ export function Heritage() {
             <div className="image-hover-luxury relative overflow-hidden rounded-sm border border-gold/25 shadow-velvet">
               <Image
                 src={cellar}
-                alt="Catedral subterrânea com fileiras de barris e candelabros dourados"
+                alt={t.sanctuaryAlt}
                 loading="lazy"
                 width={1280}
                 height={896}
@@ -155,10 +141,10 @@ export function Heritage() {
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20" />
               <figcaption className="absolute bottom-0 left-0 right-0 p-5 md:p-6">
                 <p className="text-[10px] uppercase tracking-[0.4em] text-gold/80">
-                  · O Santuário ·
+                  {t.sanctuaryKicker}
                 </p>
                 <p className="mt-1.5 font-serif text-lg text-champagne md:text-xl">
-                  Catedrais subterrâneas
+                  {t.sanctuaryTitle}
                 </p>
               </figcaption>
             </div>
@@ -167,9 +153,9 @@ export function Heritage() {
 
         <div className="heritage-timeline mt-14 lg:mt-16">
           <div className="mx-auto mb-14 max-w-2xl text-center">
-            <p className="text-xs uppercase tracking-[0.5em] text-gold">· Oito Mil Anos ·</p>
+            <p className="text-xs uppercase tracking-[0.5em] text-gold">{t.timelineKicker}</p>
             <h3 className="mt-5 font-serif text-3xl text-champagne md:text-4xl">
-              Uma cronologia da nobreza líquida
+              {t.timelineTitle}
             </h3>
           </div>
 
@@ -208,11 +194,11 @@ export function Heritage() {
         <div className="mx-auto mt-14 max-w-3xl text-center lg:mt-16">
           <div className="mx-auto gold-divider w-24" />
           <blockquote className="mt-10 font-serif text-2xl italic leading-relaxed text-champagne md:text-3xl lg:text-4xl">
-            “O vinho é a única obra de arte que se pode beber. Toda taça erguida é, em silêncio, uma{" "}
-            <span className="text-gradient-gold not-italic">coroação.</span>”
+            {t.quote}
+            <span className="text-gradient-gold not-italic">{t.quoteGold}</span>”
           </blockquote>
           <p className="mt-8 text-[11px] uppercase tracking-[0.45em] text-gold/70">
-            - Manifesto Cave Royale
+            {t.manifesto}
           </p>
         </div>
       </Container>

@@ -9,39 +9,16 @@ import { primeAndReveal } from "@/lib/scrollReveal";
 import { useGsapReveal } from "@/hooks/useGsapReveal";
 import { Container, PatternBackdrop, Section } from "@/components/site/Section";
 import { SectionHeader } from "@/components/site/SectionHeader";
+import { useCopy } from "@/i18n/LocaleProvider";
 
-const steps = [
-  {
-    icon: Eye,
-    roman: "I",
-    title: "O Olhar",
-    subtitle: "Visus",
-    text: "À luz dourada da vela, observamos a profundidade do rubi e a viscosidade que escorre como veludo nas paredes do cristal. A cor revela a idade. A lágrima revela o caráter.",
-  },
-  {
-    icon: Wind,
-    roman: "II",
-    title: "O Aroma",
-    subtitle: "Olfactus",
-    text: "Aproximamos a taça em silêncio reverente. Frutas negras, especiarias do Oriente, couro envelhecido, terra molhada. Cada inspiração revela uma camada esquecida do tempo.",
-  },
-  {
-    icon: Wine,
-    roman: "III",
-    title: "O Paladar",
-    subtitle: "Gustus",
-    text: "O primeiro gole atravessa séculos. Taninos sedosos abraçam a língua, a acidez vibra como uma sinfonia, e o final persiste por minutos infinitos. Aqui mora a verdade.",
-  },
-  {
-    icon: Gem,
-    roman: "IV",
-    title: "A Memória",
-    subtitle: "Memoria",
-    text: "O grande vinho não termina ao engolir. Ele permanece. Ele se torna recordação, conversa, herança. Um instante eterno gravado no paladar e na alma.",
-  },
-];
+const STEP_ICONS = [Eye, Wind, Wine, Gem] as const;
 
 export function Tasting() {
+  const t = useCopy().tasting;
+  const steps = t.steps.map((step, i) => ({
+    ...step,
+    icon: STEP_ICONS[i] ?? Eye,
+  }));
   const sectionRef = useGsapReveal((root) => {
     primeAndReveal(
       ".tast-head",
@@ -79,18 +56,18 @@ export function Tasting() {
       <Container>
         <SectionHeader
           revealClass="tast-head"
-          eyebrow="Ritual de Degustação"
+          eyebrow={t.eyebrow}
           title={
             <>
-              Quatro Atos para uma{" "}
+              {t.titleLead}
               <span className="optical-word optical-word-comunhao italic text-gradient-gold">
-                Comunhão Sensorial
+                {t.titleGold}
               </span>
-              .
+              {t.titleRest}
             </>
           }
           descriptionClassName="text-champagne/75"
-          description="A degustação de um grande vinho não é consumo. É cerimônia. Ato de silêncio, presença e gratidão diante de uma cápsula líquida do tempo."
+          description={t.description}
         />
 
         <div className="tast-mosaic mt-10 grid gap-5 lg:mt-12 lg:grid-cols-12 lg:grid-rows-2 lg:gap-6">
@@ -99,7 +76,7 @@ export function Tasting() {
             <div className="relative leading-none">
               <Image
                 src={pour}
-                alt="Decanter de cristal vertendo vinho em taça"
+                alt={t.pourAlt}
                 loading="lazy"
                 width={1280}
                 height={1600}
@@ -109,13 +86,12 @@ export function Tasting() {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-onyx/95 via-onyx/30 to-transparent" />
               <figcaption className="absolute inset-x-0 bottom-0 p-8 lg:p-10">
-                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">O Ato Sagrado</p>
+                <p className="text-[10px] uppercase tracking-[0.4em] text-gold">{t.sacredAct}</p>
                 <h3 className="mt-3 font-serif text-3xl leading-tight text-champagne md:text-4xl">
-                  O Despertar do Decanter
+                  {t.decanterTitle}
                 </h3>
                 <p className="mt-3 max-w-md text-sm font-light text-champagne/80">
-                  Após décadas de sono, o vinho respira pela primeira vez. Cada segundo é uma camada
-                  que se revela.
+                  {t.decanterText}
                 </p>
               </figcaption>
               <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20" />
@@ -125,7 +101,7 @@ export function Tasting() {
           <figure className="tast-side image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <Image
               src={swirl}
-              alt="Macro do vinho sendo agitado em taça de cristal"
+              alt={t.swirlAlt}
               loading="lazy"
               width={1280}
               height={1280}
@@ -135,8 +111,8 @@ export function Tasting() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 p-6">
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Movimento</p>
-              <h4 className="mt-2 font-serif text-2xl text-champagne">Lágrimas de Cristal</h4>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">{t.movement}</p>
+              <h4 className="mt-2 font-serif text-2xl text-champagne">{t.tearsTitle}</h4>
             </figcaption>
             <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20" />
           </figure>
@@ -144,7 +120,7 @@ export function Tasting() {
           <figure className="tast-side image-hover-luxury relative col-span-12 overflow-hidden rounded-sm border border-gold/25 bg-gradient-royal sm:col-span-6 lg:col-span-5">
             <Image
               src={nose}
-              alt="Sommelier inspirando o aroma do vinho à luz de vela"
+              alt={t.noseAlt}
               loading="lazy"
               width={1280}
               height={1280}
@@ -154,8 +130,8 @@ export function Tasting() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-onyx/90 to-transparent" />
             <figcaption className="absolute inset-x-0 bottom-0 p-6">
-              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">Comunhão</p>
-              <h4 className="mt-2 font-serif text-2xl text-champagne">Memórias do Terroir</h4>
+              <p className="text-[10px] uppercase tracking-[0.4em] text-gold">{t.communion}</p>
+              <h4 className="mt-2 font-serif text-2xl text-champagne">{t.memoriesTitle}</h4>
             </figcaption>
             <div className="pointer-events-none absolute inset-0 ring-1 ring-inset ring-gold/20" />
           </figure>
@@ -164,12 +140,12 @@ export function Tasting() {
         <div className="tast-head mt-8 text-center md:mt-10">
           <div className="mx-auto gold-divider w-40" />
           <p className="mx-auto mt-8 max-w-3xl font-serif text-2xl italic leading-relaxed text-champagne md:mt-9 md:text-3xl">
-            “Beber um grande vinho é{" "}
-            <span className="text-gradient-gold not-italic">conversar com o tempo</span> - uma
-            audiência privada com séculos de paciência, sol e silêncio.”
+            {t.quoteLead}
+            <span className="text-gradient-gold not-italic">{t.quoteGold}</span>
+            {t.quoteRest}
           </p>
           <p className="mt-5 text-[10px] uppercase tracking-[0.4em] text-gold/80 md:mt-6">
-            Manifesto Cave Royale
+            {t.manifesto}
           </p>
         </div>
 
